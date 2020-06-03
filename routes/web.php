@@ -23,3 +23,5 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 
 Route::resource('focalPeople', 'FocalPersonController');
+
+Route::resource('agencyTypes', 'AgencyTypeController');

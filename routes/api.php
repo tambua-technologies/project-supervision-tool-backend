@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('focal_people', 'FocalPersonAPIController');
+
+Route::resource('agency_types', 'AgencyTypeAPIController');
