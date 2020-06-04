@@ -11,7 +11,7 @@
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())
-                <p>InfyOm</p>
+                <p>Pamoja Admin Panel</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
