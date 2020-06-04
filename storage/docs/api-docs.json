@@ -404,6 +404,205 @@
                 }
             }
         },
+        "/emergencyResponseThemes": {
+            "get": {
+                "tags": [
+                    "EmergencyResponseTheme"
+                ],
+                "summary": "Get a listing of the EmergencyResponseThemes.",
+                "description": "Get all EmergencyResponseThemes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/EmergencyResponseTheme"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "EmergencyResponseTheme"
+                ],
+                "summary": "Store a newly created EmergencyResponseTheme in storage",
+                "description": "Store EmergencyResponseTheme",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EmergencyResponseTheme that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EmergencyResponseTheme"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EmergencyResponseTheme"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/emergencyResponseThemes/{id}": {
+            "get": {
+                "tags": [
+                    "EmergencyResponseTheme"
+                ],
+                "summary": "Display the specified EmergencyResponseTheme",
+                "description": "Get EmergencyResponseTheme",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EmergencyResponseTheme",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EmergencyResponseTheme"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "EmergencyResponseTheme"
+                ],
+                "summary": "Update the specified EmergencyResponseTheme in storage",
+                "description": "Update EmergencyResponseTheme",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EmergencyResponseTheme",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "EmergencyResponseTheme that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/EmergencyResponseTheme"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/EmergencyResponseTheme"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "EmergencyResponseTheme"
+                ],
+                "summary": "Remove the specified EmergencyResponseTheme from storage",
+                "description": "Delete EmergencyResponseTheme",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of EmergencyResponseTheme",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/focalPeople": {
             "get": {
                 "tags": [
@@ -976,6 +1175,205 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Location",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/stocks": {
+            "get": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Get a listing of the Stocks.",
+                "description": "Get all Stocks",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Stock"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Store a newly created Stock in storage",
+                "description": "Store Stock",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Stock that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Stock"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Stock"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/stocks/{id}": {
+            "get": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Display the specified Stock",
+                "description": "Get Stock",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Stock",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Stock"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Update the specified Stock in storage",
+                "description": "Update Stock",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Stock",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Stock that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Stock"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Stock"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Stock"
+                ],
+                "summary": "Remove the specified Stock from storage",
+                "description": "Delete Stock",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Stock",
                         "required": true,
                         "type": "integer"
                     }
@@ -2076,6 +2474,41 @@
                 }
             }
         },
+        "EmergencyResponseTheme": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "FocalPerson": {
             "required": [
                 "fist_name",
@@ -2183,6 +2616,104 @@
                 "level": {
                     "description": "level",
                     "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Stock": {
+            "required": [
+                "quantity",
+                "pace_of_production",
+                "frequency",
+                "stock_type_id",
+                "location_id",
+                "item_id",
+                "agency_id",
+                "emergency_response_theme_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "start_date": {
+                    "description": "start_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "description": "end_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "quantity": {
+                    "description": "quantity",
+                    "type": "number",
+                    "format": "number"
+                },
+                "pace_of_production": {
+                    "description": "pace_of_production",
+                    "type": "number",
+                    "format": "number"
+                },
+                "frequency": {
+                    "description": "frequency",
+                    "type": "number",
+                    "format": "number"
+                },
+                "meta": {
+                    "description": "meta",
+                    "type": "string"
+                },
+                "stock_status_id": {
+                    "description": "stock_status_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "stock_type_id": {
+                    "description": "stock_type_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "stock_group_cluster_id": {
+                    "description": "stock_group_cluster_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "item_id": {
+                    "description": "item_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "agency_id": {
+                    "description": "agency_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "emergency_response_theme_id": {
+                    "description": "emergency_response_theme_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
