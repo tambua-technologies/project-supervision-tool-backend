@@ -18,3 +18,7 @@
     <a href="{{ route('items.index') }}"><i class="fa fa-edit"></i><span>Items</span></a>
 </li>
 
+<li class="{{ Request::is('locations*') ? 'active' : '' }}">
+    <a href="{{ route('locations.index') }}"><i class="fa fa-edit"></i><span>Locations</span></a>
+</li>
+

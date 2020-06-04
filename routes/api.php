@@ -28,3 +28,5 @@ Route::resource('agencies', 'AgencyAPIController');
 Route::resource('units', 'UnitAPIController');
 
 Route::resource('items', 'ItemAPIController');
+
+Route::resource('locations', 'LocationAPIController');

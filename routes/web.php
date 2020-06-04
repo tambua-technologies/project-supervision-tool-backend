@@ -31,3 +31,5 @@ Route::resource('agencies', 'AgencyController');
 Route::resource('units', 'UnitController');
 
 Route::resource('items', 'ItemController');
+
+Route::resource('locations', 'LocationController');
