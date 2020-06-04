@@ -42,3 +42,7 @@
     <a href="{{ route('emergencyResponseThemes.index') }}"><i class="fa fa-edit"></i><span>Emergency Response Themes</span></a>
 </li>
 
+<li class="{{ Request::is('stocks*') ? 'active' : '' }}">
+    <a href="{{ route('stocks.index') }}"><i class="fa fa-edit"></i><span>Stocks</span></a>
+</li>
+

@@ -40,3 +40,5 @@ Route::resource('stock_groups', 'StockGroupAPIController');
 Route::resource('stock_group_clusters', 'StockGroupClusterAPIController');
 
 Route::resource('emergency_response_themes', 'EmergencyResponseThemeAPIController');
+
+Route::resource('stocks', 'StockAPIController');
