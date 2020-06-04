@@ -26,3 +26,5 @@ Route::resource('agency_types', 'AgencyTypeAPIController');
 Route::resource('agencies', 'AgencyAPIController');
 
 Route::resource('units', 'UnitAPIController');
+
+Route::resource('items', 'ItemAPIController');
