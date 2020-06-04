@@ -30,3 +30,7 @@
     <a href="{{ route('stockStatuses.index') }}"><i class="fa fa-edit"></i><span>Stock Statuses</span></a>
 </li>
 
+<li class="{{ Request::is('stockGroups*') ? 'active' : '' }}">
+    <a href="{{ route('stockGroups.index') }}"><i class="fa fa-edit"></i><span>Stock Groups</span></a>
+</li>
+

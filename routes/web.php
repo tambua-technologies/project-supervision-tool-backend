@@ -37,3 +37,5 @@ Route::resource('locations', 'LocationController');
 Route::resource('stockTypes', 'StockTypeController');
 
 Route::resource('stockStatuses', 'StockStatusesController');
+
+Route::resource('stockGroups', 'StockGroupController');
