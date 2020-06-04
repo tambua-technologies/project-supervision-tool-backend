@@ -38,3 +38,7 @@
     <a href="{{ route('stockGroupClusters.index') }}"><i class="fa fa-edit"></i><span>Stock Group Clusters</span></a>
 </li>
 
+<li class="{{ Request::is('emergencyResponseThemes*') ? 'active' : '' }}">
+    <a href="{{ route('emergencyResponseThemes.index') }}"><i class="fa fa-edit"></i><span>Emergency Response Themes</span></a>
+</li>
+
