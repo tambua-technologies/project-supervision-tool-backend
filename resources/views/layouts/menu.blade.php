@@ -34,3 +34,7 @@
     <a href="{{ route('stockGroups.index') }}"><i class="fa fa-edit"></i><span>Stock Groups</span></a>
 </li>
 
+<li class="{{ Request::is('stockGroupClusters*') ? 'active' : '' }}">
+    <a href="{{ route('stockGroupClusters.index') }}"><i class="fa fa-edit"></i><span>Stock Group Clusters</span></a>
+</li>
+

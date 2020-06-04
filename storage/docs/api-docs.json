@@ -1200,6 +1200,205 @@
                 }
             }
         },
+        "/stockGroupClusters": {
+            "get": {
+                "tags": [
+                    "StockGroupCluster"
+                ],
+                "summary": "Get a listing of the StockGroupClusters.",
+                "description": "Get all StockGroupClusters",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/StockGroupCluster"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "StockGroupCluster"
+                ],
+                "summary": "Store a newly created StockGroupCluster in storage",
+                "description": "Store StockGroupCluster",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "StockGroupCluster that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/StockGroupCluster"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/StockGroupCluster"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/stockGroupClusters/{id}": {
+            "get": {
+                "tags": [
+                    "StockGroupCluster"
+                ],
+                "summary": "Display the specified StockGroupCluster",
+                "description": "Get StockGroupCluster",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of StockGroupCluster",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/StockGroupCluster"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "StockGroupCluster"
+                ],
+                "summary": "Update the specified StockGroupCluster in storage",
+                "description": "Update StockGroupCluster",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of StockGroupCluster",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "StockGroupCluster that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/StockGroupCluster"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/StockGroupCluster"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "StockGroupCluster"
+                ],
+                "summary": "Remove the specified StockGroupCluster from storage",
+                "description": "Delete StockGroupCluster",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of StockGroupCluster",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/stockStatuses": {
             "get": {
                 "tags": [
@@ -2019,6 +2218,47 @@
                 "description": {
                     "description": "description",
                     "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "StockGroupCluster": {
+            "required": [
+                "name",
+                "stock_group_cluster_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "stock_group_cluster_id": {
+                    "description": "stock_group_cluster_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
