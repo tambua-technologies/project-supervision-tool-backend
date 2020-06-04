@@ -33,3 +33,5 @@ Route::resource('units', 'UnitController');
 Route::resource('items', 'ItemController');
 
 Route::resource('locations', 'LocationController');
+
+Route::resource('stockTypes', 'StockTypeController');
