@@ -26,3 +26,7 @@
     <a href="{{ route('stockTypes.index') }}"><i class="fa fa-edit"></i><span>Stock Types</span></a>
 </li>
 
+<li class="{{ Request::is('stockStatuses*') ? 'active' : '' }}">
+    <a href="{{ route('stockStatuses.index') }}"><i class="fa fa-edit"></i><span>Stock Statuses</span></a>
+</li>
+

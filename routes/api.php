@@ -32,3 +32,5 @@ Route::resource('items', 'ItemAPIController');
 Route::resource('locations', 'LocationAPIController');
 
 Route::resource('stock_types', 'StockTypeAPIController');
+
+Route::resource('stock_statuses', 'StockStatusesAPIController');
