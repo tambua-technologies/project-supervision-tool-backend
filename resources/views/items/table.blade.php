@@ -4,7 +4,7 @@
             <tr>
                 <th>Name</th>
         <th>Description</th>
-        <th>Unit Id</th>
+        <th>Item Unit</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ $item->name }}</td>
             <td>{{ $item->description }}</td>
-            <td>{{ $item->unit_id }}</td>
+            <td>{{ $item->unit()->first()->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['items.destroy', $item->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

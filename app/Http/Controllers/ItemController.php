@@ -6,6 +6,7 @@ use App\Http\Requests\CreateItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Repositories\ItemRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\UnitRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -14,10 +15,12 @@ class ItemController extends AppBaseController
 {
     /** @var  ItemRepository */
     private $itemRepository;
+    private $unitRepository;
 
-    public function __construct(ItemRepository $itemRepo)
+    public function __construct(ItemRepository $itemRepo, UnitRepository $unitRepo)
     {
         $this->itemRepository = $itemRepo;
+        $this->unitRepository = $unitRepo;
     }
 
     /**
@@ -42,7 +45,9 @@ class ItemController extends AppBaseController
      */
     public function create()
     {
-        return view('items.create');
+        $units = $this->unitRepository->model()::pluck('name', 'id');
+        return view('items.create')
+            ->with('units', $units);
     }
 
     /**
@@ -93,6 +98,7 @@ class ItemController extends AppBaseController
     public function edit($id)
     {
         $item = $this->itemRepository->find($id);
+        $units = $this->unitRepository->model()::pluck('name', 'id');
 
         if (empty($item)) {
             Flash::error('Item not found');
@@ -100,7 +106,9 @@ class ItemController extends AppBaseController
             return redirect(route('items.index'));
         }
 
-        return view('items.edit')->with('item', $item);
+        return view('items.edit')
+            ->with('item', $item)
+            ->with('units', $units);
     }
 
     /**

@@ -12,8 +12,8 @@
 
 <!-- Unit Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('unit_id', 'Unit Id:') !!}
-    {!! Form::number('unit_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('unit_id', 'Item Unit:') !!}
+    {!! Form::select('unit_id',$units, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
