@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAgencyRequest;
 use App\Http\Requests\UpdateAgencyRequest;
+use App\Models\AgencyType;
 use App\Repositories\AgencyRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\AgencyTypeRepository;
+use App\Repositories\FocalPersonRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -14,10 +17,18 @@ class AgencyController extends AppBaseController
 {
     /** @var  AgencyRepository */
     private $agencyRepository;
+    private $agencyTypesRepository;
+    private $focalPersonRepository;
 
-    public function __construct(AgencyRepository $agencyRepo)
+    public function __construct(
+        AgencyRepository $agencyRepo,
+        AgencyTypeRepository $agencyTypeRepo,
+        FocalPersonRepository $focalPersonRepo
+    )
     {
         $this->agencyRepository = $agencyRepo;
+        $this->agencyTypesRepository = $agencyTypeRepo;
+        $this->focalPersonRepository = $focalPersonRepo;
     }
 
     /**
@@ -42,7 +53,11 @@ class AgencyController extends AppBaseController
      */
     public function create()
     {
-        return view('agencies.create');
+        $focalPeople = $this->focalPersonRepository->model()::pluck('first_name', 'id');
+        $agencyTypes = $this->agencyTypesRepository->model()::pluck('name', 'id');
+        return view('agencies.create')
+            ->with('agencyTypes', $agencyTypes)
+            ->with('focalPeople', $focalPeople);
     }
 
     /**
@@ -93,6 +108,8 @@ class AgencyController extends AppBaseController
     public function edit($id)
     {
         $agency = $this->agencyRepository->find($id);
+        $agencyTypes = $this->agencyTypesRepository->model()::pluck('name', 'id');
+        $focalPeople = $this->focalPersonRepository->model()::pluck('first_name', 'id');
 
         if (empty($agency)) {
             Flash::error('Agency not found');
@@ -100,7 +117,9 @@ class AgencyController extends AppBaseController
             return redirect(route('agencies.index'));
         }
 
-        return view('agencies.edit')->with('agency', $agency);
+        return view('agencies.edit')->with('agency', $agency)
+            ->with('agencyTypes', $agencyTypes)
+            ->with('focalPeople', $focalPeople);
     }
 
     /**

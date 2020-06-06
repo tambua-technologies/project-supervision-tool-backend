@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="FocalPerson",
- *      required={"fist_name", "email", "password"},
+ *      required={"first_name", "email", "password"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="fist_name",
- *          description="fist_name",
+ *          property="first_name",
+ *          description="first_name",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -64,14 +64,14 @@ class FocalPerson extends Model
     use SoftDeletes;
 
     public $table = 'focal_people';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'fist_name',
+        'first_name',
         'last_name',
         'middle_name',
         'phone',
@@ -86,7 +86,7 @@ class FocalPerson extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'fist_name' => 'string',
+        'first_name' => 'string',
         'last_name' => 'string',
         'middle_name' => 'string',
         'phone' => 'string',
@@ -100,10 +100,10 @@ class FocalPerson extends Model
      * @var array
      */
     public static $rules = [
-        'fist_name' => 'required',
+        'first_name' => 'required',
         'email' => 'required',
         'password' => 'required'
     ];
 
-    
+
 }

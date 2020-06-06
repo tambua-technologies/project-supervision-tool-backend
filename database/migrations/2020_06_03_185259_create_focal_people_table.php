@@ -16,7 +16,7 @@ class CreateFocalPeopleTable extends Migration
     {
         Schema::create('focal_people', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fist_name');
+            $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('phone')->unique();

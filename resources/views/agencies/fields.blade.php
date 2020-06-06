@@ -13,13 +13,13 @@
 <!-- Focal Person Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('focal_person_id', 'Focal Person Id:') !!}
-    {!! Form::number('focal_person_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('focal_person_id', $focalPeople, null,['class' => 'form-control']  ) !!}
 </div>
 
-<!-- Agency Type Id Field -->
+<!-- Agency Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('agency_type_id', 'Agency Type Id:') !!}
-    {!! Form::number('agency_type_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('agency_type', 'Agency Type:') !!}
+    {!! Form::select('agency_type_id', $agencyTypes, null,['class' => 'form-control']  ) !!}
 </div>
 
 <!-- Submit Field -->

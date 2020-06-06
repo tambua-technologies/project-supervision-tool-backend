@@ -4,8 +4,8 @@
             <tr>
                 <th>Name</th>
         <th>Website</th>
-        <th>Focal Person Id</th>
-        <th>Agency Type Id</th>
+        <th>Focal Person</th>
+        <th>Agency Type</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -14,8 +14,8 @@
             <tr>
                 <td>{{ $agency->name }}</td>
             <td>{{ $agency->website }}</td>
-            <td>{{ $agency->focal_person_id }}</td>
-            <td>{{ $agency->agency_type_id }}</td>
+            <td>{{ $agency->focalPerson()->first()->first_name }}</td>
+            <td>{{ $agency->agencyType()->first()->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['agencies.destroy', $agency->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
