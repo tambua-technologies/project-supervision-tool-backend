@@ -2,7 +2,7 @@
     <table class="table" id="focalPeople-table">
         <thead>
             <tr>
-                <th>Fist Name</th>
+                <th>First Name</th>
         <th>Last Name</th>
         <th>Middle Name</th>
         <th>Phone</th>
@@ -14,7 +14,7 @@
         <tbody>
         @foreach($focalPeople as $focalPerson)
             <tr>
-                <td>{{ $focalPerson->fist_name }}</td>
+                <td>{{ $focalPerson->first_name }}</td>
             <td>{{ $focalPerson->last_name }}</td>
             <td>{{ $focalPerson->middle_name }}</td>
             <td>{{ $focalPerson->phone }}</td>

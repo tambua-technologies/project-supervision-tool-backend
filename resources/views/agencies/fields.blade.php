@@ -13,7 +13,7 @@
 <!-- Focal Person Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('focal_person_id', 'Focal Person Id:') !!}
-    {!! Form::number('focal_person_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('focal_person_id', $focalPeople, null,['class' => 'form-control']  ) !!}
 </div>
 
 <!-- Agency Type Field -->

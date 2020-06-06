@@ -17,7 +17,7 @@ class FocalPersonRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'fist_name',
+        'first_name',
         'last_name',
         'middle_name',
         'phone',

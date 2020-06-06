@@ -1,7 +1,7 @@
-<!-- Fist Name Field -->
+<!-- First Name Field -->
 <div class="form-group">
-    {!! Form::label('fist_name', 'Fist Name:') !!}
-    <p>{{ $focalPerson->fist_name }}</p>
+    {!! Form::label('first_name', 'Fist Name:') !!}
+    <p>{{ $focalPerson->first_name }}</p>
 </div>
 
 <!-- Last Name Field -->

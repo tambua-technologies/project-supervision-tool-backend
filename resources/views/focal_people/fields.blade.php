@@ -1,7 +1,7 @@
-<!-- Fist Name Field -->
+<!-- First Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fist_name', 'Fist Name:') !!}
-    {!! Form::text('fist_name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('first_name', 'Fist Name:') !!}
+    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Last Name Field -->
