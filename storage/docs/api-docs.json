@@ -205,7 +205,7 @@
                 }
             }
         },
-        "/agencyTypes": {
+        "/agency_types": {
             "get": {
                 "tags": [
                     "AgencyType"
@@ -279,7 +279,7 @@
                 }
             }
         },
-        "/agencyTypes/{id}": {
+        "/agency_types/{id}": {
             "get": {
                 "tags": [
                     "AgencyType"

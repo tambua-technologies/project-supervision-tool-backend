@@ -30,7 +30,7 @@ class AgencyTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/agencyTypes",
+     *      path="/agency_types",
      *      summary="Get a listing of the AgencyTypes.",
      *      tags={"AgencyType"},
      *      description="Get all AgencyTypes",
@@ -73,7 +73,7 @@ class AgencyTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/agencyTypes",
+     *      path="/agency_types",
      *      summary="Store a newly created AgencyType in storage",
      *      tags={"AgencyType"},
      *      description="Store AgencyType",
@@ -120,7 +120,7 @@ class AgencyTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/agencyTypes/{id}",
+     *      path="/agency_types/{id}",
      *      summary="Display the specified AgencyType",
      *      tags={"AgencyType"},
      *      description="Get AgencyType",
@@ -171,7 +171,7 @@ class AgencyTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/agencyTypes/{id}",
+     *      path="/agency_types/{id}",
      *      summary="Update the specified AgencyType in storage",
      *      tags={"AgencyType"},
      *      description="Update AgencyType",
@@ -232,7 +232,7 @@ class AgencyTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/agencyTypes/{id}",
+     *      path="/agency_types/{id}",
      *      summary="Remove the specified AgencyType from storage",
      *      tags={"AgencyType"},
      *      description="Delete AgencyType",
