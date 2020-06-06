@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAgencyRequest;
 use App\Http\Requests\UpdateAgencyRequest;
+use App\Models\AgencyType;
 use App\Repositories\AgencyRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\AgencyTypeRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -14,10 +16,12 @@ class AgencyController extends AppBaseController
 {
     /** @var  AgencyRepository */
     private $agencyRepository;
+    private $agencyTypesRepository;
 
-    public function __construct(AgencyRepository $agencyRepo)
+    public function __construct(AgencyRepository $agencyRepo, AgencyTypeRepository $agencyTypeRepo)
     {
         $this->agencyRepository = $agencyRepo;
+        $this->agencyTypesRepository = $agencyTypeRepo;
     }
 
     /**
@@ -42,7 +46,8 @@ class AgencyController extends AppBaseController
      */
     public function create()
     {
-        return view('agencies.create');
+        return view('agencies.create')
+            ->with('agencyTypes', $this->agencyTypesRepository->model()::pluck('name', 'id'));
     }
 
     /**
@@ -100,7 +105,8 @@ class AgencyController extends AppBaseController
             return redirect(route('agencies.index'));
         }
 
-        return view('agencies.edit')->with('agency', $agency);
+        return view('agencies.edit')->with('agency', $agency)
+            ->with('agencyTypes', $this->agencyTypesRepository->model()::pluck('name', 'id'));
     }
 
     /**
