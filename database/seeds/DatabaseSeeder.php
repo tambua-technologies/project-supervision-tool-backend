@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
          $this->call(FocalPeopleSeeder::class);
          $this->call(AgencyTypesSeeder::class);
          $this->call(AgencySeeder::class);
+         $this->call(UnitsSeeder::class);
     }
 }
