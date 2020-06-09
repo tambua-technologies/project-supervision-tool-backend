@@ -3,17 +3,20 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Agency;
+use App\Models\AgencyType;
+use App\Models\FocalPerson;
 use Faker\Generator as Faker;
 
 $factory->define(Agency::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
-        'website' => $faker->word,
-        'focal_person_id' => $faker->word,
-        'agency_type_id' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $faker->date('Y-m-d H:i:s')
+        'name' => $faker->domainWord,
+        'website' => $faker->domainName,
+        'focal_person_id' => function () {
+            return FocalPerson::query()->inRandomOrder()->first()->id;
+        },
+        'agency_type_id' => function () {
+            return AgencyType::query()->inRandomOrder()->first()->id;
+        },
     ];
 });

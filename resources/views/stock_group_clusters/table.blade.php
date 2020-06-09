@@ -4,7 +4,6 @@
             <tr>
                 <th>Name</th>
         <th>Description</th>
-        <th>Stock Group Cluster Id</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -13,7 +12,6 @@
             <tr>
                 <td>{{ $stockGroupCluster->name }}</td>
             <td>{{ $stockGroupCluster->description }}</td>
-            <td>{{ $stockGroupCluster->stock_group_cluster_id }}</td>
                 <td>
                     {!! Form::open(['route' => ['stockGroupClusters.destroy', $stockGroupCluster->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

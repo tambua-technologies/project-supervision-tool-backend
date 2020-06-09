@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="StockGroupCluster",
- *      required={"name", "stock_group_cluster_id"},
+ *      required={"name"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -56,7 +56,7 @@ class StockGroupCluster extends Model
     use SoftDeletes;
 
     public $table = 'stock_group_clusters';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -93,5 +93,5 @@ class StockGroupCluster extends Model
         'stock_group_cluster_id' => 'required'
     ];
 
-    
+
 }

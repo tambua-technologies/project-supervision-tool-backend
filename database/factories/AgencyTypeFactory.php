@@ -8,9 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(AgencyType::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
+        'name' => $faker->domainWord,
         'description' => $faker->text,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
     ];
 });
