@@ -11,6 +11,6 @@ class EmergencyResponseThemesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\EmergencyResponseTheme::class, 5)->create();
     }
 }

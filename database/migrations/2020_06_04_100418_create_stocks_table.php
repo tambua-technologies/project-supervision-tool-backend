@@ -23,13 +23,18 @@ class CreateStocksTable extends Migration
             $table->jsonb('meta')->nullable();
             $table->unsignedBigInteger('stock_status_id')->nullable();
             $table->unsignedBigInteger('stock_type_id');
-            $table->unsignedBigInteger('stock_group_cluster_id')->nullable();
+            $table->unsignedBigInteger('stock_group_id')->nullable();
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('emergency_response_theme_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('agency_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
 
             $table->foreign('stock_status_id')
                 ->references('id')
@@ -41,9 +46,9 @@ class CreateStocksTable extends Migration
                 ->on('stock_types')
                 ->onDelete('set null');
 
-            $table->foreign('stock_group_cluster_id')
+            $table->foreign('stock_group_id')
                 ->references('id')
-                ->on('stock_group_clusters')
+                ->on('stock_groups')
                 ->onDelete('set null');
 
             $table->foreign('location_id')

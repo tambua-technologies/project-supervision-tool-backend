@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
          $this->call(StockStatusesSeeder::class);
          $this->call(StockGroupClusterSeeder::class);
          $this->call(StockGroupSeeder::class);
+         $this->call(EmergencyResponseThemesSeeder::class);
     }
 }
