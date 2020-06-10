@@ -8,13 +8,13 @@
         <th>Pace Of Production</th>
         <th>Frequency</th>
         <th>Meta</th>
-        <th>Stock Status Id</th>
-        <th>Stock Type Id</th>
-        <th>Stock Group Cluster Id</th>
-        <th>Location Id</th>
-        <th>Item Id</th>
-        <th>Agency Id</th>
-        <th>Emergency Response Theme Id</th>
+        <th>Stock Status</th>
+        <th>Stock Type</th>
+        <th>Stock Group</th>
+        <th>Location</th>
+        <th>Item</th>
+        <th>Agency</th>
+        <th>Emergency Response Theme</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -27,13 +27,13 @@
             <td>{{ $stock->pace_of_production }}</td>
             <td>{{ $stock->frequency }}</td>
             <td>{{ $stock->meta }}</td>
-            <td>{{ $stock->stock_status_id }}</td>
-            <td>{{ $stock->stock_type_id }}</td>
-            <td>{{ $stock->stock_group_cluster_id }}</td>
-            <td>{{ $stock->location_id }}</td>
-            <td>{{ $stock->item_id }}</td>
-            <td>{{ $stock->agency_id }}</td>
-            <td>{{ $stock->emergency_response_theme_id }}</td>
+            <td>{{ $stock->stockStatus()->first()->name }}</td>
+            <td>{{ $stock->stockType()->first()->name }}</td>
+            <td>{{ $stock->stockGroup()->first()->name }}</td>
+            <td>{{ $stock->location()->first()->name }}</td>
+            <td>{{ $stock->item()->first()->name }}</td>
+            <td>{{ $stock->agency()->first()->name }}</td>
+            <td>{{ $stock->emergencyResponseTheme()->first()->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['stocks.destroy', $stock->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

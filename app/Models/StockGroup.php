@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="StockGroup",
- *      required={"name"},
+ *      required={"name, stock_group_cluster_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="stock_group_cluster_id",
+ *          description="stock_group_cluster_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -50,7 +56,7 @@ class StockGroup extends Model
     use SoftDeletes;
 
     public $table = 'stock_groups';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -61,7 +67,8 @@ class StockGroup extends Model
 
     public $fillable = [
         'name',
-        'description'
+        'description',
+        'stock_group_cluster_id'
     ];
 
     /**
@@ -72,7 +79,8 @@ class StockGroup extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'description' => 'string',
+        'stock_group_cluster_id' => 'integer'
     ];
 
     /**
@@ -81,8 +89,14 @@ class StockGroup extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'stock_group_cluster_id' => 'required'
     ];
 
-    
+    public function stockGroupCluster()
+    {
+        return $this->belongsTo(StockGroupCluster::class, 'stock_group_cluster_id');
+    }
+
+
 }

@@ -66,10 +66,10 @@
     {!! Form::number('stock_type_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Stock Group Cluster Id Field -->
+<!-- Stock Group Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('stock_group_cluster_id', 'Stock Group Cluster Id:') !!}
-    {!! Form::number('stock_group_cluster_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('stock_group_id', 'Stock Group:') !!}
+    {!! Form::number('stock_group_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Location Id Field -->

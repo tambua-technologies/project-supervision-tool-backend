@@ -63,8 +63,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="stock_group_cluster_id",
- *          description="stock_group_cluster_id",
+ *          property="stock_group_id",
+ *          description="stock_group_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -117,7 +117,7 @@ class Stock extends Model
     use SoftDeletes;
 
     public $table = 'stocks';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -135,7 +135,7 @@ class Stock extends Model
         'meta',
         'stock_status_id',
         'stock_type_id',
-        'stock_group_cluster_id',
+        'stock_group_id',
         'location_id',
         'item_id',
         'agency_id',
@@ -157,7 +157,7 @@ class Stock extends Model
         'meta' => 'string',
         'stock_status_id' => 'integer',
         'stock_type_id' => 'integer',
-        'stock_group_cluster_id' => 'integer',
+        'stock_group_id' => 'integer',
         'location_id' => 'integer',
         'item_id' => 'integer',
         'agency_id' => 'integer',
@@ -185,7 +185,7 @@ class Stock extends Model
      **/
     public function stockStatus()
     {
-        return $this->belongsTo(\App\Models\StockStatus::class, 'stock_status_id');
+        return $this->belongsTo(\App\Models\StockStatuses::class, 'stock_status_id');
     }
 
     /**
@@ -199,9 +199,9 @@ class Stock extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function stockGroupCluster()
+    public function stockGroup()
     {
-        return $this->belongsTo(\App\Models\StockGroupCluster::class, 'stock_group_cluster_id');
+        return $this->belongsTo(\App\Models\StockGroup::class, 'stock_group_id');
     }
 
     /**
@@ -218,6 +218,14 @@ class Stock extends Model
     public function item()
     {
         return $this->belongsTo(\App\Models\Item::class, 'item_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function agency()
+    {
+        return $this->belongsTo(\App\Models\Agency::class, 'agency_id');
     }
 
     /**

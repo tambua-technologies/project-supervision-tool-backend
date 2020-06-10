@@ -26,12 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="stock_group_cluster_id",
- *          description="stock_group_cluster_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -68,7 +62,6 @@ class StockGroupCluster extends Model
     public $fillable = [
         'name',
         'description',
-        'stock_group_cluster_id'
     ];
 
     /**
@@ -80,7 +73,6 @@ class StockGroupCluster extends Model
         'id' => 'integer',
         'name' => 'string',
         'description' => 'string',
-        'stock_group_cluster_id' => 'integer'
     ];
 
     /**
@@ -90,7 +82,6 @@ class StockGroupCluster extends Model
      */
     public static $rules = [
         'name' => 'required',
-        'stock_group_cluster_id' => 'required'
     ];
 
 
