@@ -30,7 +30,7 @@ class StockTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockTypes",
+     *      path="/stock_types",
      *      summary="Get a listing of the StockTypes.",
      *      tags={"StockType"},
      *      description="Get all StockTypes",
@@ -73,7 +73,7 @@ class StockTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/stockTypes",
+     *      path="/stock_types",
      *      summary="Store a newly created StockType in storage",
      *      tags={"StockType"},
      *      description="Store StockType",
@@ -120,7 +120,7 @@ class StockTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockTypes/{id}",
+     *      path="/stock_types/{id}",
      *      summary="Display the specified StockType",
      *      tags={"StockType"},
      *      description="Get StockType",
@@ -171,7 +171,7 @@ class StockTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/stockTypes/{id}",
+     *      path="/stock_types/{id}",
      *      summary="Update the specified StockType in storage",
      *      tags={"StockType"},
      *      description="Update StockType",
@@ -232,7 +232,7 @@ class StockTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/stockTypes/{id}",
+     *      path="/stock_types/{id}",
      *      summary="Remove the specified StockType from storage",
      *      tags={"StockType"},
      *      description="Delete StockType",

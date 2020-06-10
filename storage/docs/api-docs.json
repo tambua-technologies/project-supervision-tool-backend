@@ -404,7 +404,7 @@
                 }
             }
         },
-        "/emergencyResponseThemes": {
+        "/emergency_response_themes": {
             "get": {
                 "tags": [
                     "EmergencyResponseTheme"
@@ -478,7 +478,7 @@
                 }
             }
         },
-        "/emergencyResponseThemes/{id}": {
+        "/emergency_response_themes/{id}": {
             "get": {
                 "tags": [
                     "EmergencyResponseTheme"
@@ -603,7 +603,7 @@
                 }
             }
         },
-        "/focalPeople": {
+        "/focal_people": {
             "get": {
                 "tags": [
                     "FocalPerson"
@@ -677,7 +677,7 @@
                 }
             }
         },
-        "/focalPeople/{id}": {
+        "/focal_people/{id}": {
             "get": {
                 "tags": [
                     "FocalPerson"
@@ -1399,7 +1399,7 @@
                 }
             }
         },
-        "/stockGroups": {
+        "/stock_groups": {
             "get": {
                 "tags": [
                     "StockGroup"
@@ -1473,7 +1473,7 @@
                 }
             }
         },
-        "/stockGroups/{id}": {
+        "/stock_groups/{id}": {
             "get": {
                 "tags": [
                     "StockGroup"
@@ -1598,7 +1598,7 @@
                 }
             }
         },
-        "/stockGroupClusters": {
+        "/stock_group_clusters": {
             "get": {
                 "tags": [
                     "StockGroupCluster"
@@ -1672,7 +1672,7 @@
                 }
             }
         },
-        "/stockGroupClusters/{id}": {
+        "/stock_group_clusters/{id}": {
             "get": {
                 "tags": [
                     "StockGroupCluster"
@@ -1797,7 +1797,7 @@
                 }
             }
         },
-        "/stockStatuses": {
+        "/stock_statuses": {
             "get": {
                 "tags": [
                     "StockStatuses"
@@ -1871,7 +1871,7 @@
                 }
             }
         },
-        "/stockStatuses/{id}": {
+        "/stock_statuses/{id}": {
             "get": {
                 "tags": [
                     "StockStatuses"
@@ -1996,7 +1996,7 @@
                 }
             }
         },
-        "/stockTypes": {
+        "/stock_types": {
             "get": {
                 "tags": [
                     "StockType"
@@ -2070,7 +2070,7 @@
                 }
             }
         },
-        "/stockTypes/{id}": {
+        "/stock_types/{id}": {
             "get": {
                 "tags": [
                     "StockType"
@@ -2690,8 +2690,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "stock_group_cluster_id": {
-                    "description": "stock_group_cluster_id",
+                "stock_group_id": {
+                    "description": "stock_group_id",
                     "type": "integer",
                     "format": "int32"
                 },

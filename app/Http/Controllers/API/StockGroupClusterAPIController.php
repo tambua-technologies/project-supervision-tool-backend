@@ -30,7 +30,7 @@ class StockGroupClusterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockGroupClusters",
+     *      path="/stock_group_clusters",
      *      summary="Get a listing of the StockGroupClusters.",
      *      tags={"StockGroupCluster"},
      *      description="Get all StockGroupClusters",
@@ -73,7 +73,7 @@ class StockGroupClusterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/stockGroupClusters",
+     *      path="/stock_group_clusters",
      *      summary="Store a newly created StockGroupCluster in storage",
      *      tags={"StockGroupCluster"},
      *      description="Store StockGroupCluster",
@@ -120,7 +120,7 @@ class StockGroupClusterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockGroupClusters/{id}",
+     *      path="/stock_group_clusters/{id}",
      *      summary="Display the specified StockGroupCluster",
      *      tags={"StockGroupCluster"},
      *      description="Get StockGroupCluster",
@@ -171,7 +171,7 @@ class StockGroupClusterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/stockGroupClusters/{id}",
+     *      path="/stock_group_clusters/{id}",
      *      summary="Update the specified StockGroupCluster in storage",
      *      tags={"StockGroupCluster"},
      *      description="Update StockGroupCluster",
@@ -232,7 +232,7 @@ class StockGroupClusterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/stockGroupClusters/{id}",
+     *      path="/stock_group_clusters/{id}",
      *      summary="Remove the specified StockGroupCluster from storage",
      *      tags={"StockGroupCluster"},
      *      description="Delete StockGroupCluster",

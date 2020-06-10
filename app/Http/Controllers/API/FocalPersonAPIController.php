@@ -30,7 +30,7 @@ class FocalPersonAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/focalPeople",
+     *      path="/focal_people",
      *      summary="Get a listing of the FocalPeople.",
      *      tags={"FocalPerson"},
      *      description="Get all FocalPeople",
@@ -73,7 +73,7 @@ class FocalPersonAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/focalPeople",
+     *      path="/focal_people",
      *      summary="Store a newly created FocalPerson in storage",
      *      tags={"FocalPerson"},
      *      description="Store FocalPerson",
@@ -120,7 +120,7 @@ class FocalPersonAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/focalPeople/{id}",
+     *      path="/focal_people/{id}",
      *      summary="Display the specified FocalPerson",
      *      tags={"FocalPerson"},
      *      description="Get FocalPerson",
@@ -171,7 +171,7 @@ class FocalPersonAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/focalPeople/{id}",
+     *      path="/focal_people/{id}",
      *      summary="Update the specified FocalPerson in storage",
      *      tags={"FocalPerson"},
      *      description="Update FocalPerson",
@@ -232,7 +232,7 @@ class FocalPersonAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/focalPeople/{id}",
+     *      path="/focal_people/{id}",
      *      summary="Remove the specified FocalPerson from storage",
      *      tags={"FocalPerson"},
      *      description="Delete FocalPerson",

@@ -30,7 +30,7 @@ class StockGroupAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockGroups",
+     *      path="/stock_groups",
      *      summary="Get a listing of the StockGroups.",
      *      tags={"StockGroup"},
      *      description="Get all StockGroups",
@@ -73,7 +73,7 @@ class StockGroupAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/stockGroups",
+     *      path="/stock_groups",
      *      summary="Store a newly created StockGroup in storage",
      *      tags={"StockGroup"},
      *      description="Store StockGroup",
@@ -120,7 +120,7 @@ class StockGroupAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockGroups/{id}",
+     *      path="/stock_groups/{id}",
      *      summary="Display the specified StockGroup",
      *      tags={"StockGroup"},
      *      description="Get StockGroup",
@@ -171,7 +171,7 @@ class StockGroupAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/stockGroups/{id}",
+     *      path="/stock_groups/{id}",
      *      summary="Update the specified StockGroup in storage",
      *      tags={"StockGroup"},
      *      description="Update StockGroup",
@@ -232,7 +232,7 @@ class StockGroupAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/stockGroups/{id}",
+     *      path="/stock_groups/{id}",
      *      summary="Remove the specified StockGroup from storage",
      *      tags={"StockGroup"},
      *      description="Delete StockGroup",

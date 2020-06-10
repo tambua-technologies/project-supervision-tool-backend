@@ -30,7 +30,7 @@ class StockStatusesAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockStatuses",
+     *      path="/stock_statuses",
      *      summary="Get a listing of the StockStatuses.",
      *      tags={"StockStatuses"},
      *      description="Get all StockStatuses",
@@ -73,7 +73,7 @@ class StockStatusesAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/stockStatuses",
+     *      path="/stock_statuses",
      *      summary="Store a newly created StockStatuses in storage",
      *      tags={"StockStatuses"},
      *      description="Store StockStatuses",
@@ -120,7 +120,7 @@ class StockStatusesAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/stockStatuses/{id}",
+     *      path="/stock_statuses/{id}",
      *      summary="Display the specified StockStatuses",
      *      tags={"StockStatuses"},
      *      description="Get StockStatuses",
@@ -171,7 +171,7 @@ class StockStatusesAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/stockStatuses/{id}",
+     *      path="/stock_statuses/{id}",
      *      summary="Update the specified StockStatuses in storage",
      *      tags={"StockStatuses"},
      *      description="Update StockStatuses",
@@ -232,7 +232,7 @@ class StockStatusesAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/stockStatuses/{id}",
+     *      path="/stock_statuses/{id}",
      *      summary="Remove the specified StockStatuses from storage",
      *      tags={"StockStatuses"},
      *      description="Delete StockStatuses",

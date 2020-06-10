@@ -30,7 +30,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/emergencyResponseThemes",
+     *      path="/emergency_response_themes",
      *      summary="Get a listing of the EmergencyResponseThemes.",
      *      tags={"EmergencyResponseTheme"},
      *      description="Get all EmergencyResponseThemes",
@@ -73,7 +73,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/emergencyResponseThemes",
+     *      path="/emergency_response_themes",
      *      summary="Store a newly created EmergencyResponseTheme in storage",
      *      tags={"EmergencyResponseTheme"},
      *      description="Store EmergencyResponseTheme",
@@ -120,7 +120,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/emergencyResponseThemes/{id}",
+     *      path="/emergency_response_themes/{id}",
      *      summary="Display the specified EmergencyResponseTheme",
      *      tags={"EmergencyResponseTheme"},
      *      description="Get EmergencyResponseTheme",
@@ -171,7 +171,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/emergencyResponseThemes/{id}",
+     *      path="/emergency_response_themes/{id}",
      *      summary="Update the specified EmergencyResponseTheme in storage",
      *      tags={"EmergencyResponseTheme"},
      *      description="Update EmergencyResponseTheme",
@@ -232,7 +232,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/emergencyResponseThemes/{id}",
+     *      path="/emergency_response_themes/{id}",
      *      summary="Remove the specified EmergencyResponseTheme from storage",
      *      tags={"EmergencyResponseTheme"},
      *      description="Delete EmergencyResponseTheme",
