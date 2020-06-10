@@ -10,6 +10,12 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Select Stock Group Cluster Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('stock_group_cluster_id', 'Stock Group Cluster:') !!}
+    {!! Form::select('stock_group_cluster_id',$stockGroupClusters, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

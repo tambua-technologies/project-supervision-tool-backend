@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStockGroupRequest;
 use App\Http\Requests\UpdateStockGroupRequest;
+use App\Repositories\StockGroupClusterRepository;
 use App\Repositories\StockGroupRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -14,10 +15,12 @@ class StockGroupController extends AppBaseController
 {
     /** @var  StockGroupRepository */
     private $stockGroupRepository;
+    private $stockGroupClusterRepository;
 
-    public function __construct(StockGroupRepository $stockGroupRepo)
+    public function __construct(StockGroupRepository $stockGroupRepo, StockGroupClusterRepository $stockGroupClusterRepo)
     {
         $this->stockGroupRepository = $stockGroupRepo;
+        $this->stockGroupClusterRepository = $stockGroupClusterRepo;
     }
 
     /**
@@ -42,7 +45,9 @@ class StockGroupController extends AppBaseController
      */
     public function create()
     {
-        return view('stock_groups.create');
+        $stockGroupClusters = $this->stockGroupClusterRepository->model()::pluck('name', 'id');
+        return view('stock_groups.create')
+            ->with('stockGroupClusters', $stockGroupClusters);
     }
 
     /**
@@ -93,6 +98,7 @@ class StockGroupController extends AppBaseController
     public function edit($id)
     {
         $stockGroup = $this->stockGroupRepository->find($id);
+        $stockGroupClusters = $this->stockGroupClusterRepository->model()::pluck('name', 'id');
 
         if (empty($stockGroup)) {
             Flash::error('Stock Group not found');
@@ -100,7 +106,9 @@ class StockGroupController extends AppBaseController
             return redirect(route('stockGroups.index'));
         }
 
-        return view('stock_groups.edit')->with('stockGroup', $stockGroup);
+        return view('stock_groups.edit')
+            ->with('stockGroup', $stockGroup)
+            ->with('stockGroupClusters', $stockGroupClusters);
     }
 
     /**

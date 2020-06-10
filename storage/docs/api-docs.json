@@ -2511,7 +2511,7 @@
         },
         "FocalPerson": {
             "required": [
-                "fist_name",
+                "first_name",
                 "email",
                 "password"
             ],
@@ -2521,8 +2521,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "fist_name": {
-                    "description": "fist_name",
+                "first_name": {
+                    "description": "first_name",
                     "type": "string"
                 },
                 "last_name": {
@@ -2734,11 +2734,16 @@
         },
         "StockGroup": {
             "required": [
-                "name"
+                "name, stock_group_cluster_id"
             ],
             "properties": {
                 "id": {
                     "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "stock_group_cluster_id": {
+                    "description": "stock_group_cluster_id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -2769,8 +2774,7 @@
         },
         "StockGroupCluster": {
             "required": [
-                "name",
-                "stock_group_cluster_id"
+                "name"
             ],
             "properties": {
                 "id": {
@@ -2785,11 +2789,6 @@
                 "description": {
                     "description": "description",
                     "type": "string"
-                },
-                "stock_group_cluster_id": {
-                    "description": "stock_group_cluster_id",
-                    "type": "integer",
-                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
