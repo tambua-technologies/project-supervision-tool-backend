@@ -46,3 +46,7 @@
     <a href="{{ route('stocks.index') }}"><i class="fa fa-edit"></i><span>Stocks</span></a>
 </li>
 
+<li class="{{ Request::is('humanResources*') ? 'active' : '' }}">
+    <a href="{{ route('humanResources.index') }}"><i class="fa fa-edit"></i><span>Human Resources</span></a>
+</li>
+

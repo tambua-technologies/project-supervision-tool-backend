@@ -802,6 +802,205 @@
                 }
             }
         },
+        "/human_resources": {
+            "get": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Get a listing of the HumanResources.",
+                "description": "Get all HumanResources",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/HumanResource"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Store a newly created HumanResource in storage",
+                "description": "Store HumanResource",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HumanResource that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HumanResource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HumanResource"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/human_resources/{id}": {
+            "get": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Display the specified HumanResource",
+                "description": "Get HumanResource",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HumanResource",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HumanResource"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Update the specified HumanResource in storage",
+                "description": "Update HumanResource",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HumanResource",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HumanResource that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/HumanResource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HumanResource"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Remove the specified HumanResource from storage",
+                "description": "Delete HumanResource",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HumanResource",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/items": {
             "get": {
                 "tags": [
@@ -2552,6 +2751,69 @@
                 },
                 "updated_at": {
                     "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "HumanResource": {
+            "required": [
+                "quantity",
+                "item_id",
+                "agency_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "start_date": {
+                    "description": "start_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "description": "end_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "quantity": {
+                    "description": "quantity",
+                    "type": "number",
+                    "format": "number"
+                },
+                "meta": {
+                    "description": "meta",
+                    "type": "string"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "item_id": {
+                    "description": "item_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "agency_id": {
+                    "description": "agency_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
                     "type": "string",
                     "format": "date-time"
                 }

@@ -45,3 +45,5 @@ Route::resource('stockGroupClusters', 'StockGroupClusterController');
 Route::resource('emergencyResponseThemes', 'EmergencyResponseThemeController');
 
 Route::resource('stocks', 'StockController');
+
+Route::resource('humanResources', 'HumanResourceController');
