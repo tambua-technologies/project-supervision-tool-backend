@@ -2,26 +2,26 @@
     <table class="table" id="humanResources-table">
         <thead>
             <tr>
-                <th>Start Date</th>
+        <th>HR Type</th>
+        <th>Description</th>
+        <th>Implementing Partner </th>
+        <th>Number</th>
+        <th>Start Date</th>
         <th>End Date</th>
-        <th>Quantity</th>
-        <th>Meta</th>
-        <th>Location Id</th>
-        <th>Item Id</th>
-        <th>Agency Id</th>
+        <th>Location</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($humanResources as $humanResource)
             <tr>
-                <td>{{ $humanResource->start_date }}</td>
-            <td>{{ $humanResource->end_date }}</td>
+            <td>{{ $humanResource->item()->first()->name }}</td>
+            <td>{{ $humanResource->item()->first()->description }}</td>
+            <td>{{ $humanResource->agency()->first()->name }}</td>
             <td>{{ $humanResource->quantity }}</td>
-            <td>{{ $humanResource->meta }}</td>
-            <td>{{ $humanResource->location_id }}</td>
-            <td>{{ $humanResource->item_id }}</td>
-            <td>{{ $humanResource->agency_id }}</td>
+            <td>{{ $humanResource->start_date }}</td>
+            <td>{{ $humanResource->end_date }}</td>
+            <td>{{ $humanResource->location()->first()->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['humanResources.destroy', $humanResource->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
