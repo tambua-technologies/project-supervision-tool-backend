@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateItemAPIRequest;
 use App\Http\Requests\API\UpdateItemAPIRequest;
+use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use App\Repositories\ItemRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Response;
 
 /**
@@ -27,7 +29,6 @@ class ItemAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/items",
@@ -56,6 +57,7 @@ class ItemAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return AnonymousResourceCollection
      */
     public function index(Request $request)
     {
@@ -65,7 +67,7 @@ class ItemAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($items->toArray(), 'Items retrieved successfully');
+        return ItemResource::collection($items);
     }
 
     /**
