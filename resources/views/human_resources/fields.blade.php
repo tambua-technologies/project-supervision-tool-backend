@@ -30,34 +30,29 @@
     </script>
 @endpush
 
-<!-- Quantity Field -->
+<!-- Number Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('quantity', 'Quantity:') !!}
+    {!! Form::label('quantity', 'Number:') !!}
     {!! Form::number('quantity', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Meta Field -->
+
+<!-- Location Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('meta', 'Meta:') !!}
-    {!! Form::text('meta', null, ['class' => 'form-control']) !!}
+    {!! Form::label('location_id', 'Location:') !!}
+    {!! Form::select('location_id',$locations, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Location Id Field -->
+<!-- Item Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('location_id', 'Location Id:') !!}
-    {!! Form::number('location_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('item_id', 'HR Type:') !!}
+    {!! Form::select('item_id',$items, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Item Id Field -->
+<!-- Implementing partner Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('item_id', 'Item Id:') !!}
-    {!! Form::number('item_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Agency Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('agency_id', 'Agency Id:') !!}
-    {!! Form::number('agency_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('agency_id', 'Implementing Partner:') !!}
+    {!! Form::select('agency_id',$agencies, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

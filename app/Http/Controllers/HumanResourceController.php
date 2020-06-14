@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateHumanResourceRequest;
 use App\Http\Requests\UpdateHumanResourceRequest;
+use App\Repositories\AgencyRepository;
 use App\Repositories\HumanResourceRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\ItemRepository;
+use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -14,10 +17,16 @@ class HumanResourceController extends AppBaseController
 {
     /** @var  HumanResourceRepository */
     private $humanResourceRepository;
+    private $locationRepository;
+    private $itemRepository;
+    private $agencyRepository;
 
-    public function __construct(HumanResourceRepository $humanResourceRepo)
+    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo, ItemRepository $itemRepo, AgencyRepository $agencyRepo)
     {
         $this->humanResourceRepository = $humanResourceRepo;
+        $this->agencyRepository = $agencyRepo;
+        $this->locationRepository = $locationRepo;
+        $this->itemRepository = $itemRepo;
     }
 
     /**
@@ -42,7 +51,13 @@ class HumanResourceController extends AppBaseController
      */
     public function create()
     {
-        return view('human_resources.create');
+        $locations = $this->locationRepository->model()::pluck('name', 'id');
+        $items = $this->itemRepository->model()::pluck('name', 'id');
+        $agencies = $this->agencyRepository->model()::pluck('name', 'id');
+        return view('human_resources.create')
+            ->with('locations', $locations)
+            ->with('agencies', $agencies)
+            ->with('items', $items);
     }
 
     /**
@@ -93,6 +108,10 @@ class HumanResourceController extends AppBaseController
     public function edit($id)
     {
         $humanResource = $this->humanResourceRepository->find($id);
+        $locations = $this->locationRepository->model()::pluck('name', 'id');
+        $agencies = $this->agencyRepository->model()::pluck('name', 'id');
+        $items = $this->itemRepository->model()::pluck('name', 'id');
+
 
         if (empty($humanResource)) {
             Flash::error('Human Resource not found');
@@ -100,7 +119,10 @@ class HumanResourceController extends AppBaseController
             return redirect(route('humanResources.index'));
         }
 
-        return view('human_resources.edit')->with('humanResource', $humanResource);
+        return view('human_resources.edit')->with('humanResource', $humanResource)
+            ->with('locations', $locations)
+            ->with('agencies', $agencies)
+            ->with('items', $items);
     }
 
     /**
