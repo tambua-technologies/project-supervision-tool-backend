@@ -10,33 +10,33 @@
     <p>{{ $humanResource->end_date }}</p>
 </div>
 
-<!-- Quantity Field -->
+<!-- Number Field -->
 <div class="form-group">
-    {!! Form::label('quantity', 'Quantity:') !!}
+    {!! Form::label('quantity', 'Number:') !!}
     <p>{{ $humanResource->quantity }}</p>
 </div>
 
-<!-- Meta Field -->
+<!-- Location Field -->
 <div class="form-group">
-    {!! Form::label('meta', 'Meta:') !!}
-    <p>{{ $humanResource->meta }}</p>
+    {!! Form::label('location_id', 'Location:') !!}
+    <p>{{ $humanResource->location()->first()->name }}</p>
 </div>
 
-<!-- Location Id Field -->
+<!-- HR Type Field -->
 <div class="form-group">
-    {!! Form::label('location_id', 'Location Id:') !!}
-    <p>{{ $humanResource->location_id }}</p>
+    {!! Form::label('item_id', 'HR Type:') !!}
+    <p>{{ $humanResource->item()->first()->name }}</p>
 </div>
 
-<!-- Item Id Field -->
+<!-- Description Field -->
 <div class="form-group">
-    {!! Form::label('item_id', 'Item Id:') !!}
-    <p>{{ $humanResource->item_id }}</p>
+    {!! Form::label('description', 'Description:') !!}
+    <p>{{ $humanResource->item()->first()->description }}</p>
 </div>
 
-<!-- Agency Id Field -->
+<!-- Implementing partner Field -->
 <div class="form-group">
-    {!! Form::label('agency_id', 'Agency Id:') !!}
-    <p>{{ $humanResource->agency_id }}</p>
+    {!! Form::label('agency_id', 'Implementing Partner:') !!}
+    <p>{{ $humanResource->agency()->first()->name }}</p>
 </div>
 
