@@ -9,6 +9,7 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Location</th>
+        <th>Aggregation Level</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
             <td>{{ $humanResource->start_date }}</td>
             <td>{{ $humanResource->end_date }}</td>
             <td>{{ $humanResource->location()->first()->name }}</td>
+            <td>{{ $humanResource->location()->first()->level }}</td>
                 <td>
                     {!! Form::open(['route' => ['humanResources.destroy', $humanResource->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

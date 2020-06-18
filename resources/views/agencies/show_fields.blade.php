@@ -10,15 +10,15 @@
     <p>{{ $agency->website }}</p>
 </div>
 
-<!-- Focal Person Id Field -->
+<!-- Focal Person name Field -->
 <div class="form-group">
-    {!! Form::label('focal_person_id', 'Focal Person Id:') !!}
-    <p>{{ $agency->focal_person_id }}</p>
+    {!! Form::label('focal_person_id', 'Focal Person:') !!}
+    <p>{{ $agency->focalPerson()->first()->first_name}} {{ $agency->focalPerson()->first()->middle_name}} {{ $agency->focalPerson()->first()->last_name}}</p>
 </div>
 
-<!-- Agency Type Id Field -->
+<!-- Focal Person Contact -->
 <div class="form-group">
-    {!! Form::label('agency_type_id', 'Agency Type Id:') !!}
-    <p>{{ $agency->agency_type_id }}</p>
+    {!! Form::label('email_id', 'Focal Person Email:') !!}
+    <p>Phone{{ $agency->focalPerson()->first()->email }}</p>
 </div>
 

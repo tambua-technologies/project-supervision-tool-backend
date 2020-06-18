@@ -22,6 +22,12 @@
     <p>{{ $humanResource->location()->first()->name }}</p>
 </div>
 
+<!-- Location level Field -->
+<div class="form-group">
+    {!! Form::label('location_id', 'Aggregation Level:') !!}
+    <p>{{ $humanResource->location()->first()->level }}</p>
+</div>
+
 <!-- HR Type Field -->
 <div class="form-group">
     {!! Form::label('item_id', 'HR Type:') !!}

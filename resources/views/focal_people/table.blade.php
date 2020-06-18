@@ -7,7 +7,6 @@
         <th>Middle Name</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Password</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -19,7 +18,6 @@
             <td>{{ $focalPerson->middle_name }}</td>
             <td>{{ $focalPerson->phone }}</td>
             <td>{{ $focalPerson->email }}</td>
-            <td>{{ $focalPerson->password }}</td>
                 <td>
                     {!! Form::open(['route' => ['focalPeople.destroy', $focalPerson->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
