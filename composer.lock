@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ca7c3f3e544213ecd9f1c85917f0cbc",
+    "content-hash": "3678aa5aed66b04e59c99f6096baa3a6",
     "packages": [
         {
             "name": "appointer/swaggervel",
@@ -167,6 +167,53 @@
                 }
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "calebporzio/parental",
+            "version": "v0.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/calebporzio/parental.git",
+                "reference": "6cdbcc7c62e9bb8dcf817a7ac451e8b2d851a00f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/calebporzio/parental/zipball/6cdbcc7c62e9bb8dcf817a7ac451e8b2d851a00f",
+                "reference": "6cdbcc7c62e9bb8dcf817a7ac451e8b2d851a00f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.6.0|~5.7.0|~5.8.0|^6.0.0|^7.0.0",
+                "illuminate/events": "~5.6.0|~5.7.0|~5.8.0|^6.0.0|^7.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.6.0|~3.7.0|~3.8.0|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parental\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A simple eloquent trait that allows relationships to be accessed through child models.",
+            "funding": [
+                {
+                    "url": "https://github.com/calebporzio",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-03-03T13:45:17+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -7156,9 +7203,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "appointer/swaggervel": 20,
         "infyomlabs/adminlte-templates": 20,
         "infyomlabs/laravel-generator": 20,
-        "appointer/swaggervel": 20,
         "infyomlabs/swagger-generator": 20
     },
     "prefer-stable": true,

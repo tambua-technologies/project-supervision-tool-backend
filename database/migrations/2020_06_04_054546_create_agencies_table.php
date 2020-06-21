@@ -19,6 +19,7 @@ class CreateAgenciesTable extends Migration
             $table->string('website');
             $table->unsignedBigInteger('focal_person_id');
             $table->unsignedBigInteger('agency_type_id');
+            $table->string('type')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

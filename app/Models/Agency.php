@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Parental\HasChildren;
 
 /**
  * @SWG\Definition(
@@ -59,10 +60,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Agency extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasChildren;
 
     public $table = 'agencies';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -75,7 +76,8 @@ class Agency extends Model
         'name',
         'website',
         'focal_person_id',
-        'agency_type_id'
+        'agency_type_id',
+        'type'
     ];
 
     /**
@@ -87,6 +89,7 @@ class Agency extends Model
         'id' => 'integer',
         'name' => 'string',
         'website' => 'string',
+        'type' => 'string',
         'focal_person_id' => 'integer',
         'agency_type_id' => 'integer'
     ];
