@@ -18,14 +18,15 @@ class CreateHumanResourcesTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->float('quantity');
+            $table->text('description')->nullable();
             $table->jsonb('meta')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
-            $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('agency_id');
+            $table->unsignedBigInteger('hr_type_id');
+            $table->unsignedBigInteger('implementing_partner_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('agency_id')
+            $table->foreign('implementing_partner_id')
                 ->references('id')
                 ->on('agencies')
                 ->onDelete('set null');
@@ -35,7 +36,7 @@ class CreateHumanResourcesTable extends Migration
                 ->on('locations')
                 ->onDelete('set null');
 
-            $table->foreign('item_id')
+            $table->foreign('hr_type_id')
                 ->references('id')
                 ->on('items')
                 ->onDelete('set null');

@@ -33,12 +33,6 @@ use Parental\HasChildren;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="agency_type_id",
- *          description="agency_type_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -81,8 +75,7 @@ class Agency extends Model
     ];
 
     protected $childTypes = [
-        'hr_type' => HRTyp::class,
-        'guest' => App\Guest::class,
+        'implementing_partner' => ImplementingPartner::class,
     ];
 
     /**
@@ -119,11 +112,4 @@ class Agency extends Model
         return $this->belongsTo(\App\Models\FocalPerson::class, 'focal_person_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function agencyType()
-    {
-        return $this->belongsTo(\App\Models\AgencyType::class, 'agency_type_id');
-    }
 }

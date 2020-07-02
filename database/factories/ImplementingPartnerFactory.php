@@ -2,12 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Agency;
-use App\Models\AgencyType;
 use App\Models\FocalPerson;
+use App\Models\ImplementingPartner;
 use Faker\Generator as Faker;
 
-$factory->define(Agency::class, function (Faker $faker) {
+$factory->define(ImplementingPartner::class, function (Faker $faker) {
 
     return [
         'name' => $faker->domainWord,

@@ -2,21 +2,27 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\HRType;
 use App\Models\HumanResource;
+use App\Models\ImplementingPartner;
+use App\Models\Location;
 use Faker\Generator as Faker;
 
 $factory->define(HumanResource::class, function (Faker $faker) {
 
     return [
-        'start_date' => $faker->word,
-        'end_date' => $faker->word,
+        'start_date' => $faker->date('Y-m-d H:i:s'),
+        'end_date' => $faker->date('Y-m-d H:i:s'),
         'quantity' => $faker->randomDigitNotNull,
-        'meta' => $faker->word,
-        'location_id' => $faker->word,
-        'item_id' => $faker->word,
-        'agency_id' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $faker->date('Y-m-d H:i:s')
+        'description' => $faker->word,
+        'hr_type_id' => function () {
+            return HRType::query()->inRandomOrder()->first()->id;
+        },
+        'implementing_partner_id' => function () {
+            return ImplementingPartner::query()->inRandomOrder()->first()->id;
+        },
+        'location_id' => function () {
+            return Location::query()->inRandomOrder()->first()->id;
+        },
     ];
 });

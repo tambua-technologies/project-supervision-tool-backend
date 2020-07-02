@@ -20,10 +20,11 @@ class HumanResourceRepository extends BaseRepository
         'start_date',
         'end_date',
         'quantity',
+        'description',
         'meta',
         'location_id',
-        'item_id',
-        'agency_id'
+        'hr_type_id',
+        'implementing_partner_id'
     ];
 
     /**

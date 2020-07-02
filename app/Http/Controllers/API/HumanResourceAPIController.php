@@ -9,7 +9,8 @@ use App\Models\HumanResource;
 use App\Repositories\HumanResourceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Response;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 /**
  * Class HumanResourceController
@@ -28,7 +29,7 @@ class HumanResourceAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return AnonymousResourceCollection
      *
      * @SWG\Get(
      *      path="/human_resources",

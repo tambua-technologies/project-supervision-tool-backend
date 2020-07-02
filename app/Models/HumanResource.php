@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
  *      definition="HumanResource",
- *      required={"quantity", "item_id", "agency_id"},
+ *      required={"quantity", "hr_type_id", "implementing_patner_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -34,6 +35,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="number"
  *      ),
  *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="meta",
  *          description="meta",
  *          type="string"
@@ -45,14 +51,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="item_id",
- *          description="item_id",
+ *          property="hr_type_id",
+ *          description="hr_type_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="agency_id",
- *          description="agency_id",
+ *          property="implementing_partner_id",
+ *          description="implementing_partner_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -81,7 +87,7 @@ class HumanResource extends Model
     use SoftDeletes;
 
     public $table = 'human_resources';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -94,10 +100,11 @@ class HumanResource extends Model
         'start_date',
         'end_date',
         'quantity',
+        'description',
         'meta',
         'location_id',
-        'item_id',
-        'agency_id'
+        'hr_type_id',
+        'implementing_partner_id'
     ];
 
     /**
@@ -110,10 +117,11 @@ class HumanResource extends Model
         'start_date' => 'date',
         'end_date' => 'date',
         'quantity' => 'float',
+        'description' => 'string',
         'meta' => 'string',
         'location_id' => 'integer',
-        'item_id' => 'integer',
-        'agency_id' => 'integer'
+        'hr_type_id' => 'integer',
+        'implementing_partner_id' => 'integer'
     ];
 
     /**
@@ -123,31 +131,31 @@ class HumanResource extends Model
      */
     public static $rules = [
         'quantity' => 'required',
-        'item_id' => 'required',
-        'agency_id' => 'required'
+        'hr_type_id' => 'required',
+        'implementing_partner_id' => 'required'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
-    public function agency()
+    public function implementing_partner()
     {
-        return $this->belongsTo(\App\Models\Agency::class, 'agency_id');
+        return $this->belongsTo(ImplementingPartner::class, 'implementing_partner_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function location()
     {
-        return $this->belongsTo(\App\Models\Location::class, 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
-    public function item()
+    public function hr_type()
     {
-        return $this->belongsTo(\App\Models\Item::class, 'item_id');
+        return $this->belongsTo(HRType::class, 'hr_type_id');
     }
 }

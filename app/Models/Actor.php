@@ -9,5 +9,4 @@ class Actor extends Agency
 {
     use SoftDeletes, HasParent;
 
-
 }

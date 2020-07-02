@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Parental\HasChildren;
 use Parental\HasParent;
+
 
 /**
  * @SWG\Definition(
- *      definition="HRType",
- *      required={"name", "unit_id"},
+ *      definition="ImplementingPartner",
+ *      required={"name", "website", "focal_person_id", "agency_type_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -23,13 +22,13 @@ use Parental\HasParent;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="description",
- *          description="description",
+ *          property="website",
+ *          description="website",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="unit_id",
- *          description="unit_id",
+ *          property="focal_person_id",
+ *          description="focal_person_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -53,7 +52,8 @@ use Parental\HasParent;
  *      )
  * )
  */
-class HRType extends Item
+class ImplementingPartner extends Agency
 {
-    use HasParent;
+    use SoftDeletes, HasParent;
+
 }

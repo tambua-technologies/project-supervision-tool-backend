@@ -19,10 +19,11 @@ class HrResource extends JsonResource
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'quantity' => $this->quantity,
+            'description' => $this->description,
             'meta' => $this->meta,
             'location' => $this->location,
-            'item' => new ItemResource($this->item),
-            'agency' => new AgencyResource($this->agency),
+            'hr_type' => new ItemResource($this->hr_type),
+            'implementing_partner' => new AgencyResource($this->implementing_partner),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
