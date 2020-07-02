@@ -5,10 +5,11 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Parental\HasChildren;
+use Parental\HasParent;
 
 /**
  * @SWG\Definition(
- *      definition="Item",
+ *      definition="HrType",
  *      required={"name", "unit_id"},
  *      @SWG\Property(
  *          property="id",
@@ -52,58 +53,7 @@ use Parental\HasChildren;
  *      )
  * )
  */
-class Item extends Model
+class HRType extends Item
 {
-    use SoftDeletes, HasChildren;
-
-    public $table = 'items';
-
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
-
-
-
-    public $fillable = [
-        'name',
-        'type',
-        'description',
-        'unit_id'
-    ];
-
-    protected $childTypes = [
-        'hr_type' => HRType::class,
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'name' => 'string',
-        'description' => 'string',
-        'unit_id' => 'integer'
-    ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required',
-        'unit_id' => 'required'
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function unit()
-    {
-        return $this->belongsTo(\App\Models\Unit::class, 'unit_id');
-    }
+    use HasParent;
 }

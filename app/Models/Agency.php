@@ -80,6 +80,11 @@ class Agency extends Model
         'type'
     ];
 
+    protected $childTypes = [
+        'hr_type' => HRTyp::class,
+        'guest' => App\Guest::class,
+    ];
+
     /**
      * The attributes that should be casted to native types.
      *
