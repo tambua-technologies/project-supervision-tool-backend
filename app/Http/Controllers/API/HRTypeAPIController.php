@@ -17,21 +17,21 @@ use Response;
  * @package App\Http\Controllers\API
  */
 
-class ItemAPIController extends AppBaseController
+class HRTypeAPIController extends AppBaseController
 {
     /** @var  ItemRepository */
-    private $itemRepository;
+    private $hr_typeRepository;
 
-    public function __construct(ItemRepository $itemRepo)
+    public function __construct(ItemRepository $hr_typeRepo)
     {
-        $this->itemRepository = $itemRepo;
+        $this->hr_typeRepository = $hr_typeRepo;
     }
 
     /**
      * @param Request $request
      *
      * @SWG\Get(
-     *      path="/items",
+     *      path="/hr_types",
      *      summary="Get a listing of the Items.",
      *      tags={"Item"},
      *      description="Get all Items",
@@ -61,13 +61,13 @@ class ItemAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $items = $this->itemRepository->all(
+        $hr_types = $this->hr_typeRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return ItemResource::collection($items);
+        return ItemResource::collection($hr_types);
     }
 
     /**
@@ -75,7 +75,7 @@ class ItemAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/items",
+     *      path="/hr_types",
      *      summary="Store a newly created Item in storage",
      *      tags={"Item"},
      *      description="Store Item",
@@ -112,9 +112,9 @@ class ItemAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $item = $this->itemRepository->create($input);
+        $hr_type = $this->hr_typeRepository->create($input);
 
-        return $this->sendResponse($item->toArray(), 'Item saved successfully');
+        return $this->sendResponse($hr_type->toArray(), 'Item saved successfully');
     }
 
     /**
@@ -122,7 +122,7 @@ class ItemAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/items/{id}",
+     *      path="/hr_types/{id}",
      *      summary="Display the specified Item",
      *      tags={"Item"},
      *      description="Get Item",
@@ -157,14 +157,14 @@ class ItemAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Item $item */
-        $item = $this->itemRepository->find($id);
+        /** @var Item $hr_type */
+        $hr_type = $this->hr_typeRepository->find($id);
 
-        if (empty($item)) {
+        if (empty($hr_type)) {
             return $this->sendError('Item not found');
         }
 
-        return $this->sendResponse($item->toArray(), 'Item retrieved successfully');
+        return $this->sendResponse($hr_type->toArray(), 'Item retrieved successfully');
     }
 
     /**
@@ -173,7 +173,7 @@ class ItemAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/items/{id}",
+     *      path="/hr_types/{id}",
      *      summary="Update the specified Item in storage",
      *      tags={"Item"},
      *      description="Update Item",
@@ -217,16 +217,16 @@ class ItemAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        /** @var Item $item */
-        $item = $this->itemRepository->find($id);
+        /** @var Item $hr_type */
+        $hr_type = $this->hr_typeRepository->find($id);
 
-        if (empty($item)) {
+        if (empty($hr_type)) {
             return $this->sendError('Item not found');
         }
 
-        $item = $this->itemRepository->update($input, $id);
+        $hr_type = $this->hr_typeRepository->update($input, $id);
 
-        return $this->sendResponse($item->toArray(), 'Item updated successfully');
+        return $this->sendResponse($hr_type->toArray(), 'Item updated successfully');
     }
 
     /**
@@ -234,7 +234,7 @@ class ItemAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/items/{id}",
+     *      path="/hr_types/{id}",
      *      summary="Remove the specified Item from storage",
      *      tags={"Item"},
      *      description="Delete Item",
@@ -269,14 +269,14 @@ class ItemAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Item $item */
-        $item = $this->itemRepository->find($id);
+        /** @var Item $hr_type */
+        $hr_type = $this->hr_typeRepository->find($id);
 
-        if (empty($item)) {
+        if (empty($hr_type)) {
             return $this->sendError('Item not found');
         }
 
-        $item->delete();
+        $hr_type->delete();
 
         return $this->sendSuccess('Item deleted successfully');
     }
