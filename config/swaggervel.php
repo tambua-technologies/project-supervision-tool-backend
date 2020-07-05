@@ -27,7 +27,7 @@ return [
       | Use secure protocol (http vs. https).
       |--------------------------------------------------------------------------
      */
-    'secure-protocol' => false,
+    'secure-protocol' => env('USE_SECURE_PROTOCOL', false),
 
     /*
       |--------------------------------------------------------------------------
@@ -137,7 +137,7 @@ return [
       |--------------------------------------------------------------------------
     */
     'use-basic-auth-with-access-code-grant' => false,
-    
+
     /*
       |--------------------------------------------------------------------------
       | Middleware settings to check for user authorization.
