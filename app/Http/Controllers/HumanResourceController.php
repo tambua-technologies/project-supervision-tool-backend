@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateHumanResourceRequest;
 use App\Repositories\ImplementingPartnerRepository;
 use App\Repositories\HumanResourceRepository;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\ItemRepository;
+use App\Repositories\HrTypeRepository;
 use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -21,7 +21,7 @@ class HumanResourceController extends AppBaseController
     private $itemRepository;
     private $agencyRepository;
 
-    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo, ItemRepository $itemRepo, ImplementingPartnerRepository $agencyRepo)
+    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo, HrTypeRepository $itemRepo, ImplementingPartnerRepository $agencyRepo)
     {
         $this->humanResourceRepository = $humanResourceRepo;
         $this->agencyRepository = $agencyRepo;

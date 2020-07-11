@@ -1,7 +1,7 @@
 <?php namespace Tests\Repositories;
 
 use App\Models\Item;
-use App\Repositories\ItemRepository;
+use App\Repositories\HrTypeRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
@@ -11,14 +11,14 @@ class ItemRepositoryTest extends TestCase
     use ApiTestTrait, DatabaseTransactions;
 
     /**
-     * @var ItemRepository
+     * @var HrTypeRepository
      */
     protected $itemRepo;
 
     public function setUp() : void
     {
         parent::setUp();
-        $this->itemRepo = \App::make(ItemRepository::class);
+        $this->itemRepo = \App::make(HrTypeRepository::class);
     }
 
     /**

@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateItemAPIRequest;
-use App\Http\Requests\API\UpdateItemAPIRequest;
-use App\Http\Resources\ItemResource;
-use App\Models\Item;
-use App\Repositories\ItemRepository;
+use App\Http\Requests\API\CreateHrTypeAPIRequest;
+use App\Http\Requests\API\UpdateHrTypeAPIRequest;
+use App\Http\Resources\HrTypeResource;
+use App\Models\HrType;
+use App\Repositories\HrTypeRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Response;
 
 /**
- * Class ItemController
+ * Class HrTypeController
  * @package App\Http\Controllers\API
  */
 
 class HRTypeAPIController extends AppBaseController
 {
-    /** @var  ItemRepository */
+    /** @var  HrTypeRepository */
     private $hr_typeRepository;
 
-    public function __construct(ItemRepository $hr_typeRepo)
+    public function __construct(HrTypeRepository $hr_typeRepo)
     {
         $this->hr_typeRepository = $hr_typeRepo;
     }
@@ -32,9 +32,9 @@ class HRTypeAPIController extends AppBaseController
      *
      * @SWG\Get(
      *      path="/hr_types",
-     *      summary="Get a listing of the Items.",
-     *      tags={"Item"},
-     *      description="Get all Items",
+     *      summary="Get a listing of the HrTypes.",
+     *      tags={"HrType"},
+     *      description="Get all HrTypes",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -48,7 +48,7 @@ class HRTypeAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Item")
+     *                  @SWG\Items(ref="#/definitions/HrType")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -67,25 +67,25 @@ class HRTypeAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return ItemResource::collection($hr_types);
+        return HrTypeResource::collection($hr_types);
     }
 
     /**
-     * @param CreateItemAPIRequest $request
+     * @param CreateHrTypeAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
      *      path="/hr_types",
-     *      summary="Store a newly created Item in storage",
-     *      tags={"Item"},
-     *      description="Store Item",
+     *      summary="Store a newly created HrType in storage",
+     *      tags={"HrType"},
+     *      description="Store HrType",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Item that should be stored",
+     *          description="HrType that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Item")
+     *          @SWG\Schema(ref="#/definitions/HrType")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -98,7 +98,7 @@ class HRTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Item"
+     *                  ref="#/definitions/HrType"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -108,13 +108,13 @@ class HRTypeAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateItemAPIRequest $request)
+    public function store(CreateHrTypeAPIRequest $request)
     {
         $input = $request->all();
 
         $hr_type = $this->hr_typeRepository->create($input);
 
-        return $this->sendResponse($hr_type->toArray(), 'Item saved successfully');
+        return $this->sendResponse($hr_type->toArray(), 'HrType saved successfully');
     }
 
     /**
@@ -123,13 +123,13 @@ class HRTypeAPIController extends AppBaseController
      *
      * @SWG\Get(
      *      path="/hr_types/{id}",
-     *      summary="Display the specified Item",
-     *      tags={"Item"},
-     *      description="Get Item",
+     *      summary="Display the specified HrType",
+     *      tags={"HrType"},
+     *      description="Get HrType",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Item",
+     *          description="id of HrType",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -145,7 +145,7 @@ class HRTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Item"
+     *                  ref="#/definitions/HrType"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -157,30 +157,30 @@ class HRTypeAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Item $hr_type */
+        /** @var HrType $hr_type */
         $hr_type = $this->hr_typeRepository->find($id);
 
         if (empty($hr_type)) {
-            return $this->sendError('Item not found');
+            return $this->sendError('HrType not found');
         }
 
-        return $this->sendResponse($hr_type->toArray(), 'Item retrieved successfully');
+        return $this->sendResponse($hr_type->toArray(), 'HrType retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateItemAPIRequest $request
+     * @param UpdateHrTypeAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
      *      path="/hr_types/{id}",
-     *      summary="Update the specified Item in storage",
-     *      tags={"Item"},
-     *      description="Update Item",
+     *      summary="Update the specified HrType in storage",
+     *      tags={"HrType"},
+     *      description="Update HrType",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Item",
+     *          description="id of HrType",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -188,9 +188,9 @@ class HRTypeAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Item that should be updated",
+     *          description="HrType that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Item")
+     *          @SWG\Schema(ref="#/definitions/HrType")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -203,7 +203,7 @@ class HRTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Item"
+     *                  ref="#/definitions/HrType"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -213,20 +213,20 @@ class HRTypeAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateItemAPIRequest $request)
+    public function update($id, UpdateHrTypeAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Item $hr_type */
+        /** @var HrType $hr_type */
         $hr_type = $this->hr_typeRepository->find($id);
 
         if (empty($hr_type)) {
-            return $this->sendError('Item not found');
+            return $this->sendError('HrType not found');
         }
 
         $hr_type = $this->hr_typeRepository->update($input, $id);
 
-        return $this->sendResponse($hr_type->toArray(), 'Item updated successfully');
+        return $this->sendResponse($hr_type->toArray(), 'HrType updated successfully');
     }
 
     /**
@@ -235,13 +235,13 @@ class HRTypeAPIController extends AppBaseController
      *
      * @SWG\Delete(
      *      path="/hr_types/{id}",
-     *      summary="Remove the specified Item from storage",
-     *      tags={"Item"},
-     *      description="Delete Item",
+     *      summary="Remove the specified HrType from storage",
+     *      tags={"HrType"},
+     *      description="Delete HrType",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Item",
+     *          description="id of HrType",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -269,15 +269,15 @@ class HRTypeAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Item $hr_type */
+        /** @var HrType $hr_type */
         $hr_type = $this->hr_typeRepository->find($id);
 
         if (empty($hr_type)) {
-            return $this->sendError('Item not found');
+            return $this->sendError('HrType not found');
         }
 
         $hr_type->delete();
 
-        return $this->sendSuccess('Item deleted successfully');
+        return $this->sendSuccess('HrType deleted successfully');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateItemRequest;
 use App\Http\Requests\UpdateItemRequest;
-use App\Repositories\ItemRepository;
+use App\Repositories\HrTypeRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\UnitRepository;
 use Illuminate\Http\Request;
@@ -13,11 +13,11 @@ use Response;
 
 class ItemController extends AppBaseController
 {
-    /** @var  ItemRepository */
+    /** @var  HrTypeRepository */
     private $itemRepository;
     private $unitRepository;
 
-    public function __construct(ItemRepository $itemRepo, UnitRepository $unitRepo)
+    public function __construct(HrTypeRepository $itemRepo, UnitRepository $unitRepo)
     {
         $this->itemRepository = $itemRepo;
         $this->unitRepository = $unitRepo;

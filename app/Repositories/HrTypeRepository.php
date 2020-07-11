@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Item;
+use App\Models\HRType;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ItemRepository
+ * Class HrTypeRepository
  * @package App\Repositories
  * @version June 4, 2020, 9:11 am UTC
 */
 
-class ItemRepository extends BaseRepository
+class HrTypeRepository extends BaseRepository
 {
     /**
      * @var array
@@ -37,6 +37,6 @@ class ItemRepository extends BaseRepository
      **/
     public function model()
     {
-        return Item::class;
+        return HRType::class;
     }
 }

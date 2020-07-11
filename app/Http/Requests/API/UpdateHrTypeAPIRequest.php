@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Item;
+use App\Models\HRType;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreateItemAPIRequest extends APIRequest
+class UpdateHrTypeAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,8 @@ class CreateItemAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Item::$rules;
+        $rules = HRType::$rules;
+
+        return $rules;
     }
 }

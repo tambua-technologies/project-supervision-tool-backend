@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateHumanResourceAPIRequest;
 use App\Http\Requests\API\UpdateHumanResourceAPIRequest;
-use App\Http\Resources\HrResource;
+use App\Http\Resources\HrTypeResource;
 use App\Models\HumanResource;
 use App\Repositories\HumanResourceRepository;
 use Illuminate\Http\Request;
@@ -67,7 +67,7 @@ class HumanResourceAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return HrResource::collection($humanResources);
+        return HrTypeResource::collection($humanResources);
     }
 
     /**

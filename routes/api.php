@@ -21,13 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('focal_people', 'FocalPersonAPIController');
 
-Route::resource('agency_types', 'AgencyTypeAPIController');
-
 Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
 
 Route::resource('units', 'UnitAPIController');
 
-Route::resource('items', 'HRTypeAPIController');
+Route::resource('hr_types', 'HRTypeAPIController');
 
 Route::resource('locations', 'LocationAPIController');
 

@@ -9,7 +9,7 @@ use Parental\HasParent;
 
 /**
  * @SWG\Definition(
- *      definition="HRType",
+ *      definition="HrType",
  *      required={"name", "unit_id"},
  *      @SWG\Property(
  *          property="id",

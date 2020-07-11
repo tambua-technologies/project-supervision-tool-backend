@@ -6,205 +6,6 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/agency_types": {
-            "get": {
-                "tags": [
-                    "AgencyType"
-                ],
-                "summary": "Get a listing of the AgencyTypes.",
-                "description": "Get all AgencyTypes",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/AgencyType"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "AgencyType"
-                ],
-                "summary": "Store a newly created AgencyType in storage",
-                "description": "Store AgencyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "AgencyType that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/AgencyType"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/AgencyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/agency_types/{id}": {
-            "get": {
-                "tags": [
-                    "AgencyType"
-                ],
-                "summary": "Display the specified AgencyType",
-                "description": "Get AgencyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of AgencyType",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/AgencyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "AgencyType"
-                ],
-                "summary": "Update the specified AgencyType in storage",
-                "description": "Update AgencyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of AgencyType",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "AgencyType that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/AgencyType"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/AgencyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "AgencyType"
-                ],
-                "summary": "Remove the specified AgencyType from storage",
-                "description": "Delete AgencyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of AgencyType",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/emergency_response_themes": {
             "get": {
                 "tags": [
@@ -606,10 +407,10 @@
         "/hr_types": {
             "get": {
                 "tags": [
-                    "Item"
+                    "HrType"
                 ],
-                "summary": "Get a listing of the Items.",
-                "description": "Get all Items",
+                "summary": "Get a listing of the HrTypes.",
+                "description": "Get all HrTypes",
                 "produces": [
                     "application/json"
                 ],
@@ -624,7 +425,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/Item"
+                                        "$ref": "#/definitions/HrType"
                                     }
                                 },
                                 "message": {
@@ -638,10 +439,10 @@
             },
             "post": {
                 "tags": [
-                    "Item"
+                    "HrType"
                 ],
-                "summary": "Store a newly created Item in storage",
-                "description": "Store Item",
+                "summary": "Store a newly created HrType in storage",
+                "description": "Store HrType",
                 "produces": [
                     "application/json"
                 ],
@@ -649,10 +450,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Item that should be stored",
+                        "description": "HrType that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Item"
+                            "$ref": "#/definitions/HrType"
                         }
                     }
                 ],
@@ -665,7 +466,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/HrType"
                                 },
                                 "message": {
                                     "type": "string"
@@ -680,10 +481,10 @@
         "/hr_types/{id}": {
             "get": {
                 "tags": [
-                    "Item"
+                    "HrType"
                 ],
-                "summary": "Display the specified Item",
-                "description": "Get Item",
+                "summary": "Display the specified HrType",
+                "description": "Get HrType",
                 "produces": [
                     "application/json"
                 ],
@@ -691,7 +492,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of HrType",
                         "required": true,
                         "type": "integer"
                     }
@@ -705,7 +506,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/HrType"
                                 },
                                 "message": {
                                     "type": "string"
@@ -718,10 +519,10 @@
             },
             "put": {
                 "tags": [
-                    "Item"
+                    "HrType"
                 ],
-                "summary": "Update the specified Item in storage",
-                "description": "Update Item",
+                "summary": "Update the specified HrType in storage",
+                "description": "Update HrType",
                 "produces": [
                     "application/json"
                 ],
@@ -729,17 +530,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of HrType",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Item that should be updated",
+                        "description": "HrType that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Item"
+                            "$ref": "#/definitions/HrType"
                         }
                     }
                 ],
@@ -752,7 +553,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/HrType"
                                 },
                                 "message": {
                                     "type": "string"
@@ -765,10 +566,10 @@
             },
             "delete": {
                 "tags": [
-                    "Item"
+                    "HrType"
                 ],
-                "summary": "Remove the specified Item from storage",
-                "description": "Delete Item",
+                "summary": "Remove the specified HrType from storage",
+                "description": "Delete HrType",
                 "produces": [
                     "application/json"
                 ],
@@ -776,7 +577,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of HrType",
                         "required": true,
                         "type": "integer"
                     }
@@ -2751,7 +2552,7 @@
                 }
             }
         },
-        "HRType": {
+        "HrType": {
             "required": [
                 "name",
                 "unit_id"
