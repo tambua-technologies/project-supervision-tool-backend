@@ -101,7 +101,6 @@ class Agency extends Model
         'name' => 'required',
         'website' => 'required',
         'focal_person_id' => 'required',
-        'agency_type_id' => 'required'
     ];
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateAgencyRequest;
 use App\Http\Requests\UpdateAgencyRequest;
 use App\Models\AgencyType;
-use App\Repositories\AgencyRepository;
+use App\Repositories\ImplementingPartnerRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\AgencyTypeRepository;
 use App\Repositories\FocalPersonRepository;
@@ -15,13 +15,13 @@ use Response;
 
 class AgencyController extends AppBaseController
 {
-    /** @var  AgencyRepository */
+    /** @var  ImplementingPartnerRepository */
     private $agencyRepository;
     private $agencyTypesRepository;
     private $focalPersonRepository;
 
     public function __construct(
-        AgencyRepository $agencyRepo,
+        ImplementingPartnerRepository $agencyRepo,
         AgencyTypeRepository $agencyTypeRepo,
         FocalPersonRepository $focalPersonRepo
     )

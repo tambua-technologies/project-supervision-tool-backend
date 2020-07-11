@@ -56,4 +56,15 @@ class ImplementingPartner extends Agency
 {
     use SoftDeletes, HasParent;
 
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+        'website' => 'required',
+        'focal_person_id' => 'required',
+    ];
+
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Requests\API;
 
 use App\Models\Agency;
+use App\Models\ImplementingPartner;
 use InfyOm\Generator\Request\APIRequest;
 
-class UpdateAgencyAPIRequest extends APIRequest
+class CreateImplementingPartnerAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,6 @@ class UpdateAgencyAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = Agency::$rules;
-        
-        return $rules;
+        return ImplementingPartner::$rules;
     }
 }

@@ -1,7 +1,7 @@
 <?php namespace Tests\Repositories;
 
 use App\Models\Agency;
-use App\Repositories\AgencyRepository;
+use App\Repositories\ImplementingPartnerRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
@@ -11,14 +11,14 @@ class AgencyRepositoryTest extends TestCase
     use ApiTestTrait, DatabaseTransactions;
 
     /**
-     * @var AgencyRepository
+     * @var ImplementingPartnerRepository
      */
     protected $agencyRepo;
 
     public function setUp() : void
     {
         parent::setUp();
-        $this->agencyRepo = \App::make(AgencyRepository::class);
+        $this->agencyRepo = \App::make(ImplementingPartnerRepository::class);
     }
 
     /**

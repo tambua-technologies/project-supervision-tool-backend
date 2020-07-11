@@ -6,205 +6,6 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/agencies": {
-            "get": {
-                "tags": [
-                    "Agency"
-                ],
-                "summary": "Get a listing of the Agencies.",
-                "description": "Get all Agencies",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Agency"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Agency"
-                ],
-                "summary": "Store a newly created Agency in storage",
-                "description": "Store Agency",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Agency that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Agency"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Agency"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/agencies/{id}": {
-            "get": {
-                "tags": [
-                    "Agency"
-                ],
-                "summary": "Display the specified Agency",
-                "description": "Get Agency",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Agency",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Agency"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Agency"
-                ],
-                "summary": "Update the specified Agency in storage",
-                "description": "Update Agency",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Agency",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Agency that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Agency"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Agency"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Agency"
-                ],
-                "summary": "Remove the specified Agency from storage",
-                "description": "Delete Agency",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Agency",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/agency_types": {
             "get": {
                 "tags": [
@@ -802,6 +603,205 @@
                 }
             }
         },
+        "/hr_types": {
+            "get": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Get a listing of the Items.",
+                "description": "Get all Items",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Item"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Store a newly created Item in storage",
+                "description": "Store Item",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Item that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Item"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Item"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/hr_types/{id}": {
+            "get": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Display the specified Item",
+                "description": "Get Item",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Item",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Item"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Update the specified Item in storage",
+                "description": "Update Item",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Item",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Item that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Item"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Item"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Remove the specified Item from storage",
+                "description": "Delete Item",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Item",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/human_resources": {
             "get": {
                 "tags": [
@@ -1001,13 +1001,13 @@
                 }
             }
         },
-        "/items": {
+        "/implementing_partners": {
             "get": {
                 "tags": [
-                    "Item"
+                    "ImplementingPartner"
                 ],
-                "summary": "Get a listing of the Items.",
-                "description": "Get all Items",
+                "summary": "Get a listing of the ImplementingPartners.",
+                "description": "Get all ImplementingPartners",
                 "produces": [
                     "application/json"
                 ],
@@ -1022,7 +1022,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/Item"
+                                        "$ref": "#/definitions/ImplementingPartner"
                                     }
                                 },
                                 "message": {
@@ -1036,10 +1036,10 @@
             },
             "post": {
                 "tags": [
-                    "Item"
+                    "ImplementingPartner"
                 ],
-                "summary": "Store a newly created Item in storage",
-                "description": "Store Item",
+                "summary": "Store a newly created ImplementingPartner in storage",
+                "description": "Store ImplementingPartner",
                 "produces": [
                     "application/json"
                 ],
@@ -1047,10 +1047,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Item that should be stored",
+                        "description": "ImplementingPartner that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Item"
+                            "$ref": "#/definitions/ImplementingPartner"
                         }
                     }
                 ],
@@ -1063,7 +1063,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/ImplementingPartner"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1075,13 +1075,13 @@
                 }
             }
         },
-        "/items/{id}": {
+        "/implementing_partners/{id}": {
             "get": {
                 "tags": [
-                    "Item"
+                    "ImplementingPartner"
                 ],
-                "summary": "Display the specified Item",
-                "description": "Get Item",
+                "summary": "Display the specified ImplementingPartner",
+                "description": "Get ImplementingPartner",
                 "produces": [
                     "application/json"
                 ],
@@ -1089,7 +1089,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of ImplementingPartner",
                         "required": true,
                         "type": "integer"
                     }
@@ -1103,7 +1103,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/ImplementingPartner"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1116,10 +1116,10 @@
             },
             "put": {
                 "tags": [
-                    "Item"
+                    "ImplementingPartner"
                 ],
-                "summary": "Update the specified Item in storage",
-                "description": "Update Item",
+                "summary": "Update the specified ImplementingPartner in storage",
+                "description": "Update ImplementingPartner",
                 "produces": [
                     "application/json"
                 ],
@@ -1127,17 +1127,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of ImplementingPartner",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "Item that should be updated",
+                        "description": "ImplementingPartner that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Item"
+                            "$ref": "#/definitions/ImplementingPartner"
                         }
                     }
                 ],
@@ -1150,7 +1150,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/Item"
+                                    "$ref": "#/definitions/ImplementingPartner"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1163,10 +1163,10 @@
             },
             "delete": {
                 "tags": [
-                    "Item"
+                    "ImplementingPartner"
                 ],
-                "summary": "Remove the specified Item from storage",
-                "description": "Delete Item",
+                "summary": "Remove the specified ImplementingPartner from storage",
+                "description": "Delete ImplementingPartner",
                 "produces": [
                     "application/json"
                 ],
@@ -1174,7 +1174,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Item",
+                        "description": "id of ImplementingPartner",
                         "required": true,
                         "type": "integer"
                     }

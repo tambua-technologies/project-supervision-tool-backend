@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateHumanResourceRequest;
 use App\Http\Requests\UpdateHumanResourceRequest;
-use App\Repositories\AgencyRepository;
+use App\Repositories\ImplementingPartnerRepository;
 use App\Repositories\HumanResourceRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\ItemRepository;
@@ -21,7 +21,7 @@ class HumanResourceController extends AppBaseController
     private $itemRepository;
     private $agencyRepository;
 
-    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo, ItemRepository $itemRepo, AgencyRepository $agencyRepo)
+    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo, ItemRepository $itemRepo, ImplementingPartnerRepository $agencyRepo)
     {
         $this->humanResourceRepository = $humanResourceRepo;
         $this->agencyRepository = $agencyRepo;

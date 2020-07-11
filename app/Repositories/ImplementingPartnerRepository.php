@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Agency;
+use App\Models\ImplementingPartner;
 use App\Repositories\BaseRepository;
 
 /**
- * Class AgencyRepository
+ * Class ImplementingPartnerRepository
  * @package App\Repositories
  * @version June 4, 2020, 6:07 am UTC
 */
 
-class AgencyRepository extends BaseRepository
+class ImplementingPartnerRepository extends BaseRepository
 {
     /**
      * @var array
@@ -19,8 +19,7 @@ class AgencyRepository extends BaseRepository
     protected $fieldSearchable = [
         'name',
         'website',
-        'focal_person_id',
-        'agency_type_id'
+        'focal_person_id'
     ];
 
     /**
@@ -38,6 +37,6 @@ class AgencyRepository extends BaseRepository
      **/
     public function model()
     {
-        return Agency::class;
+        return ImplementingPartner::class;
     }
 }

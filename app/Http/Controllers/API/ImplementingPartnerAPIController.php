@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateAgencyAPIRequest;
-use App\Http\Requests\API\UpdateAgencyAPIRequest;
-use App\Models\Agency;
-use App\Repositories\AgencyRepository;
+use App\Http\Requests\API\CreateImplementingPartnerAPIRequest;
+use App\Http\Requests\API\UpdateImplementingPartnerAPIRequest;
+use App\Models\ImplementingPartner;
+use App\Repositories\ImplementingPartnerRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class AgencyController
+ * Class ImplementingPartnerController
  * @package App\Http\Controllers\API
  */
 
-class AgencyAPIController extends AppBaseController
+class ImplementingPartnerAPIController extends AppBaseController
 {
-    /** @var  AgencyRepository */
-    private $agencyRepository;
+    /** @var  ImplementingPartnerRepository */
+    private $implementingPartnerRepository;
 
-    public function __construct(AgencyRepository $agencyRepo)
+    public function __construct(ImplementingPartnerRepository $implementingPartnerRepo)
     {
-        $this->agencyRepository = $agencyRepo;
+        $this->implementingPartnerRepository = $implementingPartnerRepo;
     }
 
     /**
@@ -30,10 +30,10 @@ class AgencyAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/agencies",
-     *      summary="Get a listing of the Agencies.",
-     *      tags={"Agency"},
-     *      description="Get all Agencies",
+     *      path="/implementing_partners",
+     *      summary="Get a listing of the ImplementingPartners.",
+     *      tags={"ImplementingPartner"},
+     *      description="Get all ImplementingPartners",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -47,7 +47,7 @@ class AgencyAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Agency")
+     *                  @SWG\Items(ref="#/definitions/ImplementingPartner")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -59,31 +59,31 @@ class AgencyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agencies = $this->agencyRepository->all(
+        $agencies = $this->implementingPartnerRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($agencies->toArray(), 'Agencies retrieved successfully');
+        return $this->sendResponse($agencies->toArray(), 'ImplementingPartners retrieved successfully');
     }
 
     /**
-     * @param CreateAgencyAPIRequest $request
+     * @param CreateImplementingPartnerAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/agencies",
-     *      summary="Store a newly created Agency in storage",
-     *      tags={"Agency"},
-     *      description="Store Agency",
+     *      path="/implementing_partners",
+     *      summary="Store a newly created ImplementingPartner in storage",
+     *      tags={"ImplementingPartner"},
+     *      description="Store ImplementingPartner",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Agency that should be stored",
+     *          description="ImplementingPartner that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Agency")
+     *          @SWG\Schema(ref="#/definitions/ImplementingPartner")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -96,7 +96,7 @@ class AgencyAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agency"
+     *                  ref="#/definitions/ImplementingPartner"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -106,13 +106,13 @@ class AgencyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateAgencyAPIRequest $request)
+    public function store(CreateImplementingPartnerAPIRequest $request)
     {
         $input = $request->all();
 
-        $agency = $this->agencyRepository->create($input);
+        $implementingPartner = $this->implementingPartnerRepository->create($input);
 
-        return $this->sendResponse($agency->toArray(), 'Agency saved successfully');
+        return $this->sendResponse($implementingPartner->toArray(), 'ImplementingPartner saved successfully');
     }
 
     /**
@@ -120,14 +120,14 @@ class AgencyAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/agencies/{id}",
-     *      summary="Display the specified Agency",
-     *      tags={"Agency"},
-     *      description="Get Agency",
+     *      path="/implementing_partners/{id}",
+     *      summary="Display the specified ImplementingPartner",
+     *      tags={"ImplementingPartner"},
+     *      description="Get ImplementingPartner",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Agency",
+     *          description="id of ImplementingPartner",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -143,7 +143,7 @@ class AgencyAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agency"
+     *                  ref="#/definitions/ImplementingPartner"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -155,30 +155,30 @@ class AgencyAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Agency $agency */
-        $agency = $this->agencyRepository->find($id);
+        /** @var ImplementingPartner $implementingPartner */
+        $implementingPartner = $this->implementingPartnerRepository->find($id);
 
-        if (empty($agency)) {
-            return $this->sendError('Agency not found');
+        if (empty($implementingPartner)) {
+            return $this->sendError('ImplementingPartner not found');
         }
 
-        return $this->sendResponse($agency->toArray(), 'Agency retrieved successfully');
+        return $this->sendResponse($implementingPartner->toArray(), 'ImplementingPartner retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateAgencyAPIRequest $request
+     * @param UpdateImplementingPartnerAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/agencies/{id}",
-     *      summary="Update the specified Agency in storage",
-     *      tags={"Agency"},
-     *      description="Update Agency",
+     *      path="/implementing_partners/{id}",
+     *      summary="Update the specified ImplementingPartner in storage",
+     *      tags={"ImplementingPartner"},
+     *      description="Update ImplementingPartner",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Agency",
+     *          description="id of ImplementingPartner",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -186,9 +186,9 @@ class AgencyAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Agency that should be updated",
+     *          description="ImplementingPartner that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Agency")
+     *          @SWG\Schema(ref="#/definitions/ImplementingPartner")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +201,7 @@ class AgencyAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Agency"
+     *                  ref="#/definitions/ImplementingPartner"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -211,20 +211,20 @@ class AgencyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateAgencyAPIRequest $request)
+    public function update($id, UpdateImplementingPartnerAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Agency $agency */
-        $agency = $this->agencyRepository->find($id);
+        /** @var ImplementingPartner $implementingPartner */
+        $implementingPartner = $this->implementingPartnerRepository->find($id);
 
-        if (empty($agency)) {
-            return $this->sendError('Agency not found');
+        if (empty($implementingPartner)) {
+            return $this->sendError('ImplementingPartner not found');
         }
 
-        $agency = $this->agencyRepository->update($input, $id);
+        $implementingPartner = $this->implementingPartnerRepository->update($input, $id);
 
-        return $this->sendResponse($agency->toArray(), 'Agency updated successfully');
+        return $this->sendResponse($implementingPartner->toArray(), 'ImplementingPartner updated successfully');
     }
 
     /**
@@ -232,14 +232,14 @@ class AgencyAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/agencies/{id}",
-     *      summary="Remove the specified Agency from storage",
-     *      tags={"Agency"},
-     *      description="Delete Agency",
+     *      path="/implementing_partners/{id}",
+     *      summary="Remove the specified ImplementingPartner from storage",
+     *      tags={"ImplementingPartner"},
+     *      description="Delete ImplementingPartner",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Agency",
+     *          description="id of ImplementingPartner",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -267,15 +267,15 @@ class AgencyAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Agency $agency */
-        $agency = $this->agencyRepository->find($id);
+        /** @var ImplementingPartner $implementingPartner */
+        $implementingPartner = $this->implementingPartnerRepository->find($id);
 
-        if (empty($agency)) {
-            return $this->sendError('Agency not found');
+        if (empty($implementingPartner)) {
+            return $this->sendError('ImplementingPartner not found');
         }
 
-        $agency->delete();
+        $implementingPartner->delete();
 
-        return $this->sendSuccess('Agency deleted successfully');
+        return $this->sendSuccess('ImplementingPartner deleted successfully');
     }
 }

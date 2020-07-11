@@ -23,7 +23,7 @@ Route::resource('focal_people', 'FocalPersonAPIController');
 
 Route::resource('agency_types', 'AgencyTypeAPIController');
 
-Route::resource('agencies', 'AgencyAPIController');
+Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
 
 Route::resource('units', 'UnitAPIController');
 
