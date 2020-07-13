@@ -22,14 +22,8 @@ class CreateHumanResourcesTable extends Migration
             $table->jsonb('meta')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
             $table->unsignedBigInteger('hr_type_id');
-            $table->unsignedBigInteger('implementing_partner_id');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('implementing_partner_id')
-                ->references('id')
-                ->on('agencies')
-                ->onDelete('set null');
 
             $table->foreign('location_id')
                 ->references('id')

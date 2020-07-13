@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @SWG\Definition(
@@ -57,10 +59,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="implementing_partner_id",
- *          description="implementing_partner_id",
- *          type="integer",
- *          format="int32"
+ *          property="implementing_partners",
+ *          description="implementing_partners",
+ *          type="array",
+ *          @SWG\Items(ref="#/definitions/ImplementingPartner")
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -132,16 +134,16 @@ class HumanResource extends Model
     public static $rules = [
         'quantity' => 'required',
         'hr_type_id' => 'required',
-        'implementing_partner_id' => 'required'
     ];
 
     /**
-     * @return BelongsTo
+     * @return BelongsToMany
      **/
-    public function implementing_partner()
+    public function implementing_partners()
     {
-        return $this->belongsTo(ImplementingPartner::class, 'implementing_partner_id');
+        return $this->belongsToMany(ImplementingPartner::class, 'human_resource_implementing_partner', 'human_resource_id', 'implementing_partner_id');
     }
+
 
     /**
      * @return BelongsTo

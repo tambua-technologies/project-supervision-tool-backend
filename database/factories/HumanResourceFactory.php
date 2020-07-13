@@ -4,7 +4,6 @@
 
 use App\Models\HRType;
 use App\Models\HumanResource;
-use App\Models\ImplementingPartner;
 use App\Models\Location;
 use Faker\Generator as Faker;
 
@@ -17,9 +16,6 @@ $factory->define(HumanResource::class, function (Faker $faker) {
         'description' => $faker->word,
         'hr_type_id' => function () {
             return HRType::query()->inRandomOrder()->first()->id;
-        },
-        'implementing_partner_id' => function () {
-            return ImplementingPartner::query()->inRandomOrder()->first()->id;
         },
         'location_id' => function () {
             return Location::query()->inRandomOrder()->first()->id;

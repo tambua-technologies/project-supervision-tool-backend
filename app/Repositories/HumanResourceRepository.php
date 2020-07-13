@@ -24,7 +24,6 @@ class HumanResourceRepository extends BaseRepository
         'meta',
         'location_id',
         'hr_type_id',
-        'implementing_partner_id'
     ];
 
     /**

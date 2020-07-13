@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HrTypeResource extends JsonResource
+class HumanResourceResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,6 +24,7 @@ class HrTypeResource extends JsonResource
             'meta' => $this->meta,
             'location' => $this->location,
             'hr_type' => new ItemResource($this->hr_type),
+            'implementing_partners' => AgencyResource::collection($this->implementing_partners),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 

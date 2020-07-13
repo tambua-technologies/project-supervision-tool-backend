@@ -2638,10 +2638,12 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "implementing_partner_id": {
-                    "description": "implementing_partner_id",
-                    "type": "integer",
-                    "format": "int32"
+                "implementing_partners": {
+                    "description": "implementing_partners",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ImplementingPartner"
+                    }
                 },
                 "created_at": {
                     "description": "created_at",

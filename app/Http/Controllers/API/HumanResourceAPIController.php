@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateHumanResourceAPIRequest;
 use App\Http\Requests\API\UpdateHumanResourceAPIRequest;
 use App\Http\Resources\HrTypeResource;
+use App\Http\Resources\HumanResourceResource;
 use App\Models\HumanResource;
 use App\Repositories\HumanResourceRepository;
 use Illuminate\Http\Request;
@@ -67,7 +68,7 @@ class HumanResourceAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return HrTypeResource::collection($humanResources);
+        return HumanResourceResource::collection($humanResources);
     }
 
     /**
@@ -114,7 +115,7 @@ class HumanResourceAPIController extends AppBaseController
 
         $humanResource = $this->humanResourceRepository->create($input);
 
-        return $this->sendResponse($humanResource->toArray(), 'Human Resource saved successfully');
+        return $this->sendResponse(new HumanResourceResource($humanResource), 'Human Resource saved successfully');
     }
 
     /**
@@ -164,7 +165,7 @@ class HumanResourceAPIController extends AppBaseController
             return $this->sendError('Human Resource not found');
         }
 
-        return $this->sendResponse($humanResource->toArray(), 'Human Resource retrieved successfully');
+        return $this->sendResponse(new HumanResourceResource($humanResource), 'Human Resource retrieved successfully');
     }
 
     /**
@@ -226,7 +227,7 @@ class HumanResourceAPIController extends AppBaseController
 
         $humanResource = $this->humanResourceRepository->update($input, $id);
 
-        return $this->sendResponse($humanResource->toArray(), 'HumanResource updated successfully');
+        return $this->sendResponse(new HumanResourceResource($humanResource), 'HumanResource updated successfully');
     }
 
     /**
