@@ -652,7 +652,7 @@
                         "description": "HumanResource that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/HumanResource"
+                            "$ref": "#/definitions/CreateHumanResource"
                         }
                     }
                 ],
@@ -716,53 +716,6 @@
                     }
                 }
             },
-            "put": {
-                "tags": [
-                    "HumanResource"
-                ],
-                "summary": "Update the specified HumanResource in storage",
-                "description": "Update HumanResource",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of HumanResource",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "HumanResource that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/HumanResource"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/HumanResource"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
             "delete": {
                 "tags": [
                     "HumanResource"
@@ -791,6 +744,53 @@
                                 },
                                 "data": {
                                     "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "HumanResource"
+                ],
+                "summary": "Update the specified HumanResource in storage",
+                "description": "Update HumanResource",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of HumanResource",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "HumanResource that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CreateHumanResource"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/HumanResource"
                                 },
                                 "message": {
                                     "type": "string"
@@ -2593,6 +2593,60 @@
                 }
             }
         },
+        "CreateHumanResource": {
+            "required": [
+                "quantity",
+                "hr_type_id",
+                "description"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "start_date": {
+                    "description": "start_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "description": "end_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "quantity": {
+                    "description": "quantity",
+                    "type": "number",
+                    "format": "number"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "meta": {
+                    "description": "meta",
+                    "type": "object"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "hr_type_id": {
+                    "description": "hr_type_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "implementing_partners": {
+                    "description": "implementing_partners",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
         "HumanResource": {
             "required": [
                 "quantity",
@@ -2626,7 +2680,7 @@
                 },
                 "meta": {
                     "description": "meta",
-                    "type": "string"
+                    "type": "object"
                 },
                 "location_id": {
                     "description": "location_id",
@@ -2652,11 +2706,6 @@
                 },
                 "updated_at": {
                     "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
                     "type": "string",
                     "format": "date-time"
                 }

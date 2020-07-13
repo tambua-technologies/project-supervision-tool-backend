@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class HumanResourceController
@@ -86,7 +87,7 @@ class HumanResourceAPIController extends AppBaseController
      *          in="body",
      *          description="HumanResource that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/HumanResource")
+     *          @SWG\Schema(ref="#/definitions/CreateHumanResource")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -114,6 +115,10 @@ class HumanResourceAPIController extends AppBaseController
         $input = $request->all();
 
         $humanResource = $this->humanResourceRepository->create($input);
+        if($request->implementing_partners)
+        {
+            $humanResource->implementing_partners()->attach($request->implementing_partners);
+        }
 
         return $this->sendResponse(new HumanResourceResource($humanResource), 'Human Resource saved successfully');
     }
@@ -173,7 +178,7 @@ class HumanResourceAPIController extends AppBaseController
      * @param UpdateHumanResourceAPIRequest $request
      * @return Response
      *
-     * @SWG\Put(
+     * @SWG\Patch(
      *      path="/human_resources/{id}",
      *      summary="Update the specified HumanResource in storage",
      *      tags={"HumanResource"},
@@ -191,7 +196,7 @@ class HumanResourceAPIController extends AppBaseController
      *          in="body",
      *          description="HumanResource that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/HumanResource")
+     *          @SWG\Schema(ref="#/definitions/CreateHumanResource")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -216,6 +221,7 @@ class HumanResourceAPIController extends AppBaseController
      */
     public function update($id, UpdateHumanResourceAPIRequest $request)
     {
+        Log::info('inside update');
         $input = $request->all();
 
         /** @var HumanResource $humanResource */
@@ -223,6 +229,12 @@ class HumanResourceAPIController extends AppBaseController
 
         if (empty($humanResource)) {
             return $this->sendError('Human Resource not found');
+        }
+        if($request->implementing_partners)
+        {
+            $implementing_partners_ids = $humanResource->implementing_partners()->get()->pluck(['id']);
+            $humanResource->implementing_partners()->detach($implementing_partners_ids);
+            $humanResource->implementing_partners()->attach($request->implementing_partners);
         }
 
         $humanResource = $this->humanResourceRepository->update($input, $id);

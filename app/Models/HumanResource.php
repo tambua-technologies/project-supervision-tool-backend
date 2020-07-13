@@ -8,6 +8,69 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 
+
+/**
+ * @SWG\Definition(
+ *      definition="CreateHumanResource",
+ *      required={"quantity", "hr_type_id", "description"},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="start_date",
+ *          description="start_date",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="end_date",
+ *          description="end_date",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="quantity",
+ *          description="quantity",
+ *          type="number",
+ *          format="number"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="meta",
+ *          description="meta",
+ *          type="object"
+ *      ),
+ *      @SWG\Property(
+ *          property="location_id",
+ *          description="location_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="hr_type_id",
+ *          description="hr_type_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="implementing_partners",
+ *          description="implementing_partners",
+ *          type="array",
+ *          @SWG\Items(
+ *             type="integer",
+ *         )
+ *      )
+ * )
+ */
+
+
 /**
  * @SWG\Definition(
  *      definition="HumanResource",
@@ -44,7 +107,7 @@ use Illuminate\Support\Facades\Log;
  *      @SWG\Property(
  *          property="meta",
  *          description="meta",
- *          type="string"
+ *          type="object"
  *      ),
  *      @SWG\Property(
  *          property="location_id",
@@ -73,12 +136,6 @@ use Illuminate\Support\Facades\Log;
  *      @SWG\Property(
  *          property="updated_at",
  *          description="updated_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
  *          type="string",
  *          format="date-time"
  *      )
