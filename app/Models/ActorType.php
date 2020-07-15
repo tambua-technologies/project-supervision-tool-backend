@@ -9,8 +9,8 @@ use Parental\HasParent;
 
 /**
  * @SWG\Definition(
- *      definition="HrType",
- *      required={"name", "unit_id"},
+ *      definition="ActorType",
+ *      required={"name"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -28,12 +28,6 @@ use Parental\HasParent;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="unit_id",
- *          description="unit_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -44,16 +38,10 @@ use Parental\HasParent;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
-class HRType extends Type
+class ActorType extends Item
 {
     use HasParent;
 }

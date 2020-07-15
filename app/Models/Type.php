@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Parental\HasChildren;
-use Parental\HasParent;
 
 /**
  * @SWG\Definition(
- *      definition="HrType",
- *      required={"name", "unit_id"},
+ *      definition="Type",
+ *      required={"name"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -28,12 +28,6 @@ use Parental\HasParent;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="unit_id",
- *          description="unit_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -45,15 +39,50 @@ use Parental\HasParent;
  *          type="string",
  *          format="date-time"
  *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
- *      )
  * )
  */
-class HRType extends Type
+class Type extends Model
 {
-    use HasParent;
+    use SoftDeletes, HasChildren;
+
+    public $table = 'types';
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
+    protected $dates = ['deleted_at'];
+
+
+
+    public $fillable = [
+        'name',
+        'type',
+        'description',
+    ];
+
+    protected $childTypes = [
+        'actor_type' => ActorType::class,
+        'hr_type' => HRType::class,
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'description' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+    ];
 }
