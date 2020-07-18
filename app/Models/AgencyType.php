@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Parental\HasParent;
 
 /**
  * @SWG\Definition(
@@ -39,41 +39,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class AgencyType extends Model
+class AgencyType extends Type
 {
-    use SoftDeletes;
-
-    public $table = 'agency_types';
-    
-
-    protected $dates = ['deleted_at'];
-
-
-
-    public $fillable = [
-        'name',
-        'description'
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'name' => 'string',
-        'description' => 'string'
-    ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required'
-    ];
-
-    
+    use SoftDeletes, HasParent;
 }

@@ -63,11 +63,7 @@ class HumanResourceAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $humanResources = $this->humanResourceRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $humanResources = HumanResource::query()->paginate(15);
 
         return HumanResourceResource::collection($humanResources);
     }
