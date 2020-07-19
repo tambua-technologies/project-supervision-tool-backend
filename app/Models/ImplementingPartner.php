@@ -9,7 +9,7 @@ use Parental\HasParent;
 /**
  * @SWG\Definition(
  *      definition="ImplementingPartner",
- *      required={"name", "website", "focal_person_id", "agency_type_id"},
+ *      required={"name", "website", "focal_person_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -44,12 +44,6 @@ use Parental\HasParent;
  *          type="string",
  *          format="date-time"
  *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
- *      )
  * )
  */
 class ImplementingPartner extends Agency

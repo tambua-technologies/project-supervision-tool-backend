@@ -76,6 +76,7 @@ class Agency extends Model
 
     protected $childTypes = [
         'implementing_partner' => ImplementingPartner::class,
+        'actor' => Actor::class,
     ];
 
     /**

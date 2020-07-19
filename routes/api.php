@@ -23,6 +23,8 @@ Route::resource('focal_people', 'FocalPersonAPIController');
 
 Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
 
+Route::resource('actors', 'ActorAPIController');
+
 Route::resource('units', 'UnitAPIController');
 
 Route::resource('hr_types', 'HRTypeAPIController');
