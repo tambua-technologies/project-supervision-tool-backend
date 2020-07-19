@@ -59,10 +59,7 @@ class EmergencyResponseThemeAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $emergencyResponseThemes = $this->emergencyResponseThemeRepository->paginate(
-            $request->get('per_page', 15),
-            $request->except(['skip', 'limit'])
-        );
+        $emergencyResponseThemes = $this->emergencyResponseThemeRepository->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($emergencyResponseThemes->toArray(), 'Emergency Response Themes retrieved successfully');
     }

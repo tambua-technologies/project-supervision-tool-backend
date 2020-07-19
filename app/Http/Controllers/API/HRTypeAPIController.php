@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateHrTypeAPIRequest;
 use App\Http\Requests\API\UpdateHrTypeAPIRequest;
-use App\Http\Resources\HrTypeResource;
+use App\Http\Resources\ItemResource;
 use App\Models\HrType;
 use App\Repositories\HrTypeRepository;
 use Illuminate\Http\Request;
@@ -61,12 +61,8 @@ class HRTypeAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $hr_types = $this->hr_typeRepository->paginate(
-            $request->get('per_page', 15),
-            $request->except(['skip', 'limit'])
-        );
-
-        return HrTypeResource::collection($hr_types);
+        $hr_types = $this->hr_typeRepository->paginate($request->get('per_page', 15));
+        return ItemResource::collection($hr_types);
     }
 
     /**

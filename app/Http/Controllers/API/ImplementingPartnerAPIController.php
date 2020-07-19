@@ -59,10 +59,7 @@ class ImplementingPartnerAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agencies = $this->implementingPartnerRepository->paginate(
-            $request->get('per_page', 15),
-            $request->except(['skip', 'limit'])
-        );
+        $agencies = $this->implementingPartnerRepository->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($agencies->toArray(), 'ImplementingPartners retrieved successfully');
     }

@@ -59,10 +59,7 @@ class UnitAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $units = $this->unitRepository->paginate(
-            $request->get('per_page', 15),
-            $request->except(['skip', 'limit'])
-        );
+        $units = $this->unitRepository->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($units->toArray(), 'Units retrieved successfully');
     }

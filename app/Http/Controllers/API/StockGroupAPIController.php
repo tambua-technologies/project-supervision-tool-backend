@@ -59,10 +59,7 @@ class StockGroupAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $stockGroups = $this->stockGroupRepository->paginate(
-            $request->get('per_page', 15),
-            $request->except(['skip', 'limit'])
-        );
+        $stockGroups = $this->stockGroupRepository->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($stockGroups->toArray(), 'Stock Groups retrieved successfully');
     }
