@@ -59,10 +59,9 @@ class FocalPersonAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $focalPeople = $this->focalPersonRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+        $focalPeople = $this->focalPersonRepository->paginate(
+            $request->get('per_page', 15),
+            $request->except(['skip', 'limit'])
         );
 
         return $this->sendResponse($focalPeople->toArray(), 'Focal People retrieved successfully');

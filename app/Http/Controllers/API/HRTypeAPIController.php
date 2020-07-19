@@ -61,10 +61,9 @@ class HRTypeAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $hr_types = $this->hr_typeRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+        $hr_types = $this->hr_typeRepository->paginate(
+            $request->get('per_page', 15),
+            $request->except(['skip', 'limit'])
         );
 
         return HrTypeResource::collection($hr_types);

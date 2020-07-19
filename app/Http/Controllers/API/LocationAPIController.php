@@ -59,10 +59,9 @@ class LocationAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $locations = $this->locationRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+        $locations = $this->locationRepository->paginate(
+            $request->get('per_page', 15),
+            $request->except(['skip', 'limit'])
         );
 
         return $this->sendResponse($locations->toArray(), 'Locations retrieved successfully');

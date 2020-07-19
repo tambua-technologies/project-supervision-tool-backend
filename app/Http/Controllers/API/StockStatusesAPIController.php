@@ -59,10 +59,9 @@ class StockStatusesAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $stockStatuses = $this->stockStatusesRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+        $stockStatuses = $this->stockStatusesRepository->paginate(
+            $request->get('per_page', 15),
+            $request->except(['skip', 'limit'])
         );
 
         return $this->sendResponse($stockStatuses->toArray(), 'Stock Statuses retrieved successfully');

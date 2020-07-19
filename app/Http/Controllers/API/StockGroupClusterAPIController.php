@@ -59,10 +59,9 @@ class StockGroupClusterAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $stockGroupClusters = $this->stockGroupClusterRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+        $stockGroupClusters = $this->stockGroupClusterRepository->paginate(
+            $request->get('per_page', 15),
+            $request->except(['skip', 'limit'])
         );
 
         return $this->sendResponse($stockGroupClusters->toArray(), 'Stock Group Clusters retrieved successfully');

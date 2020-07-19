@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateHumanResourceAPIRequest;
 use App\Http\Requests\API\UpdateHumanResourceAPIRequest;
-use App\Http\Resources\HrTypeResource;
 use App\Http\Resources\HumanResourceResource;
 use App\Models\HumanResource;
 use App\Repositories\HumanResourceRepository;
@@ -65,7 +64,8 @@ class HumanResourceAPIController extends AppBaseController
     {
         $humanResources = $this->humanResourceRepository->paginate(
             $request->get('per_page', 15),
-            $request->except(['skip', 'limit']));
+            $request->except(['skip', 'limit'])
+        );
 
         return HumanResourceResource::collection($humanResources);
     }
