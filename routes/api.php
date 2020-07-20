@@ -19,6 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::get('/locations/regions', 'LocationAPIController@regions');
+
+Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
+
 Route::resource('focal_people', 'FocalPersonAPIController');
 
 Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
@@ -30,6 +34,7 @@ Route::resource('units', 'UnitAPIController');
 Route::resource('hr_types', 'HRTypeAPIController');
 
 Route::resource('locations', 'LocationAPIController');
+
 
 Route::resource('stock_types', 'StockTypeAPIController');
 

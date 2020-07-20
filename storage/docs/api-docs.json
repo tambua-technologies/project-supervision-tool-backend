@@ -1274,6 +1274,83 @@
                 }
             }
         },
+        "/locations/regions": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get a listing of the regions.",
+                "description": "Get all regions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Region"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/locations/districts/{region_id}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get a listing of the districts.",
+                "description": "Get all districts",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "region_id",
+                        "in": "path",
+                        "description": "id of Region",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/District"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/locations/{id}": {
             "get": {
                 "tags": [
@@ -2750,6 +2827,18 @@
                 }
             }
         },
+        "District": {
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                }
+            }
+        },
         "EmergencyResponseTheme": {
             "required": [
                 "name"
@@ -3108,6 +3197,18 @@
                     "description": "deleted_at",
                     "type": "string",
                     "format": "date-time"
+                }
+            }
+        },
+        "Region": {
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
                 }
             }
         },

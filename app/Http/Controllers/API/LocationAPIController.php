@@ -4,10 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
+use App\Http\Resources\RegionResource;
+use App\Models\District;
 use App\Models\Location;
+use App\Models\Region;
 use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
 use Response;
 
 /**
@@ -62,6 +66,91 @@ class LocationAPIController extends AppBaseController
         $locations = $this->locationRepository->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($locations->toArray(), 'Locations retrieved successfully');
+    }
+
+    /**
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/regions",
+     *      summary="Get a listing of the regions.",
+     *      tags={"Location"},
+     *      description="Get all regions",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function regions()
+    {
+        $locations = Region::all();
+
+        return $this->sendResponse($locations->toArray(), 'Regions retrieved successfully');
+    }
+
+
+    /**
+     * @param $region_id
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/districts/{region_id}",
+     *      summary="Get a listing of the districts.",
+     *      tags={"Location"},
+     *      description="Get all districts",
+     *      produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="region_id",
+     *          description="id of Region",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/District")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function districts($region_id)
+    {
+        $locations = District::query()->where('region_id', $region_id)->get();
+
+        return $this->sendResponse($locations->toArray(), 'Districts retrieved successfully');
     }
 
     /**

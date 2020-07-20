@@ -3,7 +3,7 @@ version: '3'
 
 services:
   postgres-tukutane:
-    image: postgres:9.5-alpine
+    image: postgis/postgis
     container_name: postgres-tukutane
     restart: unless-stopped
     volumes:
