@@ -17,7 +17,6 @@ class LocationRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
         'level'
     ];
 

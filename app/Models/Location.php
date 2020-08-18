@@ -16,8 +16,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="name",
- *          description="name",
+ *          property="region_id",
+ *          description="region_id",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="district_id",
+ *          description="district_id",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -36,21 +41,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
 class Location extends Model
 {
+
     use SoftDeletes;
 
     public $table = 'locations';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -60,8 +60,9 @@ class Location extends Model
 
 
     public $fillable = [
-        'name',
-        'level'
+        'district_id',
+        'region_id',
+        'level',
     ];
 
     /**
@@ -71,8 +72,9 @@ class Location extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'level' => 'string'
+        'level' => 'string',
+        'region_id' => 'string',
+        'district_id' => 'string',
     ];
 
     /**
@@ -81,9 +83,19 @@ class Location extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
         'level' => 'required'
     ];
 
-    
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id');
+    }
+
+
+
 }
