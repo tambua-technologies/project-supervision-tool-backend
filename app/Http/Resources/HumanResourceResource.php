@@ -22,7 +22,7 @@ class HumanResourceResource extends JsonResource
             'quantity' => $this->quantity,
             'description' => $this->description,
             'meta' => $this->meta,
-            'location' => $this->location,
+            'location' => new LocationResource($this->location),
             'hr_type' => new ItemResource($this->hr_type),
             'implementing_partners' => AgencyResource::collection($this->implementing_partners),
             'created_at' => $this->created_at,

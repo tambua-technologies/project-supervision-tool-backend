@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
+use App\Http\Resources\LocationResource;
 use App\Http\Resources\RegionResource;
 use App\Models\District;
 use App\Models\Location;
@@ -65,7 +66,7 @@ class LocationAPIController extends AppBaseController
     {
         $locations = $this->locationRepository->paginate($request->get('per_page', 15));
 
-        return $this->sendResponse($locations->toArray(), 'Locations retrieved successfully');
+        return $this->sendResponse(LocationResource::collection($locations), 'Locations retrieved successfully');
     }
 
     /**
