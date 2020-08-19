@@ -17,7 +17,7 @@ class LocationResource extends JsonResource
     {
 
         return [
-            'id' => $this->adm1_pcode,
+            'id' => $this->id,
             'level' => $this->level,
             'region' => $this->region ? $this->region: null,
             'district' => $this->district ? $this->district : null,
