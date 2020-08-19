@@ -111,7 +111,14 @@ class HumanResourceAPIController extends AppBaseController
         $input = $request->all();
         $location = Location::query()->create( $request->only(['region_id', 'district_id', 'level']));
 
-        $humanResource = $this->humanResourceRepository->create(array_push($input, (object)['location_id' => $location->id]));
+        $humanResource = $this->humanResourceRepository->create([
+            'quantity' => $request->quantity,
+            'end_date' => $request->end_date,
+            'start_date' => $request->start_date,
+            'hr_type_id' => $request->hr_type_id,
+            'description' => $request->description,
+            'location_id' => $location->id,
+            ]);
         if($request->implementing_partners)
         {
             $humanResource->implementing_partners()->attach($request->implementing_partners);
