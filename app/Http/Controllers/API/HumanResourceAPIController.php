@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateHumanResourceAPIRequest;
 use App\Http\Requests\API\UpdateHumanResourceAPIRequest;
 use App\Http\Resources\HumanResourceResource;
 use App\Models\HumanResource;
+use App\Models\Location;
 use App\Repositories\HumanResourceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -108,8 +109,9 @@ class HumanResourceAPIController extends AppBaseController
     public function store(CreateHumanResourceAPIRequest $request)
     {
         $input = $request->all();
+        $location = Location::query()->create( $request->only(['region_id', 'district_id', 'level']));
 
-        $humanResource = $this->humanResourceRepository->create($input);
+        $humanResource = $this->humanResourceRepository->create([...$input, 'location_id' => $location->id]);
         if($request->implementing_partners)
         {
             $humanResource->implementing_partners()->attach($request->implementing_partners);
