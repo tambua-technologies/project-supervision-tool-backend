@@ -8,14 +8,12 @@ use App\Models\Region;
 use Faker\Generator as Faker;
 
 $factory->define(Location::class, function (Faker $faker) {
+    $regionId = Region::query()->inRandomOrder()->first()->id;
+    $districtId = District::query()->where('region_id', $regionId)->first()->id;
 
     return [
         'level' => $faker->word,
-        'region_id' => function () {
-            return Region::query()->inRandomOrder()->first()->id;
-        },
-        'district_id' => function () {
-            return District::query()->inRandomOrder()->first()->id;
-        },
+        'region_id' => $regionId,
+        'district_id' => $districtId,
     ];
 });
