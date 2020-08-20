@@ -50,3 +50,6 @@ Route::resource('stocks', 'StockAPIController');
 
 
 Route::resource('human_resources', 'HumanResourceAPIController');
+
+
+Route::resource('initiatives', 'InitiativeAPIController');

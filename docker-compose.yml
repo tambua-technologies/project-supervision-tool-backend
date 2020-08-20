@@ -3,7 +3,7 @@ version: '3'
 
 services:
   postgres-tukutane:
-    image: postgis/postgis
+    image: postgres:9.5-alpine
     container_name: postgres-tukutane
     restart: unless-stopped
     volumes:
@@ -15,20 +15,6 @@ services:
     ports:
       - "5432:5432"
 
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: unless-stopped
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=mloweedgar0@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=secret
-      - PGADMIN_LISTEN_PORT=80
-    ports:
-      - "8080:80"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-    links:
-      - "postgres-tukutane:pgsql-server"
-
   redis-tukutane:
     image: redis:alpine
     container_name: redis-tukutane
@@ -38,10 +24,3 @@ services:
 
 volumes:
   tukutane-dbdata:
-  pgadmin-data:
-
-
-
-
-
-

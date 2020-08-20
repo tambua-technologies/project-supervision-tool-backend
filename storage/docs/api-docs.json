@@ -1200,6 +1200,205 @@
                 }
             }
         },
+        "/initiatives": {
+            "get": {
+                "tags": [
+                    "Initiative"
+                ],
+                "summary": "Get a listing of the Initiatives.",
+                "description": "Get all Initiatives",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Initiative"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Initiative"
+                ],
+                "summary": "Store a newly created Initiative in storage",
+                "description": "Store Initiative",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Initiative that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Initiative"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Initiative"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/initiatives/{id}": {
+            "get": {
+                "tags": [
+                    "Initiative"
+                ],
+                "summary": "Display the specified Initiative",
+                "description": "Get Initiative",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Initiative",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Initiative"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Initiative"
+                ],
+                "summary": "Update the specified Initiative in storage",
+                "description": "Update Initiative",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Initiative",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Initiative that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Initiative"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Initiative"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Initiative"
+                ],
+                "summary": "Remove the specified Initiative from storage",
+                "description": "Delete Initiative",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Initiative",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/locations": {
             "get": {
                 "tags": [
@@ -3103,6 +3302,65 @@
                 },
                 "focal_person_id": {
                     "description": "focal_person_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Initiative": {
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "start_date": {
+                    "description": "start_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "end_date": {
+                    "description": "end_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "title": {
+                    "description": "title",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "meta": {
+                    "description": "meta",
+                    "type": "string"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "actor_type_id": {
+                    "description": "actor_type_id",
                     "type": "integer",
                     "format": "int32"
                 },

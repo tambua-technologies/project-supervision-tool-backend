@@ -15,7 +15,25 @@ class CreateInitiativesTable extends Migration
     {
         Schema::create('initiatives', function (Blueprint $table) {
             $table->id();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->text('title');
+            $table->text('description')->nullable();
+            $table->jsonb('meta')->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('actor_type_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('location_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('set null');
+
+            $table->foreign('actor_type_id')
+                ->references('id')
+                ->on('types')
+                ->onDelete('set null');
         });
     }
 
