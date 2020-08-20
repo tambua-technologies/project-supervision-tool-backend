@@ -24,7 +24,7 @@ class CreateAgenciesTable extends Migration
 
             $table->foreign('focal_person_id')
                 ->references('id')
-                ->on('focal_people')
+                ->on('users')
                 ->onDelete('set null');
         });
     }

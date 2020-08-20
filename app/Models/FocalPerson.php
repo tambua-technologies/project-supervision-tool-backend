@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Parental\HasParent;
 
 /**
  * @SWG\Definition(
@@ -59,40 +61,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class FocalPerson extends Model
+class FocalPerson extends User
 {
-    use SoftDeletes;
+    use HasParent;
 
-    public $table = 'focal_people';
-
-
-    protected $dates = ['deleted_at'];
-
-
-
-    public $fillable = [
-        'first_name',
-        'last_name',
-        'middle_name',
-        'phone',
-        'email',
-        'password'
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'middle_name' => 'string',
-        'phone' => 'string',
-        'email' => 'string',
-        'password' => 'string'
-    ];
 
     /**
      * Validation rules
