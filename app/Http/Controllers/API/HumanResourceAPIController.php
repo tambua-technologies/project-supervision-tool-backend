@@ -8,6 +8,7 @@ use App\Http\Resources\HumanResourceResource;
 use App\Models\HumanResource;
 use App\Models\Location;
 use App\Repositories\HumanResourceRepository;
+use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -23,10 +24,12 @@ class HumanResourceAPIController extends AppBaseController
 {
     /** @var  HumanResourceRepository */
     private $humanResourceRepository;
+    private $locationRepository;
 
-    public function __construct(HumanResourceRepository $humanResourceRepo)
+    public function __construct(HumanResourceRepository $humanResourceRepo, LocationRepository $locationRepo)
     {
         $this->humanResourceRepository = $humanResourceRepo;
+        $this->locationRepository = $locationRepo;
     }
 
     /**
@@ -225,11 +228,12 @@ class HumanResourceAPIController extends AppBaseController
      */
     public function update($id, UpdateHumanResourceAPIRequest $request)
     {
-        Log::info('inside update');
         $input = $request->all();
 
         /** @var HumanResource $humanResource */
         $humanResource = $this->humanResourceRepository->find($id);
+        $location = $humanResource->location;
+
 
         if (empty($humanResource)) {
             return $this->sendError('Human Resource not found');
@@ -242,6 +246,7 @@ class HumanResourceAPIController extends AppBaseController
         }
 
         $humanResource = $this->humanResourceRepository->update($input, $id);
+        $this->locationRepository->update($request->only(['region_id', 'district_id', 'level']), $location->id);
 
         return $this->sendResponse(new HumanResourceResource($humanResource), 'HumanResource updated successfully');
     }
