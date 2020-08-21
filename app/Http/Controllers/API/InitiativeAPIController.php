@@ -6,7 +6,9 @@ use App\Http\Requests\API\CreateInitiativeAPIRequest;
 use App\Http\Requests\API\UpdateInitiativeAPIRequest;
 use App\Http\Resources\InitiativeResource;
 use App\Models\Initiative;
+use App\Models\Location;
 use App\Repositories\InitiativeRepository;
+use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -21,9 +23,13 @@ class InitiativeAPIController extends AppBaseController
     /** @var  InitiativeRepository */
     private $initiativeRepository;
 
-    public function __construct(InitiativeRepository $initiativeRepo)
+    private $locationRepository;
+
+
+    public function __construct(InitiativeRepository $initiativeRepo, LocationRepository $locationRepo)
     {
         $this->initiativeRepository = $initiativeRepo;
+        $this->locationRepository = $locationRepo;
     }
 
     /**
@@ -105,10 +111,28 @@ class InitiativeAPIController extends AppBaseController
     public function store(CreateInitiativeAPIRequest $request)
     {
         $input = $request->all();
+        $location = Location::query()->create( $request->only(['region_id', 'district_id', 'level']));
 
-        $initiative = $this->initiativeRepository->create($input);
+        $initiative = $this->initiativeRepository->create([
+            'title' => $request->title,
+            'end_date' => $request->end_date,
+            'start_date' => $request->start_date,
+            'actor_type_id' => $request->actor_type_id,
+            'description' => $request->initiative_type,
+            'location_id' => $location->id,
+        ]);
 
-        return $this->sendResponse($initiative->toArray(), 'Initiative saved successfully');
+        if($request->implementing_partners)
+        {
+            $initiative->implementing_partners()->attach($request->implementing_partners);
+        }
+
+        if($request->funding_organisations)
+        {
+            $initiative->funding_organisations()->attach($request->funding_organisations);
+        }
+
+        return $this->sendResponse(new InitiativeResource($initiative), 'Initiative Resource saved successfully');
     }
 
     /**
@@ -213,14 +237,31 @@ class InitiativeAPIController extends AppBaseController
 
         /** @var Initiative $initiative */
         $initiative = $this->initiativeRepository->find($id);
+        $location = $initiative->location;
+
 
         if (empty($initiative)) {
-            return $this->sendError('Initiative not found');
+            return $this->sendError('Human Resource not found');
+        }
+
+        if($request->implementing_partners)
+        {
+            $implementing_partners_ids = $initiative->implementing_partners()->get()->pluck(['id']);
+            $initiative->implementing_partners()->detach($implementing_partners_ids);
+            $initiative->implementing_partners()->attach($request->implementing_partners);
+        }
+
+        if($request->funding_organisations)
+        {
+            $funding_organisations_ids = $initiative->funding_organisations()->get()->pluck(['id']);
+            $initiative->funding_organisations()->detach($funding_organisations_ids);
+            $initiative->funding_organisations()->attach($request->funding_organisations);
         }
 
         $initiative = $this->initiativeRepository->update($input, $id);
+        $this->locationRepository->update($request->only(['region_id', 'district_id', 'level']), $location->id);
 
-        return $this->sendResponse($initiative->toArray(), 'Initiative updated successfully');
+        return $this->sendResponse(new InitiativeResource($initiative), 'Initiative updated successfully');
     }
 
     /**

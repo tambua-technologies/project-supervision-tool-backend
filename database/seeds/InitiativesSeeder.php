@@ -1,8 +1,6 @@
 <?php
 
 use App\Models\FundingOrganisation;
-use App\Models\HRType;
-use App\Models\HumanResource;
 use App\Models\ImplementingPartner;
 use App\Models\Initiative;
 use App\Models\Type;
