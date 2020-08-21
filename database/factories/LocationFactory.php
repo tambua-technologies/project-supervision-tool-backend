@@ -12,7 +12,7 @@ $factory->define(Location::class, function (Faker $faker) {
     $districtId = District::query()->where('region_id', $regionId)->first()->id;
 
     return [
-        'level' => $faker->word,
+        'level' => 'district',
         'region_id' => $regionId,
         'district_id' => $districtId,
     ];
