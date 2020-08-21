@@ -24,7 +24,8 @@ class InitiativeResource extends JsonResource
             'meta' => $this->meta,
             'location' => new LocationResource($this->location),
             'actor_type' => $this->actorType,
-            'implementing_partners' => AgencyResource::collection($this->implementing_partners),
+            'implementing_partners' => $this->implementing_partners ? AgencyResource::collection($this->implementing_partners) : [],
+            'funding_organisations' => $this->funding_organisations? AgencyResource::collection($this->funding_organisations) : [],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 

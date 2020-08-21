@@ -24,7 +24,7 @@ class HumanResourceResource extends JsonResource
             'meta' => $this->meta,
             'location' => new LocationResource($this->location),
             'hr_type' => new ItemResource($this->hr_type),
-            'implementing_partners' => AgencyResource::collection($this->implementing_partners),
+            'implementing_partners' => $this->implementing_partners ? AgencyResource::collection($this->implementing_partners) : [],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 

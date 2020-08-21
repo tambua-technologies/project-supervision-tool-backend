@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FundingOrganisation;
 use App\Models\HRType;
 use App\Models\HumanResource;
 use App\Models\ImplementingPartner;
@@ -18,12 +19,20 @@ class InitiativesSeeder extends Seeder
     {
         factory(Type::class, 10)->create();
         factory(ImplementingPartner::class, 5)->create();
+        factory(FundingOrganisation::class, 5)->create();
         factory(Initiative::class, 10)->create();
 
         $implementingPartners = ImplementingPartner::all();
         Initiative::all()->each(function ($initiative) use ($implementingPartners) {
             $initiative->implementing_partners()->attach(
                 $implementingPartners->random(rand(1, 2))->pluck('id')->toArray()
+            );
+        });
+
+        $fundingOrganisations = FundingOrganisation::all();
+        Initiative::all()->each(function ($initiative) use ($fundingOrganisations) {
+            $initiative->funding_organisations()->attach(
+                $fundingOrganisations->random(rand(1, 2))->pluck('id')->toArray()
             );
         });
     }

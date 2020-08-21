@@ -146,4 +146,12 @@ class Initiative extends Model
     {
         return $this->belongsToMany(ImplementingPartner::class, 'implementing_partner_initiative', 'initiative_id', 'implementing_partner_id');
     }
+
+    /**
+     * @return BelongsToMany
+     **/
+    public function funding_organisations()
+    {
+        return $this->belongsToMany(FundingOrganisation::class, 'funding_organisation', 'initiative_id', 'funding_organisation_id');
+    }
 }
