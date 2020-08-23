@@ -9,7 +9,7 @@ use Parental\HasParent;
 
 /**
  * @SWG\Definition(
- *      definition="ActorType",
+ *      definition="InitiativeType",
  *      required={"name"},
  *      @SWG\Property(
  *          property="id",
@@ -41,7 +41,7 @@ use Parental\HasParent;
  *      )
  * )
  */
-class ActorType extends Type
+class InitiativeType extends Type
 {
     use HasParent;
 }

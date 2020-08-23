@@ -22,8 +22,15 @@ class CreateInitiativesTable extends Migration
             $table->jsonb('meta')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
             $table->unsignedBigInteger('actor_type_id')->nullable();
+            $table->unsignedBigInteger('initiative_type_id')->nullable();
+            $table->unsignedBigInteger('focal_person_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('focal_person_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
 
             $table->foreign('location_id')
                 ->references('id')
@@ -31,6 +38,11 @@ class CreateInitiativesTable extends Migration
                 ->onDelete('set null');
 
             $table->foreign('actor_type_id')
+                ->references('id')
+                ->on('types')
+                ->onDelete('set null');
+
+            $table->foreign('initiative_type_id')
                 ->references('id')
                 ->on('types')
                 ->onDelete('set null');

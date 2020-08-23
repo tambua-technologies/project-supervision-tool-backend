@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\ActorType;
 use App\Models\FundingOrganisation;
 use App\Models\ImplementingPartner;
 use App\Models\Initiative;
+use App\Models\InitiativeType;
 use App\Models\Type;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +17,10 @@ class InitiativesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Type::class, 10)->create();
+        factory(ActorType::class, 5)->create();
+        factory(InitiativeType::class, 5)->create();
         factory(ImplementingPartner::class, 5)->create();
+        factory(FundingOrganisation::class, 5)->create();
         factory(FundingOrganisation::class, 5)->create();
         factory(Initiative::class, 5)->create();
 

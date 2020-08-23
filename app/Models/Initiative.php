@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -95,7 +96,9 @@ class Initiative extends Model
         'description',
         'meta',
         'location_id',
-        'actor_type_id'
+        'actor_type_id',
+        'initiative_type_id',
+        'focal_person_id',
     ];
 
     /**
@@ -124,19 +127,35 @@ class Initiative extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function location()
     {
-        return $this->belongsTo(\App\Models\Location::class, 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
+     **/
+    public function focalPerson()
+    {
+        return $this->belongsTo(FocalPerson::class, 'focal_person_id');
+    }
+
+    /**
+     * @return BelongsTo
      **/
     public function actorType()
     {
-        return $this->belongsTo(\App\Models\Type::class, 'actor_type_id');
+        return $this->belongsTo(ActorType::class, 'actor_type_id');
+    }
+
+    /**
+     * @return BelongsTo
+     **/
+    public function initiativeType()
+    {
+        return $this->belongsTo(InitiativeType::class, 'initiative_type_id');
     }
 
     /**

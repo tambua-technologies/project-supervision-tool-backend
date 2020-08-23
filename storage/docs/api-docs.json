@@ -2940,16 +2940,6 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
-                },
-                "unit_id": {
-                    "description": "unit_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -3418,6 +3408,36 @@
                 },
                 "deleted_at": {
                     "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "InitiativeType": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
                 }

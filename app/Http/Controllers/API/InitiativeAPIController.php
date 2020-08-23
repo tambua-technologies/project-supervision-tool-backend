@@ -182,7 +182,7 @@ class InitiativeAPIController extends AppBaseController
             return $this->sendError('Initiative not found');
         }
 
-        return $this->sendResponse($initiative->toArray(), 'Initiative retrieved successfully');
+        return $this->sendResponse(new InitiativeResource($initiative), 'Initiative retrieved successfully');
     }
 
     /**

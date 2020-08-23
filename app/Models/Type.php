@@ -63,6 +63,7 @@ class Type extends Model
 
     protected $childTypes = [
         'actor_type' => ActorType::class,
+        'initiative_type' => InitiativeType::class,
         'hr_type' => HRType::class,
         'agency_type' => AgencyType::class,
     ];
