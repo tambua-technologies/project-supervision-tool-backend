@@ -30,7 +30,7 @@ class FundingOrganisationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/fundingOrganisations",
+     *      path="/funding_organisations",
      *      summary="Get a listing of the FundingOrganisations.",
      *      tags={"FundingOrganisation"},
      *      description="Get all FundingOrganisations",
@@ -73,7 +73,7 @@ class FundingOrganisationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/fundingOrganisations",
+     *      path="/funding_organisations",
      *      summary="Store a newly created FundingOrganisation in storage",
      *      tags={"FundingOrganisation"},
      *      description="Store FundingOrganisation",
@@ -120,7 +120,7 @@ class FundingOrganisationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/fundingOrganisations/{id}",
+     *      path="/funding_organisations/{id}",
      *      summary="Display the specified FundingOrganisation",
      *      tags={"FundingOrganisation"},
      *      description="Get FundingOrganisation",
@@ -171,7 +171,7 @@ class FundingOrganisationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/fundingOrganisations/{id}",
+     *      path="/funding_organisations/{id}",
      *      summary="Update the specified FundingOrganisation in storage",
      *      tags={"FundingOrganisation"},
      *      description="Update FundingOrganisation",
@@ -232,7 +232,7 @@ class FundingOrganisationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/fundingOrganisations/{id}",
+     *      path="/funding_organisations/{id}",
      *      summary="Remove the specified FundingOrganisation from storage",
      *      tags={"FundingOrganisation"},
      *      description="Delete FundingOrganisation",
