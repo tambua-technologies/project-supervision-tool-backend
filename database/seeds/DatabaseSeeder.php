@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
          $this->call(EmergencyResponseThemesSeeder::class);
          $this->call(HumanResourcesSeeder::class);
          $this->call(InitiativesSeeder::class);
+//        \$this->call(ActorTypesTableSeeder::class);
+//        \$this->call(InitiativeTypesTableSeeder::class);
+//        \$this->call(FundingOrganisationsTableSeeder::class);
 
     }
 }

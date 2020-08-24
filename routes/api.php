@@ -53,3 +53,9 @@ Route::resource('human_resources', 'HumanResourceAPIController');
 
 
 Route::resource('initiatives', 'InitiativeAPIController');
+
+Route::resource('actor_types', 'ActorTypeAPIController');
+
+Route::resource('initiative_types', 'InitiativeTypeAPIController');
+
+Route::resource('funding_organisations', 'FundingOrganisationAPIController');
