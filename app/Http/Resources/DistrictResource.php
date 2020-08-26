@@ -16,8 +16,10 @@ class DistrictResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->admin2_pcode,
-            'name' => $this->admin2_en,
+            'id' => $this->id,
+            'region_id' => $this->region_id,
+            'name' => $this->name,
+            'geo_json' => $this->geo_json,
         ];
     }
 }

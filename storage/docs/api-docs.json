@@ -802,7 +802,7 @@
                 }
             }
         },
-        "/fundingOrganisations": {
+        "/funding_organisations": {
             "get": {
                 "tags": [
                     "FundingOrganisation"
@@ -876,7 +876,7 @@
                 }
             }
         },
-        "/fundingOrganisations/{id}": {
+        "/funding_organisations/{id}": {
             "get": {
                 "tags": [
                     "FundingOrganisation"

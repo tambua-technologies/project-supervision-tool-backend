@@ -19,8 +19,8 @@ class LocationResource extends JsonResource
         return [
             'id' => $this->id,
             'level' => $this->level,
-            'region' => $this->region ? $this->region: null,
-            'district' => $this->district ? $this->district : null,
+            'region' => $this->region ? new RegionResource($this->region): null,
+            'district' => $this->district ? new DistrictResource($this->district) : null,
         ];
     }
 }

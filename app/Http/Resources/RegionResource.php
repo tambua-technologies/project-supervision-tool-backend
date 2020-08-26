@@ -18,8 +18,9 @@ class RegionResource extends JsonResource
     {
 
         return [
-            'id' => $this->adm1_pcode,
-            'name' => $this->admin1_en
+            'id' => $this->id,
+            'name' => $this->name,
+            'geo_json' => $this->geo_json,
         ];
     }
 }

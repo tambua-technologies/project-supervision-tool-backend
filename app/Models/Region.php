@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @SWG\Definition(
@@ -46,5 +47,14 @@ class Region extends Model
     protected $casts = [
         'id' => 'string',
     ];
+
+    public function getGeoJsonAttribute()
+    {
+        $geo_string = DB::table('regions')
+            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
+            ->where('id', '=', $this->id)
+            ->first();
+        return json_decode($geo_string->geom);
+    }
 
 }
