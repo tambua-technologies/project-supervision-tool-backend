@@ -43,5 +43,6 @@ use Parental\HasParent;
  */
 class ActorType extends Type
 {
+    use SoftDeletes, HasParent;
     use HasParent;
 }

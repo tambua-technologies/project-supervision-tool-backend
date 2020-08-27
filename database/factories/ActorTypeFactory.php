@@ -11,8 +11,5 @@ $factory->define(ActorType::class, function (Faker $faker) {
         'name' => $faker->word,
         'type' => $faker->word,
         'description' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $faker->date('Y-m-d H:i:s')
     ];
 });
