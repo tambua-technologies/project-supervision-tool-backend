@@ -7,7 +7,6 @@ use App\Models\FocalPerson;
 use App\Models\Initiative;
 use App\Models\InitiativeType;
 use App\Models\Location;
-use App\Models\Type;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
