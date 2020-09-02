@@ -32,7 +32,7 @@ class CreateHumanResourcesTable extends Migration
 
             $table->foreign('hr_type_id')
                 ->references('id')
-                ->on('items')
+                ->on('types')
                 ->onDelete('set null');
 
         });

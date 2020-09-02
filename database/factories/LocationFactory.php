@@ -9,11 +9,12 @@ use Faker\Generator as Faker;
 
 $factory->define(Location::class, function (Faker $faker) {
     $regionId = Region::query()->inRandomOrder()->first()->id;
-    $districtId = District::query()->where('region_id', $regionId)->first()->id;
+    $districtIds = District::query()->where('region_id', $regionId)->get()->pluck(['id']);
+    $levels = ['district', 'region'];
 
     return [
-        'level' => 'district',
+        'level' => $levels[array_rand($levels)],
         'region_id' => $regionId,
-        'district_id' => $districtId,
+        'district_id' => $districtIds->random(),
     ];
 });
