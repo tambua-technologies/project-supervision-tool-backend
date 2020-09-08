@@ -106,9 +106,68 @@ class FocalPersonAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $focalPerson = $this->focalPersonRepository->create($input);
+
+        $focalPerson = $this->focalPersonRepository->create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+        ]);
 
         return $this->sendResponse($focalPerson->toArray(), 'Focal Person saved successfully');
+    }
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/focal_people/login",
+     *      summary="Login focal person",
+     *      tags={"FocalPerson"},
+     *      description="Login FocalPerson",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="auth payload",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/LoginFocalPerson")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/FocalPerson"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return
+     */
+    public function login(Request $request)
+    {
+        $loginDta = $request->validate([
+            'email' => 'email|required',
+            'password' => 'required',
+        ]);
+        if(! auth()->attempt($loginDta)) {
+            return response(['message' => 'Invalid Credentials'],'200');
+        }
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        return $this->sendResponse(['access_token' => $accessToken], 'login was successful');
     }
 
     /**

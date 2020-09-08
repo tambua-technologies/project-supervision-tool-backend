@@ -42,8 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'passport',
+            'provider' => 'focal_people',
             'hash' => false,
         ],
     ],
@@ -68,13 +68,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\FocalPerson::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+//     'focal_people' => [
+//         'driver' => 'eloquent',
+//         'model' => App\Models\FocalPerson::class,
+//     ],
     ],
 
     /*

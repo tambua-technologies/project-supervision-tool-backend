@@ -677,6 +677,48 @@
                 }
             }
         },
+        "/focal_people/login": {
+            "post": {
+                "tags": [
+                    "FocalPerson"
+                ],
+                "summary": "Login focal person",
+                "description": "Login FocalPerson",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "auth payload",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/LoginFocalPerson"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/FocalPerson"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/focal_people/{id}": {
             "get": {
                 "tags": [
@@ -3657,6 +3699,22 @@
                     "description": "deleted_at",
                     "type": "string",
                     "format": "date-time"
+                }
+            }
+        },
+        "LoginFocalPerson": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "password": {
+                    "description": "password",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
                 }
             }
         },

@@ -16,7 +16,7 @@ class HumanResourcesSeeder extends Seeder
     {
         factory(HRType::class, 10)->create();
         factory(ImplementingPartner::class, 5)->create();
-        factory(HumanResource::class, 20)->create();
+        factory(HumanResource::class, 5)->create();
 
         $implementingPartners = ImplementingPartner::all();
         HumanResource::all()->each(function ($humanResource) use ($implementingPartners) {

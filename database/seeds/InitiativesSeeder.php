@@ -20,7 +20,7 @@ class InitiativesSeeder extends Seeder
         factory(InitiativeType::class, 5)->create();
         factory(ImplementingPartner::class, 5)->create();
         factory(FundingOrganisation::class, 5)->create();
-        factory(Initiative::class, 20)->create();
+        factory(Initiative::class, 5)->create();
 
         $implementingPartners = ImplementingPartner::all();
         Initiative::all()->each(function ($initiative) use ($implementingPartners) {

@@ -5,7 +5,26 @@ namespace App\Models;
 use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
 use Parental\HasParent;
+
+/**
+ * @SWG\Definition(
+ *      definition="LoginFocalPerson",
+ *      required={ "email", "password"},
+ *      @SWG\Property(
+ *          property="password",
+ *          description="password",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="email",
+ *          description="email",
+ *          type="string"
+ *      ),
+ * )
+ */
+
 
 /**
  * @SWG\Definition(
@@ -63,7 +82,7 @@ use Parental\HasParent;
  */
 class FocalPerson extends User
 {
-    use HasParent;
+    use HasParent, HasApiTokens;
 
 
     /**
