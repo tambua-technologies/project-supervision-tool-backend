@@ -164,7 +164,7 @@ class FocalPersonAPIController extends AppBaseController
             'password' => 'required',
         ]);
         if(! auth()->attempt($loginDta)) {
-            return response(['message' => 'Invalid Credentials'],'200');
+            return response(['message' => 'Invalid Credentials'],'401');
         }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
         return $this->sendResponse(['access_token' => $accessToken], 'login was successful');
