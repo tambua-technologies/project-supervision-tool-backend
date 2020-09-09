@@ -30,7 +30,7 @@ class InitiativeTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/initiativeTypes",
+     *      path="/initiative_types",
      *      summary="Get a listing of the InitiativeTypes.",
      *      tags={"InitiativeType"},
      *      description="Get all InitiativeTypes",
@@ -73,7 +73,7 @@ class InitiativeTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/initiativeTypes",
+     *      path="/initiative_types",
      *      summary="Store a newly created InitiativeType in storage",
      *      tags={"InitiativeType"},
      *      description="Store InitiativeType",
@@ -120,7 +120,7 @@ class InitiativeTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/initiativeTypes/{id}",
+     *      path="/initiative_types/{id}",
      *      summary="Display the specified InitiativeType",
      *      tags={"InitiativeType"},
      *      description="Get InitiativeType",
@@ -171,7 +171,7 @@ class InitiativeTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/initiativeTypes/{id}",
+     *      path="/initiative_types/{id}",
      *      summary="Update the specified InitiativeType in storage",
      *      tags={"InitiativeType"},
      *      description="Update InitiativeType",
@@ -232,7 +232,7 @@ class InitiativeTypeAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/initiativeTypes/{id}",
+     *      path="/initiative_types/{id}",
      *      summary="Remove the specified InitiativeType from storage",
      *      tags={"InitiativeType"},
      *      description="Delete InitiativeType",
