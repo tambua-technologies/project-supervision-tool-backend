@@ -7,6 +7,7 @@ use App\Http\Requests\API\UpdateLocationAPIRequest;
 use App\Http\Resources\DistrictResource;
 use App\Http\Resources\LocationResource;
 use App\Http\Resources\RegionResource;
+use App\Http\Resources\SimpleLocationResource;
 use App\Models\District;
 use App\Models\Location;
 use App\Models\Region;
@@ -105,7 +106,7 @@ class LocationAPIController extends AppBaseController
     {
         $locations = Region::all();
 
-        return $this->sendResponse(RegionResource::collection($locations), 'Regions retrieved successfully');
+        return $this->sendResponse(SimpleLocationResource::collection($locations), 'Regions retrieved successfully');
     }
 
 
@@ -152,7 +153,7 @@ class LocationAPIController extends AppBaseController
     {
         $locations = District::query()->where('region_id', $region_id)->get();
 
-        return $this->sendResponse(DistrictResource::collection($locations), 'Districts retrieved successfully');
+        return $this->sendResponse(SimpleLocationResource::collection($locations), 'Districts retrieved successfully');
     }
 
     /**

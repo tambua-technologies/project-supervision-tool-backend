@@ -118,7 +118,8 @@ class InitiativeAPIController extends AppBaseController
             'end_date' => $request->end_date,
             'start_date' => $request->start_date,
             'actor_type_id' => $request->actor_type_id,
-            'description' => $request->initiative_type,
+            'initiative_type_id' => $request->initiative_type_id,
+            'focal_person_id' => $request->focal_person_id,
             'location_id' => $location->id,
         ]);
 
