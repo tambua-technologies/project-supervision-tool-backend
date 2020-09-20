@@ -16,11 +16,11 @@ class InitiativesSeeder extends Seeder
      */
     public function run()
     {
-        factory(ActorType::class, 5)->create();
-        factory(InitiativeType::class, 5)->create();
-        factory(ImplementingPartner::class, 5)->create();
-        factory(FundingOrganisation::class, 5)->create();
-        factory(Initiative::class, 5)->create();
+        factory(ActorType::class, 2)->create();
+        factory(InitiativeType::class, 2)->create();
+        factory(ImplementingPartner::class, 2)->create();
+        factory(FundingOrganisation::class, 3)->create();
+        factory(Initiative::class, 3)->create();
 
         $implementingPartners = ImplementingPartner::all();
         Initiative::all()->each(function ($initiative) use ($implementingPartners) {

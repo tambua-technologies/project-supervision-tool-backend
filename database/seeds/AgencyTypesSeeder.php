@@ -12,6 +12,6 @@ class AgencyTypesSeeder extends Seeder
      */
     public function run()
     {
-        factory(AgencyType::class, 5)->create();
+        factory(AgencyType::class, 2)->create();
     }
 }

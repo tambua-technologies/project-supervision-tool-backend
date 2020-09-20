@@ -12,6 +12,6 @@ class FocalPeopleSeeder extends Seeder
      */
     public function run()
     {
-        factory(FocalPerson::class, 10)->create();
+        factory(FocalPerson::class, 4)->create();
     }
 }
