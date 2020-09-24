@@ -21,6 +21,7 @@
         "infyomlabs/swagger-generator": "dev-master",
         "laravel/framework": "^7.0",
         "laravel/passport": "^9.3",
+        "laravel/telescope": "v3.5.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
