@@ -3,10 +3,10 @@
         <thead>
             <tr>
                 <th>First Name</th>
-        <th>Last Name</th>
-        <th>Middle Name</th>
-        <th>Phone</th>
-        <th>Email</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Phone</th>
+                <th>Email</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -14,10 +14,10 @@
         @foreach($focalPeople as $focalPerson)
             <tr>
                 <td>{{ $focalPerson->first_name }}</td>
-            <td>{{ $focalPerson->last_name }}</td>
-            <td>{{ $focalPerson->middle_name }}</td>
-            <td>{{ $focalPerson->phone }}</td>
-            <td>{{ $focalPerson->email }}</td>
+                <td>{{ $focalPerson->last_name }}</td>
+                <td>{{ $focalPerson->middle_name }}</td>
+                <td>{{ $focalPerson->phone }}</td>
+                <td>{{ $focalPerson->email }}</td>
                 <td>
                     {!! Form::open(['route' => ['focalPeople.destroy', $focalPerson->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

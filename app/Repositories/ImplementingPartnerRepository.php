@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class ImplementingPartnerRepository
  * @package App\Repositories
- * @version June 4, 2020, 6:07 am UTC
+ * @version September 28, 2020, 10:11 am UTC
 */
 
 class ImplementingPartnerRepository extends BaseRepository
@@ -17,9 +17,7 @@ class ImplementingPartnerRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
-        'website',
-        'focal_person_id'
+        
     ];
 
     /**

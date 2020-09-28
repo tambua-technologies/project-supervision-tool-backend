@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class FocalPersonRepository
  * @package App\Repositories
- * @version June 3, 2020, 6:52 pm UTC
+ * @version September 28, 2020, 9:31 am UTC
 */
 
 class FocalPersonRepository extends BaseRepository
@@ -17,12 +17,7 @@ class FocalPersonRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'first_name',
-        'last_name',
-        'middle_name',
-        'phone',
-        'email',
-        'password'
+        
     ];
 
     /**

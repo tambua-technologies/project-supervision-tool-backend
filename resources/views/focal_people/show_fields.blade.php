@@ -40,4 +40,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $focalPerson->updated_at }}</p>
 </div>
-

@@ -24,26 +24,6 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::resource('focalPeople', 'FocalPersonController');
 
-Route::resource('agencyTypes', 'AgencyTypeController');
+Route::resource('implementingPartners', 'ImplementingPartnerController');
 
-Route::resource('agencies', 'AgencyController');
-
-Route::resource('units', 'UnitController');
-
-Route::resource('items', 'ItemController');
-
-Route::resource('locations', 'LocationController');
-
-Route::resource('stockTypes', 'StockTypeController');
-
-Route::resource('stockStatuses', 'StockStatusesController');
-
-Route::resource('stockGroups', 'StockGroupController');
-
-Route::resource('stockGroupClusters', 'StockGroupClusterController');
-
-Route::resource('emergencyResponseThemes', 'EmergencyResponseThemeController');
-
-Route::resource('stocks', 'StockController');
-
-Route::resource('humanResources', 'HumanResourceController');
+Route::resource('fundingOrganisations', 'FundingOrganisationController');
