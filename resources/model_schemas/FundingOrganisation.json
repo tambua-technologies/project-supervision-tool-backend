@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "increments",
         "htmlType": null,
         "validations": null,
         "searchable": false,
@@ -12,99 +12,27 @@
         "inView": false
     },
     {
-        "name": "name",
-        "dbType": "string,255",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "website",
-        "dbType": "string,255",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "focal_person_id",
-        "dbType": "bigInteger,false",
-        "htmlType": null,
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "type",
-        "dbType": "string,255:nullable",
-        "htmlType": "text",
-        "validations": null,
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
         "name": "created_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
+        "dbType": "timestamp",
+        "htmlType": null,
         "validations": null,
         "searchable": false,
         "fillable": false,
         "primary": false,
         "inForm": false,
         "inIndex": false,
-        "inView": false
+        "inView": true
     },
     {
         "name": "updated_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
+        "dbType": "timestamp",
+        "htmlType": null,
         "validations": null,
         "searchable": false,
         "fillable": false,
         "primary": false,
         "inForm": false,
         "inIndex": false,
-        "inView": false
-    },
-    {
-        "name": "deleted_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
-        "validations": null,
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false,
-        "inView": false
-    },
-    {
-        "type": "relation",
-        "relation": "mt1,User,focal_person_id"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,Stock,agency_id"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,HumanResourceImplementingPartner,implementing_partner_id"
+        "inView": true
     }
 ]

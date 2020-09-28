@@ -25,3 +25,5 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 Route::resource('focalPeople', 'FocalPersonController');
 
 Route::resource('implementingPartners', 'ImplementingPartnerController');
+
+Route::resource('fundingOrganisations', 'FundingOrganisationController');

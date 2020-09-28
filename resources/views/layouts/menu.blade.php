@@ -8,3 +8,7 @@
     <a href="{{ route('implementingPartners.index') }}"><i class="fa fa-edit"></i><span>Implementing Partners</span></a>
 </li>
 
+<li class="{{ Request::is('fundingOrganisations*') ? 'active' : '' }}">
+    <a href="{{ route('fundingOrganisations.index') }}"><i class="fa fa-edit"></i><span>Funding Organisations</span></a>
+</li>
+
