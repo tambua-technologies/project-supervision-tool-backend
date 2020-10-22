@@ -1839,7 +1839,7 @@
                 }
             }
         },
-        "/initiativeTypes": {
+        "/initiative_types": {
             "get": {
                 "tags": [
                     "InitiativeType"
@@ -1913,7 +1913,7 @@
                 }
             }
         },
-        "/initiativeTypes/{id}": {
+        "/initiative_types/{id}": {
             "get": {
                 "tags": [
                     "InitiativeType"

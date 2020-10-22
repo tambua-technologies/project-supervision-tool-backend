@@ -16,3 +16,4 @@ yarn-error.log
 .env.backup
 .phpunit.result.cache
 fields_sample.json
+/storage/docs/api-docs.json
