@@ -32,8 +32,6 @@ Route::resource('actors', 'ActorAPIController');
 
 Route::resource('units', 'UnitAPIController');
 
-Route::resource('hr_types', 'HRTypeAPIController');
-
 Route::resource('locations', 'LocationAPIController');
 
 
@@ -45,12 +43,7 @@ Route::resource('stock_groups', 'StockGroupAPIController');
 
 Route::resource('stock_group_clusters', 'StockGroupClusterAPIController');
 
-Route::resource('emergency_response_themes', 'EmergencyResponseThemeAPIController');
-
 Route::resource('stocks', 'StockAPIController');
-
-
-Route::resource('human_resources', 'HumanResourceAPIController');
 
 
 Route::resource('initiatives', 'InitiativeAPIController');
