@@ -58,3 +58,6 @@ Route::resource('funding_organisations', 'FundingOrganisationAPIController');
 Route::resource('projects', 'ProjectAPIController');
 
 Route::resource('sub_projects', 'SubProjectAPIController');
+
+
+Route::resource('supervising_agencies', 'SupervisingAgencyAPIController');
