@@ -1,0 +1,26 @@
+version: '3'
+
+
+services:
+  postgres-tukutane:
+    image: postgres:9.5-alpine
+    container_name: postgres-tukutane
+    restart: unless-stopped
+    volumes:
+      - "tukutane-dbdata:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=postgres-tukutane
+      - POSTGRES_PASSWORD=StrongPass@tukutane
+      - POSTGRES_DB=tukutane
+    ports:
+      - "5432:5432"
+
+  redis-tukutane:
+    image: redis:alpine
+    container_name: redis-tukutane
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  tukutane-dbdata:

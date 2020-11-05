@@ -60,3 +60,8 @@ Route::resource('actor_types', 'ActorTypeAPIController');
 Route::resource('initiative_types', 'InitiativeTypeAPIController');
 
 Route::resource('funding_organisations', 'FundingOrganisationAPIController');
+
+
+Route::resource('projects', 'ProjectAPIController');
+
+Route::resource('sub_projects', 'SubProjectAPIController');
