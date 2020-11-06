@@ -4,9 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
-use App\Http\Resources\DistrictResource;
 use App\Http\Resources\LocationResource;
-use App\Http\Resources\RegionResource;
 use App\Http\Resources\SimpleLocationResource;
 use App\Models\District;
 use App\Models\Location;
@@ -14,7 +12,6 @@ use App\Models\Region;
 use App\Repositories\LocationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\Log;
 use Response;
 
 /**
