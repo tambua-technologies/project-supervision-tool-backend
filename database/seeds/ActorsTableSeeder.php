@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Agency;
+use App\Models\Actor;
 use Illuminate\Database\Seeder;
 
-class AgencySeeder extends Seeder
+class ActorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class AgencySeeder extends Seeder
      */
     public function run()
     {
-        factory(Agency::class, 3)->create();
+        factory(Actor::class, 3)->create();
     }
 }
