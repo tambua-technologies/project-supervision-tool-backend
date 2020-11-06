@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\FundingOrganisation;
+use App\Models\ImplementingAgency;
 use Illuminate\Database\Seeder;
 
-class FundingOrganisationsTableSeeder extends Seeder
+class ImplementingAgencyTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class FundingOrganisationsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(FundingOrganisation::class, 3)->create();
+        factory(ImplementingAgency::class, 3)->create();
     }
 }

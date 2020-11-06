@@ -2,13 +2,19 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\FocalPerson;
 use App\Models\ImplementingAgency;
 use Faker\Generator as Faker;
 
 $factory->define(ImplementingAgency::class, function (Faker $faker) {
 
     return [
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
+        'name' => $faker->domainWord,
+        'website' => $faker->domainName,
+        'focal_person_id' => function () {
+            return FocalPerson::query()->inRandomOrder()->first()->id;
+        },
     ];
 });
+
+
