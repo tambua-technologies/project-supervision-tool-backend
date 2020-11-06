@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SupervisingAgency;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ImplementingAgencyTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
         $this->call(SubProjectTableSeeder::class);
+        $this->call(SupervisingAgenciesTableSeeder::class);
     }
 }
