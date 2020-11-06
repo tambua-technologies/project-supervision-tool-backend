@@ -1761,36 +1761,6 @@
                 }
             }
         },
-        "ActorType": {
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "name": {
-                    "description": "name",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "description",
-                    "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
-                }
-            }
-        },
         "Agency": {
             "required": [
                 "name",
@@ -2144,36 +2114,6 @@
                 },
                 "deleted_at": {
                     "description": "deleted_at",
-                    "type": "string",
-                    "format": "date-time"
-                }
-            }
-        },
-        "Type": {
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "name": {
-                    "description": "name",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "description",
-                    "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
                 }
