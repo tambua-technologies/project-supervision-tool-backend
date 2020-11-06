@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Parental\HasParent;
 
-
 /**
  * @SWG\Definition(
- *      definition="ImplementingPartner",
+ *      definition="ImplementingAgency",
  *      required={"name", "website", "focal_person_id"},
  *      @SWG\Property(
  *          property="id",
@@ -47,39 +45,8 @@ use Parental\HasParent;
  *      ),
  * )
  */
-class ImplementingPartner extends Agency
+class ImplementingAgency extends Agency
 {
     use SoftDeletes, HasParent;
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required',
-        'focal_person_id' => 'required',
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'name' => 'string',
-        'website' => 'string',
-        'focal_person_id' => 'integer'
-    ];
-
-
-    /**
-     * @return BelongsTo
-     **/
-    public function focalPerson()
-    {
-        return $this->belongsTo(FocalPerson::class, 'focal_person_id');
-    }
 
 }

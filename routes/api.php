@@ -61,3 +61,5 @@ Route::resource('sub_projects', 'SubProjectAPIController');
 
 
 Route::resource('supervising_agencies', 'SupervisingAgencyAPIController');
+
+Route::resource('implementing_agencies', 'ImplementingAgencyAPIController');

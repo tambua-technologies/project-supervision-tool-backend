@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\ImplementingPartner;
+use App\Models\ImplementingAgency;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ImplementingPartnerRepository
+ * Class ImplementingAgencyRepository
  * @package App\Repositories
- * @version September 28, 2020, 10:11 am UTC
+ * @version November 5, 2020, 4:10 pm UTC
 */
 
-class ImplementingPartnerRepository extends BaseRepository
+class ImplementingAgencyRepository extends BaseRepository
 {
     /**
      * @var array
@@ -35,6 +35,6 @@ class ImplementingPartnerRepository extends BaseRepository
      **/
     public function model()
     {
-        return ImplementingPartner::class;
+        return ImplementingAgency::class;
     }
 }

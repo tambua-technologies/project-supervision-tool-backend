@@ -844,13 +844,13 @@
                 }
             }
         },
-        "/implementing_partners": {
+        "/implementingAgencies": {
             "get": {
                 "tags": [
-                    "ImplementingPartner"
+                    "ImplementingAgency"
                 ],
-                "summary": "Get a listing of the ImplementingPartners.",
-                "description": "Get all ImplementingPartners",
+                "summary": "Get a listing of the ImplementingAgencies.",
+                "description": "Get all ImplementingAgencies",
                 "produces": [
                     "application/json"
                 ],
@@ -865,7 +865,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/ImplementingPartner"
+                                        "$ref": "#/definitions/ImplementingAgency"
                                     }
                                 },
                                 "message": {
@@ -879,10 +879,10 @@
             },
             "post": {
                 "tags": [
-                    "ImplementingPartner"
+                    "ImplementingAgency"
                 ],
-                "summary": "Store a newly created ImplementingPartner in storage",
-                "description": "Store ImplementingPartner",
+                "summary": "Store a newly created ImplementingAgency in storage",
+                "description": "Store ImplementingAgency",
                 "produces": [
                     "application/json"
                 ],
@@ -890,10 +890,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "ImplementingPartner that should be stored",
+                        "description": "ImplementingAgency that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/ImplementingPartner"
+                            "$ref": "#/definitions/ImplementingAgency"
                         }
                     }
                 ],
@@ -906,7 +906,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/ImplementingPartner"
+                                    "$ref": "#/definitions/ImplementingAgency"
                                 },
                                 "message": {
                                     "type": "string"
@@ -918,13 +918,13 @@
                 }
             }
         },
-        "/implementing_partners/{id}": {
+        "/implementingAgencies/{id}": {
             "get": {
                 "tags": [
-                    "ImplementingPartner"
+                    "ImplementingAgency"
                 ],
-                "summary": "Display the specified ImplementingPartner",
-                "description": "Get ImplementingPartner",
+                "summary": "Display the specified ImplementingAgency",
+                "description": "Get ImplementingAgency",
                 "produces": [
                     "application/json"
                 ],
@@ -932,7 +932,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of ImplementingPartner",
+                        "description": "id of ImplementingAgency",
                         "required": true,
                         "type": "integer"
                     }
@@ -946,7 +946,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/ImplementingPartner"
+                                    "$ref": "#/definitions/ImplementingAgency"
                                 },
                                 "message": {
                                     "type": "string"
@@ -959,10 +959,10 @@
             },
             "put": {
                 "tags": [
-                    "ImplementingPartner"
+                    "ImplementingAgency"
                 ],
-                "summary": "Update the specified ImplementingPartner in storage",
-                "description": "Update ImplementingPartner",
+                "summary": "Update the specified ImplementingAgency in storage",
+                "description": "Update ImplementingAgency",
                 "produces": [
                     "application/json"
                 ],
@@ -970,17 +970,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of ImplementingPartner",
+                        "description": "id of ImplementingAgency",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "ImplementingPartner that should be updated",
+                        "description": "ImplementingAgency that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/ImplementingPartner"
+                            "$ref": "#/definitions/ImplementingAgency"
                         }
                     }
                 ],
@@ -993,7 +993,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/ImplementingPartner"
+                                    "$ref": "#/definitions/ImplementingAgency"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1006,10 +1006,10 @@
             },
             "delete": {
                 "tags": [
-                    "ImplementingPartner"
+                    "ImplementingAgency"
                 ],
-                "summary": "Remove the specified ImplementingPartner from storage",
-                "description": "Delete ImplementingPartner",
+                "summary": "Remove the specified ImplementingAgency from storage",
+                "description": "Delete ImplementingAgency",
                 "produces": [
                     "application/json"
                 ],
@@ -1017,7 +1017,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of ImplementingPartner",
+                        "description": "id of ImplementingAgency",
                         "required": true,
                         "type": "integer"
                     }
@@ -2151,7 +2151,7 @@
                 }
             }
         },
-        "ImplementingPartner": {
+        "ImplementingAgency": {
             "required": [
                 "name",
                 "website",
