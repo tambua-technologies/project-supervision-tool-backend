@@ -1518,6 +1518,205 @@
                 }
             }
         },
+        "/project_details": {
+            "get": {
+                "tags": [
+                    "ProjectDetails"
+                ],
+                "summary": "Get a listing of the ProjectDetails.",
+                "description": "Get all ProjectDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProjectDetails"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ProjectDetails"
+                ],
+                "summary": "Store a newly created ProjectDetails in storage",
+                "description": "Store ProjectDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectDetails that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectDetails"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/project_details/{id}": {
+            "get": {
+                "tags": [
+                    "ProjectDetails"
+                ],
+                "summary": "Display the specified ProjectDetails",
+                "description": "Get ProjectDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectDetails",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectDetails"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProjectDetails"
+                ],
+                "summary": "Update the specified ProjectDetails in storage",
+                "description": "Update ProjectDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectDetails",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectDetails that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectDetails"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ProjectDetails"
+                ],
+                "summary": "Remove the specified ProjectDetails from storage",
+                "description": "Delete ProjectDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectDetails",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/sub_projects": {
             "get": {
                 "tags": [
@@ -2257,6 +2456,69 @@
                 "description": {
                     "description": "description",
                     "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ProjectDetails": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "project_id": {
+                    "description": "project_id",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "status",
+                    "type": "boolean"
+                },
+                "borrower": {
+                    "description": "borrower",
+                    "type": "string"
+                },
+                "total_project_cost": {
+                    "description": "total_project_cost",
+                    "type": "number",
+                    "format": "number"
+                },
+                "approval_date": {
+                    "description": "approval_date",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "approval_fy": {
+                    "description": "approval_fy",
+                    "type": "string",
+                    "format": "date"
+                },
+                "project_region": {
+                    "description": "project_region",
+                    "type": "string"
+                },
+                "closing_date": {
+                    "description": "closing_date",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "commitment_amount": {
+                    "description": "commitment_amount",
+                    "type": "number",
+                    "format": "number"
                 },
                 "created_at": {
                     "description": "created_at",
