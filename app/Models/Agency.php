@@ -75,9 +75,10 @@ class Agency extends Model
     ];
 
     protected $childTypes = [
-        'implementing_partner' => ImplementingPartner::class,
         'funding_organisation' => FundingOrganisation::class,
         'supervising_agency' => SupervisingAgency::class,
+        'coordinating_agency' => CoordinatingAgency::class,
+        'implementing_agency' => ImplementingAgency::class,
         'actor' => Actor::class,
     ];
 
