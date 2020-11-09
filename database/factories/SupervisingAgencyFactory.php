@@ -12,7 +12,7 @@ $factory->define(SupervisingAgency::class, function (Faker $faker) {
         'name' => $faker->domainWord,
         'website' => $faker->domainName,
         'focal_person_id' => function () {
-            return FocalPerson::query()->inRandomOrder()->first()->id;
+            return factory(FocalPerson::class)->create()->id;
         },
     ];
 });

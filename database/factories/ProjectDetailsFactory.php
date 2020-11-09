@@ -42,6 +42,7 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         'environmental_category_id' => function () {
             return EnvironmentalCategory::query()->inRandomOrder()->first()->id;
         },
+        'project_region' => 'Africa East',
         'approval_date' => $faker->dateTime,
         'approval_fy' => $faker->year,
         'closing_date' => $faker->dateTime,
