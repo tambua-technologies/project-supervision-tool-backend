@@ -2,6 +2,11 @@
 
 /** @var Factory $factory */
 
+use App\Models\CoordinatingAgency;
+use App\Models\FundingOrganisation;
+use App\Models\ImplementingAgency;
+use App\Models\Location;
+use App\Models\Project;
 use App\Models\ProjectDetails;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
@@ -9,19 +14,25 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(ProjectDetails::class, function (Faker $faker) {
 
     return [
-        'project_id' => $faker->word,
-        'status' => $faker->word,
+        'project_id' =>function () {
+            return factory(Project::class)->create()->id;
+        },
+        'location_id' => function () {
+            return factory(Location::class)->create()->id;
+        },
+        'status' => $faker->boolean,
         'borrower' => $faker->word,
-        'implementing_agency_id' => $faker->word,
-        'funding_organisation_id' => $faker->word,
-        'coordinating_agency_id' => $faker->word,
-        'location_id' => $faker->word,
-        'total_project_cost' => $faker->word,
-        'approval_date' => $faker->word,
-        'approval_fy' => $faker->word,
-        'project_region' => $faker->word,
-        'closing_date' => $faker->word,
-        'environmental_category_id' => $faker->word,
-        'commitment_amount' => $faker->word
+        'implementing_agency_id' => function () {
+            return ImplementingAgency::query()->inRandomOrder()->first()->id;
+        },
+        'funding_organisation_id' => function () {
+            return FundingOrganisation::query()->inRandomOrder()->first()->id;
+        },
+        'coordinating_agency_id' => function () {
+            return CoordinatingAgency::query()->inRandomOrder()->first()->id;
+        },
+        'approval_date' => $faker->dateTime,
+        'approval_fy' => $faker->year,
+        'closing_date' => $faker->dateTime,
     ];
 });

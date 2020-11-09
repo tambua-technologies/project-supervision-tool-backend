@@ -24,13 +24,13 @@ class ProjectDetailsRepository extends BaseRepository
         'funding_organisation_id',
         'coordinating_agency_id',
         'location_id',
-        'total_project_cost',
+        'total_project_cost_id',
         'approval_date',
         'approval_fy',
         'project_region',
         'closing_date',
         'environmental_category_id',
-        'commitment_amount'
+        'commitment_amount_id'
     ];
 
     /**

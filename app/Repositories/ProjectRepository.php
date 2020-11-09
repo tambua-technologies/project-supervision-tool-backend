@@ -17,6 +17,7 @@ class ProjectRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'id',
         'name',
         'description'
     ];

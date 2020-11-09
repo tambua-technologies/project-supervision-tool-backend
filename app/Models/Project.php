@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="id",
  *          description="id",
- *          type="integer",
- *          format="int32"
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -44,7 +43,7 @@ class Project extends Model
     use SoftDeletes;
 
     public $table = 'projects';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -54,6 +53,7 @@ class Project extends Model
 
 
     public $fillable = [
+        'id',
         'name',
         'description'
     ];
@@ -64,7 +64,7 @@ class Project extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id' => 'string',
         'name' => 'string',
         'description' => 'string'
     ];
@@ -81,5 +81,5 @@ class Project extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

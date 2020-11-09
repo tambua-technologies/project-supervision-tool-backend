@@ -15,23 +15,63 @@ class CreateProjectDetailsTable extends Migration
     public function up()
     {
         Schema::create('project_details', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('project_id');
-            $table->boolean('status');
-            $table->string('borrower');
-            $table->unsignedBigInteger('implementing_agency_id');
-            $table->unsignedBigInteger('funding_organisation_id');
-            $table->unsignedBigInteger('coordinating_agency_id');
-            $table->unsignedBigInteger('location_id');
-            $table->double('total_project_cost');
-            $table->dateTime('approval_date');
-            $table->date('approval_fy');
-            $table->string('project_region');
-            $table->dateTime('closing_date');
-            $table->unsignedBigInteger('environmental_category_id');
-            $table->double('commitment_amount');
+            $table->boolean('status')->default(false);
+            $table->string('borrower')->nullable();
+            $table->unsignedBigInteger('implementing_agency_id')->nullable();
+            $table->unsignedBigInteger('funding_organisation_id')->nullable();
+            $table->unsignedBigInteger('coordinating_agency_id')->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('total_project_cost_id')->nullable();
+            $table->unsignedBigInteger('commitment_amount_id')->nullable();
+            $table->dateTime('approval_date')->nullable();
+            $table->date('approval_fy')->nullable();
+            $table->string('project_region')->nullable();
+            $table->dateTime('closing_date')->nullable();
+            $table->unsignedBigInteger('environmental_category_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->onDelete('cascade');
+
+            $table->foreign('implementing_agency_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
+
+            $table->foreign('funding_organisation_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
+
+            $table->foreign('coordinating_agency_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
+
+            $table->foreign('location_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('cascade');
+
+            $table->foreign('total_project_cost_id')
+                ->references('id')
+                ->on('money')
+                ->onDelete('cascade');
+
+            $table->foreign('commitment_amount_id')
+                ->references('id')
+                ->on('money')
+                ->onDelete('cascade');
+
+            $table->foreign('environmental_category_id')
+                ->references('id')
+                ->on('environmental_categories')
+                ->onDelete('set null');
         });
     }
 

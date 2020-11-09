@@ -31,10 +31,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="total_project_cost",
- *          description="total_project_cost",
- *          type="number",
- *          format="number"
+ *          property="total_project_cost_id",
+ *          description="total_project_cost_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="approval_date",
@@ -60,10 +60,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="date-time"
  *      ),
  *      @SWG\Property(
- *          property="commitment_amount",
- *          description="commitment_amount",
- *          type="number",
- *          format="number"
+ *          property="commitment_amount_id",
+ *          description="commitment_amount_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -84,7 +84,7 @@ class ProjectDetails extends Model
     use SoftDeletes;
 
     public $table = 'project_details';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -98,13 +98,13 @@ class ProjectDetails extends Model
         'funding_organisation_id',
         'coordinating_agency_id',
         'location_id',
-        'total_project_cost',
+        'total_project_cost_id',
         'approval_date',
         'approval_fy',
         'project_region',
         'closing_date',
         'environmental_category_id',
-        'commitment_amount'
+        'commitment_amount_id'
     ];
 
     /**
@@ -117,12 +117,12 @@ class ProjectDetails extends Model
         'project_id' => 'string',
         'status' => 'boolean',
         'borrower' => 'string',
-        'total_project_cost' => 'double',
+        'total_project_cost_id' => 'integer',
         'approval_date' => 'datetime',
         'approval_fy' => 'date',
         'project_region' => 'string',
         'closing_date' => 'datetime',
-        'commitment_amount' => 'double'
+        'commitment_amount_integer' => 'double'
     ];
 
     /**
@@ -131,8 +131,8 @@ class ProjectDetails extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

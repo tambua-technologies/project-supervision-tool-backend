@@ -67,3 +67,9 @@ Route::resource('implementing_agencies', 'ImplementingAgencyAPIController');
 Route::resource('coordinating_agencies', 'CoordinatingAgencyAPIController');
 
 Route::resource('project_details', 'ProjectDetailsAPIController');
+
+Route::resource('currencies', 'CurrencyAPIController');
+
+Route::resource('money', 'MoneyAPIController');
+
+Route::resource('environmental_categories', 'EnvironmentalCategoryAPIController');
