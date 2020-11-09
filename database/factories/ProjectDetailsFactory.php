@@ -3,9 +3,11 @@
 /** @var Factory $factory */
 
 use App\Models\CoordinatingAgency;
+use App\Models\EnvironmentalCategory;
 use App\Models\FundingOrganisation;
 use App\Models\ImplementingAgency;
 use App\Models\Location;
+use App\Models\Money;
 use App\Models\Project;
 use App\Models\ProjectDetails;
 use Faker\Generator as Faker;
@@ -20,8 +22,14 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         'location_id' => function () {
             return factory(Location::class)->create()->id;
         },
-        'status' => $faker->boolean,
-        'borrower' => $faker->word,
+        'commitment_amount_id' => function () {
+            return factory(Money::class)->create()->id;
+        },
+        'total_project_cost_id' => function () {
+            return factory(Money::class)->create()->id;
+        },
+        'status' => $faker->boolean($chanceOfGettingTrue = 50),
+        'borrower' => $faker->country,
         'implementing_agency_id' => function () {
             return ImplementingAgency::query()->inRandomOrder()->first()->id;
         },
@@ -30,6 +38,9 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         },
         'coordinating_agency_id' => function () {
             return CoordinatingAgency::query()->inRandomOrder()->first()->id;
+        },
+        'environmental_category_id' => function () {
+            return EnvironmentalCategory::query()->inRandomOrder()->first()->id;
         },
         'approval_date' => $faker->dateTime,
         'approval_fy' => $faker->year,
