@@ -81,5 +81,9 @@ class Project extends Model
         'updated_at' => 'nullable'
     ];
 
+    public function leaders()
+    {
+        return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
+    }
 
 }

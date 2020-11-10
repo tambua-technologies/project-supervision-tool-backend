@@ -26,9 +26,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="boolean"
  *      ),
  *      @SWG\Property(
- *          property="borrower",
- *          description="borrower",
- *          type="string"
+ *          property="borrower_id",
+ *          description="borrower_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="total_project_cost_id",
@@ -93,7 +94,7 @@ class ProjectDetails extends Model
     public $fillable = [
         'project_id',
         'status',
-        'borrower',
+        'borrower_id',
         'project_region',
         'approval_date',
         'approval_fy',
@@ -116,7 +117,7 @@ class ProjectDetails extends Model
         'id' => 'integer',
         'project_id' => 'string',
         'status' => 'boolean',
-        'borrower' => 'string',
+        'borrower_id' => 'integer',
         'project_region' => 'string',
         'approval_date' => 'datetime',
         'approval_fy' => 'date',
@@ -158,6 +159,11 @@ class ProjectDetails extends Model
     public function environmental_category()
     {
         return $this->belongsTo(EnvironmentalCategory::class);
+    }
+
+    public function borrower()
+    {
+        return $this->belongsTo(Borrower::class);
     }
 
     public function total_project_cost()
