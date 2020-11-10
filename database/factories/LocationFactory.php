@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Country;
 use App\Models\District;
 use App\Models\Location;
 use App\Models\Region;
@@ -15,6 +16,9 @@ $factory->define(Location::class, function (Faker $faker) {
     return [
         'level' => $levels[array_rand($levels)],
         'region_id' => $regionId,
+         'country_id' => function () {
+             return Country::query()->first()->id;
+         },
         'district_id' => $districtIds->random(),
     ];
 });

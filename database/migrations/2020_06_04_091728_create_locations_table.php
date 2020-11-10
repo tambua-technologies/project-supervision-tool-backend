@@ -17,9 +17,15 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('level');
             $table->string("region_id")->nullable();
+            $table->unsignedBigInteger("country_id")->nullable();
             $table->string("district_id")->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
+                ->onDelete('set null');
 
             $table->foreign('district_id')
                 ->references('id')
