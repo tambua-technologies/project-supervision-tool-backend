@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationsSeeder::class);
         $this->call(ActorsTableSeeder::class);
         $this->call(FundingOrganisationsTableSeeder::class);
+        $this->call(BorrowerTableSeeder::class);
         $this->call(ImplementingAgencyTableSeeder::class);
         $this->call(SupervisingAgenciesTableSeeder::class);
         $this->call(CoordinatingAgenciesTableSeeder::class);

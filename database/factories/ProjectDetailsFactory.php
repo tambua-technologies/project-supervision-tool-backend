@@ -2,6 +2,7 @@
 
 /** @var Factory $factory */
 
+use App\Models\Borrower;
 use App\Models\CoordinatingAgency;
 use App\Models\EnvironmentalCategory;
 use App\Models\FundingOrganisation;
@@ -29,7 +30,9 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
             return factory(Money::class)->create()->id;
         },
         'status' => $faker->boolean($chanceOfGettingTrue = 50),
-        'borrower' => $faker->country,
+        'borrower_id' => function () {
+            return Borrower::query()->inRandomOrder()->first()->id;
+        },
         'implementing_agency_id' => function () {
             return ImplementingAgency::query()->inRandomOrder()->first()->id;
         },

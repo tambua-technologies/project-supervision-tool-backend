@@ -18,7 +18,7 @@ class CreateProjectDetailsTable extends Migration
             $table->id();
             $table->string('project_id');
             $table->boolean('status')->default(false);
-            $table->string('borrower')->nullable();
+            $table->unsignedBigInteger('borrower_id')->nullable();
             $table->unsignedBigInteger('implementing_agency_id')->nullable();
             $table->unsignedBigInteger('funding_organisation_id')->nullable();
             $table->unsignedBigInteger('coordinating_agency_id')->nullable();
@@ -44,6 +44,11 @@ class CreateProjectDetailsTable extends Migration
                 ->onDelete('set null');
 
             $table->foreign('funding_organisation_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
+
+            $table->foreign('borrower_id')
                 ->references('id')
                 ->on('agencies')
                 ->onDelete('set null');

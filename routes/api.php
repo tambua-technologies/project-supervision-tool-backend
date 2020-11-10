@@ -73,3 +73,5 @@ Route::resource('currencies', 'CurrencyAPIController');
 Route::resource('money', 'MoneyAPIController');
 
 Route::resource('environmental_categories', 'EnvironmentalCategoryAPIController');
+
+Route::resource('borrowers', 'BorrowerAPIController');

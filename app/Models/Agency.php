@@ -79,6 +79,7 @@ class Agency extends Model
         'supervising_agency' => SupervisingAgency::class,
         'coordinating_agency' => CoordinatingAgency::class,
         'implementing_agency' => ImplementingAgency::class,
+        'borrower' => Borrower::class,
         'actor' => Actor::class,
     ];
 
