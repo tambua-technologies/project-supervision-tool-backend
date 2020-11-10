@@ -94,15 +94,15 @@ class ProjectDetails extends Model
         'project_id',
         'status',
         'borrower',
+        'project_region',
+        'approval_date',
+        'approval_fy',
+        'closing_date',
         'implementing_agency_id',
         'funding_organisation_id',
         'coordinating_agency_id',
         'location_id',
         'total_project_cost_id',
-        'approval_date',
-        'approval_fy',
-        'project_region',
-        'closing_date',
         'environmental_category_id',
         'commitment_amount_id'
     ];
@@ -117,12 +117,16 @@ class ProjectDetails extends Model
         'project_id' => 'string',
         'status' => 'boolean',
         'borrower' => 'string',
-        'total_project_cost_id' => 'integer',
+        'project_region' => 'string',
         'approval_date' => 'datetime',
         'approval_fy' => 'date',
-        'project_region' => 'string',
         'closing_date' => 'datetime',
-        'commitment_amount_integer' => 'double'
+        'implementing_agency_id' => 'integer',
+        'funding_organisation_id' => 'integer',
+        'coordinating_agency_id' => 'integer',
+        'environmental_category_id' => 'integer',
+        'total_project_cost_id' => 'integer',
+        'commitment_amount_id' => 'integer',
     ];
 
     /**
@@ -134,5 +138,35 @@ class ProjectDetails extends Model
 
     ];
 
+
+    public function implementing_agency()
+    {
+        return $this->belongsTo(ImplementingAgency::class);
+    }
+
+    public function funding_organisation()
+    {
+        return $this->belongsTo(FundingOrganisation::class);
+    }
+
+    public function coordinating_agency()
+    {
+        return $this->belongsTo(CoordinatingAgency::class);
+    }
+
+    public function environmental_category()
+    {
+        return $this->belongsTo(EnvironmentalCategory::class);
+    }
+
+    public function total_project_cost()
+    {
+        return $this->belongsTo(Money::class);
+    }
+
+    public function commitment_amount()
+    {
+        return $this->belongsTo(Money::class);
+    }
 
 }

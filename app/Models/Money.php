@@ -40,7 +40,7 @@ class Money extends Model
     use SoftDeletes;
 
     public $table = 'money';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -67,8 +67,12 @@ class Money extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
 }

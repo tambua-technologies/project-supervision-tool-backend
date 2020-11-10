@@ -3174,10 +3174,10 @@
                     "description": "borrower",
                     "type": "string"
                 },
-                "total_project_cost": {
-                    "description": "total_project_cost",
-                    "type": "number",
-                    "format": "number"
+                "total_project_cost_id": {
+                    "description": "total_project_cost_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "approval_date": {
                     "description": "approval_date",
@@ -3198,10 +3198,10 @@
                     "type": "string",
                     "format": "date-time"
                 },
-                "commitment_amount": {
-                    "description": "commitment_amount",
-                    "type": "number",
-                    "format": "number"
+                "commitment_amount_id": {
+                    "description": "commitment_amount_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",

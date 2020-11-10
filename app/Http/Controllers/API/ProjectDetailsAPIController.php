@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateProjectDetailsAPIRequest;
 use App\Http\Requests\API\UpdateProjectDetailsAPIRequest;
+use App\Http\Resources\ProjectDetailResource;
 use App\Models\ProjectDetails;
 use App\Repositories\ProjectDetailsRepository;
 use Illuminate\Http\Request;
@@ -65,7 +66,7 @@ class ProjectDetailsAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($projectDetails->toArray(), 'Project Details retrieved successfully');
+        return $this->sendResponse(ProjectDetailResource::collection($projectDetails), 'Project Details retrieved successfully');
     }
 
     /**
@@ -112,7 +113,7 @@ class ProjectDetailsAPIController extends AppBaseController
 
         $projectDetails = $this->projectDetailsRepository->create($input);
 
-        return $this->sendResponse($projectDetails->toArray(), 'Project Details saved successfully');
+        return $this->sendResponse(new ProjectDetailResource($projectDetails), 'Project Details saved successfully');
     }
 
     /**
@@ -162,7 +163,7 @@ class ProjectDetailsAPIController extends AppBaseController
             return $this->sendError('Project Details not found');
         }
 
-        return $this->sendResponse($projectDetails->toArray(), 'Project Details retrieved successfully');
+        return $this->sendResponse(new ProjectDetailResource($projectDetails), 'Project Details retrieved successfully');
     }
 
     /**
@@ -224,7 +225,7 @@ class ProjectDetailsAPIController extends AppBaseController
 
         $projectDetails = $this->projectDetailsRepository->update($input, $id);
 
-        return $this->sendResponse($projectDetails->toArray(), 'ProjectDetails updated successfully');
+        return $this->sendResponse(new ProjectDetailResource($projectDetails), 'ProjectDetails updated successfully');
     }
 
     /**

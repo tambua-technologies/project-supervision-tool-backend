@@ -96,5 +96,14 @@ class FocalPerson extends User
         'password' => 'required'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token', 'name', 'deleted_at'
+    ];
+
 
 }
