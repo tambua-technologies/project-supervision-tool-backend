@@ -101,7 +101,7 @@ class ProjectDetails extends Model
         'implementing_agency_id',
         'funding_organisation_id',
         'coordinating_agency_id',
-        'location_id',
+        'country_id',
         'total_project_cost_id',
         'environmental_category_id',
         'commitment_amount_id'
@@ -127,6 +127,7 @@ class ProjectDetails extends Model
         'environmental_category_id' => 'integer',
         'total_project_cost_id' => 'integer',
         'commitment_amount_id' => 'integer',
+        'country_id' => 'integer',
     ];
 
     /**
@@ -167,6 +168,11 @@ class ProjectDetails extends Model
     public function commitment_amount()
     {
         return $this->belongsTo(Money::class);
+    }
+
+    public function country ()
+    {
+        return $this->belongsTo(Location::class);
     }
 
 }

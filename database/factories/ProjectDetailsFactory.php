@@ -19,7 +19,7 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         'project_id' =>function () {
             return factory(Project::class)->create()->id;
         },
-        'location_id' => function () {
+        'country_id' => function () {
             return factory(Location::class)->create()->id;
         },
         'commitment_amount_id' => function () {

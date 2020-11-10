@@ -22,7 +22,7 @@ class CreateProjectDetailsTable extends Migration
             $table->unsignedBigInteger('implementing_agency_id')->nullable();
             $table->unsignedBigInteger('funding_organisation_id')->nullable();
             $table->unsignedBigInteger('coordinating_agency_id')->nullable();
-            $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('total_project_cost_id')->nullable();
             $table->unsignedBigInteger('commitment_amount_id')->nullable();
             $table->dateTime('approval_date')->nullable();
@@ -53,7 +53,7 @@ class CreateProjectDetailsTable extends Migration
                 ->on('agencies')
                 ->onDelete('set null');
 
-            $table->foreign('location_id')
+            $table->foreign('country_id')
                 ->references('id')
                 ->on('locations')
                 ->onDelete('cascade');
