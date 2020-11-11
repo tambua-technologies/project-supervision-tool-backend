@@ -75,3 +75,11 @@ Route::resource('money', 'MoneyAPIController');
 Route::resource('environmental_categories', 'EnvironmentalCategoryAPIController');
 
 Route::resource('borrowers', 'BorrowerAPIController');
+
+Route::resource('sectors', 'SectorAPIController');
+
+Route::resource('themes', 'ThemeAPIController');
+
+Route::resource('project_sectors', 'ProjectSectorsAPIController');
+
+Route::resource('project_themes', 'ProjectThemeAPIController');

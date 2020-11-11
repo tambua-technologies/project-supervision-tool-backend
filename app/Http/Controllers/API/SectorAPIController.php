@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateProjectAPIRequest;
-use App\Http\Requests\API\UpdateProjectAPIRequest;
-use App\Http\Resources\ProjectResource;
-use App\Models\Project;
-use App\Repositories\ProjectRepository;
+use App\Http\Requests\API\CreateSectorAPIRequest;
+use App\Http\Requests\API\UpdateSectorAPIRequest;
+use App\Models\Sector;
+use App\Repositories\SectorRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class ProjectController
+ * Class SectorController
  * @package App\Http\Controllers\API
  */
 
-class ProjectAPIController extends AppBaseController
+class SectorAPIController extends AppBaseController
 {
-    /** @var  ProjectRepository */
-    private $projectRepository;
+    /** @var  SectorRepository */
+    private $sectorRepository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(SectorRepository $sectorRepo)
     {
-        $this->projectRepository = $projectRepo;
+        $this->sectorRepository = $sectorRepo;
     }
 
     /**
@@ -31,10 +30,10 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projects",
-     *      summary="Get a listing of the Projects.",
-     *      tags={"Project"},
-     *      description="Get all Projects",
+     *      path="/sectors",
+     *      summary="Get a listing of the Sectors.",
+     *      tags={"Sector"},
+     *      description="Get all Sectors",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -48,7 +47,7 @@ class ProjectAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Project")
+     *                  @SWG\Items(ref="#/definitions/Sector")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -60,31 +59,31 @@ class ProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $projects = $this->projectRepository->all(
+        $sectors = $this->sectorRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse(ProjectResource::collection($projects), 'Projects retrieved successfully');
+        return $this->sendResponse($sectors->toArray(), 'Sectors retrieved successfully');
     }
 
     /**
-     * @param CreateProjectAPIRequest $request
+     * @param CreateSectorAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/projects",
-     *      summary="Store a newly created Project in storage",
-     *      tags={"Project"},
-     *      description="Store Project",
+     *      path="/sectors",
+     *      summary="Store a newly created Sector in storage",
+     *      tags={"Sector"},
+     *      description="Store Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Project that should be stored",
+     *          description="Sector that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ProjectPayload")
+     *          @SWG\Schema(ref="#/definitions/Sector")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -97,7 +96,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Sector"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -107,12 +106,13 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateProjectAPIRequest $request)
+    public function store(CreateSectorAPIRequest $request)
     {
         $input = $request->all();
-        $project = $this->projectRepository->create($input);
-        $project->attachLeaders($request->leaders);
-        return $this->sendResponse(new ProjectResource($project), 'Project saved successfully');
+
+        $sector = $this->sectorRepository->create($input);
+
+        return $this->sendResponse($sector->toArray(), 'Sector saved successfully');
     }
 
     /**
@@ -120,15 +120,15 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projects/{id}",
-     *      summary="Display the specified Project",
-     *      tags={"Project"},
-     *      description="Get Project",
+     *      path="/sectors/{id}",
+     *      summary="Display the specified Sector",
+     *      tags={"Sector"},
+     *      description="Get Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Sector",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
@@ -143,7 +143,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Sector"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -155,40 +155,40 @@ class ProjectAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Sector $sector */
+        $sector = $this->sectorRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($sector)) {
+            return $this->sendError('Sector not found');
         }
 
-        return $this->sendResponse(new ProjectResource($project), 'Project retrieved successfully');
+        return $this->sendResponse($sector->toArray(), 'Sector retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateProjectAPIRequest $request
+     * @param UpdateSectorAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/projects/{id}",
-     *      summary="Update the specified Project in storage",
-     *      tags={"Project"},
-     *      description="Update Project",
+     *      path="/sectors/{id}",
+     *      summary="Update the specified Sector in storage",
+     *      tags={"Sector"},
+     *      description="Update Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Sector",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Project that should be updated",
+     *          description="Sector that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Project")
+     *          @SWG\Schema(ref="#/definitions/Sector")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +201,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Sector"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -211,20 +211,20 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateProjectAPIRequest $request)
+    public function update($id, UpdateSectorAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Sector $sector */
+        $sector = $this->sectorRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($sector)) {
+            return $this->sendError('Sector not found');
         }
 
-        $project = $this->projectRepository->update($input, $id);
+        $sector = $this->sectorRepository->update($input, $id);
 
-        return $this->sendResponse(new ProjectResource($project), 'Project updated successfully');
+        return $this->sendResponse($sector->toArray(), 'Sector updated successfully');
     }
 
     /**
@@ -232,15 +232,15 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/projects/{id}",
-     *      summary="Remove the specified Project from storage",
-     *      tags={"Project"},
-     *      description="Delete Project",
+     *      path="/sectors/{id}",
+     *      summary="Remove the specified Sector from storage",
+     *      tags={"Sector"},
+     *      description="Delete Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Sector",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
@@ -267,15 +267,15 @@ class ProjectAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Sector $sector */
+        $sector = $this->sectorRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($sector)) {
+            return $this->sendError('Sector not found');
         }
 
-        $project->delete();
+        $sector->delete();
 
-        return $this->sendSuccess('Project deleted successfully');
+        return $this->sendSuccess('Sector deleted successfully');
     }
 }

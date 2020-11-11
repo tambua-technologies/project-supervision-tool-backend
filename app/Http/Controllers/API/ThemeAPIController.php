@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateProjectAPIRequest;
-use App\Http\Requests\API\UpdateProjectAPIRequest;
-use App\Http\Resources\ProjectResource;
-use App\Models\Project;
-use App\Repositories\ProjectRepository;
+use App\Http\Requests\API\CreateThemeAPIRequest;
+use App\Http\Requests\API\UpdateThemeAPIRequest;
+use App\Models\Theme;
+use App\Repositories\ThemeRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
 /**
- * Class ProjectController
+ * Class ThemeController
  * @package App\Http\Controllers\API
  */
 
-class ProjectAPIController extends AppBaseController
+class ThemeAPIController extends AppBaseController
 {
-    /** @var  ProjectRepository */
-    private $projectRepository;
+    /** @var  ThemeRepository */
+    private $themeRepository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(ThemeRepository $themeRepo)
     {
-        $this->projectRepository = $projectRepo;
+        $this->themeRepository = $themeRepo;
     }
 
     /**
@@ -31,10 +30,10 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projects",
-     *      summary="Get a listing of the Projects.",
-     *      tags={"Project"},
-     *      description="Get all Projects",
+     *      path="/themes",
+     *      summary="Get a listing of the Themes.",
+     *      tags={"Theme"},
+     *      description="Get all Themes",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -48,7 +47,7 @@ class ProjectAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Project")
+     *                  @SWG\Items(ref="#/definitions/Theme")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -60,31 +59,31 @@ class ProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $projects = $this->projectRepository->all(
+        $themes = $this->themeRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse(ProjectResource::collection($projects), 'Projects retrieved successfully');
+        return $this->sendResponse($themes->toArray(), 'Themes retrieved successfully');
     }
 
     /**
-     * @param CreateProjectAPIRequest $request
+     * @param CreateThemeAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/projects",
-     *      summary="Store a newly created Project in storage",
-     *      tags={"Project"},
-     *      description="Store Project",
+     *      path="/themes",
+     *      summary="Store a newly created Theme in storage",
+     *      tags={"Theme"},
+     *      description="Store Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Project that should be stored",
+     *          description="Theme that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ProjectPayload")
+     *          @SWG\Schema(ref="#/definitions/Theme")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -97,7 +96,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Theme"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -107,12 +106,13 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateProjectAPIRequest $request)
+    public function store(CreateThemeAPIRequest $request)
     {
         $input = $request->all();
-        $project = $this->projectRepository->create($input);
-        $project->attachLeaders($request->leaders);
-        return $this->sendResponse(new ProjectResource($project), 'Project saved successfully');
+
+        $theme = $this->themeRepository->create($input);
+
+        return $this->sendResponse($theme->toArray(), 'Theme saved successfully');
     }
 
     /**
@@ -120,15 +120,15 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projects/{id}",
-     *      summary="Display the specified Project",
-     *      tags={"Project"},
-     *      description="Get Project",
+     *      path="/themes/{id}",
+     *      summary="Display the specified Theme",
+     *      tags={"Theme"},
+     *      description="Get Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Theme",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
@@ -143,7 +143,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Theme"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -155,40 +155,40 @@ class ProjectAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Theme $theme */
+        $theme = $this->themeRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($theme)) {
+            return $this->sendError('Theme not found');
         }
 
-        return $this->sendResponse(new ProjectResource($project), 'Project retrieved successfully');
+        return $this->sendResponse($theme->toArray(), 'Theme retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateProjectAPIRequest $request
+     * @param UpdateThemeAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/projects/{id}",
-     *      summary="Update the specified Project in storage",
-     *      tags={"Project"},
-     *      description="Update Project",
+     *      path="/themes/{id}",
+     *      summary="Update the specified Theme in storage",
+     *      tags={"Theme"},
+     *      description="Update Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Theme",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Project that should be updated",
+     *          description="Theme that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Project")
+     *          @SWG\Schema(ref="#/definitions/Theme")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +201,7 @@ class ProjectAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Project"
+     *                  ref="#/definitions/Theme"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -211,20 +211,20 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateProjectAPIRequest $request)
+    public function update($id, UpdateThemeAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Theme $theme */
+        $theme = $this->themeRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($theme)) {
+            return $this->sendError('Theme not found');
         }
 
-        $project = $this->projectRepository->update($input, $id);
+        $theme = $this->themeRepository->update($input, $id);
 
-        return $this->sendResponse(new ProjectResource($project), 'Project updated successfully');
+        return $this->sendResponse($theme->toArray(), 'Theme updated successfully');
     }
 
     /**
@@ -232,15 +232,15 @@ class ProjectAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/projects/{id}",
-     *      summary="Remove the specified Project from storage",
-     *      tags={"Project"},
-     *      description="Delete Project",
+     *      path="/themes/{id}",
+     *      summary="Remove the specified Theme from storage",
+     *      tags={"Theme"},
+     *      description="Delete Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Project",
-     *          type="string",
+     *          description="id of Theme",
+     *          type="integer",
      *          required=true,
      *          in="path"
      *      ),
@@ -267,15 +267,15 @@ class ProjectAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        /** @var Theme $theme */
+        $theme = $this->themeRepository->find($id);
 
-        if (empty($project)) {
-            return $this->sendError('Project not found');
+        if (empty($theme)) {
+            return $this->sendError('Theme not found');
         }
 
-        $project->delete();
+        $theme->delete();
 
-        return $this->sendSuccess('Project deleted successfully');
+        return $this->sendSuccess('Theme deleted successfully');
     }
 }

@@ -5,6 +5,47 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+/**
+ * @SWG\Definition(
+ *      definition="ProjectPayload",
+ *      required={"name"},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="leaders",
+ *          description="leaders",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="updated_at",
+ *          description="updated_at",
+ *          type="string",
+ *          format="date-time"
+ *      )
+ * )
+ */
+
+
 /**
  * @SWG\Definition(
  *      definition="Project",
@@ -84,6 +125,24 @@ class Project extends Model
     public function leaders()
     {
         return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
+    }
+
+    public function removeDuplicateIds($arr)
+    {
+        $attachedIds = $this->leaders()->get()->pluck(['id']);
+        $collection = collect($arr);
+        return $collection->diff($attachedIds);
+    }
+
+    public function attachLeaders($leaders)
+    {
+        $leadersToAttach = $this->removeDuplicateIds($leaders);
+        $this->leaders()->attach($leadersToAttach);
+    }
+
+    public function details()
+    {
+        return $this->hasOne(ProjectDetails::class);
     }
 
 }
