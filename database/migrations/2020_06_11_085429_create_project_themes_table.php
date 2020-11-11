@@ -16,7 +16,7 @@ class CreateProjectThemesTable extends Migration
     {
         Schema::create('project_themes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('project_id');
+            $table->string('project_id');
             $table->unsignedBigInteger('theme_id');
             $table->float('percent');
             $table->timestamps();

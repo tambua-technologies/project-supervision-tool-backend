@@ -4125,6 +4125,15 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "sector_id": {
+                    "description": "sector_d",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "project_id": {
+                    "description": "project_id",
+                    "type": "string"
+                },
                 "percent": {
                     "description": "percent",
                     "type": "number",
@@ -4151,6 +4160,15 @@
                     "description": "id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "theme_id": {
+                    "description": "theme_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "project_id": {
+                    "description": "project_id",
+                    "type": "string"
                 },
                 "percent": {
                     "description": "percent",

@@ -20,6 +20,8 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'leaders' => $this->leaders,
+            'sectors' => $this->sectors,
+            'themes' => $this->themes,
             'details' => new ProjectDetailResource($this->details)
 
         ];

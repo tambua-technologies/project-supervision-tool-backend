@@ -16,6 +16,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="sector_id",
+ *          description="sector_d",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="percent",
  *          description="percent",
  *          type="number",
@@ -40,7 +51,7 @@ class ProjectSectors extends Model
     use SoftDeletes;
 
     public $table = 'project_sectors';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -59,7 +70,9 @@ class ProjectSectors extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'percent' => 'float'
+        'percent' => 'float',
+        'sector_id' => 'integer',
+        'project_id' => 'string'
     ];
 
     /**
@@ -68,8 +81,8 @@ class ProjectSectors extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

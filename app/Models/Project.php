@@ -145,4 +145,14 @@ class Project extends Model
         return $this->hasOne(ProjectDetails::class);
     }
 
+    public function themes()
+    {
+        return $this->belongsToMany(Theme::class, 'project_themes', 'project_id', 'theme_id')->as('details')->withPivot('percent');
+    }
+
+    public function sectors()
+    {
+        return $this->belongsToMany(Sector::class, 'project_sectors', 'project_id', 'sector_id')->as('details')->withPivot('percent');
+    }
+
 }
