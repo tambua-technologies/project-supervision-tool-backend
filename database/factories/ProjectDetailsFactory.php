@@ -3,7 +3,6 @@
 /** @var Factory $factory */
 
 use App\Models\Borrower;
-use App\Models\CoordinatingAgency;
 use App\Models\EnvironmentalCategory;
 use App\Models\FundingOrganisation;
 use App\Models\ImplementingAgency;
@@ -38,9 +37,6 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         },
         'funding_organisation_id' => function () {
             return FundingOrganisation::query()->inRandomOrder()->first()->id;
-        },
-        'coordinating_agency_id' => function () {
-            return CoordinatingAgency::query()->inRandomOrder()->first()->id;
         },
         'environmental_category_id' => function () {
             return EnvironmentalCategory::query()->inRandomOrder()->first()->id;
