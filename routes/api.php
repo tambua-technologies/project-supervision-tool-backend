@@ -87,3 +87,7 @@ Route::resource('project_themes', 'ProjectThemeAPIController');
 Route::resource('users', 'UserAPIController');
 
 Route::resource('phases', 'PhaseAPIController');
+
+Route::resource('contractors', 'ContractorAPIController');
+
+Route::resource('sub_project_details', 'SubProjectDetailAPIController');

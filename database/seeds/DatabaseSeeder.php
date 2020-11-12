@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BorrowerTableSeeder::class);
         $this->call(ImplementingAgencyTableSeeder::class);
         $this->call(SupervisingAgenciesTableSeeder::class);
+        $this->call(ContractorsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
         $this->call(SubProjectTableSeeder::class);
         $this->call(ProjectThemesTableSeeder::class);
