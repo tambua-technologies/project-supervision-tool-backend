@@ -16,6 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub_project_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="phase_id",
  *          description="phase_id",
  *          type="integer",
@@ -82,7 +88,8 @@ class SubProjectDetail extends Model
         'phase_id',
         'start_date',
         'end_date',
-        'contractor_id'
+        'contractor_id',
+        'sub_project_id'
     ];
 
     /**
@@ -98,6 +105,7 @@ class SubProjectDetail extends Model
         'supervising_agency_id' => 'integer',
         'phase_id' => 'integer',
         'contractor_id' => 'integer',
+        'sub_project_id' => 'integer',
     ];
 
     /**

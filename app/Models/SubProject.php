@@ -91,5 +91,9 @@ class SubProject extends Model
         'description' => 'required|string|max:255',
     ];
 
+    public function details()
+    {
+        return $this->hasOne(SubProjectDetail::class);
+    }
 
 }

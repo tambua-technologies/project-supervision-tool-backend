@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateSubProjectAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectAPIRequest;
+use App\Http\Resources\SubProjectResource;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
 use Illuminate\Http\Request;
@@ -65,7 +66,7 @@ class SubProjectAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($subProjects->toArray(), 'Sub Projects retrieved successfully');
+        return $this->sendResponse(SubProjectResource::collection($subProjects), 'Sub Projects retrieved successfully');
     }
 
     /**
@@ -112,7 +113,7 @@ class SubProjectAPIController extends AppBaseController
 
         $subProject = $this->subProjectRepository->create($input);
 
-        return $this->sendResponse($subProject->toArray(), 'Sub Project saved successfully');
+        return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project saved successfully');
     }
 
     /**
@@ -162,7 +163,7 @@ class SubProjectAPIController extends AppBaseController
             return $this->sendError('Sub Project not found');
         }
 
-        return $this->sendResponse($subProject->toArray(), 'Sub Project retrieved successfully');
+        return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project retrieved successfully');
     }
 
     /**
@@ -224,7 +225,7 @@ class SubProjectAPIController extends AppBaseController
 
         $subProject = $this->subProjectRepository->update($input, $id);
 
-        return $this->sendResponse($subProject->toArray(), 'SubProject updated successfully');
+        return $this->sendResponse(new SubProjectResource($subProject), 'SubProject updated successfully');
     }
 
     /**
