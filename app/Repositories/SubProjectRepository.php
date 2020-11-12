@@ -18,7 +18,8 @@ class SubProjectRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'name',
-        'description'
+        'description',
+        'project_id',
     ];
 
     /**

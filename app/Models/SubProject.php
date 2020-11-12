@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -50,7 +55,7 @@ class SubProject extends Model
     use SoftDeletes;
 
     public $table = 'sub_projects';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -61,7 +66,8 @@ class SubProject extends Model
 
     public $fillable = [
         'name',
-        'description'
+        'description',
+        'project_id'
     ];
 
     /**
@@ -72,21 +78,18 @@ class SubProject extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'description' => 'string',
+        'project_id' => 'string',
     ];
 
     /**
      * Validation rules
-     *
      * @var array
      */
     public static $rules = [
         'name' => 'required|string|max:255',
         'description' => 'required|string|max:255',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
     ];
 
-    
+
 }

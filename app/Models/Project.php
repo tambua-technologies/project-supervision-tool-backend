@@ -155,4 +155,9 @@ class Project extends Model
         return $this->belongsToMany(Sector::class, 'project_sectors', 'project_id', 'sector_id')->as('details')->withPivot('percent');
     }
 
+    public function sub_projects()
+    {
+        return $this->hasMany(SubProject::class);
+    }
+
 }
