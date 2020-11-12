@@ -2,33 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use Eloquent as Model;
+use App\Models\FocalPerson;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
-use Parental\HasParent;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Parental\HasChildren;
 
-/**
- * @SWG\Definition(
- *      definition="LoginFocalPerson",
- *      required={ "email", "password"},
- *      @SWG\Property(
- *          property="password",
- *          description="password",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="email",
- *          description="email",
- *          type="string"
- *      ),
- * )
- */
 
 
 /**
  * @SWG\Definition(
- *      definition="FocalPerson",
+ *      definition="User",
  *      required={"first_name", "email", "password"},
  *      @SWG\Property(
  *          property="id",
@@ -80,20 +64,31 @@ use Parental\HasParent;
  *      )
  * )
  */
-class FocalPerson extends User
-{
-    use HasParent, HasApiTokens;
 
+class User extends Authenticatable
+{
+    use Notifiable, HasChildren, SoftDeletes;
+
+
+    protected $dates = ['deleted_at'];
 
     /**
-     * Validation rules
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    public static $rules = [
-        'first_name' => 'required',
-        'email' => 'required',
-        'password' => 'required'
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+        'middle_name',
+        'phone',
+    ];
+
+    protected $childTypes = [
+        'focal_person' => FocalPerson::class,
     ];
 
     /**
@@ -102,8 +97,22 @@ class FocalPerson extends User
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'name', 'deleted_at'
+        'password', 'remember_token',
     ];
 
-
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'middle_name' => 'string',
+        'phone' => 'string',
+        'email' => 'string',
+        'password' => 'string',
+        'email_verified_at' => 'datetime',
+    ];
 }
