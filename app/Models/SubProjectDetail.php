@@ -122,6 +122,12 @@ class SubProjectDetail extends Model
         return $this->belongsTo(Actor::class);
     }
 
+
+    public function contractor()
+    {
+        return $this->belongsTo(Contractor::class);
+    }
+
     public function supervising_agency()
     {
         return $this->belongsTo(SupervisingAgency::class);

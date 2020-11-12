@@ -2,19 +2,33 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Actor;
+use App\Models\Contractor;
+use App\Models\Phase;
+use App\Models\SubProject;
 use App\Models\SubProjectDetail;
+use App\Models\SupervisingAgency;
 use Faker\Generator as Faker;
 
 $factory->define(SubProjectDetail::class, function (Faker $faker) {
 
     return [
-        'actor_id' => $faker->word,
-        'supervising_consultant_id' => $faker->word,
-        'phase_id' => $faker->word,
-        'start_date' => $faker->word,
-        'end_date' => $faker->word,
-        'contractor_id' => $faker->word,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s')
+        'supervising_agency_id' => function () {
+            return SupervisingAgency::query()->inRandomOrder()->first()->id;
+        },
+        'sub_project_id' => function () {
+            return SubProject::query()->inRandomOrder()->first()->id;
+        },
+        'actor_id' => function () {
+            return Actor::query()->inRandomOrder()->first()->id;
+        },
+        'phase_id' => function () {
+            return Phase::query()->inRandomOrder()->first()->id;
+        },
+        'contractor_id' => function () {
+            return Contractor::query()->inRandomOrder()->first()->id;
+        },
+        'start_date' => $faker->date('Y-m-d H:i:s'),
+        'end_date' => $faker->date('Y-m-d H:i:s'),
     ];
 });

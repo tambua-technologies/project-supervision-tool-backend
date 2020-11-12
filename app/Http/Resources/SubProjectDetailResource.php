@@ -21,11 +21,8 @@ class SubProjectDetailResource extends JsonResource
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'contractor' => new AgencyResource($this->contractor),
-            'supervising_agency_id' => new AgencyResource($this->supervising_agency_id),
+            'supervising_agency' => new AgencyResource($this->supervising_agency),
             'actor' => new AgencyResource($this->actor),
-            'sub_projects' => $this->sub_projects,
-            'details' => new ProjectDetailResource($this->details)
-
         ];
     }
 }
