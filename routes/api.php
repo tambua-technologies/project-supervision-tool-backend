@@ -95,3 +95,5 @@ Route::resource('sub_project_details', 'SubProjectDetailAPIController');
 Route::resource('sub_project_items', 'SubProjectItemsAPIController');
 
 Route::resource('items', 'ItemAPIController');
+
+Route::resource('sub_project_equipments', 'SubProjectEquipmentAPIController');

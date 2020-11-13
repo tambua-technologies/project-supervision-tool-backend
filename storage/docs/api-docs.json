@@ -3906,6 +3906,205 @@
                 }
             }
         },
+        "/sub_project_equipments": {
+            "get": {
+                "tags": [
+                    "SubProjectEquipment"
+                ],
+                "summary": "Get a listing of the SubProjectEquipments.",
+                "description": "Get all SubProjectEquipments",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/SubProjectEquipment"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "SubProjectEquipment"
+                ],
+                "summary": "Store a newly created SubProjectEquipment in storage",
+                "description": "Store SubProjectEquipment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectEquipment that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectEquipment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectEquipment"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/sub_project_equipments/{id}": {
+            "get": {
+                "tags": [
+                    "SubProjectEquipment"
+                ],
+                "summary": "Display the specified SubProjectEquipment",
+                "description": "Get SubProjectEquipment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectEquipment",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectEquipment"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "SubProjectEquipment"
+                ],
+                "summary": "Update the specified SubProjectEquipment in storage",
+                "description": "Update SubProjectEquipment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectEquipment",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectEquipment that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectEquipment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectEquipment"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "SubProjectEquipment"
+                ],
+                "summary": "Remove the specified SubProjectEquipment from storage",
+                "description": "Delete SubProjectEquipment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectEquipment",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/sub_project_items": {
             "get": {
                 "tags": [
@@ -5768,6 +5967,47 @@
                 },
                 "end_date": {
                     "description": "end_date",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "SubProjectEquipment": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "quantity_per_contract": {
+                    "description": "quantity_per_contract",
+                    "type": "number",
+                    "format": "number"
+                },
+                "quantity_mobilized": {
+                    "description": "quantity_mobilized",
+                    "type": "number",
+                    "format": "number"
+                },
+                "remarks": {
+                    "description": "remarks",
+                    "type": "string"
+                },
+                "mobilization_date": {
+                    "description": "mobilization_date",
                     "type": "string",
                     "format": "date-time"
                 },

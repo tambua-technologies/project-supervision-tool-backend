@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\SubProjectItems;
+use App\Models\SubProjectEquipment;
 use Illuminate\Database\Seeder;
 
-class SubProjectItemsTableSeeder extends Seeder
+class SubProjectEquipmentsTableSeeder extends Seeder
 {
 
     /**
@@ -13,6 +13,6 @@ class SubProjectItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(SubProjectItems::class)->create();
+        factory(SubProjectEquipment::class, 3)->create();
     }
 }
