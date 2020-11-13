@@ -12,8 +12,8 @@
         "inView": false
     },
     {
-        "name": "name",
-        "dbType": "string",
+        "name": "quantity",
+        "dbType": "double",
         "htmlType": null,
         "validations": "",
         "searchable": true,
@@ -24,8 +24,8 @@
         "inView": true
     },
     {
-        "name": "description",
-        "dbType": "text",
+        "name": "item_id",
+        "dbType": "unsignedBigInteger",
         "htmlType": null,
         "validations": "",
         "searchable": true,
@@ -36,19 +36,7 @@
         "inView": true
     },
     {
-        "name": "capacity",
-        "dbType": "string",
-        "htmlType": null,
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "unit_id",
+        "name": "sub_project_id",
         "dbType": "unsignedBigInteger",
         "htmlType": null,
         "validations": "",

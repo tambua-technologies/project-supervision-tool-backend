@@ -91,3 +91,7 @@ Route::resource('phases', 'PhaseAPIController');
 Route::resource('contractors', 'ContractorAPIController');
 
 Route::resource('sub_project_details', 'SubProjectDetailAPIController');
+
+Route::resource('sub_project_items', 'SubProjectItemsAPIController');
+
+Route::resource('items', 'ItemAPIController');

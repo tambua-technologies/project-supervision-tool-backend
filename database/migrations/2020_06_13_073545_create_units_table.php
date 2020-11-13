@@ -4,8 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectLeadersTable extends Migration
+class CreateUnitsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,10 +14,11 @@ class CreateProjectLeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_leaders', function (Blueprint $table) {
-            $table->id();
-            $table->string('project_id');
-            $table->unsignedBigInteger('leader_id')->nullable();
+        Schema::create('units', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('description');
+            $table->string('code');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +31,6 @@ class CreateProjectLeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_leaders');
+        Schema::drop('units');
     }
 }

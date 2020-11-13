@@ -16,13 +16,13 @@ class CreateSubProjectDetailsTable extends Migration
     {
         Schema::create('sub_project_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('actor_id');
-            $table->unsignedBigInteger('supervising_agency_id');
-            $table->unsignedBigInteger('phase_id');
+            $table->unsignedBigInteger('actor_id')->nullable();
+            $table->unsignedBigInteger('supervising_agency_id')->nullable();
+            $table->unsignedBigInteger('phase_id')->nullable();
             $table->unsignedBigInteger('sub_project_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->unsignedBigInteger('contractor_id');
+            $table->unsignedBigInteger('contractor_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
