@@ -3906,7 +3906,7 @@
                 }
             }
         },
-        "/subProjectItems": {
+        "/sub_project_items": {
             "get": {
                 "tags": [
                     "SubProjectItems"
@@ -3980,7 +3980,7 @@
                 }
             }
         },
-        "/subProjectItems/{id}": {
+        "/sub_project_items/{id}": {
             "get": {
                 "tags": [
                     "SubProjectItems"

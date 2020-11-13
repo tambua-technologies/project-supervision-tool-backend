@@ -30,7 +30,7 @@ class SubProjectItemsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/subProjectItems",
+     *      path="/sub_project_items",
      *      summary="Get a listing of the SubProjectItems.",
      *      tags={"SubProjectItems"},
      *      description="Get all SubProjectItems",
@@ -73,7 +73,7 @@ class SubProjectItemsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/subProjectItems",
+     *      path="/sub_project_items",
      *      summary="Store a newly created SubProjectItems in storage",
      *      tags={"SubProjectItems"},
      *      description="Store SubProjectItems",
@@ -120,7 +120,7 @@ class SubProjectItemsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/subProjectItems/{id}",
+     *      path="/sub_project_items/{id}",
      *      summary="Display the specified SubProjectItems",
      *      tags={"SubProjectItems"},
      *      description="Get SubProjectItems",
@@ -171,7 +171,7 @@ class SubProjectItemsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/subProjectItems/{id}",
+     *      path="/sub_project_items/{id}",
      *      summary="Update the specified SubProjectItems in storage",
      *      tags={"SubProjectItems"},
      *      description="Update SubProjectItems",
@@ -232,7 +232,7 @@ class SubProjectItemsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/subProjectItems/{id}",
+     *      path="/sub_project_items/{id}",
      *      summary="Remove the specified SubProjectItems from storage",
      *      tags={"SubProjectItems"},
      *      description="Delete SubProjectItems",
