@@ -12,8 +12,8 @@
         "inView": false
     },
     {
-        "name": "position_id",
-        "dbType": "unsignedBigInteger",
+        "name": "name",
+        "dbType": "string",
         "htmlType": null,
         "validations": "",
         "searchable": true,
@@ -24,8 +24,8 @@
         "inView": true
     },
     {
-        "name": "quantity",
-        "dbType": "integer",
+        "name": "description",
+        "dbType": "text",
         "htmlType": null,
         "validations": "",
         "searchable": true,
