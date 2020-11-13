@@ -103,3 +103,5 @@ Route::resource('progress', 'ProgressAPIController');
 Route::resource('human_resources', 'HumanResourceAPIController');
 
 Route::resource('positions', 'PositionAPIController');
+
+Route::resource('sub_project_milestones', 'SubProjectMilestonesAPIController');

@@ -4901,6 +4901,205 @@
                 }
             }
         },
+        "/sub_project_milestones": {
+            "get": {
+                "tags": [
+                    "SubProjectMilestones"
+                ],
+                "summary": "Get a listing of the SubProjectMilestones.",
+                "description": "Get all SubProjectMilestones",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/SubProjectMilestones"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "SubProjectMilestones"
+                ],
+                "summary": "Store a newly created SubProjectMilestones in storage",
+                "description": "Store SubProjectMilestones",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectMilestones that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectMilestones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectMilestones"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/sub_project_milestones/{id}": {
+            "get": {
+                "tags": [
+                    "SubProjectMilestones"
+                ],
+                "summary": "Display the specified SubProjectMilestones",
+                "description": "Get SubProjectMilestones",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectMilestones",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectMilestones"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "SubProjectMilestones"
+                ],
+                "summary": "Update the specified SubProjectMilestones in storage",
+                "description": "Update SubProjectMilestones",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectMilestones",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectMilestones that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectMilestones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectMilestones"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "SubProjectMilestones"
+                ],
+                "summary": "Remove the specified SubProjectMilestones from storage",
+                "description": "Delete SubProjectMilestones",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectMilestones",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/supervising_agencies": {
             "get": {
                 "tags": [
@@ -6733,6 +6932,36 @@
                     "description": "quantity",
                     "type": "number",
                     "format": "number"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "SubProjectMilestones": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",
