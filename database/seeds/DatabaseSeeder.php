@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PhasesTableSeeder::class);
         $this->call(UnitsTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
+        $this->call(ProgressTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(EnvironmentalCategoriesTableSeeder::class);
         $this->call(DistrictsTableSeeder::class);
