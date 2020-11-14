@@ -96,4 +96,9 @@ class SubProject extends Model
         return $this->hasOne(SubProjectDetail::class);
     }
 
+    public function sub_project_items()
+    {
+        return $this->hasmany(SubProjectItems::class);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\SubProjectItems;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,6 +22,7 @@ class SubProjectResource extends JsonResource
             'description' => $this->description,
             'project_id' => $this->project_id,
             'details' =>new SubProjectDetailResource($this->details),
+            'sub_project_items' =>SubProjectItemsResource::collection($this->sub_project_items),
 
         ];
     }
