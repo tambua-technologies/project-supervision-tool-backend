@@ -105,3 +105,9 @@ Route::resource('human_resources', 'HumanResourceAPIController');
 Route::resource('positions', 'PositionAPIController');
 
 Route::resource('sub_project_milestones', 'SubProjectMilestonesAPIController');
+
+Route::resource('contract_times', 'ContractTimeAPIController');
+
+Route::resource('contract_costs', 'ContractCostAPIController');
+
+Route::resource('sub_project_contracts', 'SubProjectContractAPIController');
