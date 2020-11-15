@@ -17,7 +17,7 @@ class SubProjectContractResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'contract_cost' => $this->contract_cost,
+            'contract_cost' => new ContractCostResource($this->contract_cost),
             'contract_time' => $this->contract_time,
             'sub_project_id' => $this->sub_project_id,
             'contractor' => new AgencyResource($this->contractor),

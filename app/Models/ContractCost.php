@@ -40,7 +40,7 @@ class ContractCost extends Model
     use SoftDeletes;
 
     public $table = 'contract_costs';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -65,7 +65,14 @@ class ContractCost extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'works_certified_to_date_percentage' => 'float'
+        'works_certified_to_date_percentage' => 'float',
+        'contract_award_value_id' => 'integer',
+        'certified_work_to_date_value_id' => 'integer',
+        'financial_penalties_applied_value_id' => 'integer',
+        'financial_penalties_granted_value_id' => 'integer',
+        'variations_granted_value_id' => 'integer',
+        'variations_applied_not_yet_granted_value_id' => 'integer',
+        'estimated_final_contract_price_id' => 'integer',
     ];
 
     /**
@@ -74,8 +81,37 @@ class ContractCost extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
+
+    public function contract_award_value()
+    {
+        return $this->belongsTo(Money::class, 'contract_award_value_id');
+    }
+    public function certified_work_to_date_value()
+    {
+        return $this->belongsTo(Money::class, 'certified_work_to_date_value_id');
+    }
+    public function financial_penalties_applied_value()
+    {
+        return $this->belongsTo(Money::class, 'financial_penalties_applied_value_id');
+    }
+    public function financial_penalties_granted_value()
+    {
+        return $this->belongsTo(Money::class, 'financial_penalties_granted_value_id');
+    }
+    public function variations_granted_value()
+    {
+        return $this->belongsTo(Money::class, 'variations_granted_value_id');
+    }
+    public function variations_applied_not_yet_granted_value()
+    {
+        return $this->belongsTo(Money::class, 'variations_applied_not_yet_granted_value_id');
+    }
+    public function estimated_final_contract_price()
+    {
+        return $this->belongsTo(Money::class, 'estimated_final_contract_price_id');
+    }
 }
