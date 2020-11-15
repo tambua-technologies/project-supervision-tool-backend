@@ -33,6 +33,7 @@ class MoneyAPIController extends AppBaseController
      *      path="/money",
      *      summary="Get a listing of the Money.",
      *      tags={"Money"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Money",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class MoneyAPIController extends AppBaseController
      *      path="/money",
      *      summary="Store a newly created Money in storage",
      *      tags={"Money"},
+     *     security={{"Bearer":{}}},
      *      description="Store Money",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class MoneyAPIController extends AppBaseController
      *      path="/money/{id}",
      *      summary="Display the specified Money",
      *      tags={"Money"},
+     *     security={{"Bearer":{}}},
      *      description="Get Money",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class MoneyAPIController extends AppBaseController
      *      path="/money/{id}",
      *      summary="Update the specified Money in storage",
      *      tags={"Money"},
+     *     security={{"Bearer":{}}},
      *      description="Update Money",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class MoneyAPIController extends AppBaseController
      *      path="/money/{id}",
      *      summary="Remove the specified Money from storage",
      *      tags={"Money"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Money",
      *      produces={"application/json"},
      *      @SWG\Parameter(

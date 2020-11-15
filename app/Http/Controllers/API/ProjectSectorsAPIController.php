@@ -33,6 +33,7 @@ class ProjectSectorsAPIController extends AppBaseController
      *      path="/projectSectors",
      *      summary="Get a listing of the ProjectSectors.",
      *      tags={"ProjectSectors"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ProjectSectors",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ProjectSectorsAPIController extends AppBaseController
      *      path="/projectSectors",
      *      summary="Store a newly created ProjectSectors in storage",
      *      tags={"ProjectSectors"},
+     *     security={{"Bearer":{}}},
      *      description="Store ProjectSectors",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ProjectSectorsAPIController extends AppBaseController
      *      path="/projectSectors/{id}",
      *      summary="Display the specified ProjectSectors",
      *      tags={"ProjectSectors"},
+     *     security={{"Bearer":{}}},
      *      description="Get ProjectSectors",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ProjectSectorsAPIController extends AppBaseController
      *      path="/projectSectors/{id}",
      *      summary="Update the specified ProjectSectors in storage",
      *      tags={"ProjectSectors"},
+     *     security={{"Bearer":{}}},
      *      description="Update ProjectSectors",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ProjectSectorsAPIController extends AppBaseController
      *      path="/projectSectors/{id}",
      *      summary="Remove the specified ProjectSectors from storage",
      *      tags={"ProjectSectors"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ProjectSectors",
      *      produces={"application/json"},
      *      @SWG\Parameter(

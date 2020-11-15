@@ -31,7 +31,7 @@ class ActorAPIController extends AppBaseController
      *      path="/actors",
      *      summary="Get a listing of the Actors.",
      *      tags={"Actor"},
-     *     security={{"MyHeaderAuthentication":{}}},
+     *     security={{"Bearer":{}}},
      *      description="Get all Actors",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -71,6 +71,7 @@ class ActorAPIController extends AppBaseController
      *      path="/actors",
      *      summary="Store a newly created Actor in storage",
      *      tags={"Actor"},
+     *     security={{"Bearer":{}}},
      *      description="Store Actor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -118,6 +119,7 @@ class ActorAPIController extends AppBaseController
      *      path="/actors/{id}",
      *      summary="Display the specified Actor",
      *      tags={"Actor"},
+     *     security={{"Bearer":{}}},
      *      description="Get Actor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -169,6 +171,7 @@ class ActorAPIController extends AppBaseController
      *      path="/actors/{id}",
      *      summary="Update the specified Actor in storage",
      *      tags={"Actor"},
+     *     security={{"Bearer":{}}},
      *      description="Update Actor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -230,6 +233,7 @@ class ActorAPIController extends AppBaseController
      *      path="/actors/{id}",
      *      summary="Remove the specified Actor from storage",
      *      tags={"Actor"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Actor",
      *      produces={"application/json"},
      *      @SWG\Parameter(

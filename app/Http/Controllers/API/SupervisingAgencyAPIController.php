@@ -33,6 +33,7 @@ class SupervisingAgencyAPIController extends AppBaseController
      *      path="/supervising_agencies",
      *      summary="Get a listing of the SupervisingAgencies.",
      *      tags={"SupervisingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SupervisingAgencies",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SupervisingAgencyAPIController extends AppBaseController
      *      path="/supervising_agencies",
      *      summary="Store a newly created SupervisingAgency in storage",
      *      tags={"SupervisingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Store SupervisingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SupervisingAgencyAPIController extends AppBaseController
      *      path="/supervising_agencies/{id}",
      *      summary="Display the specified SupervisingAgency",
      *      tags={"SupervisingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Get SupervisingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SupervisingAgencyAPIController extends AppBaseController
      *      path="/supervising_agencies/{id}",
      *      summary="Update the specified SupervisingAgency in storage",
      *      tags={"SupervisingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Update SupervisingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SupervisingAgencyAPIController extends AppBaseController
      *      path="/supervising_agencies/{id}",
      *      summary="Remove the specified SupervisingAgency from storage",
      *      tags={"SupervisingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SupervisingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(

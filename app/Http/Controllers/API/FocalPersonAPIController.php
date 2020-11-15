@@ -33,6 +33,7 @@ class FocalPersonAPIController extends AppBaseController
      *      path="/focal_people",
      *      summary="Get a listing of the FocalPeople.",
      *      tags={"FocalPerson"},
+     *     security={{"Bearer":{}}},
      *      description="Get all FocalPeople",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -72,6 +73,7 @@ class FocalPersonAPIController extends AppBaseController
      *      path="/focal_people",
      *      summary="Store a newly created FocalPerson in storage",
      *      tags={"FocalPerson"},
+     *     security={{"Bearer":{}}},
      *      description="Store FocalPerson",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -178,6 +180,7 @@ class FocalPersonAPIController extends AppBaseController
      *      path="/focal_people/{id}",
      *      summary="Display the specified FocalPerson",
      *      tags={"FocalPerson"},
+     *     security={{"Bearer":{}}},
      *      description="Get FocalPerson",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -229,6 +232,7 @@ class FocalPersonAPIController extends AppBaseController
      *      path="/focal_people/{id}",
      *      summary="Update the specified FocalPerson in storage",
      *      tags={"FocalPerson"},
+     *     security={{"Bearer":{}}},
      *      description="Update FocalPerson",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -290,6 +294,7 @@ class FocalPersonAPIController extends AppBaseController
      *      path="/focal_people/{id}",
      *      summary="Remove the specified FocalPerson from storage",
      *      tags={"FocalPerson"},
+     *     security={{"Bearer":{}}},
      *      description="Delete FocalPerson",
      *      produces={"application/json"},
      *      @SWG\Parameter(

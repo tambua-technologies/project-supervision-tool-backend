@@ -33,6 +33,7 @@ class CurrencyAPIController extends AppBaseController
      *      path="/currencies",
      *      summary="Get a listing of the Currencies.",
      *      tags={"Currency"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Currencies",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class CurrencyAPIController extends AppBaseController
      *      path="/currencies",
      *      summary="Store a newly created Currency in storage",
      *      tags={"Currency"},
+     *     security={{"Bearer":{}}},
      *      description="Store Currency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class CurrencyAPIController extends AppBaseController
      *      path="/currencies/{id}",
      *      summary="Display the specified Currency",
      *      tags={"Currency"},
+     *     security={{"Bearer":{}}},
      *      description="Get Currency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class CurrencyAPIController extends AppBaseController
      *      path="/currencies/{id}",
      *      summary="Update the specified Currency in storage",
      *      tags={"Currency"},
+     *     security={{"Bearer":{}}},
      *      description="Update Currency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class CurrencyAPIController extends AppBaseController
      *      path="/currencies/{id}",
      *      summary="Remove the specified Currency from storage",
      *      tags={"Currency"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Currency",
      *      produces={"application/json"},
      *      @SWG\Parameter(

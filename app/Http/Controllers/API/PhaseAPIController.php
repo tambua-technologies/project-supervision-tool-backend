@@ -33,6 +33,7 @@ class PhaseAPIController extends AppBaseController
      *      path="/phases",
      *      summary="Get a listing of the Phases.",
      *      tags={"Phase"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Phases",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class PhaseAPIController extends AppBaseController
      *      path="/phases",
      *      summary="Store a newly created Phase in storage",
      *      tags={"Phase"},
+     *     security={{"Bearer":{}}},
      *      description="Store Phase",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class PhaseAPIController extends AppBaseController
      *      path="/phases/{id}",
      *      summary="Display the specified Phase",
      *      tags={"Phase"},
+     *     security={{"Bearer":{}}},
      *      description="Get Phase",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class PhaseAPIController extends AppBaseController
      *      path="/phases/{id}",
      *      summary="Update the specified Phase in storage",
      *      tags={"Phase"},
+     *     security={{"Bearer":{}}},
      *      description="Update Phase",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class PhaseAPIController extends AppBaseController
      *      path="/phases/{id}",
      *      summary="Remove the specified Phase from storage",
      *      tags={"Phase"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Phase",
      *      produces={"application/json"},
      *      @SWG\Parameter(

@@ -33,6 +33,7 @@ class ItemAPIController extends AppBaseController
      *      path="/items",
      *      summary="Get a listing of the Items.",
      *      tags={"Item"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Items",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ItemAPIController extends AppBaseController
      *      path="/items",
      *      summary="Store a newly created Item in storage",
      *      tags={"Item"},
+     *     security={{"Bearer":{}}},
      *      description="Store Item",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ItemAPIController extends AppBaseController
      *      path="/items/{id}",
      *      summary="Display the specified Item",
      *      tags={"Item"},
+     *     security={{"Bearer":{}}},
      *      description="Get Item",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ItemAPIController extends AppBaseController
      *      path="/items/{id}",
      *      summary="Update the specified Item in storage",
      *      tags={"Item"},
+     *     security={{"Bearer":{}}},
      *      description="Update Item",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ItemAPIController extends AppBaseController
      *      path="/items/{id}",
      *      summary="Remove the specified Item from storage",
      *      tags={"Item"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Item",
      *      produces={"application/json"},
      *      @SWG\Parameter(

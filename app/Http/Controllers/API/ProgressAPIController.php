@@ -33,6 +33,7 @@ class ProgressAPIController extends AppBaseController
      *      path="/progress",
      *      summary="Get a listing of the Progress.",
      *      tags={"Progress"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Progress",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ProgressAPIController extends AppBaseController
      *      path="/progress",
      *      summary="Store a newly created Progress in storage",
      *      tags={"Progress"},
+     *     security={{"Bearer":{}}},
      *      description="Store Progress",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ProgressAPIController extends AppBaseController
      *      path="/progress/{id}",
      *      summary="Display the specified Progress",
      *      tags={"Progress"},
+     *     security={{"Bearer":{}}},
      *      description="Get Progress",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ProgressAPIController extends AppBaseController
      *      path="/progress/{id}",
      *      summary="Update the specified Progress in storage",
      *      tags={"Progress"},
+     *     security={{"Bearer":{}}},
      *      description="Update Progress",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ProgressAPIController extends AppBaseController
      *      path="/progress/{id}",
      *      summary="Remove the specified Progress from storage",
      *      tags={"Progress"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Progress",
      *      produces={"application/json"},
      *      @SWG\Parameter(

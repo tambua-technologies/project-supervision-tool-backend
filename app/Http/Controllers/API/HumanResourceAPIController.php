@@ -33,6 +33,7 @@ class HumanResourceAPIController extends AppBaseController
      *      path="/human_resources",
      *      summary="Get a listing of the HumanResources.",
      *      tags={"HumanResource"},
+     *     security={{"Bearer":{}}},
      *      description="Get all HumanResources",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class HumanResourceAPIController extends AppBaseController
      *      path="/human_resources",
      *      summary="Store a newly created HumanResource in storage",
      *      tags={"HumanResource"},
+     *     security={{"Bearer":{}}},
      *      description="Store HumanResource",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class HumanResourceAPIController extends AppBaseController
      *      path="/human_resources/{id}",
      *      summary="Display the specified HumanResource",
      *      tags={"HumanResource"},
+     *     security={{"Bearer":{}}},
      *      description="Get HumanResource",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class HumanResourceAPIController extends AppBaseController
      *      path="/human_resources/{id}",
      *      summary="Update the specified HumanResource in storage",
      *      tags={"HumanResource"},
+     *     security={{"Bearer":{}}},
      *      description="Update HumanResource",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class HumanResourceAPIController extends AppBaseController
      *      path="/human_resources/{id}",
      *      summary="Remove the specified HumanResource from storage",
      *      tags={"HumanResource"},
+     *     security={{"Bearer":{}}},
      *      description="Delete HumanResource",
      *      produces={"application/json"},
      *      @SWG\Parameter(

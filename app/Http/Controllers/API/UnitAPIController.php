@@ -33,6 +33,7 @@ class UnitAPIController extends AppBaseController
      *      path="/units",
      *      summary="Get a listing of the Units.",
      *      tags={"Unit"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Units",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class UnitAPIController extends AppBaseController
      *      path="/units",
      *      summary="Store a newly created Unit in storage",
      *      tags={"Unit"},
+     *     security={{"Bearer":{}}},
      *      description="Store Unit",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class UnitAPIController extends AppBaseController
      *      path="/units/{id}",
      *      summary="Display the specified Unit",
      *      tags={"Unit"},
+     *     security={{"Bearer":{}}},
      *      description="Get Unit",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class UnitAPIController extends AppBaseController
      *      path="/units/{id}",
      *      summary="Update the specified Unit in storage",
      *      tags={"Unit"},
+     *     security={{"Bearer":{}}},
      *      description="Update Unit",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class UnitAPIController extends AppBaseController
      *      path="/units/{id}",
      *      summary="Remove the specified Unit from storage",
      *      tags={"Unit"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Unit",
      *      produces={"application/json"},
      *      @SWG\Parameter(

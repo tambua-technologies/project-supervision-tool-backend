@@ -34,6 +34,7 @@ class ProjectDetailsAPIController extends AppBaseController
      *      path="/project_details",
      *      summary="Get a listing of the ProjectDetails.",
      *      tags={"ProjectDetails"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ProjectDetails",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -77,6 +78,7 @@ class ProjectDetailsAPIController extends AppBaseController
      *      path="/project_details",
      *      summary="Store a newly created ProjectDetails in storage",
      *      tags={"ProjectDetails"},
+     *     security={{"Bearer":{}}},
      *      description="Store ProjectDetails",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -124,6 +126,7 @@ class ProjectDetailsAPIController extends AppBaseController
      *      path="/project_details/{id}",
      *      summary="Display the specified ProjectDetails",
      *      tags={"ProjectDetails"},
+     *     security={{"Bearer":{}}},
      *      description="Get ProjectDetails",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -175,6 +178,7 @@ class ProjectDetailsAPIController extends AppBaseController
      *      path="/project_details/{id}",
      *      summary="Update the specified ProjectDetails in storage",
      *      tags={"ProjectDetails"},
+     *     security={{"Bearer":{}}},
      *      description="Update ProjectDetails",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -236,6 +240,7 @@ class ProjectDetailsAPIController extends AppBaseController
      *      path="/project_details/{id}",
      *      summary="Remove the specified ProjectDetails from storage",
      *      tags={"ProjectDetails"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ProjectDetails",
      *      produces={"application/json"},
      *      @SWG\Parameter(

@@ -33,6 +33,7 @@ class SubProjectItemsAPIController extends AppBaseController
      *      path="/sub_project_items",
      *      summary="Get a listing of the SubProjectItems.",
      *      tags={"SubProjectItems"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SubProjectItems",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SubProjectItemsAPIController extends AppBaseController
      *      path="/sub_project_items",
      *      summary="Store a newly created SubProjectItems in storage",
      *      tags={"SubProjectItems"},
+     *     security={{"Bearer":{}}},
      *      description="Store SubProjectItems",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SubProjectItemsAPIController extends AppBaseController
      *      path="/sub_project_items/{id}",
      *      summary="Display the specified SubProjectItems",
      *      tags={"SubProjectItems"},
+     *     security={{"Bearer":{}}},
      *      description="Get SubProjectItems",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SubProjectItemsAPIController extends AppBaseController
      *      path="/sub_project_items/{id}",
      *      summary="Update the specified SubProjectItems in storage",
      *      tags={"SubProjectItems"},
+     *     security={{"Bearer":{}}},
      *      description="Update SubProjectItems",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SubProjectItemsAPIController extends AppBaseController
      *      path="/sub_project_items/{id}",
      *      summary="Remove the specified SubProjectItems from storage",
      *      tags={"SubProjectItems"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SubProjectItems",
      *      produces={"application/json"},
      *      @SWG\Parameter(

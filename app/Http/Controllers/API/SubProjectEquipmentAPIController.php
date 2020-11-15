@@ -33,6 +33,7 @@ class SubProjectEquipmentAPIController extends AppBaseController
      *      path="/sub_project_equipments",
      *      summary="Get a listing of the SubProjectEquipments.",
      *      tags={"SubProjectEquipment"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SubProjectEquipments",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SubProjectEquipmentAPIController extends AppBaseController
      *      path="/sub_project_equipments",
      *      summary="Store a newly created SubProjectEquipment in storage",
      *      tags={"SubProjectEquipment"},
+     *     security={{"Bearer":{}}},
      *      description="Store SubProjectEquipment",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SubProjectEquipmentAPIController extends AppBaseController
      *      path="/sub_project_equipments/{id}",
      *      summary="Display the specified SubProjectEquipment",
      *      tags={"SubProjectEquipment"},
+     *     security={{"Bearer":{}}},
      *      description="Get SubProjectEquipment",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SubProjectEquipmentAPIController extends AppBaseController
      *      path="/sub_project_equipments/{id}",
      *      summary="Update the specified SubProjectEquipment in storage",
      *      tags={"SubProjectEquipment"},
+     *     security={{"Bearer":{}}},
      *      description="Update SubProjectEquipment",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SubProjectEquipmentAPIController extends AppBaseController
      *      path="/sub_project_equipments/{id}",
      *      summary="Remove the specified SubProjectEquipment from storage",
      *      tags={"SubProjectEquipment"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SubProjectEquipment",
      *      produces={"application/json"},
      *      @SWG\Parameter(

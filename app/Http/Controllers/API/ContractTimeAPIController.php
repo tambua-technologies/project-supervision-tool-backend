@@ -33,6 +33,7 @@ class ContractTimeAPIController extends AppBaseController
      *      path="/contractTimes",
      *      summary="Get a listing of the ContractTimes.",
      *      tags={"ContractTime"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ContractTimes",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ContractTimeAPIController extends AppBaseController
      *      path="/contractTimes",
      *      summary="Store a newly created ContractTime in storage",
      *      tags={"ContractTime"},
+     *     security={{"Bearer":{}}},
      *      description="Store ContractTime",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ContractTimeAPIController extends AppBaseController
      *      path="/contractTimes/{id}",
      *      summary="Display the specified ContractTime",
      *      tags={"ContractTime"},
+     *     security={{"Bearer":{}}},
      *      description="Get ContractTime",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ContractTimeAPIController extends AppBaseController
      *      path="/contractTimes/{id}",
      *      summary="Update the specified ContractTime in storage",
      *      tags={"ContractTime"},
+     *     security={{"Bearer":{}}},
      *      description="Update ContractTime",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ContractTimeAPIController extends AppBaseController
      *      path="/contractTimes/{id}",
      *      summary="Remove the specified ContractTime from storage",
      *      tags={"ContractTime"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ContractTime",
      *      produces={"application/json"},
      *      @SWG\Parameter(

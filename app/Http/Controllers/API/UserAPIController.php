@@ -33,6 +33,7 @@ class UserAPIController extends AppBaseController
      *      path="/users",
      *      summary="Get a listing of the Users.",
      *      tags={"User"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Users",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class UserAPIController extends AppBaseController
      *      path="/users",
      *      summary="Store a newly created User in storage",
      *      tags={"User"},
+     *     security={{"Bearer":{}}},
      *      description="Store User",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class UserAPIController extends AppBaseController
      *      path="/users/{id}",
      *      summary="Display the specified User",
      *      tags={"User"},
+     *     security={{"Bearer":{}}},
      *      description="Get User",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class UserAPIController extends AppBaseController
      *      path="/users/{id}",
      *      summary="Update the specified User in storage",
      *      tags={"User"},
+     *     security={{"Bearer":{}}},
      *      description="Update User",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class UserAPIController extends AppBaseController
      *      path="/users/{id}",
      *      summary="Remove the specified User from storage",
      *      tags={"User"},
+     *     security={{"Bearer":{}}},
      *      description="Delete User",
      *      produces={"application/json"},
      *      @SWG\Parameter(

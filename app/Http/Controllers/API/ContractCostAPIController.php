@@ -33,6 +33,7 @@ class ContractCostAPIController extends AppBaseController
      *      path="/contractCosts",
      *      summary="Get a listing of the ContractCosts.",
      *      tags={"ContractCost"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ContractCosts",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ContractCostAPIController extends AppBaseController
      *      path="/contractCosts",
      *      summary="Store a newly created ContractCost in storage",
      *      tags={"ContractCost"},
+     *     security={{"Bearer":{}}},
      *      description="Store ContractCost",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ContractCostAPIController extends AppBaseController
      *      path="/contractCosts/{id}",
      *      summary="Display the specified ContractCost",
      *      tags={"ContractCost"},
+     *     security={{"Bearer":{}}},
      *      description="Get ContractCost",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ContractCostAPIController extends AppBaseController
      *      path="/contractCosts/{id}",
      *      summary="Update the specified ContractCost in storage",
      *      tags={"ContractCost"},
+     *     security={{"Bearer":{}}},
      *      description="Update ContractCost",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ContractCostAPIController extends AppBaseController
      *      path="/contractCosts/{id}",
      *      summary="Remove the specified ContractCost from storage",
      *      tags={"ContractCost"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ContractCost",
      *      produces={"application/json"},
      *      @SWG\Parameter(

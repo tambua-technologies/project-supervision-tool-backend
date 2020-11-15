@@ -33,6 +33,7 @@ class SubProjectContractAPIController extends AppBaseController
      *      path="/sub_project_contracts",
      *      summary="Get a listing of the SubProjectContracts.",
      *      tags={"SubProjectContract"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SubProjectContracts",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SubProjectContractAPIController extends AppBaseController
      *      path="/sub_project_contracts",
      *      summary="Store a newly created SubProjectContract in storage",
      *      tags={"SubProjectContract"},
+     *     security={{"Bearer":{}}},
      *      description="Store SubProjectContract",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SubProjectContractAPIController extends AppBaseController
      *      path="/sub_project_contracts/{id}",
      *      summary="Display the specified SubProjectContract",
      *      tags={"SubProjectContract"},
+     *     security={{"Bearer":{}}},
      *      description="Get SubProjectContract",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SubProjectContractAPIController extends AppBaseController
      *      path="/sub_project_contracts/{id}",
      *      summary="Update the specified SubProjectContract in storage",
      *      tags={"SubProjectContract"},
+     *     security={{"Bearer":{}}},
      *      description="Update SubProjectContract",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SubProjectContractAPIController extends AppBaseController
      *      path="/sub_project_contracts/{id}",
      *      summary="Remove the specified SubProjectContract from storage",
      *      tags={"SubProjectContract"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SubProjectContract",
      *      produces={"application/json"},
      *      @SWG\Parameter(

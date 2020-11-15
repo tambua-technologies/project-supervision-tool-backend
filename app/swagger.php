@@ -1,9 +1,10 @@
 <?php
 /**
  * @SWG\SecurityScheme(
- *   securityDefinition="MyHeaderAuthentication",
+ *   securityDefinition="Bearer",
  *   type="apiKey",
  *   in="header",
- *   name="Authorization"
+ *   name="Authorization",
  * )
+ *
  */

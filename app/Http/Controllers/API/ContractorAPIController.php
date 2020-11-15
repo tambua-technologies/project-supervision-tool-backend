@@ -33,6 +33,7 @@ class ContractorAPIController extends AppBaseController
      *      path="/contractors",
      *      summary="Get a listing of the Contractors.",
      *      tags={"Contractor"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Contractors",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ContractorAPIController extends AppBaseController
      *      path="/contractors",
      *      summary="Store a newly created Contractor in storage",
      *      tags={"Contractor"},
+     *     security={{"Bearer":{}}},
      *      description="Store Contractor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ContractorAPIController extends AppBaseController
      *      path="/contractors/{id}",
      *      summary="Display the specified Contractor",
      *      tags={"Contractor"},
+     *     security={{"Bearer":{}}},
      *      description="Get Contractor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ContractorAPIController extends AppBaseController
      *      path="/contractors/{id}",
      *      summary="Update the specified Contractor in storage",
      *      tags={"Contractor"},
+     *     security={{"Bearer":{}}},
      *      description="Update Contractor",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ContractorAPIController extends AppBaseController
      *      path="/contractors/{id}",
      *      summary="Remove the specified Contractor from storage",
      *      tags={"Contractor"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Contractor",
      *      produces={"application/json"},
      *      @SWG\Parameter(

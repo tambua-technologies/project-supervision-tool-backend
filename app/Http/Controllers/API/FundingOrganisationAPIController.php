@@ -33,6 +33,7 @@ class FundingOrganisationAPIController extends AppBaseController
      *      path="/funding_organisations",
      *      summary="Get a listing of the FundingOrganisations.",
      *      tags={"FundingOrganisation"},
+     *     security={{"Bearer":{}}},
      *      description="Get all FundingOrganisations",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class FundingOrganisationAPIController extends AppBaseController
      *      path="/funding_organisations",
      *      summary="Store a newly created FundingOrganisation in storage",
      *      tags={"FundingOrganisation"},
+     *     security={{"Bearer":{}}},
      *      description="Store FundingOrganisation",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class FundingOrganisationAPIController extends AppBaseController
      *      path="/funding_organisations/{id}",
      *      summary="Display the specified FundingOrganisation",
      *      tags={"FundingOrganisation"},
+     *     security={{"Bearer":{}}},
      *      description="Get FundingOrganisation",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class FundingOrganisationAPIController extends AppBaseController
      *      path="/funding_organisations/{id}",
      *      summary="Update the specified FundingOrganisation in storage",
      *      tags={"FundingOrganisation"},
+     *     security={{"Bearer":{}}},
      *      description="Update FundingOrganisation",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class FundingOrganisationAPIController extends AppBaseController
      *      path="/funding_organisations/{id}",
      *      summary="Remove the specified FundingOrganisation from storage",
      *      tags={"FundingOrganisation"},
+     *     security={{"Bearer":{}}},
      *      description="Delete FundingOrganisation",
      *      produces={"application/json"},
      *      @SWG\Parameter(

@@ -37,6 +37,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations",
      *      summary="Get a listing of the Locations.",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Locations",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -75,6 +76,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations/regions",
      *      summary="Get a listing of the regions.",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Get all regions",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -115,6 +117,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations/districts/{region_id}",
      *      summary="Get a listing of the districts.",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Get all districts",
      *      produces={"application/json"},
      *     @SWG\Parameter(
@@ -161,6 +164,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations",
      *      summary="Store a newly created Location in storage",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Store Location",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -208,6 +212,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations/{id}",
      *      summary="Display the specified Location",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Get Location",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -259,6 +264,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations/{id}",
      *      summary="Update the specified Location in storage",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Update Location",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -320,6 +326,7 @@ class LocationAPIController extends AppBaseController
      *      path="/locations/{id}",
      *      summary="Remove the specified Location from storage",
      *      tags={"Location"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Location",
      *      produces={"application/json"},
      *      @SWG\Parameter(

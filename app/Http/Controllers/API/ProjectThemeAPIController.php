@@ -33,6 +33,7 @@ class ProjectThemeAPIController extends AppBaseController
      *      path="/projectThemes",
      *      summary="Get a listing of the ProjectThemes.",
      *      tags={"ProjectTheme"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ProjectThemes",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ProjectThemeAPIController extends AppBaseController
      *      path="/projectThemes",
      *      summary="Store a newly created ProjectTheme in storage",
      *      tags={"ProjectTheme"},
+     *     security={{"Bearer":{}}},
      *      description="Store ProjectTheme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ProjectThemeAPIController extends AppBaseController
      *      path="/projectThemes/{id}",
      *      summary="Display the specified ProjectTheme",
      *      tags={"ProjectTheme"},
+     *     security={{"Bearer":{}}},
      *      description="Get ProjectTheme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ProjectThemeAPIController extends AppBaseController
      *      path="/projectThemes/{id}",
      *      summary="Update the specified ProjectTheme in storage",
      *      tags={"ProjectTheme"},
+     *     security={{"Bearer":{}}},
      *      description="Update ProjectTheme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ProjectThemeAPIController extends AppBaseController
      *      path="/projectThemes/{id}",
      *      summary="Remove the specified ProjectTheme from storage",
      *      tags={"ProjectTheme"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ProjectTheme",
      *      produces={"application/json"},
      *      @SWG\Parameter(

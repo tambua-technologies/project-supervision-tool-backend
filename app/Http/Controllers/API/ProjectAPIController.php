@@ -34,6 +34,7 @@ class ProjectAPIController extends AppBaseController
      *      path="/projects",
      *      summary="Get a listing of the Projects.",
      *      tags={"Project"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Projects",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -77,6 +78,7 @@ class ProjectAPIController extends AppBaseController
      *      path="/projects",
      *      summary="Store a newly created Project in storage",
      *      tags={"Project"},
+     *     security={{"Bearer":{}}},
      *      description="Store Project",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ProjectAPIController extends AppBaseController
      *      path="/projects/{id}",
      *      summary="Display the specified Project",
      *      tags={"Project"},
+     *     security={{"Bearer":{}}},
      *      description="Get Project",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ProjectAPIController extends AppBaseController
      *      path="/projects/{id}",
      *      summary="Update the specified Project in storage",
      *      tags={"Project"},
+     *     security={{"Bearer":{}}},
      *      description="Update Project",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ProjectAPIController extends AppBaseController
      *      path="/projects/{id}",
      *      summary="Remove the specified Project from storage",
      *      tags={"Project"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Project",
      *      produces={"application/json"},
      *      @SWG\Parameter(

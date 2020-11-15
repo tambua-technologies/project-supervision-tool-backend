@@ -33,6 +33,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      *      path="/environmentalCategories",
      *      summary="Get a listing of the EnvironmentalCategories.",
      *      tags={"EnvironmentalCategory"},
+     *     security={{"Bearer":{}}},
      *      description="Get all EnvironmentalCategories",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      *      path="/environmentalCategories",
      *      summary="Store a newly created EnvironmentalCategory in storage",
      *      tags={"EnvironmentalCategory"},
+     *     security={{"Bearer":{}}},
      *      description="Store EnvironmentalCategory",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      *      path="/environmentalCategories/{id}",
      *      summary="Display the specified EnvironmentalCategory",
      *      tags={"EnvironmentalCategory"},
+     *     security={{"Bearer":{}}},
      *      description="Get EnvironmentalCategory",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      *      path="/environmentalCategories/{id}",
      *      summary="Update the specified EnvironmentalCategory in storage",
      *      tags={"EnvironmentalCategory"},
+     *     security={{"Bearer":{}}},
      *      description="Update EnvironmentalCategory",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      *      path="/environmentalCategories/{id}",
      *      summary="Remove the specified EnvironmentalCategory from storage",
      *      tags={"EnvironmentalCategory"},
+     *     security={{"Bearer":{}}},
      *      description="Delete EnvironmentalCategory",
      *      produces={"application/json"},
      *      @SWG\Parameter(

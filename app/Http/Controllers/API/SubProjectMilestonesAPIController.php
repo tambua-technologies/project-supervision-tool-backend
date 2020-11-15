@@ -33,6 +33,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      path="/sub_project_milestones",
      *      summary="Get a listing of the SubProjectMilestones.",
      *      tags={"SubProjectMilestones"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SubProjectMilestones",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      path="/sub_project_milestones",
      *      summary="Store a newly created SubProjectMilestones in storage",
      *      tags={"SubProjectMilestones"},
+     *     security={{"Bearer":{}}},
      *      description="Store SubProjectMilestones",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      path="/sub_project_milestones/{id}",
      *      summary="Display the specified SubProjectMilestones",
      *      tags={"SubProjectMilestones"},
+     *     security={{"Bearer":{}}},
      *      description="Get SubProjectMilestones",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      path="/sub_project_milestones/{id}",
      *      summary="Update the specified SubProjectMilestones in storage",
      *      tags={"SubProjectMilestones"},
+     *     security={{"Bearer":{}}},
      *      description="Update SubProjectMilestones",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      path="/sub_project_milestones/{id}",
      *      summary="Remove the specified SubProjectMilestones from storage",
      *      tags={"SubProjectMilestones"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SubProjectMilestones",
      *      produces={"application/json"},
      *      @SWG\Parameter(

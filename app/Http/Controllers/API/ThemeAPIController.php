@@ -33,6 +33,7 @@ class ThemeAPIController extends AppBaseController
      *      path="/themes",
      *      summary="Get a listing of the Themes.",
      *      tags={"Theme"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Themes",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ThemeAPIController extends AppBaseController
      *      path="/themes",
      *      summary="Store a newly created Theme in storage",
      *      tags={"Theme"},
+     *     security={{"Bearer":{}}},
      *      description="Store Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ThemeAPIController extends AppBaseController
      *      path="/themes/{id}",
      *      summary="Display the specified Theme",
      *      tags={"Theme"},
+     *     security={{"Bearer":{}}},
      *      description="Get Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ThemeAPIController extends AppBaseController
      *      path="/themes/{id}",
      *      summary="Update the specified Theme in storage",
      *      tags={"Theme"},
+     *     security={{"Bearer":{}}},
      *      description="Update Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ThemeAPIController extends AppBaseController
      *      path="/themes/{id}",
      *      summary="Remove the specified Theme from storage",
      *      tags={"Theme"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Theme",
      *      produces={"application/json"},
      *      @SWG\Parameter(

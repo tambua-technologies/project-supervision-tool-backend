@@ -33,6 +33,7 @@ class BorrowerAPIController extends AppBaseController
      *      path="/borrowers",
      *      summary="Get a listing of the Borrowers.",
      *      tags={"Borrower"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Borrowers",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class BorrowerAPIController extends AppBaseController
      *      path="/borrowers",
      *      summary="Store a newly created Borrower in storage",
      *      tags={"Borrower"},
+     *     security={{"Bearer":{}}},
      *      description="Store Borrower",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class BorrowerAPIController extends AppBaseController
      *      path="/borrowers/{id}",
      *      summary="Display the specified Borrower",
      *      tags={"Borrower"},
+     *     security={{"Bearer":{}}},
      *      description="Get Borrower",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class BorrowerAPIController extends AppBaseController
      *      path="/borrowers/{id}",
      *      summary="Update the specified Borrower in storage",
      *      tags={"Borrower"},
+     *     security={{"Bearer":{}}},
      *      description="Update Borrower",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class BorrowerAPIController extends AppBaseController
      *      path="/borrowers/{id}",
      *      summary="Remove the specified Borrower from storage",
      *      tags={"Borrower"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Borrower",
      *      produces={"application/json"},
      *      @SWG\Parameter(

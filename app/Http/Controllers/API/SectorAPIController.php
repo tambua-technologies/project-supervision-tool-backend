@@ -33,6 +33,7 @@ class SectorAPIController extends AppBaseController
      *      path="/sectors",
      *      summary="Get a listing of the Sectors.",
      *      tags={"Sector"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Sectors",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class SectorAPIController extends AppBaseController
      *      path="/sectors",
      *      summary="Store a newly created Sector in storage",
      *      tags={"Sector"},
+     *     security={{"Bearer":{}}},
      *      description="Store Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class SectorAPIController extends AppBaseController
      *      path="/sectors/{id}",
      *      summary="Display the specified Sector",
      *      tags={"Sector"},
+     *     security={{"Bearer":{}}},
      *      description="Get Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class SectorAPIController extends AppBaseController
      *      path="/sectors/{id}",
      *      summary="Update the specified Sector in storage",
      *      tags={"Sector"},
+     *     security={{"Bearer":{}}},
      *      description="Update Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class SectorAPIController extends AppBaseController
      *      path="/sectors/{id}",
      *      summary="Remove the specified Sector from storage",
      *      tags={"Sector"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Sector",
      *      produces={"application/json"},
      *      @SWG\Parameter(

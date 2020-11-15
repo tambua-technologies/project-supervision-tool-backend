@@ -33,6 +33,7 @@ class ImplementingAgencyAPIController extends AppBaseController
      *      path="/implementing_agencies",
      *      summary="Get a listing of the ImplementingAgencies.",
      *      tags={"ImplementingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Get all ImplementingAgencies",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class ImplementingAgencyAPIController extends AppBaseController
      *      path="/implementing_agencies",
      *      summary="Store a newly created ImplementingAgency in storage",
      *      tags={"ImplementingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Store ImplementingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class ImplementingAgencyAPIController extends AppBaseController
      *      path="/implementing_agencies/{id}",
      *      summary="Display the specified ImplementingAgency",
      *      tags={"ImplementingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Get ImplementingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class ImplementingAgencyAPIController extends AppBaseController
      *      path="/implementing_agencies/{id}",
      *      summary="Update the specified ImplementingAgency in storage",
      *      tags={"ImplementingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Update ImplementingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class ImplementingAgencyAPIController extends AppBaseController
      *      path="/implementing_agencies/{id}",
      *      summary="Remove the specified ImplementingAgency from storage",
      *      tags={"ImplementingAgency"},
+     *     security={{"Bearer":{}}},
      *      description="Delete ImplementingAgency",
      *      produces={"application/json"},
      *      @SWG\Parameter(

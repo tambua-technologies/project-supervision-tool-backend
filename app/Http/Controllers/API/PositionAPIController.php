@@ -33,6 +33,7 @@ class PositionAPIController extends AppBaseController
      *      path="/positions",
      *      summary="Get a listing of the Positions.",
      *      tags={"Position"},
+     *     security={{"Bearer":{}}},
      *      description="Get all Positions",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -76,6 +77,7 @@ class PositionAPIController extends AppBaseController
      *      path="/positions",
      *      summary="Store a newly created Position in storage",
      *      tags={"Position"},
+     *     security={{"Bearer":{}}},
      *      description="Store Position",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -123,6 +125,7 @@ class PositionAPIController extends AppBaseController
      *      path="/positions/{id}",
      *      summary="Display the specified Position",
      *      tags={"Position"},
+     *     security={{"Bearer":{}}},
      *      description="Get Position",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -174,6 +177,7 @@ class PositionAPIController extends AppBaseController
      *      path="/positions/{id}",
      *      summary="Update the specified Position in storage",
      *      tags={"Position"},
+     *     security={{"Bearer":{}}},
      *      description="Update Position",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -235,6 +239,7 @@ class PositionAPIController extends AppBaseController
      *      path="/positions/{id}",
      *      summary="Remove the specified Position from storage",
      *      tags={"Position"},
+     *     security={{"Bearer":{}}},
      *      description="Delete Position",
      *      produces={"application/json"},
      *      @SWG\Parameter(

@@ -34,6 +34,7 @@ class SubProjectAPIController extends AppBaseController
      *      path="/sub_projects",
      *      summary="Get a listing of the SubProjects.",
      *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
      *      description="Get all SubProjects",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -77,6 +78,7 @@ class SubProjectAPIController extends AppBaseController
      *      path="/sub_projects",
      *      summary="Store a newly created SubProject in storage",
      *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
      *      description="Store SubProject",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -125,6 +127,7 @@ class SubProjectAPIController extends AppBaseController
      *      path="/sub_projects/{id}",
      *      summary="Display the specified SubProject",
      *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
      *      description="Get SubProject",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -176,6 +179,7 @@ class SubProjectAPIController extends AppBaseController
      *      path="/sub_projects/{id}",
      *      summary="Update the specified SubProject in storage",
      *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
      *      description="Update SubProject",
      *      produces={"application/json"},
      *      @SWG\Parameter(
@@ -237,6 +241,7 @@ class SubProjectAPIController extends AppBaseController
      *      path="/sub_projects/{id}",
      *      summary="Remove the specified SubProject from storage",
      *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
      *      description="Delete SubProject",
      *      produces={"application/json"},
      *      @SWG\Parameter(
