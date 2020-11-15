@@ -84,7 +84,7 @@ class SubProjectAPIController extends AppBaseController
      *          in="body",
      *          description="SubProject that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/SubProject")
+     *          @SWG\Schema(ref="#/definitions/SubProjectPayload")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -112,6 +112,7 @@ class SubProjectAPIController extends AppBaseController
         $input = $request->all();
 
         $subProject = $this->subProjectRepository->create($input);
+        $subProject->attachLocations($request->locations);
 
         return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project saved successfully');
     }
@@ -189,7 +190,7 @@ class SubProjectAPIController extends AppBaseController
      *          in="body",
      *          description="SubProject that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/SubProject")
+     *          @SWG\Schema(ref="#/definitions/SubProjectPayload")
      *      ),
      *      @SWG\Response(
      *          response=200,

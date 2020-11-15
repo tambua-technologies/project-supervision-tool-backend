@@ -16,6 +16,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="item_id",
+ *          description="item_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub_project_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="quantity_per_contract",
  *          description="quantity_per_contract",
  *          type="number",
@@ -57,7 +69,7 @@ class SubProjectEquipment extends Model
     use SoftDeletes;
 
     public $table = 'sub_project_equipments';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -65,6 +77,7 @@ class SubProjectEquipment extends Model
 
     public $fillable = [
         'item_id',
+        'sub_project_id',
         'quantity_per_contract',
         'quantity_mobilized',
         'remarks',
@@ -78,6 +91,8 @@ class SubProjectEquipment extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'sub_project_id' => 'integer',
+        'item_id' => 'integer',
         'quantity_per_contract' => 'double',
         'quantity_mobilized' => 'double',
         'remarks' => 'string',
@@ -90,8 +105,12 @@ class SubProjectEquipment extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
 }

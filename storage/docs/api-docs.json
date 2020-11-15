@@ -4552,7 +4552,7 @@
                         "description": "SubProject that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/SubProject"
+                            "$ref": "#/definitions/SubProjectPayload"
                         }
                     }
                 ],
@@ -4639,7 +4639,7 @@
                         "description": "SubProject that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/SubProject"
+                            "$ref": "#/definitions/SubProjectPayload"
                         }
                     }
                 ],
@@ -6963,6 +6963,16 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "sub_project_id": {
+                    "description": "sub_project_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "position_id": {
+                    "description": "position_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "quantity": {
                     "description": "quantity",
                     "type": "integer",
@@ -7462,6 +7472,56 @@
                 }
             }
         },
+        "SubProjectPayload": {
+            "required": [
+                "name",
+                "description"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "project_id": {
+                    "description": "project_id",
+                    "type": "string"
+                },
+                "locations": {
+                    "description": "locations",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "progress_id": {
+                    "description": "progress_id",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "deleted_at": {
+                    "description": "deleted_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "SubProject": {
             "required": [
                 "name",
@@ -7483,6 +7543,10 @@
                 },
                 "project_id": {
                     "description": "project_id",
+                    "type": "string"
+                },
+                "progress_id": {
+                    "description": "progress_id",
                     "type": "string"
                 },
                 "created_at": {
@@ -7591,6 +7655,16 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "item_id": {
+                    "description": "item_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "sub_project_id": {
+                    "description": "sub_project_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "quantity_per_contract": {
                     "description": "quantity_per_contract",
                     "type": "number",
@@ -7629,6 +7703,16 @@
             "properties": {
                 "id": {
                     "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "item_id": {
+                    "description": "item_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "sub_project_id": {
+                    "description": "sub_project_id",
                     "type": "integer",
                     "format": "int32"
                 },

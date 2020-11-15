@@ -16,6 +16,7 @@ class CreateSubProjectEquipmentsTable extends Migration
     {
         Schema::create('sub_project_equipments', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('sub_project_id');
             $table->unsignedBigInteger('item_id');
             $table->double('quantity_per_contract');
             $table->double('quantity_mobilized');
@@ -27,6 +28,11 @@ class CreateSubProjectEquipmentsTable extends Migration
             $table->foreign('item_id')
                 ->references('id')
                 ->on('items')
+                ->onDelete('set null');
+
+            $table->foreign('sub_project_id')
+                ->references('id')
+                ->on('sub_projects')
                 ->onDelete('set null');
         });
     }

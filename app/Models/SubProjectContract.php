@@ -71,5 +71,19 @@ class SubProjectContract extends Model
 
     ];
 
+    public function contract_cost()
+    {
+        return $this->belongsTo(ContractCost::class);
+    }
+
+    public function contract_time()
+    {
+        return $this->belongsTo(ContractTime::class);
+    }
+
+    public function contractor()
+    {
+        return $this->belongsTo(Contractor::class);
+    }
 
 }

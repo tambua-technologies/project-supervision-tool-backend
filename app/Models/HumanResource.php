@@ -16,6 +16,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub_project_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="position_id",
+ *          description="position_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="quantity",
  *          description="quantity",
  *          type="integer",
@@ -40,7 +52,7 @@ class HumanResource extends Model
     use SoftDeletes;
 
     public $table = 'human_resources';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -48,6 +60,7 @@ class HumanResource extends Model
 
     public $fillable = [
         'position_id',
+        'sub_project_id',
         'quantity'
     ];
 
@@ -58,6 +71,8 @@ class HumanResource extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'position_id' => 'integer',
+        'sub_project_id' => 'integer',
         'quantity' => 'integer'
     ];
 
@@ -67,8 +82,12 @@ class HumanResource extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
 }

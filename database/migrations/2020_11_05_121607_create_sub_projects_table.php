@@ -18,12 +18,18 @@ class CreateSubProjectsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('project_id');
+            $table->unsignedBigInteger('progress_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('project_id')
                 ->references('id')
                 ->on('projects')
+                ->onDelete('cascade');
+
+            $table->foreign('progress_id')
+                ->references('id')
+                ->on('progress')
                 ->onDelete('cascade');
         });
     }

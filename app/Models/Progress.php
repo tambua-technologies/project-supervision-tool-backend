@@ -58,7 +58,7 @@ class Progress extends Model
     use SoftDeletes;
 
     public $table = 'progress';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -90,8 +90,11 @@ class Progress extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function sub_project()
+    {
+        return $this->hasOne(SubProject::class);
+    }
 }

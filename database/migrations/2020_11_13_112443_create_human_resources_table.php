@@ -16,6 +16,7 @@ class CreateHumanResourcesTable extends Migration
     {
         Schema::create('human_resources', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('sub_project_id');
             $table->unsignedBigInteger('position_id');
             $table->integer('quantity');
             $table->timestamps();
@@ -24,6 +25,10 @@ class CreateHumanResourcesTable extends Migration
             $table->foreign('position_id')
                 ->references('id')
                 ->on('positions');
+
+            $table->foreign('sub_project_id')
+                ->references('id')
+                ->on('sub_projects');
         });
     }
 
