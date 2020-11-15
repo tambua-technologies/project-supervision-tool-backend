@@ -37,7 +37,12 @@
                             "type": "object"
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "MyHeaderAuthentication": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -7916,6 +7921,13 @@
                     "format": "date-time"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "MyHeaderAuthentication": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

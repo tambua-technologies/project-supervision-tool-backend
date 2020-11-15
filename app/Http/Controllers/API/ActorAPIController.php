@@ -26,13 +26,12 @@ class ActorAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/actors",
      *      summary="Get a listing of the Actors.",
      *      tags={"Actor"},
+     *     security={{"MyHeaderAuthentication":{}}},
      *      description="Get all Actors",
      *      produces={"application/json"},
      *      @SWG\Response(
@@ -54,7 +53,7 @@ class ActorAPIController extends AppBaseController
      *                  type="string"
      *              )
      *          )
-     *      )
+     *      ),
      * )
      */
     public function index(Request $request)
