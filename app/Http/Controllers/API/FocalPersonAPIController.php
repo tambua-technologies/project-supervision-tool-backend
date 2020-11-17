@@ -165,8 +165,8 @@ class FocalPersonAPIController extends AppBaseController
             'email' => 'email|required',
             'password' => 'required',
         ]);
-        if(! auth()->attempt($loginDta)) {
-            return response(['failed' => 'These credentials do not match our records.'],'200');
+        if(!auth()->attempt($loginDta)) {
+            return response(['failed' => 'These credentials do not match our records.'],'401');
         }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
         return $this->sendResponse(['access_token' => $accessToken], 'login was successful');
