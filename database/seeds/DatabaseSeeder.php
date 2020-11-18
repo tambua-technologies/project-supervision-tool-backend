@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(DistrictsTableSeeder::class);
-//        $this->call(RegionsTableSeeder::class);
-        $this->call(DistrictsWithGeomTableSeeder::class);
-        $this->call(RegionsWithGeomTableSeeder::class);
+        $this->call(DistrictsTableSeeder::class);
+        $this->call(RegionsTableSeeder::class);
+//        $this->call(DistrictsWithGeomTableSeeder::class);
+//        $this->call(RegionsWithGeomTableSeeder::class);
 
         $this->call(PhasesTableSeeder::class);
         $this->call(UnitsTableSeeder::class);

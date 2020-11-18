@@ -20,7 +20,7 @@ class CreateDistrictsTable extends Migration {
             $table->string('adm0_pcode', 50)->nullable();
             $table->string('adm1_en', 50)->nullable();
             $table->string('region_id', 50)->nullable();
-            $table->multiPolygon('geom');
+//            $table->multiPolygon('geom');
             $table->string('name', 50)->nullable();
         });
     }
