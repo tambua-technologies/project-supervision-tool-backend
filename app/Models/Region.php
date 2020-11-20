@@ -49,4 +49,14 @@ class Region extends Model
         'geom' => 'object',
     ];
 
+    static public function projectsOverview()
+    {
+       return DB::table('regions')
+            ->join('locations', 'locations.region_id', '=', 'regions.id')
+            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
+           ->groupBy('regions.id')
+           ->select(DB::raw('regions.id, regions.name, regions.geom, count(project_locations.project_id) as projects_count'))
+            ->get();
+    }
+
 }
