@@ -20,7 +20,7 @@ class RegionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'geom' => json_decode($this->geom),
+            'geom' => $this->geom,
         ];
     }
 }

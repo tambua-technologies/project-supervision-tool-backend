@@ -46,5 +46,6 @@ class District extends Model
     protected $casts = [
         'id' => 'string',
         'region_id' => 'string',
+        'geom' => 'object',
     ];
 }

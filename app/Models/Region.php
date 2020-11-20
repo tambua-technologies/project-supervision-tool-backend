@@ -45,6 +45,8 @@ class Region extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'name' => 'string',
+        'geom' => 'object',
     ];
 
 }
