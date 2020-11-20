@@ -31,7 +31,6 @@ class District extends Model
      * @var array
      */
     protected $hidden = [
-        'geom',
         'adm0_pcode',
         'adm0_en',
         'adm1_en',
@@ -48,13 +47,4 @@ class District extends Model
         'id' => 'string',
         'region_id' => 'string',
     ];
-
-    public function getGeoJsonAttribute()
-    {
-        $geo_string = DB::table('districts')
-            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
-            ->where('id', '=', $this->id)
-            ->first();
-        return json_decode($geo_string->geom);
-    }
 }

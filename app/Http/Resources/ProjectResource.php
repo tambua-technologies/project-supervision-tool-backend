@@ -19,6 +19,7 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'locations' => LocationResource::collection($this->locations),
 //            'leaders' => $this->leaders,
 //            'sectors' => $this->sectors,
 //            'themes' => $this->themes,

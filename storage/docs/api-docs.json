@@ -8063,6 +8063,12 @@
                         "type": "integer"
                     }
                 },
+                "locations": {
+                    "description": "locations",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
                 "created_at": {
                     "description": "created_at",
                     "type": "string",

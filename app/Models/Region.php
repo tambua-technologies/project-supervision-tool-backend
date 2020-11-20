@@ -31,7 +31,6 @@ class Region extends Model
      * @var array
      */
     protected $hidden = [
-        'geom',
         'adm0_pcode',
         'adm0_en',
         'adm0_sw',
@@ -47,14 +46,5 @@ class Region extends Model
     protected $casts = [
         'id' => 'string',
     ];
-
-    public function getGeoJsonAttribute()
-    {
-        $geo_string = DB::table('regions')
-            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
-            ->where('id', '=', $this->id)
-            ->first();
-        return json_decode($geo_string->geom);
-    }
 
 }
