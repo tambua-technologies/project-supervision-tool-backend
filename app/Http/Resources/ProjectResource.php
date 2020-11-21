@@ -20,11 +20,11 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'locations' => LocationResource::collection($this->locations),
-//            'leaders' => $this->leaders,
-//            'sectors' => $this->sectors,
-//            'themes' => $this->themes,
-//            'sub_projects' => $this->sub_projects,
-//            'details' => new ProjectDetailResource($this->details)
+            'leaders' => $this->leaders,
+            'sectors' => $this->sectors,
+            'themes' => $this->themes,
+            'sub_projects' => $this->sub_projects,
+            'details' => new ProjectDetailResource($this->details)
 
         ];
     }

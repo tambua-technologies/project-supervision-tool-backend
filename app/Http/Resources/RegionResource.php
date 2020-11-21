@@ -20,7 +20,6 @@ class RegionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'geom' => $this->geom,
         ];
     }
 }
