@@ -27,7 +27,7 @@ return [
       | Use secure protocol (http vs. https).
       |--------------------------------------------------------------------------
      */
-    'secure-protocol' => env('USE_SECURE_PROTOCOL', false),
+    'secure-protocol' => env('USE_SECURE_PROTOCOL', true),
 
     /*
       |--------------------------------------------------------------------------
