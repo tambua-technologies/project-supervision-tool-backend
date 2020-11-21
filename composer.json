@@ -23,6 +23,7 @@
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "ext-json": "*",
         "laravelcollective/html": "^6.1",
         "orangehill/iseed": "^2.6"
     },

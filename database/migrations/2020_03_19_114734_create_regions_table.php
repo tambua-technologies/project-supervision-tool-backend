@@ -12,15 +12,15 @@ class CreateRegionsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('regions', function(Blueprint $table)
-        {
-            $table->string('id')->primary('regions_pkey');
-            $table->string('adm0_en', 50)->nullable();
-            $table->string('adm0_sw', 50)->nullable();
-            $table->string('adm0_pcode', 50)->nullable();
-            $table->string('name', 50)->nullable();
-//            $table->multiPolygon('geom');
-        });
+//        Schema::create('regions', function(Blueprint $table)
+//        {
+//            $table->string('id')->primary('regions_pkey');
+//            $table->string('adm0_en', 50)->nullable();
+//            $table->string('adm0_sw', 50)->nullable();
+//            $table->string('adm0_pcode', 50)->nullable();
+//            $table->string('name', 50)->nullable();
+//            $table->jsonb('geom');
+//        });
     }
 
 
@@ -31,7 +31,7 @@ class CreateRegionsTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('regions');
+//        Schema::drop('regions');
     }
 
 }

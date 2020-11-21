@@ -2859,6 +2859,45 @@
                 ]
             }
         },
+        "/locations/regions/projects_overview": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get an overview of projects per region ",
+                "description": "Get an overview of projects per region",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Region"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/locations/districts/{region_id}": {
             "get": {
                 "tags": [
@@ -8059,6 +8098,12 @@
                 },
                 "leaders": {
                     "description": "leaders",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "locations": {
+                    "description": "locations",
                     "items": {
                         "type": "integer"
                     }

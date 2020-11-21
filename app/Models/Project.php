@@ -31,6 +31,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
+ *          property="locations",
+ *          description="locations",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -117,9 +122,6 @@ class Project extends Model
      */
     public static $rules = [
         'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable'
     ];
 
     public function leaders()
@@ -127,17 +129,23 @@ class Project extends Model
         return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
     }
 
-    public function removeDuplicateIds($arr)
-    {
-        $attachedIds = $this->leaders()->get()->pluck(['id']);
-        $collection = collect($arr);
-        return $collection->diff($attachedIds);
-    }
+
 
     public function attachLeaders($leaders)
     {
-        $leadersToAttach = $this->removeDuplicateIds($leaders);
+        $attachedIds = $this->leaders()->get()->pluck(['id']);
+        $collection = collect($leaders);
+        $leadersToAttach = $collection->diff($attachedIds);
         $this->leaders()->attach($leadersToAttach);
+    }
+
+    public function attachLocations($locations)
+    {
+        $attachedIds = $this->locations()->get()->pluck(['id']);
+        $collection = collect($locations);
+        $locationsToAttach = $collection->diff($attachedIds);
+
+        $this->locations()->attach($locationsToAttach);
     }
 
     public function details()
@@ -155,9 +163,15 @@ class Project extends Model
         return $this->belongsToMany(Sector::class, 'project_sectors', 'project_id', 'sector_id')->as('details')->withPivot('percent');
     }
 
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'project_locations', 'project_id', 'location_id');
+    }
+
     public function sub_projects()
     {
         return $this->hasMany(SubProject::class);
     }
+
 
 }

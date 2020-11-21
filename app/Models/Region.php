@@ -31,7 +31,6 @@ class Region extends Model
      * @var array
      */
     protected $hidden = [
-        'geom',
         'adm0_pcode',
         'adm0_en',
         'adm0_sw',
@@ -46,15 +45,18 @@ class Region extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'name' => 'string',
+        'geom' => 'object',
     ];
 
-    public function getGeoJsonAttribute()
+    static public function projectsOverview()
     {
-        $geo_string = DB::table('regions')
-            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
-            ->where('id', '=', $this->id)
-            ->first();
-        return json_decode($geo_string->geom);
+       return DB::table('regions')
+            ->join('locations', 'locations.region_id', '=', 'regions.id')
+            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
+           ->groupBy('regions.id')
+           ->select(DB::raw('regions.id, regions.name, regions.geom, count(project_locations.project_id) as projects_count'))
+            ->get();
     }
 
 }

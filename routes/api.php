@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/focal_people/login', 'FocalPersonAPIController@login');
 Route::get('/locations/regions', 'LocationAPIController@regions');
+Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
 Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
 
 

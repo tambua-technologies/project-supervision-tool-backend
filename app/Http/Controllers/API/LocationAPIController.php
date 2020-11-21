@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
 use App\Http\Resources\LocationResource;
+use App\Http\Resources\ProjectOverview;
 use App\Http\Resources\SimpleLocationResource;
 use App\Models\District;
 use App\Models\Location;
@@ -106,6 +107,45 @@ class LocationAPIController extends AppBaseController
         $locations = Region::all();
 
         return $this->sendResponse(SimpleLocationResource::collection($locations), 'Regions retrieved successfully');
+    }
+
+    /**
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/regions/projects_overview",
+     *      summary="Get an overview of projects per region ",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get an overview of projects per region",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function projectsOverviewPerRegion()
+    {
+        $projectsOverview = Region::projectsOverview();
+
+        return $this->sendResponse(ProjectOverview::collection($projectsOverview), 'Projects Overview retrieved successfully');
     }
 
 
