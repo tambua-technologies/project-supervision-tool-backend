@@ -148,6 +148,53 @@ class LocationAPIController extends AppBaseController
         return $this->sendResponse(ProjectOverview::collection($projectsOverview), 'Projects Overview retrieved successfully');
     }
 
+    /**
+     * @param $region_id
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/regions/{region_id}/projects",
+     *      summary="get projects  based on region",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description=" get projects  based on region ",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="region_id",
+     *          description="id of Region",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function getProjectsByRegion($region_id)
+    {
+        $projectsOverview = Region::getProjects($region_id);
+
+        return $this->sendResponse($projectsOverview, 'Region projects retrieved successfully');
+    }
+
 
     /**
      * @param $region_id
@@ -293,6 +340,57 @@ class LocationAPIController extends AppBaseController
         }
 
         return $this->sendResponse($location->toArray(), 'Location retrieved successfully');
+    }
+
+    /**
+     * @param int $id
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/region/{id}",
+     *      summary="Display the specified Location",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get Location",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of region",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Location"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function getRegion($id)
+    {
+        /** @var Region $location */
+        $location = Region::query()->find($id);
+
+        if (empty($location)) {
+            return $this->sendError('Region not found');
+        }
+
+        return $this->sendResponse($location->toArray(), 'Region retrieved successfully');
     }
 
     /**
