@@ -19,16 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/focal_people/login', 'FocalPersonAPIController@login');
-Route::get('/locations/regions', 'LocationAPIController@regions');
-Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
-Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
-Route::get('/locations/region/{id}', 'LocationAPIController@getRegion');
-Route::get('/locations/regions/{region_id}/projects', 'LocationAPIController@getProjectsByRegion');
 
 
 // Public Routes
 Route::middleware('auth:api')
     ->group(function () {
+
+        Route::get('/locations/regions', 'LocationAPIController@regions');
+        Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
+        Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
+        Route::get('/locations/region/{id}', 'LocationAPIController@getRegion');
+        Route::get('/locations/regions/{region_id}/projects', 'LocationAPIController@getProjectsByRegion');
+
+        // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
         Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
         Route::resource('actors', 'ActorAPIController');
