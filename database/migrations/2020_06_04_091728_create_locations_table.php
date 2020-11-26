@@ -19,6 +19,8 @@ class CreateLocationsTable extends Migration
             $table->string("region_id")->nullable();
             $table->unsignedBigInteger("country_id")->nullable();
             $table->string("district_id")->nullable();
+            $table->float("lat")->nullable();
+            $table->float("lng")->nullable();
             $table->timestamps();
             $table->softDeletes();
 

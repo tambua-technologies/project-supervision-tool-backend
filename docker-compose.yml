@@ -15,6 +15,15 @@ services:
     ports:
       - "5432:5432"
 
+  web:
+    build: .
+    image: my-laravel-image
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/app
+
+
   redis-tukutane:
     image: redis:alpine
     container_name: redis-tukutane
