@@ -61,15 +61,16 @@ class Region extends Model
 
     static public function getProjects($region_id)
     {
-       return DB::table('regions')
+       $projectIds =  DB::table('regions')
             ->join('locations', 'locations.region_id', '=', 'regions.id')
             ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
             ->join('projects', 'projects.id', '=', 'project_locations.project_id')
             ->join('sub_projects', 'sub_projects.project_id', '=', 'projects.id')
            ->where('regions.id', '=',$region_id)
            ->groupBy('projects.id', 'region_id', 'regions.id', 'projects.name')
-           ->select(DB::raw('regions.name, regions.id, projects.name,projects.id, count(sub_projects.id) AS sub_projects_count'))
-            ->get();
+           ->select(DB::raw('projects.id'))
+            ->get()->pluck(['id']);
+       return Project::find($projectIds);
     }
 
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
 use App\Http\Resources\LocationResource;
-use App\Http\Resources\ProjectOverview;
+use App\Http\Resources\Projects\ProjectOverview;
+use App\Http\Resources\Projects\ProjectOverviewWithLocation;
+use App\Http\Resources\Projects\ProjectResource;
 use App\Http\Resources\SimpleLocationResource;
 use App\Models\District;
 use App\Models\Location;
@@ -192,7 +194,7 @@ class LocationAPIController extends AppBaseController
     {
         $projectsOverview = Region::getProjects($region_id);
 
-        return $this->sendResponse($projectsOverview, 'Region projects retrieved successfully');
+        return $this->sendResponse(ProjectOverviewWithLocation::collection($projectsOverview), 'Region projects retrieved successfully');
     }
 
 

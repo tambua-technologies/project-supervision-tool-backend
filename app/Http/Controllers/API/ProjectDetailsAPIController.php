@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateProjectDetailsAPIRequest;
 use App\Http\Requests\API\UpdateProjectDetailsAPIRequest;
-use App\Http\Resources\ProjectDetailResource;
+use App\Http\Resources\Projects\ProjectDetailResource;
 use App\Models\ProjectDetails;
 use App\Repositories\ProjectDetailsRepository;
 use Illuminate\Http\Request;

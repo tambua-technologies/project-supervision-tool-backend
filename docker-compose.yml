@@ -12,24 +12,18 @@ services:
       - POSTGRES_USER=postgres-tukutane
       - POSTGRES_PASSWORD=StrongPass@tukutane
       - POSTGRES_DB=tukutane
-    ports:
-      - "5432:5432"
 
   web:
     build: .
-    image: my-laravel-image
+    image: project-supervision-tool
+    container_name: project-superviosion-tool
+    restart: unless-stopped
+    depends_on:
+      - postgres-tukutane
     ports:
       - 8000:8000
     volumes:
       - ./:/app
-
-
-  redis-tukutane:
-    image: redis:alpine
-    container_name: redis-tukutane
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
 
 volumes:
   tukutane-dbdata:
