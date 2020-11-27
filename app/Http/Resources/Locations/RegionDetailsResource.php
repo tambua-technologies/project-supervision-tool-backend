@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Locations;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
 
-class ProjectOverview extends JsonResource
+class RegionDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +16,11 @@ class ProjectOverview extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
-            'region_name' => $this->name,
-            'projects_count' => $this->projects_count,
-            'geometry' => json_decode($this->geom)
+            'name' => $this->name,
+            'geom' => $this->geom
         ];
     }
 }

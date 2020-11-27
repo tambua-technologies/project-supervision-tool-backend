@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Projects;
 
+use App\Http\Resources\Locations\LocationWithDistrict;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Log;
 
-class RegionDetailsResource extends JsonResource
+class ProjectOverviewWithLocation extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,11 @@ class RegionDetailsResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'geom' => $this->geom
+            'description' => $this->description,
+            'locations' => LocationWithDistrict::collection($this->locations),
         ];
     }
 }
