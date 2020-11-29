@@ -397,6 +397,57 @@ class LocationAPIController extends AppBaseController
 
     /**
      * @param int $id
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/region/{id}/project_statistics",
+     *      summary="Display Project statistics based on region",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get Location",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of region",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Location"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function project_statistics($id)
+    {
+        /** @var Region $location */
+        $location = Region::query()->find($id);
+
+        if (empty($location)) {
+            return $this->sendError('Region not found');
+        }
+
+        return $this->sendResponse(Region::get_region_projects_statistics($id), 'Region project statistics retrieved successfully');
+    }
+
+    /**
+     * @param int $id
      * @param UpdateLocationAPIRequest $request
      * @return Response
      *
