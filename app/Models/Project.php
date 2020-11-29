@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -97,7 +98,6 @@ class Project extends Model
     protected $dates = ['deleted_at'];
 
 
-
     public $fillable = [
         'id',
         'name',
@@ -128,7 +128,6 @@ class Project extends Model
     {
         return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
     }
-
 
 
     public function attachLeaders($leaders)
@@ -171,6 +170,41 @@ class Project extends Model
     public function sub_projects()
     {
         return $this->hasMany(SubProject::class);
+    }
+
+    static public function statistics($project_id = "")
+    {
+        if ($project_id) {
+            $project_districts_count = DB::table('locations')
+                ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
+                ->where('level', '=', 'district')
+                ->where('project_id', '=', $project_id)
+                ->select(DB::raw('count(*) AS total'))
+                ->first();
+
+            $project_regions_count = DB::table('locations')
+                ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
+                ->where('level', '=', 'region')
+                ->where('project_id', '=', $project_id)
+                ->select(DB::raw('count(*) AS total'))
+                ->first();
+            return [ 'districts' =>$project_districts_count->total,  'regions' => $project_regions_count->total ];
+        }
+
+        $total_projects = Project::count();
+        $district_locations_count = DB::table('locations')
+            ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
+            ->where('level', '=', 'district')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        $regions_locations_count = DB::table('locations')
+            ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
+            ->where('level', '=', 'region')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        return ['projects' => $total_projects, 'districts' =>$district_locations_count->total,  'regions' => $regions_locations_count->total ];
     }
 
 

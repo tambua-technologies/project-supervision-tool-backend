@@ -170,6 +170,61 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/projects/statistics",
+     *      summary="Get Project(s) statistics",
+     *      tags={"Project"},
+     *     security={{"Bearer":{}}},
+     *      description="Get Project(s) statistics",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of Project",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Project"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function statistics(Request $request)
+    {
+        $id = $request->query('id');
+        if ($id) {
+            /** @var Project $project */
+            $project = $this->projectRepository->find($id);
+            if (empty($project)) {
+                return $this->sendError('Project not found');
+            }
+
+            return $this->sendResponse(Project::statistics($project->id), 'Project statistics retrieved');
+        }
+
+        return $this->sendResponse(Project::statistics(), 'Projects statistics retrieved');
+    }
+
+    /**
      * @param int $id
      * @param UpdateProjectAPIRequest $request
      * @return Response

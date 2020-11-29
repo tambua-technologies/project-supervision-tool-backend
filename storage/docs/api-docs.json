@@ -4299,6 +4299,51 @@
                 ]
             }
         },
+        "/projects/statistics": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Get Project(s) statistics",
+                "description": "Get Project(s) statistics",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of Project",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Project"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/project_details": {
             "get": {
                 "tags": [
