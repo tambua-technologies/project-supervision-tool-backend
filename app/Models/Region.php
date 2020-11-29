@@ -59,6 +59,19 @@ class Region extends Model
             ->get();
     }
 
+    static public function get_region_projects_statistics($region_id) {
+        $total_region_projects =  DB::table('projects')
+            ->join('project_locations', 'project_locations.project_id', '=', 'projects.id')
+            ->join('locations', 'locations.id', '=', 'project_locations.location_id')
+            ->groupBy('region_id')
+            ->where('region_id', '=', $region_id)
+            ->select(DB::raw('count(*) as total'))
+            ->first();
+
+        return ['projects' => $total_region_projects->total ];
+
+    }
+
     static public function getProjects($region_id)
     {
        $projectIds =  DB::table('regions')
