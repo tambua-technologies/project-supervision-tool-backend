@@ -172,6 +172,7 @@ class Project extends Model
         return $this->hasMany(SubProject::class);
     }
 
+
     static public function statistics($project_id = "")
     {
         if ($project_id) {
@@ -198,13 +199,27 @@ class Project extends Model
             ->select(DB::raw('count(*) AS total'))
             ->first();
 
-        $regions_locations_count = DB::table('locations')
-            ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
-            ->where('level', '=', 'region')
-            ->select(DB::raw('count(*) AS total'))
+        $total_commitment_amount = DB::table('projects')
+            ->join('project_details', 'projects.id', '=', 'project_details.project_id')
+            ->join('money', 'project_details.commitment_amount_id', '=', 'money.id')
+            ->join('currencies', 'money.currency_id', '=', 'currencies.id')
+            ->groupBy('currencies.iso')
+            ->select(DB::raw('CAST(SUM(money.amount) AS BIGINT) AS total, currencies.iso'))
             ->first();
 
-        return ['projects' => $total_projects, 'districts' =>$district_locations_count->total,  'regions' => $regions_locations_count->total ];
+        $regions_locations_count = DB::table('regions')
+            ->join('locations', 'locations.region_id', '=', 'regions.id')
+            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
+            ->groupBy('regions.id')
+            ->select(DB::raw('regions.id, regions.name, regions.geom, count(project_locations.project_id) as projects_count'))
+            ->get()->count();
+
+        return [
+            'projects' => $total_projects,
+            'commitment_amount' => $total_commitment_amount,
+            'districts' =>$district_locations_count->total,
+            'regions' => $regions_locations_count
+        ];
     }
 
 
