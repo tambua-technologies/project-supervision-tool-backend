@@ -13,6 +13,20 @@ services:
       - POSTGRES_PASSWORD=StrongPass@tukutane
       - POSTGRES_DB=tukutane
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-tukutane
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mloweedgar0@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: StrongPass@tukutane
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+  #      - ./pgadmin:/var/lib/pgadmin/storage
+
   web:
     build: .
     image: project-supervision-tool
@@ -27,3 +41,4 @@ services:
 
 volumes:
   tukutane-dbdata:
+  pgadmin-data:
