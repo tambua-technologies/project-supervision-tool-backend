@@ -35,7 +35,7 @@ services:
     depends_on:
       - postgres-tukutane
     ports:
-      - 8000:8000
+      - 80:8000
     volumes:
       - ./:/app
 
