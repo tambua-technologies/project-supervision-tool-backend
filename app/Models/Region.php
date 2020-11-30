@@ -60,6 +60,7 @@ class Region extends Model
     }
 
     static public function get_region_projects_statistics($region_id) {
+
         $total_region_projects =  DB::table('projects')
             ->join('project_locations', 'project_locations.project_id', '=', 'projects.id')
             ->join('locations', 'locations.id', '=', 'project_locations.location_id')
@@ -68,7 +69,31 @@ class Region extends Model
             ->select(DB::raw('count(*) as total'))
             ->first();
 
-        return ['projects' => $total_region_projects->total ];
+        $total_sub_projects = DB::table('regions')
+            ->join('locations', 'locations.region_id', '=', 'regions.id')
+            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
+            ->join('projects', 'projects.id', '=', 'project_locations.project_id')
+            ->join('sub_projects', 'sub_projects.project_id', '=', 'projects.id')
+            ->where('regions.id', '=',$region_id)
+            ->select(DB::raw('count(sub_projects.id)'))
+            ->first();
+
+        $total_commitment_amount = DB::table('locations')
+            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
+            ->join('projects', 'projects.id', '=', 'project_locations.project_id')
+            ->join('project_details', 'project_details.project_id', '=', 'projects.id')
+            ->join('money', 'money.id', '=', 'project_details.commitment_amount_id')
+            ->join('currencies', 'currencies.id', '=', 'money.currency_id')
+            ->where('region_id', '=',$region_id)
+            ->groupBy('currencies.iso')
+            ->select(DB::raw('CAST( SUM(amount) AS BIGINT) AS total, iso'))
+            ->first();
+
+        return [
+            'projects' => $total_region_projects->total,
+            'sub_projects' => $total_sub_projects->count,
+            'commitment_amount' => $total_commitment_amount
+        ];
 
     }
 
