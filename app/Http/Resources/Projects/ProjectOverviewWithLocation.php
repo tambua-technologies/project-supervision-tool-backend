@@ -21,6 +21,8 @@ class ProjectOverviewWithLocation extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'locations' => LocationWithDistrict::collection($this->locations),
+            'details' => new ProjectDetailResource($this->details),
+            'sub_projects' => $this->sub_projects,
         ];
     }
 }
