@@ -1,4 +1,11 @@
-FROM php:7.3-alpine
+FROM php:7.3-fpm-alpine
+
+# Copy composer.lock and composer.json
+COPY composer.lock composer.json /var/www/
+
+# Set working directory
+WORKDIR /var/www
+
 
 # Install dev dependencies
 RUN apk add --no-cache --virtual .build-deps \
@@ -82,10 +89,26 @@ RUN composer global require "squizlabs/php_codesniffer=*"
 # Cleanup dev dependencies
 RUN apk del -f .build-deps
 
-# Setup working directory
-WORKDIR /app
-COPY . /app
-RUN composer install
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
-EXPOSE 8000
+
+#RUN composer install
+
+# Add user for laravel application
+#RUN groupadd -g 1000 www
+RUN addgroup -g 1000 www
+
+#RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN adduser -u 1000 -G www -h /home/username -D www
+
+# Copy existing application directory contents
+COPY . /var/www
+
+# Copy existing application directory permissions
+COPY --chown=www:www . /var/www
+
+# Change current user to www
+USER www
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]
