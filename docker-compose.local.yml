@@ -1,6 +1,5 @@
 version: '3'
 
-
 services:
   postgres-tukutane:
     image: postgis/postgis
@@ -15,25 +14,12 @@ services:
     ports:
       - "5432:5432"
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin-tukutane
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: mloweedgar0@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: StrongPass@tukutane
-      PGADMIN_LISTEN_PORT: 80
-    ports:
-      - "8080:80"
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-  #      - ./pgadmin:/var/lib/pgadmin/storage
-
   web:
     build: .
     image: project-supervision-tool
     container_name: project-superviosion-tool
     restart: unless-stopped
+    command: "php artisan serve --host=0.0.0.0 --port=8000"
     depends_on:
       - postgres-tukutane
     ports:
@@ -41,6 +27,15 @@ services:
     volumes:
       - ./:/app
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/code
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    links:
+      - web
+
 volumes:
   tukutane-dbdata:
-  pgadmin-data:
