@@ -91,8 +91,17 @@ RUN apk del -f .build-deps
 
 
 
-RUN addgroup -g 1000 -S www \
-    && adduser -u 1000 -D -S -G www www
+#RUN composer install
+
+# Add user for laravel application
+#RUN groupadd -g 1000 www
+RUN addgroup -g 1000 www
+
+#RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN adduser -u 1000 -G www -h /home/username -D www
+
+# Copy existing application directory contents
+COPY . /var/www
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
