@@ -30,7 +30,7 @@ class ProjectSectorsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projectSectors",
+     *      path="/project_sectors",
      *      summary="Get a listing of the ProjectSectors.",
      *      tags={"ProjectSectors"},
      *     security={{"Bearer":{}}},
@@ -74,7 +74,7 @@ class ProjectSectorsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/projectSectors",
+     *      path="/project_sectors",
      *      summary="Store a newly created ProjectSectors in storage",
      *      tags={"ProjectSectors"},
      *     security={{"Bearer":{}}},
@@ -122,7 +122,7 @@ class ProjectSectorsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/projectSectors/{id}",
+     *      path="/project_sectors/{id}",
      *      summary="Display the specified ProjectSectors",
      *      tags={"ProjectSectors"},
      *     security={{"Bearer":{}}},
@@ -174,7 +174,7 @@ class ProjectSectorsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/projectSectors/{id}",
+     *      path="/project_sectors/{id}",
      *      summary="Update the specified ProjectSectors in storage",
      *      tags={"ProjectSectors"},
      *     security={{"Bearer":{}}},
@@ -236,7 +236,7 @@ class ProjectSectorsAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/projectSectors/{id}",
+     *      path="/project_sectors/{id}",
      *      summary="Remove the specified ProjectSectors from storage",
      *      tags={"ProjectSectors"},
      *     security={{"Bearer":{}}},
