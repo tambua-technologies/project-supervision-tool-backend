@@ -24,7 +24,7 @@ services:
     ports:
       - 8000:9000
     volumes:
-      - ./:/app
+      - ./:/var/www
 
   web:
     image: nginx:alpine

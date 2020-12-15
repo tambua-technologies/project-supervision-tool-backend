@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
-use App\Http\Resources\LocationResource;
+use App\Http\Resources\Locations\LocationResource;
 use App\Http\Resources\Projects\ProjectOverview;
 use App\Http\Resources\Projects\ProjectOverviewWithLocation;
 use App\Http\Resources\Projects\ProjectResource;
