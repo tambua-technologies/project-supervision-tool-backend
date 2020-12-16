@@ -4613,7 +4613,7 @@
                 ]
             }
         },
-        "/projectSectors": {
+        "/project_sectors": {
             "get": {
                 "tags": [
                     "ProjectSectors"
@@ -4697,7 +4697,7 @@
                 ]
             }
         },
-        "/projectSectors/{id}": {
+        "/project_sectors/{id}": {
             "get": {
                 "tags": [
                     "ProjectSectors"
