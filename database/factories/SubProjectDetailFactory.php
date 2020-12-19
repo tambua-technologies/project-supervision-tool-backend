@@ -17,7 +17,7 @@ $factory->define(SubProjectDetail::class, function (Faker $faker) {
             return SupervisingAgency::query()->inRandomOrder()->first()->id;
         },
         'sub_project_id' => function () {
-            return SubProject::query()->inRandomOrder()->first()->id;
+            return factory(SubProject::class)->create()->id;
         },
         'actor_id' => function () {
             return Actor::query()->inRandomOrder()->first()->id;

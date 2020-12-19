@@ -28,6 +28,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="progress_id",
+ *          description="progress_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="quantity",
  *          description="quantity",
  *          type="number",
@@ -61,7 +67,8 @@ class SubProjectItems extends Model
     public $fillable = [
         'quantity',
         'item_id',
-        'sub_project_id'
+        'sub_project_id',
+        'progress_id'
     ];
 
     /**
@@ -73,7 +80,8 @@ class SubProjectItems extends Model
         'id' => 'integer',
         'quantity' => 'double',
         'item_id' => 'integer',
-        'sub_project_id' => 'integer'
+        'sub_project_id' => 'integer',
+        'progress_id' => 'integer',
     ];
 
     /**
@@ -88,6 +96,11 @@ class SubProjectItems extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function progress()
+    {
+        return $this->belongsTo(Progress::class);
     }
 
 }
