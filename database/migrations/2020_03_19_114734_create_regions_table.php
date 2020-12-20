@@ -19,7 +19,7 @@ class CreateRegionsTable extends Migration {
             $table->string('adm0_sw', 50)->nullable();
             $table->string('adm0_pcode', 50)->nullable();
             $table->string('name', 50)->nullable();
-            $table->jsonb('geom');
+            $table->multiPolygon('geom');
         });
     }
 

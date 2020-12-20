@@ -33,6 +33,12 @@ use Parental\HasChildren;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="location_id",
+ *          description="location_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -70,6 +76,7 @@ class Agency extends Model
         'name',
         'website',
         'focal_person_id',
+        'location_id',
         'agency_type_id',
         'type'
     ];
@@ -94,6 +101,7 @@ class Agency extends Model
         'website' => 'string',
         'type' => 'string',
         'focal_person_id' => 'integer',
+        'location_id' => 'integer',
         'agency_type_id' => 'integer'
     ];
 
@@ -113,7 +121,15 @@ class Agency extends Model
      **/
     public function focalPerson()
     {
-        return $this->belongsTo(\App\Models\FocalPerson::class, 'focal_person_id');
+        return $this->belongsTo(FocalPerson::class, 'focal_person_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
 }

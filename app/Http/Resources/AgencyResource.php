@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Locations\LocationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AgencyResource extends JsonResource
@@ -19,6 +20,7 @@ class AgencyResource extends JsonResource
             'name' => $this->name,
             'website' => $this->website,
             'focalPerson' => $this->focalPerson,
+            'location' => new LocationResource($this->location),
             'type' => $this->type,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

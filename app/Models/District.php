@@ -48,4 +48,13 @@ class District extends Model
         'region_id' => 'string',
         'geom' => 'object',
     ];
+
+    public function getGeomAttribute()
+    {
+        $geom = DB::table('regions')
+            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
+            ->where('id', '=', 'TZ02')->first()->geom;
+
+        return json_decode($geom);
+    }
 }

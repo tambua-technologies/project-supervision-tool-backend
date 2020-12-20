@@ -22,6 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="locations",
+ *          description="locations",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
  *          property="sub_project_id",
  *          description="sub_project_id",
  *          type="integer",
@@ -101,6 +106,11 @@ class SubProjectItems extends Model
     public function progress()
     {
         return $this->belongsTo(Progress::class);
+    }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class,'sub_project_item_locations','sub_project_item_id', 'location_id');
     }
 
 }

@@ -46,8 +46,17 @@ class Region extends Model
     protected $casts = [
         'id' => 'string',
         'name' => 'string',
-        'geom' => 'object',
     ];
+
+    public function getGeomAttribute()
+    {
+        $geom = DB::table('regions')
+            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
+            ->where('id', '=', 'TZ02')->first()->geom;
+
+        return json_decode($geom);
+    }
+
 
     static public function projectsOverview()
     {
