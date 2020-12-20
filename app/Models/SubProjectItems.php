@@ -110,7 +110,7 @@ class SubProjectItems extends Model
 
     public function locations()
     {
-        return $this->belongsToMany(Location::class,'sub_project_item_locations','sub_project_item_id', 'location_id');
+        return $this->belongsToMany(Location::class,'sub_project_item_location','sub_project_item_id', 'location_id');
     }
 
 }

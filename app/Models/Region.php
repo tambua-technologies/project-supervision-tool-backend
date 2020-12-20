@@ -48,6 +48,16 @@ class Region extends Model
         'name' => 'string',
     ];
 
+    public static function test() {
+        return  $regionIds = DB::table('sub_projects')
+            ->join('projects', 'projects.id', '=', 'sub_projects.project_id')
+            ->join('project_locations', 'project_locations.project_id', '=', 'projects.id')
+            ->join('locations', 'locations.id', '=', 'project_locations.location_id')
+            ->join('regions', 'regions.id', '=', 'locations.region_id')
+            ->where('sub_projects.id', '=', 1)
+            ->select('regions.id')->get();
+    }
+
     public function getGeomAttribute()
     {
         $geom = DB::table('regions')
