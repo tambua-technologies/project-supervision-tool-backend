@@ -19,7 +19,7 @@ $factory->define(SubProjectEquipment::class, function (Faker $faker) {
         },
         'quantity_per_contract' => $faker->randomDigit,
         'quantity_mobilized' => $faker->randomDigit,
-        'remarks' => $faker->word,
+        'remarks' => $faker->sentence,
         'mobilization_date' => $faker->date('Y-m-d H:i:s')
     ];
 });

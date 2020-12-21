@@ -10,8 +10,8 @@ use Faker\Generator as Faker;
 $factory->define(SubProject::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
-        'description' => $faker->word,
+        'name' => $faker->sentence,
+        'description' => $faker->text,
         'project_id' => function () {
             return Project::query()->inRandomOrder()->first()->id;
         },

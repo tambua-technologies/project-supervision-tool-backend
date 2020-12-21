@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SupervisingAgenciesTableSeeder::class);
         $this->call(ContractorsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
-//        $this->call(SubProjectTableSeeder::class);
         $this->call(ProjectThemesTableSeeder::class);
         $this->call(ProjectSectorsTableSeeder::class);
         $this->call(SubProjectDetailsTableSeeder::class);
@@ -44,5 +43,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SubProjectContractsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(ProjectLocationsTableSeeder::class);
+        $this->call(SubProjectLocationsSeeder::class);
+        $this->call(SubProjectItemLocationSeeder::class);
+
     }
 }

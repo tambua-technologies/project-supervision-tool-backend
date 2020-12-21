@@ -12,7 +12,7 @@ use Faker\Generator as Faker;
 $factory->define(SubProjectContract::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
+        'name' => $faker->sentence,
         'sub_project_id' => function () {
         return SubProject::query()->inRandomOrder()->first()->id;
     },

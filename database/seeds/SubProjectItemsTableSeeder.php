@@ -13,14 +13,8 @@ class SubProjectItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(SubProjectItems::class)->create();
+        factory(SubProjectItems::class, 50)->create();
 
-        /*
-         * seed item locations
-         * steps
-         *   1. randomly get location from sub project
-         *   2. get a random point from that location
-         *   3. attach that  random point to sub project item location
-        */
+
     }
 }

@@ -71,6 +71,8 @@ class SubProjectItems extends Model
 
     public $fillable = [
         'quantity',
+        'name',
+        'description',
         'item_id',
         'sub_project_id',
         'progress_id'
@@ -84,6 +86,8 @@ class SubProjectItems extends Model
     protected $casts = [
         'id' => 'integer',
         'quantity' => 'double',
+        'name' => 'string',
+        'description' => 'string',
         'item_id' => 'integer',
         'sub_project_id' => 'integer',
         'progress_id' => 'integer',
@@ -101,6 +105,11 @@ class SubProjectItems extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function sub_project()
+    {
+        return $this->belongsTo(SubProject::class);
     }
 
     public function progress()

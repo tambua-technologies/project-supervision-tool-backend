@@ -62,6 +62,7 @@ class Location extends Model
     public $fillable = [
         'district_id',
         'region_id',
+        'point',
         'level',
     ];
 
@@ -85,6 +86,12 @@ class Location extends Model
     public static $rules = [
         'level' => 'required'
     ];
+
+
+    public function getPointAttribute($value)
+    {
+        return json_decode($value);
+    }
 
     public function region()
     {

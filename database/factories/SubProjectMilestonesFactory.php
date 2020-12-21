@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(SubProjectMilestones::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
+        'name' => $faker->sentence,
         'description' => $faker->text,
         'sub_project_id' => function () {
             return SubProject::query()->inRandomOrder()->first()->id;

@@ -19,6 +19,8 @@ class SubProjectItemsResource extends JsonResource
         return [
             'id' => $this->id,
             'quantity' => $this->quantity,
+            'name' => $this->name,
+            'description' => $this->description,
             'item' => $this->item,
             'progress' => $this->progress,
             'sub_project_id' => $this->sub_project_id,
