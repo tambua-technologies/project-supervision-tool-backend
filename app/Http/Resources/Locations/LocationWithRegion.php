@@ -5,7 +5,7 @@ namespace App\Http\Resources\Locations;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LocationWithDistrict extends JsonResource
+class LocationWithRegion extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +19,7 @@ class LocationWithDistrict extends JsonResource
         return [
             'id' => $this->id,
             'point' => $this->point,
-            'district' => $this->district ? new DistrictWithGeoJson($this->district) : null,
+            'region' => $this->region ? new RegionDetailsResource($this->region) : null,
         ];
     }
 }

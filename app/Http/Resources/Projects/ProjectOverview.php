@@ -19,7 +19,7 @@ class ProjectOverview extends JsonResource
             'id' => $this->id,
             'region_name' => $this->name,
             'projects_count' => $this->projects_count,
-            'geometry' => json_decode($this->geom)
+            'geometry' => $this->geom
         ];
     }
 }

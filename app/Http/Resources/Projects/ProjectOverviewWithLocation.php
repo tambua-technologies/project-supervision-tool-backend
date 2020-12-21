@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Projects;
 
 use App\Http\Resources\Locations\LocationWithDistrict;
+use App\Http\Resources\Locations\LocationWithRegion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +21,7 @@ class ProjectOverviewWithLocation extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'locations' => LocationWithDistrict::collection($this->locations),
+            'locations' => LocationWithRegion::collection($this->locations),
             'details' => new ProjectDetailResource($this->details),
             'sub_projects' => $this->sub_projects,
         ];
