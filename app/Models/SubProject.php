@@ -203,6 +203,11 @@ class SubProject extends Model
         return $collection->diff($attachedIds);
     }
 
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
 
     public function attachLocations($locations)
     {

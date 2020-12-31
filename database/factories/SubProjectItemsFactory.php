@@ -12,6 +12,8 @@ $factory->define(SubProjectItems::class, function (Faker $faker) {
 
     return [
         'quantity' => $faker->randomDigit,
+        'description' => $faker->sentence,
+        'name' => $faker->text,
         'item_id' => function () {
             return Item::query()->inRandomOrder()->first()->id;
         },

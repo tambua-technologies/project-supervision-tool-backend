@@ -15,10 +15,11 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->string("region_id")->nullable();
             $table->unsignedBigInteger("country_id")->nullable();
             $table->string("district_id")->nullable();
+            $table->jsonb('point')->nullable();
             $table->float("lat")->nullable();
             $table->float("lng")->nullable();
             $table->timestamps();

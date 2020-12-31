@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateSubProjectItemsAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectItemsAPIRequest;
+use App\Http\Resources\SubProjectItemsResource;
 use App\Models\SubProjectItems;
 use App\Repositories\SubProjectItemsRepository;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class SubProjectItemsAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($subProjectItems->toArray(), 'Sub Project Items retrieved successfully');
+        return $this->sendResponse(SubProjectItemsResource::collection($subProjectItems), 'Sub Project Items retrieved successfully');
     }
 
     /**
@@ -165,7 +166,7 @@ class SubProjectItemsAPIController extends AppBaseController
             return $this->sendError('Sub Project Items not found');
         }
 
-        return $this->sendResponse($subProjectItems->toArray(), 'Sub Project Items retrieved successfully');
+        return $this->sendResponse(new SubProjectItemsResource($subProjectItems), 'Sub Project Items retrieved successfully');
     }
 
     /**

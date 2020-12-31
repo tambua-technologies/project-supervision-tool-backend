@@ -21,6 +21,12 @@ use Parental\HasChildren;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="location_id",
+ *          description="location_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="first_name",
  *          description="first_name",
  *          type="string"
@@ -83,6 +89,7 @@ class User extends Authenticatable
         'password',
         'first_name',
         'last_name',
+        'location_id',
         'middle_name',
         'phone',
     ];
@@ -115,4 +122,13 @@ class User extends Authenticatable
         'password' => 'string',
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
 }

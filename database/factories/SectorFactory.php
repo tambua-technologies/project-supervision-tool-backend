@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Sector::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->word,
-        'description' => $faker->word,
+        'name' => $faker->sentence,
+        'description' => $faker->text,
     ];
 });

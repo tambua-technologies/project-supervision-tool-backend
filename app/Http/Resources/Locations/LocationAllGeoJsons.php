@@ -21,7 +21,8 @@ class LocationAllGeoJsons extends JsonResource
             'level' => $this->level,
             'region' => $this->region ? new RegionDetailsResource($this->region): null,
             'district' => $this->district ? new DistrictWithGeoJson($this->district) : null,
-            'country' => $this->country
+            'country' => $this->country,
+            'point' => $this->point,
         ];
     }
 }

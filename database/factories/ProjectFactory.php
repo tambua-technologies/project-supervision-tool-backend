@@ -9,7 +9,7 @@ $factory->define(Project::class, function (Faker $faker) {
 
     return [
         'id' => $faker->unique()->userName,
-        'name' => $faker->word,
+        'name' => $faker->sentence,
         'description' => $faker->text,
     ];
 });

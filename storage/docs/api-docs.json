@@ -7562,6 +7562,11 @@
                     "type": "string",
                     "format": "date-time"
                 },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "deleted_at": {
                     "description": "deleted_at",
                     "type": "string",
@@ -7592,6 +7597,11 @@
                 },
                 "focal_person_id": {
                     "description": "focal_person_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "location_id": {
+                    "description": "location_id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -7646,6 +7656,11 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "deleted_at": {
                     "description": "deleted_at",
@@ -7773,6 +7788,11 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "deleted_at": {
                     "description": "deleted_at",
@@ -7940,6 +7960,11 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -7977,6 +8002,11 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "deleted_at": {
                     "description": "deleted_at",
@@ -8056,6 +8086,11 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "deleted_at": {
                     "description": "deleted_at",
@@ -8749,6 +8784,12 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "locations": {
+                    "description": "locations",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
                 "sub_project_id": {
                     "description": "sub_project_id",
                     "type": "integer",
@@ -8841,6 +8882,11 @@
                     "type": "string",
                     "format": "date-time"
                 },
+                "location_id": {
+                    "description": "location_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "deleted_at": {
                     "description": "deleted_at",
                     "type": "string",
@@ -8921,6 +8967,11 @@
             "properties": {
                 "id": {
                     "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "location_id": {
+                    "description": "location_id",
                     "type": "integer",
                     "format": "int32"
                 },

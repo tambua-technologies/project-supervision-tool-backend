@@ -13,6 +13,8 @@ class SubProjectItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(SubProjectItems::class)->create();
+        factory(SubProjectItems::class, 50)->create();
+
+
     }
 }

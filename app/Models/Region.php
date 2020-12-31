@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @SWG\Definition(
@@ -46,22 +47,31 @@ class Region extends Model
     protected $casts = [
         'id' => 'string',
         'name' => 'string',
-        'geom' => 'object',
     ];
+
+
+    public function getGeomAttribute()
+    {
+        return DB::table('regions')
+            ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
+            ->where('id', '=', $this->id)->first()->geom;
+    }
+
 
     static public function projectsOverview()
     {
-       return DB::table('regions')
+        return DB::table('regions')
             ->join('locations', 'locations.region_id', '=', 'regions.id')
             ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
-           ->groupBy('regions.id')
-           ->select(DB::raw('regions.id, regions.name, regions.geom, count(project_locations.project_id) as projects_count'))
+            ->groupBy('regions.id')
+            ->select(DB::raw('regions.id, regions.name, st_asgeojson(regions.geom)::json as geom, count(project_locations.project_id) as projects_count'))
             ->get();
     }
 
-    static public function get_region_projects_statistics($region_id) {
+    static public function get_region_projects_statistics($region_id)
+    {
 
-        $total_region_projects =  DB::table('projects')
+        $total_region_projects = DB::table('projects')
             ->join('project_locations', 'project_locations.project_id', '=', 'projects.id')
             ->join('locations', 'locations.id', '=', 'project_locations.location_id')
             ->groupBy('region_id')
@@ -74,7 +84,7 @@ class Region extends Model
             ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
             ->join('projects', 'projects.id', '=', 'project_locations.project_id')
             ->join('sub_projects', 'sub_projects.project_id', '=', 'projects.id')
-            ->where('regions.id', '=',$region_id)
+            ->where('regions.id', '=', $region_id)
             ->select(DB::raw('count(sub_projects.id)'))
             ->first();
 
@@ -84,7 +94,7 @@ class Region extends Model
             ->join('project_details', 'project_details.project_id', '=', 'projects.id')
             ->join('money', 'money.id', '=', 'project_details.commitment_amount_id')
             ->join('currencies', 'currencies.id', '=', 'money.currency_id')
-            ->where('region_id', '=',$region_id)
+            ->where('region_id', '=', $region_id)
             ->groupBy('currencies.iso')
             ->select(DB::raw('CAST( SUM(amount) AS BIGINT) AS total, iso'))
             ->first();
@@ -99,16 +109,18 @@ class Region extends Model
 
     static public function getProjects($region_id)
     {
-       $projectIds =  DB::table('regions')
+//        DB::enableQueryLog();
+
+        $projectIds = DB::table('regions')
             ->join('locations', 'locations.region_id', '=', 'regions.id')
             ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
             ->join('projects', 'projects.id', '=', 'project_locations.project_id')
-            ->join('sub_projects', 'sub_projects.project_id', '=', 'projects.id')
-           ->where('regions.id', '=',$region_id)
-           ->groupBy('projects.id', 'region_id', 'regions.id', 'projects.name')
-           ->select(DB::raw('projects.id'))
+            ->where('regions.id', '=', $region_id)
+            ->groupBy('projects.id', 'region_id', 'regions.id', 'projects.name')
+            ->select(DB::raw('projects.id'))
             ->get()->pluck(['id']);
-       return Project::find($projectIds);
+//        Log::info(DB::getQueryLog());
+        return Project::find($projectIds);
     }
 
 }

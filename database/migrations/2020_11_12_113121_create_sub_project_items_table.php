@@ -17,6 +17,8 @@ class CreateSubProjectItemsTable extends Migration
         Schema::create('sub_project_items', function (Blueprint $table) {
             $table->increments('id');
             $table->double('quantity');
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('sub_project_id');
             $table->unsignedBigInteger('progress_id');
