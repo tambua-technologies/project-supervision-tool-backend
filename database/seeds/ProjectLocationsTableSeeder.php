@@ -22,7 +22,7 @@ class ProjectLocationsTableSeeder extends Seeder
         Project::all()->each(function ($project) use ($regions) {
 
             // get random regionId from 1 - 3
-            $regionIds = $regions->random(rand(1, 3))->pluck('id');
+            $regionIds = $regions->random(rand(1, 5))->pluck('id');
 
             // for each region id, create location and attach to project
             $regionIds->each(function ($regionId) use ($project){

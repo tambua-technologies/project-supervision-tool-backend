@@ -54,9 +54,7 @@ class Region extends Model
     {
         return DB::table('regions')
             ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
-            ->where('id', '=', 'TZ02')->first()->geom;
-
-
+            ->where('id', '=', $this->id)->first()->geom;
     }
 
 
