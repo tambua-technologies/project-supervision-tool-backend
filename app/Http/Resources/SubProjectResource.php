@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\Locations\LocationResource;
+use App\Http\Resources\Locations\LocationWithDistrict;
 use App\Models\SubProjectItems;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -29,7 +30,7 @@ class SubProjectResource extends JsonResource
             'human_resources' => SubProjectHrResource::collection($this->human_resources),
             'sub_project_progress' => $this->sub_project_progress,
             'sub_project_contracts' => SubProjectContractResource::collection($this->sub_project_contracts),
-            'sub_project_locations' => LocationResource::collection($this->sub_project_locations),
+            'sub_project_locations' => LocationWithDistrict::collection($this->sub_project_locations),
 
         ];
     }
