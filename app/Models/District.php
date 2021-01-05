@@ -51,9 +51,9 @@ class District extends Model
 
     public function getGeomAttribute()
     {
-        $geom = DB::table('regions')
+        $geom = DB::table('districts')
             ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
-            ->where('id', '=', 'TZ02')->first()->geom;
+            ->where('id', '=', $this->id)->first()->geom;
 
         return json_decode($geom);
     }
