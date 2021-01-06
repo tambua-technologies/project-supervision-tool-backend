@@ -27,7 +27,14 @@ class SubProjectLocationsSeeder extends Seeder
                 ->select('regions.id')->get()->pluck(['id']);
             $regionIds->each(function ($regionId) use ($sub_project) {
                 $districtId = District::query()->where('region_id', '=', $regionId)->inRandomOrder()->first()->id;
-                $location = Location::create(['district_id' => $districtId, 'level' => 'district']);
+
+                // for each district get geom get point on its surface and add to location
+                $point = DB::table('districts')
+                    ->select(DB::raw('st_asgeojson(ST_PointOnSurface(geom::geometry))::json as point'))
+                    ->where('id', '=', $districtId)->get()->pluck(['point']);
+                $result = collect($point)->first();
+
+                $location = Location::create(['district_id' => $districtId, 'level' => 'district', 'point' => $result ]);
                 $sub_project->sub_project_locations()->attach($location->id);
             });
         });
