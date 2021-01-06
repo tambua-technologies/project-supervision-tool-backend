@@ -4,6 +4,7 @@ namespace App\Http\Resources\Projects;
 
 use App\Http\Resources\LocationResource;
 use App\Http\Resources\Locations\LocationAllGeoJsons;
+use App\Http\Resources\Locations\LocationWithRegion;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -22,7 +23,7 @@ class ProjectResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'locations' => \App\Http\Resources\Locations\LocationResource::collection($this->locations),
+            'locations' => LocationWithRegion::collection($this->locations),
             'leaders' => $this->leaders,
             'sectors' => $this->sectors,
             'themes' => $this->themes,
