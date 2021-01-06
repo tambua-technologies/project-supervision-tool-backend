@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CountriesTableSeeder::class);
         $this->call(DistrictsWithGeomTableSeeder::class);
         $this->call(RegionsWithGeomTableSeeder::class);
         $this->call(PhasesTableSeeder::class);
@@ -19,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemsTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
         $this->call(ProgressTableSeeder::class);
-        $this->call(CountriesTableSeeder::class);
         $this->call(EnvironmentalCategoriesTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
         $this->call(UserSeeder::class);

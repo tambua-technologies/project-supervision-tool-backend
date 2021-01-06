@@ -21,7 +21,7 @@ class ProjectDetailResource extends JsonResource
         // get country object, aim is
         // to reduce level of  country object nesting
         $location = $this->country()->first();
-        $country = $location->country;
+        $country = $location ? $location->country : null;
 
         return [
             'id' => $this->id,
