@@ -20,8 +20,8 @@ class CreateLocationsTable extends Migration
             $table->unsignedBigInteger("country_id")->nullable();
             $table->string("district_id")->nullable();
             $table->jsonb('point')->nullable();
-            $table->float("lat")->nullable();
-            $table->float("lng")->nullable();
+            $table->text('layer_name')->nullable();
+            $table->string('layer_source')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
