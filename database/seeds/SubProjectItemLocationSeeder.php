@@ -25,7 +25,8 @@ class SubProjectItemLocationSeeder extends Seeder
                     ->select(DB::raw('st_asgeojson(ST_PointOnSurface(geom::geometry))::json as point'))
                     ->where('id', '=', $location->district_id)->get()->pluck(['point']);
                 $result = collect($point)->first();
-                $sub_project_item_location = Location::create(['point' => $result]);
+                $geonode_layers = collect(['geonode:dar_es_salaam_school_points']);
+                $sub_project_item_location = Location::create(['point' => $result, 'layer_source' => 'geonode', 'layer_name' => $geonode_layers->random()]);
                 $sub_project_item->locations()->attach($sub_project_item_location->id);
 
             });
