@@ -22,6 +22,7 @@ class CreateLocationsTable extends Migration
             $table->jsonb('point')->nullable();
             $table->text('layer_name')->nullable();
             $table->string('layer_source')->nullable();
+            $table->jsonb('bounding_box')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

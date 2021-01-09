@@ -64,6 +64,9 @@ class Location extends Model
         'region_id',
         'point',
         'level',
+        'layer_name',
+        'layer_source',
+        'bounding_box',
     ];
 
     /**
@@ -74,6 +77,9 @@ class Location extends Model
     protected $casts = [
         'id' => 'integer',
         'level' => 'string',
+        'layer_name' => 'string',
+        'layer_source' => 'string',
+        'bounding_box' => 'object',
         'region_id' => 'string',
         'district_id' => 'string',
     ];

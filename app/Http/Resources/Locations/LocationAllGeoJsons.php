@@ -24,6 +24,7 @@ class LocationAllGeoJsons extends JsonResource
             'country' => $this->country,
             'layer_name' => $this->layer_name,
             'layer_source' => $this->layer_source,
+            'bounding_box' => $this->bounding_box,
             'point' => $this->point,
         ];
     }
