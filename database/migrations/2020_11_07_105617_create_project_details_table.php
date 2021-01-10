@@ -17,7 +17,7 @@ class CreateProjectDetailsTable extends Migration
         Schema::create('project_details', function (Blueprint $table) {
             $table->id();
             $table->string('project_id');
-            $table->boolean('status')->default(false);
+            $table->string('status')->default('Active');
             $table->unsignedBigInteger('borrower_id')->nullable();
             $table->unsignedBigInteger('implementing_agency_id')->nullable();
             $table->unsignedBigInteger('funding_organisation_id')->nullable();

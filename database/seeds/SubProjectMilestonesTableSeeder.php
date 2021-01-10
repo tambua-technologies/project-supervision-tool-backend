@@ -13,6 +13,6 @@ class SubProjectMilestonesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(SubProjectMilestones::class, 3)->create();
+        factory(SubProjectMilestones::class, 60)->create();
     }
 }

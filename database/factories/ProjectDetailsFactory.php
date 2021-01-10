@@ -28,7 +28,6 @@ $factory->define(ProjectDetails::class, function (Faker $faker) {
         'total_project_cost_id' => function () {
             return factory(Money::class)->create()->id;
         },
-        'status' => $faker->boolean($chanceOfGettingTrue = 50),
         'borrower_id' => function () {
             return Borrower::query()->inRandomOrder()->first()->id;
         },
