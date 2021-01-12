@@ -1350,7 +1350,7 @@
                 ]
             }
         },
-        "/environmentalCategories": {
+        "/environmental_categories": {
             "get": {
                 "tags": [
                     "EnvironmentalCategory"
@@ -1434,7 +1434,7 @@
                 ]
             }
         },
-        "/environmentalCategories/{id}": {
+        "/environmental_categories/{id}": {
             "get": {
                 "tags": [
                     "EnvironmentalCategory"

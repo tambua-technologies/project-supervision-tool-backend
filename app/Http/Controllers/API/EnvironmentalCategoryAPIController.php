@@ -30,7 +30,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/environmentalCategories",
+     *      path="/environmental_categories",
      *      summary="Get a listing of the EnvironmentalCategories.",
      *      tags={"EnvironmentalCategory"},
      *     security={{"Bearer":{}}},
@@ -74,7 +74,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/environmentalCategories",
+     *      path="/environmental_categories",
      *      summary="Store a newly created EnvironmentalCategory in storage",
      *      tags={"EnvironmentalCategory"},
      *     security={{"Bearer":{}}},
@@ -122,7 +122,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/environmentalCategories/{id}",
+     *      path="/environmental_categories/{id}",
      *      summary="Display the specified EnvironmentalCategory",
      *      tags={"EnvironmentalCategory"},
      *     security={{"Bearer":{}}},
@@ -174,7 +174,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/environmentalCategories/{id}",
+     *      path="/environmental_categories/{id}",
      *      summary="Update the specified EnvironmentalCategory in storage",
      *      tags={"EnvironmentalCategory"},
      *     security={{"Bearer":{}}},
@@ -236,7 +236,7 @@ class EnvironmentalCategoryAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/environmentalCategories/{id}",
+     *      path="/environmental_categories/{id}",
      *      summary="Remove the specified EnvironmentalCategory from storage",
      *      tags={"EnvironmentalCategory"},
      *     security={{"Bearer":{}}},
