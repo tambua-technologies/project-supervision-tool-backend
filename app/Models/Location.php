@@ -80,6 +80,7 @@ class Location extends Model
         'layer_name' => 'string',
         'layer_source' => 'string',
         'bounding_box' => 'object',
+        'point' => 'object',
         'region_id' => 'string',
         'district_id' => 'string',
     ];
