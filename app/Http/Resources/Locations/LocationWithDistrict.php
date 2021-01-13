@@ -19,7 +19,7 @@ class LocationWithDistrict extends JsonResource
         return [
             'id' => $this->id,
             'point' => $this->point,
-            'district' => $this->district ? new DistrictWithGeoJson($this->district) : null,
+            'district' => $this->district ? new DistrictResource($this->district) : null,
         ];
     }
 }

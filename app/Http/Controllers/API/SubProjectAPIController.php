@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateSubProjectAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectAPIRequest;
 use App\Http\Resources\SubProjectResource;
+use App\Http\Resources\SubProjectWithDistrict;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
 use Illuminate\Http\Request;
@@ -167,7 +168,7 @@ class SubProjectAPIController extends AppBaseController
             return $this->sendError('Sub Project not found');
         }
 
-        return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project retrieved successfully');
+        return $this->sendResponse(new SubProjectWithDistrict($subProject), 'Sub Project retrieved successfully');
     }
 
     /**
