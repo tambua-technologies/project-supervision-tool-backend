@@ -32,7 +32,7 @@ class SubProjectLocationsSeeder extends Seeder
                 $point = DB::table('districts')
                     ->select(DB::raw('st_asgeojson(ST_PointOnSurface(geom::geometry))::json as point'))
                     ->where('id', '=', $districtId)->get()->pluck(['point']);
-                $result = collect($point)->first();
+                $result = json_decode(collect($point)->first());
 
                 $location = Location::create(['district_id' => $districtId, 'level' => 'district', 'point' => $result ]);
                 $sub_project->sub_project_locations()->attach($location->id);
