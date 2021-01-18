@@ -67,7 +67,7 @@ class ProjectAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse(ProjectResource::collection($projects), 'Projects retrieved successfully');
+        return $this->sendResponse(ProjectResource::collection($projects->sortDesc()), 'Projects retrieved successfully');
     }
 
     /**

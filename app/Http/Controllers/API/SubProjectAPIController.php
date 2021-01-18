@@ -68,7 +68,7 @@ class SubProjectAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse(SubProjectResource::collection($subProjects), 'Sub Projects retrieved successfully');
+        return $this->sendResponse(SubProjectResource::collection($subProjects->sortDesc()), 'Sub Projects retrieved successfully');
     }
 
     /**
