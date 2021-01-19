@@ -26,25 +26,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SectorsTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
         $this->call(LocationsSeeder::class);
-        $this->call(ActorsTableSeeder::class);
-        $this->call(FundingOrganisationsTableSeeder::class);
-        $this->call(BorrowerTableSeeder::class);
-        $this->call(ImplementingAgencyTableSeeder::class);
-        $this->call(SupervisingAgenciesTableSeeder::class);
-        $this->call(ContractorsTableSeeder::class);
-        $this->call(ProjectsTableSeeder::class);
-        $this->call(ProjectThemesTableSeeder::class);
-        $this->call(ProjectSectorsTableSeeder::class);
-        $this->call(SubProjectDetailsTableSeeder::class);
-        $this->call(SubProjectItemsTableSeeder::class);
-        $this->call(SubProjectEquipmentsTableSeeder::class);
-        $this->call(HumanResourcesTableSeeder::class);
-        $this->call(SubProjectMilestonesTableSeeder::class);
-        $this->call(SubProjectContractsTableSeeder::class);
+        $this->call(AgenciesTableSeeder::class);
         $this->call(ProjectLocationsTableSeeder::class);
         $this->call(SubProjectLocationsSeeder::class);
         $this->call(SubProjectItemLocationSeeder::class);
-
-        $this->call(AgenciesTableSeeder::class);
     }
 }
