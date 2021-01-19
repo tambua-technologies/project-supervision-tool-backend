@@ -45,5 +45,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubProjectLocationsSeeder::class);
         $this->call(SubProjectItemLocationSeeder::class);
 
+        $this->call(AgenciesTableSeeder::class);
     }
 }
