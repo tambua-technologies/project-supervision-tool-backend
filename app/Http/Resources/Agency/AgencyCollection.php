@@ -26,6 +26,8 @@ class AgencyCollection extends ResourceCollection
                 'prev_page_url' => $this->previousPageUrl(),
                 'last_page_url' => $this->url($total_pages),
                 'first_page_url' => $this->url(1),
+            ],
+            'meta' => [
                 'per_page' => $per_page,
                 'current_page' => $this->currentPage(),
                 'total_pages' => $total_pages,
