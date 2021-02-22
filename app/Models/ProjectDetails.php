@@ -140,6 +140,26 @@ class ProjectDetails extends Model
 
     ];
 
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($project_details) { // before delete() method call this
+            $project_details->implementing_agency()->detach();
+            $project_details->funding_organisation()->detach();
+            $project_details->coordinating_agency()->detach();
+            $project_details->environmental_category()->detach();
+            $project_details->borrower()->detach();
+            $project_details->borrower()->detach();
+            $project_details->total_project_cost()->delete();
+            $project_details->commitment_amount()->delete();
+            $project_details->country()->delete();
+            // do the rest of the cleanup...
+        });
+
+
+    }
+
 
     public function implementing_agency()
     {

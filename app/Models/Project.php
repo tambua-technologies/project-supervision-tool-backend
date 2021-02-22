@@ -124,11 +124,23 @@ class Project extends Model
         'name' => 'required|string|max:255',
     ];
 
-    public function leaders()
-    {
-        return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
-    }
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
 
+        static::deleting(function($project) { // before delete() method call this
+            $project->leaders()->detach();
+            $project->themes()->detach();
+            $project->sectors()->detach();
+            $project->locations()->delete();
+            $project->details()->delete();
+            $project->sub_projects()->delete();
+
+            // do the rest of the cleanup...
+        });
+
+
+    }
 
     public function attachLeaders($leaders)
     {
@@ -145,6 +157,12 @@ class Project extends Model
         $locationsToAttach = $collection->diff($attachedIds);
 
         $this->locations()->attach($locationsToAttach);
+    }
+
+
+    public function leaders()
+    {
+        return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
     }
 
     public function details()

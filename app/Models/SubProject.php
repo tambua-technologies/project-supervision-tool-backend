@@ -156,6 +156,28 @@ class SubProject extends Model
         'description' => 'required|string|max:255',
     ];
 
+
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($sub_project) { // before delete() method call this
+            $sub_project->sub_project_locations()->delete();
+            $sub_project->details()->delete();
+            $sub_project->sub_project_items()->delete();
+            $sub_project->sub_project_milestones()->delete();
+            $sub_project->human_resources()->delete();
+            $sub_project->sub_project_equipments()->delete();
+            $sub_project->sub_project_progress()->delete();
+            $sub_project->sub_project_contracts()->delete();
+
+
+            // do the rest of the cleanup...
+        });
+
+
+    }
+
     public function details()
     {
         return $this->hasOne(SubProjectDetail::class);

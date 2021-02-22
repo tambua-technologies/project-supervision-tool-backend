@@ -119,6 +119,7 @@ class ProjectAPIController extends AppBaseController
         $project = $this->projectRepository->create($input);
         if ($request->leaders) $project->attachLeaders($request->leaders);
         if ($request->locations) $project->attachLocations($request->locations);
+        $project->refresh();
         return $this->sendResponse(new ProjectResource($project), 'Project saved successfully');
     }
 
