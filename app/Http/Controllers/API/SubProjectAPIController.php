@@ -11,6 +11,7 @@ use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
 use Response;
 
 /**
@@ -63,7 +64,8 @@ class SubProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subProjects = $this->subProjectRepository->paginate($request->get('per_page', 15));
+        $subProjects = $this->subProjectRepository->paginate($request->get('per_page', 15), ['*'], ['name' => $request->get('search')]);
+
 
         return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
     }
