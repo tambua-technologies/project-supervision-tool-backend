@@ -4,10 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateActorAPIRequest;
 use App\Http\Requests\API\UpdateActorAPIRequest;
+use App\Http\Resources\Agency\AgencyCollection;
+use App\Http\Resources\Agency\UserCollection;
+use App\Http\Resources\AgencyResource;
 use App\Models\Actor;
 use App\Repositories\ActorRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
 use Response;
 
 /**
@@ -59,8 +63,9 @@ class ActorAPIController extends AppBaseController
     public function index(Request $request)
     {
         $agencies = $this->implementingPartnerRepository->paginate($request->get('per_page', 15));
+        Log::info( $agencies);
 
-        return $this->sendResponse($agencies->toArray(), 'Actors retrieved successfully');
+        return $this->sendResponse(new AgencyCollection($agencies), 'Actors retrieved successfully');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\Locations\LocationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Log;
 
 class AgencyResource extends JsonResource
 {
