@@ -64,7 +64,14 @@ class SubProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subProjects = $this->subProjectRepository->paginate($request->get('per_page', 15), ['*'], ['name' => $request->get('search')]);
+        $subProjects = $this->subProjectRepository->paginate(
+            $request->get('per_page', 15),
+            [
+                '*'
+            ],
+            [
+                $request->get('searchField') => $request->get('searchQuery')
+            ]);
 
 
         return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
