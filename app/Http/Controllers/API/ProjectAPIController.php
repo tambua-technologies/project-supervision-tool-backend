@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateProjectAPIRequest;
 use App\Http\Requests\API\UpdateProjectAPIRequest;
+use App\Http\Resources\Projects\ProjectCollection;
 use App\Http\Resources\Projects\ProjectResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
@@ -61,13 +62,16 @@ class ProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $projects = $this->projectRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $projects = $this->projectRepository->paginate(
+            $request->get('per_page', 15),
+            [
+                '*'
+            ],
+            [
+                $request->get('searchField') => $request->get('searchQuery')
+            ]);
 
-        return $this->sendResponse(ProjectResource::collection($projects->sortDesc()), 'Projects retrieved successfully');
+        return $this->sendResponse(new ProjectCollection($projects), 'Projects retrieved successfully');
     }
 
     /**
