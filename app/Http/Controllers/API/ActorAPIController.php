@@ -62,7 +62,7 @@ class ActorAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agencies = $this->implementingPartnerRepository->paginate($request->get('per_page', 1));
+        $agencies = $this->implementingPartnerRepository->paginate($request->get('per_page', 15));
         Log::info( $agencies);
 
         return $this->sendResponse(new AgencyCollection($agencies), 'Actors retrieved successfully');

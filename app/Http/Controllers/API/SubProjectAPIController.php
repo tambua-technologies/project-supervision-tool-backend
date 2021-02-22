@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateSubProjectAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectAPIRequest;
 use App\Http\Resources\SubProjectResource;
+use App\Http\Resources\SubProjects\SubProjectCollection;
 use App\Http\Resources\SubProjectWithDistrict;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
@@ -62,13 +63,9 @@ class SubProjectAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subProjects = $this->subProjectRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $subProjects = $this->subProjectRepository->paginate($request->get('per_page', 15));
 
-        return $this->sendResponse(SubProjectResource::collection($subProjects->sortDesc()), 'Sub Projects retrieved successfully');
+        return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
     }
 
     /**
