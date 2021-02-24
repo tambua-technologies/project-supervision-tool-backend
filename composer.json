@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "ext-json": "*",
         "appointer/swaggervel": "dev-master",
         "calebporzio/parental": "0.10",
         "doctrine/dbal": "~2.3",
@@ -23,9 +24,9 @@
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "ext-json": "*",
         "laravelcollective/html": "^6.1",
-        "orangehill/iseed": "^2.6"
+        "orangehill/iseed": "^2.6",
+        "spatie/laravel-medialibrary": "^7.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

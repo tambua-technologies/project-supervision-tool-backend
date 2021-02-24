@@ -4,7 +4,21 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+
+/**
+ * @SWG\Definition(
+ *      definition="SubProjectFilesPayload",
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      )
+ * )
+ */
 
 /**
  * @SWG\Definition(
@@ -113,9 +127,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class SubProject extends Model
+class SubProject extends Model  implements HasMedia
 {
     use SoftDeletes;
+    use HasMediaTrait;
 
     public $table = 'sub_projects';
 
@@ -170,13 +185,40 @@ class SubProject extends Model
             $sub_project->sub_project_equipments()->delete();
             $sub_project->sub_project_progress()->delete();
             $sub_project->sub_project_contracts()->delete();
-
-
             // do the rest of the cleanup...
         });
 
 
     }
+
+
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('cover_photo')
+            ->singleFile()
+            ->registerMediaConversions(function (\App\Models\Media $media) {
+                $this->addMediaConversion('optimized');
+                $this
+                    ->addMediaConversion('thumb')
+                    ->optimize()
+                    ->fit(Manipulations::FIT_MAX, 500, 500)
+                    ->background('000000');
+            });
+
+        $this
+            ->addMediaCollection('logo')
+            ->singleFile()
+            ->registerMediaConversions(function (\App\Models\Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->optimize()
+                    ->fit(Manipulations::FIT_MAX, 500, 500)
+                    ->background('000000');
+            });
+    }
+
+
 
     public function details()
     {

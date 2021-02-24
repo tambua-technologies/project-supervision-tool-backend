@@ -9,8 +9,9 @@ use Response;
  * @SWG\Swagger(
  *   basePath="/api/v1",
  *   @SWG\Info(
- *     title="Laravel Generator APIs",
+ *     title="Project Supervision tool API",
  *     version="1.0.0",
+ *     @SWG\Contact(name="mloweedgarvitus@gmail.com"),
  *   )
  * )
  * This class should be parent class for other API controllers

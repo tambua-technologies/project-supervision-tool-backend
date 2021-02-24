@@ -1,7 +1,10 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Laravel Generator APIs",
+        "title": "Project Supervision tool API",
+        "contact": {
+            "name": "mloweedgarvitus@gmail.com"
+        },
         "version": "1.0.0"
     },
     "basePath": "/api/v1",
@@ -6181,6 +6184,62 @@
                 ]
             }
         },
+        "/sub_projects/{id}/upload_image": {
+            "post": {
+                "tags": [
+                    "SubProject"
+                ],
+                "description": "Upload image to sub project",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Additional data to pass to server",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cover_photo",
+                        "in": "formData",
+                        "description": "cover photo to upload",
+                        "required": false,
+                        "type": "file"
+                    },
+                    {
+                        "name": "location_id",
+                        "in": "formData",
+                        "description": "location id",
+                        "required": false,
+                        "type": "integer",
+                        "format": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sub project id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/sub_project_items": {
             "get": {
                 "tags": [
@@ -8542,6 +8601,14 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                }
+            }
+        },
+        "SubProjectFilesPayload": {
+            "properties": {
+                "name": {
+                    "description": "name",
+                    "type": "string"
                 }
             }
         },

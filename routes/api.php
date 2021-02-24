@@ -24,6 +24,10 @@ Route::middleware('auth:api')
     ->group(function () {
 
 
+        // file uploading  routes
+        Route::post('sub_projects/{subProject}/upload_image', 'SubProjectFilesAPIController@upload');
+
+
         Route::get('/locations/regions', 'LocationAPIController@regions');
         Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
         Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
