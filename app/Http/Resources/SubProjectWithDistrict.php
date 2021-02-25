@@ -30,7 +30,7 @@ class SubProjectWithDistrict extends JsonResource
             'sub_project_progress' => $this->sub_project_progress,
             'sub_project_contracts' => SubProjectContractResource::collection($this->sub_project_contracts),
             'sub_project_locations' => LocationAllGeoJsons::collection($this->sub_project_locations),
-
+            'photos' =>  MediaResource::collection($this->getMedia('photos')),
         ];
     }
 }

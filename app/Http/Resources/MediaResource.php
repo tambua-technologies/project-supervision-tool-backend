@@ -19,6 +19,8 @@ class MediaResource extends JsonResource
             'name' => $this->name,
             'description' => $this->getCustomProperty('description'),
             'owner' => $this->getCustomProperty('owner'),
+            'latitude' => $this->getCustomProperty('latitude'),
+            'longitude' => $this->getCustomProperty('longitude'),
             'file_name' => $this->file_name,
             'mime_type' => $this->mime_type,
             'size' => $this->human_readable_size,

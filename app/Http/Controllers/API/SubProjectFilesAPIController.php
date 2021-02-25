@@ -17,33 +17,11 @@ class SubProjectFilesAPIController extends Controller
 
     /**
      * @SWG\Post(
-     *     path="/sub_projects/{id}/upload_image",
+     *     path="/sub_projects/{id}/upload_photo",
      *     consumes={"multipart/form-data"},
      *     tags={"SubProject"},
      *     security={{"Bearer":{}}},
      *     description="Upload image to sub project",
-     *     @SWG\Parameter(
-     *         description="Additional data to pass to server",
-     *         in="formData",
-     *         name="description",
-     *         required=false,
-     *         type="string"
-     *     ),
-     *     @SWG\Parameter(
-     *         description="cover photo to upload",
-     *         in="formData",
-     *         name="cover_photo",
-     *         required=false,
-     *         type="file"
-     *     ),
-     *     @SWG\Parameter(
-     *         description="location id",
-     *         format="string",
-     *         in="formData",
-     *         name="location_id",
-     *         required=false,
-     *         type="integer"
-     *     ),
      *     @SWG\Parameter(
      *         description="sub project id",
      *         format="int64",
@@ -51,6 +29,34 @@ class SubProjectFilesAPIController extends Controller
      *         name="id",
      *         required=true,
      *         type="integer"
+     *     ),
+     *     @SWG\Parameter(
+     *         description="photo",
+     *         in="formData",
+     *         name="photo",
+     *         required=false,
+     *         type="file"
+     *     ),
+     *     @SWG\Parameter(
+     *         description="Photo description",
+     *         in="formData",
+     *         name="description",
+     *         required=true,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         description="latitude(Decimal degrees format)",
+     *         in="formData",
+     *         name="latitude",
+     *         required=false,
+     *         type="number"
+     *     ),
+     *     @SWG\Parameter(
+     *         description="longitude(Decimal degrees format)",
+     *         in="formData",
+     *         name="longitude",
+     *         required=false,
+     *         type="number"
      *     ),
      *     produces={"application/json"},
      *     @SWG\Response(
@@ -69,14 +75,18 @@ class SubProjectFilesAPIController extends Controller
     public function upload(Request $request, SubProject $subProject)
     {
         $this->validate($request, [
-            'cover_photo' => 'nullable|image',
+            'photo' => 'nullable|image',
         ]);
 
-            $cover_photo = $subProject->addMediaFromRequest('cover_photo')
-                ->withCustomProperties(['description' => $request->description, 'owner' => auth()->user()])
-                ->toMediaCollection('cover_photo');
+            $photo = $subProject->addMediaFromRequest('photo')
+                ->withCustomProperties([
+                    'description' => $request->description,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                    'owner' => auth()->user()])
+                ->toMediaCollection('photos');
 
 
-        return new MediaResource($cover_photo);
+        return new MediaResource($photo);
     }
 }

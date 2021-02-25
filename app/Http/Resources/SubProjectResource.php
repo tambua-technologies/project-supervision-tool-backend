@@ -31,8 +31,7 @@ class SubProjectResource extends JsonResource
             'sub_project_progress' => $this->sub_project_progress,
             'sub_project_contracts' => SubProjectContractResource::collection($this->sub_project_contracts),
             'sub_project_locations' => LocationWithDistrict::collection($this->sub_project_locations),
-            'cover_photo' => new MediaResource($this->getFirstMedia('cover_photo')),
-            'logo' => $this->logo,
+            'photos' =>  MediaResource::collection($this->getMedia('photos')),
 
         ];
     }

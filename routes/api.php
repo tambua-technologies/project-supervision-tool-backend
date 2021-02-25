@@ -25,7 +25,7 @@ Route::middleware('auth:api')
 
 
         // file uploading  routes
-        Route::post('sub_projects/{subProject}/upload_image', 'SubProjectFilesAPIController@upload');
+        Route::post('sub_projects/{subProject}/upload_photo', 'SubProjectFilesAPIController@upload');
 
 
         Route::get('/locations/regions', 'LocationAPIController@regions');

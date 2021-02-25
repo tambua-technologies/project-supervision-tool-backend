@@ -6198,26 +6198,32 @@
                 ],
                 "parameters": [
                     {
-                        "name": "description",
+                        "name": "photo",
                         "in": "formData",
-                        "description": "Additional data to pass to server",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "cover_photo",
-                        "in": "formData",
-                        "description": "cover photo to upload",
+                        "description": "photo",
                         "required": false,
                         "type": "file"
                     },
                     {
-                        "name": "location_id",
+                        "name": "description",
                         "in": "formData",
-                        "description": "location id",
+                        "description": "Photo description",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "formData",
+                        "description": "latitude(Decimal degrees format)",
                         "required": false,
-                        "type": "integer",
-                        "format": "string"
+                        "type": "number"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "formData",
+                        "description": "longitude(Decimal degrees format)",
+                        "required": false,
+                        "type": "number"
                     },
                     {
                         "name": "id",

@@ -194,28 +194,7 @@ class SubProject extends Model  implements HasMedia
 
     public function registerMediaCollections()
     {
-        $this
-            ->addMediaCollection('cover_photo')
-            ->singleFile()
-            ->registerMediaConversions(function (\App\Models\Media $media) {
-                $this->addMediaConversion('optimized');
-                $this
-                    ->addMediaConversion('thumb')
-                    ->optimize()
-                    ->fit(Manipulations::FIT_MAX, 500, 500)
-                    ->background('000000');
-            });
-
-        $this
-            ->addMediaCollection('logo')
-            ->singleFile()
-            ->registerMediaConversions(function (\App\Models\Media $media) {
-                $this
-                    ->addMediaConversion('thumb')
-                    ->optimize()
-                    ->fit(Manipulations::FIT_MAX, 500, 500)
-                    ->background('000000');
-            });
+        $this->addMediaCollection('photos');
     }
 
 
