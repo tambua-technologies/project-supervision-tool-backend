@@ -6184,7 +6184,7 @@
                 ]
             }
         },
-        "/sub_projects/{id}/upload_image": {
+        "/sub_projects/{id}/upload_photo": {
             "post": {
                 "tags": [
                     "SubProject"
@@ -6197,6 +6197,14 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sub project id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
                     {
                         "name": "photo",
                         "in": "formData",
@@ -6224,14 +6232,6 @@
                         "description": "longitude(Decimal degrees format)",
                         "required": false,
                         "type": "number"
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "sub project id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
                     }
                 ],
                 "responses": {
