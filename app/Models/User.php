@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\FocalPerson;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Parental\HasChildren;
+use Spatie\Permission\Traits\HasRoles;
 
 
 
@@ -73,7 +75,8 @@ use Parental\HasChildren;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasChildren, SoftDeletes;
+    use Notifiable, HasChildren, SoftDeletes, HasRoles;
+
 
 
     protected $dates = ['deleted_at'];
@@ -125,9 +128,9 @@ class User extends Authenticatable
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
