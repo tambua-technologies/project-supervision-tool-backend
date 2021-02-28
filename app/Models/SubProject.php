@@ -36,6 +36,11 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="code",
+ *          description="code",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="description",
  *          description="description",
  *          type="string"
@@ -92,6 +97,11 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          description="name",
  *          type="string"
  *      ),
+ *     @SWG\Property(
+ *          property="code",
+ *          description="code",
+ *          type="string"
+ *      ),
  *      @SWG\Property(
  *          property="description",
  *          description="description",
@@ -127,7 +137,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *      )
  * )
  */
-class SubProject extends Model  implements HasMedia
+class SubProject extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasMediaTrait;
@@ -139,7 +149,6 @@ class SubProject extends Model  implements HasMedia
 
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [
@@ -173,10 +182,11 @@ class SubProject extends Model  implements HasMedia
 
 
     // this is a recommended way to declare event handlers
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($sub_project) { // before delete() method call this
+        static::deleting(function ($sub_project) { // before delete() method call this
             $sub_project->sub_project_locations()->delete();
             $sub_project->details()->delete();
             $sub_project->sub_project_items()->delete();
@@ -196,7 +206,6 @@ class SubProject extends Model  implements HasMedia
     {
         $this->addMediaCollection('photos');
     }
-
 
 
     public function details()
@@ -236,7 +245,7 @@ class SubProject extends Model  implements HasMedia
 
     public function sub_project_locations()
     {
-        return $this->belongsToMany(Location::class,'sub_project_locations','sub_project_id', 'location_id');
+        return $this->belongsToMany(Location::class, 'sub_project_locations', 'sub_project_id', 'location_id');
     }
 
     public function removeDuplicateIds($arr)

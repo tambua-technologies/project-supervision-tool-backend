@@ -20,6 +20,7 @@ class SubProjectWithDistrict extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'code' => $this->code,
             'description' => $this->description,
             'project_id' => $this->project_id,
             'details' => new SubProjectDetailResource($this->details),

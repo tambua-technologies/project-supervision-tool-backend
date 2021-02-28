@@ -8833,6 +8833,10 @@
                         "type": "integer"
                     }
                 },
+                "code": {
+                    "description": "code",
+                    "type": "string"
+                },
                 "locations": {
                     "description": "locations",
                     "items": {
@@ -8862,6 +8866,10 @@
                 },
                 "name": {
                     "description": "name",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "code",
                     "type": "string"
                 },
                 "description": {
@@ -9081,6 +9089,10 @@
                     "description": "name",
                     "type": "string"
                 },
+                "code": {
+                    "description": "code",
+                    "type": "string"
+                },
                 "description": {
                     "description": "description",
                     "type": "string"
@@ -9129,6 +9141,10 @@
                 },
                 "name": {
                     "description": "name",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "code",
                     "type": "string"
                 },
                 "description": {

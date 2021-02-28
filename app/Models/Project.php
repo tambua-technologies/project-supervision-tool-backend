@@ -32,6 +32,11 @@ use Illuminate\Support\Facades\DB;
  *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
+ *          property="code",
+ *          description="code",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="locations",
  *          description="locations",
  *          @SWG\Items(type="integer")
@@ -64,6 +69,11 @@ use Illuminate\Support\Facades\DB;
  *      @SWG\Property(
  *          property="name",
  *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="code",
+ *          description="code",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -100,6 +110,7 @@ class Project extends Model
 
     public $fillable = [
         'id',
+        'code',
         'name',
         'description'
     ];
@@ -111,6 +122,7 @@ class Project extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'code' => 'string',
         'name' => 'string',
         'description' => 'string'
     ];
@@ -122,6 +134,7 @@ class Project extends Model
      */
     public static $rules = [
         'name' => 'required|string|max:255',
+        'code' => 'required|string',
     ];
 
     // this is a recommended way to declare event handlers

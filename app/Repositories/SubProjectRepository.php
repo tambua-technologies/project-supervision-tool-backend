@@ -16,7 +16,10 @@ class SubProjectRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $fieldSearchable = ['name'];
+    protected $fieldSearchable = [
+        'code',
+        'name',
+    ];
 
     /**
      * Return searchable fields

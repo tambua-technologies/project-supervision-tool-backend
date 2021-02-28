@@ -18,6 +18,7 @@ class ProjectRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'id',
+        'code',
         'name',
         'description'
     ];

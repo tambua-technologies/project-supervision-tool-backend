@@ -19,6 +19,7 @@ class ProjectResourceWithFullLocation extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'code' => $this->code,
             'description' => $this->description,
             'locations' => LocationAllGeoJsons::collection($this->locations),
             'leaders' => $this->leaders,

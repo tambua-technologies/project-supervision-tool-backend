@@ -19,6 +19,7 @@ class SubProjectSimpleResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'code' => $this->code,
             'description' => $this->description,
             'project_id' => $this->project_id,
             'sub_project_milestones' => $this->sub_project_milestones,

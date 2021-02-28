@@ -16,6 +16,7 @@ class CreateSubProjectsTable extends Migration
         Schema::create('sub_projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code')->nullable();
             $table->string('description');
             $table->string('project_id');
             $table->unsignedBigInteger('progress_id')->nullable();
