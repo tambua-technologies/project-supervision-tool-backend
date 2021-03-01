@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Projects;
 
 use App\Http\Resources\Locations\LocationWithRegion;
+use App\Http\Resources\SubProjectResource;
 use App\Http\Resources\SubProjectSimpleResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,7 +27,7 @@ class ProjectResource extends JsonResource
             'leaders' => $this->leaders,
             'sectors' => $this->sectors,
             'themes' => $this->themes,
-            'sub_projects' => SubProjectSimpleResource::collection($this->sub_projects),
+            'sub_projects' => SubProjectResource::collection($this->sub_projects),
             'details' => new ProjectDetailResource($this->details)
 
         ];
