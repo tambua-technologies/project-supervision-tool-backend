@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -57,4 +58,19 @@ class District extends Model
 
         return json_decode($geom);
     }
+
+
+    static public function subProjectsOverview(): Collection
+    {
+
+        return DB::table('districts')
+            ->join('locations', 'locations.district_id', '=','districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
+            ->where('locations.level', '=', 'district')
+            ->groupBy('district.id')
+            ->select(DB::raw('districts.id, districts.name, st_asgeojson(districts.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
+            ->get();
+    }
+
+
 }

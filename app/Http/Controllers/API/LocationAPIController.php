@@ -155,6 +155,45 @@ class LocationAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
+     *      path="/locations/districts/sub_projects_overview",
+     *      summary="Get an overview of sub projects per district ",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get an overview of sub projects per districts",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function subProjectsOverviewPerDistrict(): JsonResponse
+    {
+        $subProjectsOverview = District::subProjectsOverview();
+
+        return $this->sendResponse(ProjectOverview::collection($subProjectsOverview), 'SubProjects Overview retrieved successfully');
+    }
+
+    /**
+     * @return Response
+     *
+     * @SWG\Get(
      *      path="/locations/regions/sub_projects_overview",
      *      summary="Get an overview of sub projects per region ",
      *      tags={"Location"},
