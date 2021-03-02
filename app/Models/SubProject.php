@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -265,6 +266,48 @@ class SubProject extends Model implements HasMedia
     {
         $locationsToAttach = $this->removeDuplicateIds($locations);
         $this->sub_project_locations()->attach($locationsToAttach);
+    }
+
+    static public function statistics($sub_project_id = ""): array
+    {
+        if ($sub_project_id) {
+            $sub_project_districts_count = DB::table('locations')
+                ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
+                ->where('level', '=', 'district')
+                ->where('sub_project_id', '=', $sub_project_id)
+                ->select(DB::raw('count(*) AS total'))
+                ->first();
+
+            $sub_project_regions_count = DB::table('locations')
+                ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
+                ->where('level', '=', 'region')
+                ->where('sub_project_id', '=', $sub_project_id)
+                ->select(DB::raw('count(*) AS total'))
+                ->first();
+            return [ 'districts' =>$sub_project_districts_count->total,  'regions' => $sub_project_regions_count->total ];
+        }
+
+        $total_sub_projects = SubProject::count();
+        $district_locations_count = DB::table('locations')
+            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
+            ->where('level', '=', 'district')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        $regions_locations_count = DB::table('locations')
+            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
+            ->join('districts', 'locations.district_id', '=', 'districts.id')
+            ->join('regions', 'districts.region_id', '=', 'regions.id')
+            ->where('level', '=', 'district')
+            ->groupBy('districts.region_id')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        return [
+            'sub_projects' => $total_sub_projects,
+            'districts' =>$district_locations_count->total,
+            'regions' => $regions_locations_count->total,
+        ];
     }
 
 

@@ -5960,6 +5960,51 @@
                 ]
             }
         },
+        "/sub_projects/statistics": {
+            "get": {
+                "tags": [
+                    "SubProject"
+                ],
+                "summary": "Get SubProject(s) statistics",
+                "description": "Get SubProject(s) statistics",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of SubProject",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProject"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/sub_project_contracts": {
             "get": {
                 "tags": [

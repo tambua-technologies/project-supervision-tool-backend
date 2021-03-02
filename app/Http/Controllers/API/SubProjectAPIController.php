@@ -9,6 +9,7 @@ use App\Http\Resources\SubProjects\SubProjectCollection;
 use App\Http\Resources\SubProjectWithDistrict;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Log;
@@ -116,7 +117,7 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateSubProjectAPIRequest $request)
+    public function store(CreateSubProjectAPIRequest $request): Response
     {
         $input = $request->all();
 
@@ -165,7 +166,7 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show(string $id): Response
     {
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
@@ -176,6 +177,64 @@ class SubProjectAPIController extends AppBaseController
 
         return $this->sendResponse(new SubProjectWithDistrict($subProject), 'Sub Project retrieved successfully');
     }
+
+
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/sub_projects/statistics",
+     *      summary="Get SubProject(s) statistics",
+     *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
+     *      description="Get SubProject(s) statistics",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of SubProject",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/SubProject"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function statistics(Request $request): JsonResponse
+    {
+        $id = $request->query('id');
+        if ($id) {
+            /** @var SubProject $project */
+            $sub_project = $this->subProjectRepository->find($id);
+            if (empty($sub_project)) {
+                return $this->sendError('SubProject not found');
+            }
+
+            return $this->sendResponse(SubProject::statistics($sub_project->id), 'SubProject statistics retrieved');
+        }
+
+        return $this->sendResponse(SubProject::statistics(), 'SubProjects statistics retrieved');
+    }
+
 
     /**
      * @param int $id
@@ -224,7 +283,7 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateSubProjectAPIRequest $request)
+    public function update(string $id, UpdateSubProjectAPIRequest $request): Response
     {
         $input = $request->all();
 
@@ -241,7 +300,7 @@ class SubProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return Response
      *
      * @SWG\Delete(
@@ -279,7 +338,7 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function destroy($id)
+    public function destroy(string $id): Response
     {
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);

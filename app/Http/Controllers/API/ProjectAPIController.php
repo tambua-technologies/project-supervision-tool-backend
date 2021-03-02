@@ -60,7 +60,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $projects = $this->projectRepository->paginate(
             $request->get('per_page', 15),
@@ -113,7 +113,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateProjectAPIRequest $request)
+    public function store(CreateProjectAPIRequest $request): Response
     {
         $input = $request->all();
         $project = $this->projectRepository->create($input);
@@ -124,7 +124,7 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return Response
      *
      * @SWG\Get(
@@ -162,7 +162,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show(string $id): Response
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
@@ -213,7 +213,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function statistics(Request $request)
+    public function statistics(Request $request): Response
     {
         $id = $request->query('id');
         if ($id) {
@@ -276,7 +276,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateProjectAPIRequest $request)
+    public function update(string $id, UpdateProjectAPIRequest $request): Response
     {
         $input = $request->all();
 
@@ -331,7 +331,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function destroy($id)
+    public function destroy(string $id): Response
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
