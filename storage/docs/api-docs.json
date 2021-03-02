@@ -2940,6 +2940,37 @@
                 ]
             }
         },
+        "/locations/sub_projects_overview_by_region/{region_id}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get SubProject(s) overview per region",
+                "description": "Get SubProject(s) overview per region",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "region_id",
+                        "in": "path",
+                        "description": "id of region",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/locations/regions/sub_projects_overview": {
             "get": {
                 "tags": [

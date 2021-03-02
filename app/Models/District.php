@@ -73,4 +73,24 @@ class District extends Model
     }
 
 
+
+
+
+    static public function subProjectsOverviewPerRegion(string $region_id): Collection
+    {
+
+        return DB::table('districts')
+            ->join('locations', 'locations.district_id', '=','districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
+            ->where('locations.level', '=', 'district')
+            ->where('districts.region_id', '=', $region_id)
+            ->groupBy('districts.id')
+            ->select(DB::raw('districts.id, districts.name, st_asgeojson(districts.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
+            ->get();
+    }
+
+
+
+
+
 }

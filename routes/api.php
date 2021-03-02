@@ -39,6 +39,7 @@ Route::middleware('auth:api')
         Route::get('/locations/regions/{region_id}/projects', 'LocationAPIController@getProjectsByRegion');
         Route::get('/projects/statistics', 'ProjectAPIController@statistics');
         Route::get('/sub_projects/statistics', 'SubProjectAPIController@statistics');
+        Route::get('/locations/sub_projects_overview_by_region/{region_id}', 'LocationAPIController@subProjectsOverViewByRegion');
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
