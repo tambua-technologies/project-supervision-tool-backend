@@ -13,6 +13,7 @@ use App\Models\District;
 use App\Models\Location;
 use App\Models\Region;
 use App\Repositories\LocationRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -148,6 +149,45 @@ class LocationAPIController extends AppBaseController
         $projectsOverview = Region::projectsOverview();
 
         return $this->sendResponse(ProjectOverview::collection($projectsOverview), 'Projects Overview retrieved successfully');
+    }
+
+    /**
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/regions/sub_projects_overview",
+     *      summary="Get an overview of sub projects per region ",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get an overview of sub projects per region",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function subProjectsOverviewPerRegion(): JsonResponse
+    {
+        $subProjectsOverview = Region::subProjectsOverview();
+
+        return $this->sendResponse($subProjectsOverview, 'SubProjects Overview retrieved successfully');
     }
 
     /**

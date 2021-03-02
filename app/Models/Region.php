@@ -68,6 +68,28 @@ class Region extends Model
             ->get();
     }
 
+
+    static public function subProjectsOverview()
+    {
+//        return DB::table('locations')
+//            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
+//            ->join('districts', 'locations.district_id', '=', 'districts.id')
+//            ->join('regions', 'districts.region_id', '=', 'regions.id')
+//            ->where('locations.level', '=', 'district')
+//            ->groupBy('districts.region_id, regions.id')
+//            ->select(DB::raw('regions.id'))
+//            ->get();
+
+        return DB::table('regions')
+            ->join('districts', 'districts.region_id', '=','regions.id')
+            ->join('locations', 'locations.district_id', '=','districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
+            ->where('locations.level', '=', 'district')
+            ->groupBy('regions.id')
+            ->select(DB::raw('regions.id, regions.name, st_asgeojson(regions.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
+            ->get();
+    }
+
     static public function get_region_projects_statistics($region_id)
     {
 
