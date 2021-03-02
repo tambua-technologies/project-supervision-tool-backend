@@ -71,14 +71,6 @@ class Region extends Model
 
     static public function subProjectsOverview()
     {
-//        return DB::table('locations')
-//            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
-//            ->join('districts', 'locations.district_id', '=', 'districts.id')
-//            ->join('regions', 'districts.region_id', '=', 'regions.id')
-//            ->where('locations.level', '=', 'district')
-//            ->groupBy('districts.region_id, regions.id')
-//            ->select(DB::raw('regions.id'))
-//            ->get();
 
         return DB::table('regions')
             ->join('districts', 'districts.region_id', '=','regions.id')
@@ -125,6 +117,24 @@ class Region extends Model
             'projects' => $total_region_projects->total,
             'sub_projects' => $total_sub_projects->count,
             'commitment_amount' => $total_commitment_amount
+        ];
+
+    }
+
+    static public function get_region_sub_projects_statistics($region_id): array
+    {
+
+
+        $total_sub_projects = DB::table('sub_projects')
+            ->join('sub_project_locations', 'sub_project_locations.sub_project_id', '=','sub_projects.id')
+            ->join('locations', 'locations.id', '=','sub_project_locations.location_id')
+            ->join('districts', 'districts.id', '=','locations.district_id')
+            ->where('districts.region_id', '=', $region_id)
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        return [
+            'sub_projects' => $total_sub_projects->total,
         ];
 
     }

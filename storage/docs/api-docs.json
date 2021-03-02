@@ -3266,6 +3266,51 @@
                 ]
             }
         },
+        "/locations/region/{id}/sub_project_statistics": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Display SubProject statistics based on region",
+                "description": "Display SubProject statistics based on region",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of region",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Location"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/money": {
             "get": {
                 "tags": [
