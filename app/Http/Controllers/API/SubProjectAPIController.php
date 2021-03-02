@@ -32,7 +32,6 @@ class SubProjectAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_projects",
@@ -62,8 +61,9 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $subProjects = $this->subProjectRepository->paginate(
             $request->get('per_page', 15),
@@ -80,7 +80,6 @@ class SubProjectAPIController extends AppBaseController
 
     /**
      * @param CreateSubProjectAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/sub_projects",
@@ -116,8 +115,9 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function store(CreateSubProjectAPIRequest $request): Response
+    public function store(CreateSubProjectAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -128,8 +128,6 @@ class SubProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_projects/{id}",
@@ -165,8 +163,10 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param string $id
+     * @return JsonResponse
      */
-    public function show(string $id): Response
+    public function show(string $id): JsonResponse
     {
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
@@ -218,10 +218,10 @@ class SubProjectAPIController extends AppBaseController
 
 
     /**
-     * @param int $id
+     * @param string $id
      * @param UpdateSubProjectAPIRequest $request
-     * @return Response
      *
+     * @return JsonResponse
      * @SWG\Put(
      *      path="/sub_projects/{id}",
      *      summary="Update the specified SubProject in storage",
@@ -264,7 +264,7 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update(string $id, UpdateSubProjectAPIRequest $request): Response
+    public function update(string $id, UpdateSubProjectAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -282,7 +282,6 @@ class SubProjectAPIController extends AppBaseController
 
     /**
      * @param string $id
-     * @return Response
      *
      * @SWG\Delete(
      *      path="/sub_projects/{id}",
@@ -318,8 +317,9 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function destroy(string $id): Response
+    public function destroy(string $id): JsonResponse
     {
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
