@@ -8,6 +8,7 @@ use App\Http\Resources\Projects\ProjectCollection;
 use App\Http\Resources\Projects\ProjectResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -60,7 +61,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request): Response
+    public function index(Request $request): JsonResponse
     {
         $projects = $this->projectRepository->paginate(
             $request->get('per_page', 15),
@@ -113,7 +114,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateProjectAPIRequest $request): Response
+    public function store(CreateProjectAPIRequest $request): JsonResponse
     {
         $input = $request->all();
         $project = $this->projectRepository->create($input);
@@ -162,7 +163,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show(string $id): Response
+    public function show(string $id): JsonResponse
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
@@ -213,7 +214,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function statistics(Request $request): Response
+    public function statistics(Request $request): JsonResponse
     {
         $id = $request->query('id');
         if ($id) {
@@ -276,7 +277,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update(string $id, UpdateProjectAPIRequest $request): Response
+    public function update(string $id, UpdateProjectAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -331,7 +332,7 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function destroy(string $id): Response
+    public function destroy(string $id): JsonResponse
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
