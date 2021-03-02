@@ -91,6 +91,23 @@ class District extends Model
 
 
 
+    static public function getSubProjects($districts_id)
+    {
+//        DB::enableQueryLog();
+        $subProjectIds = DB::table('districts')
+            ->join('locations', 'locations.district_id', '=', 'districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=', 'locations.id')
+            ->join('sub_projects', 'sub_projects.id', '=', 'sub_project_locations.sub_project_id')
+            ->where('districts.id', '=', $districts_id)
+            ->groupBy('sub_projects.id', 'district_id', 'districts.id', 'sub_projects.name')
+            ->select(DB::raw('sub_projects.id'))
+            ->get()->pluck(['id']);
+//        Log::info(DB::getQueryLog());
+        return SubProject::find($subProjectIds);
+    }
+
+
+
 
 
 }

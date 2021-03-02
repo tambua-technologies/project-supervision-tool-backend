@@ -3058,6 +3058,37 @@
                 ]
             }
         },
+        "/locations/districts/{district_id}/sub_projects": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "get sub projects  based on district",
+                "description": " get sub projects  based on district ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "district_id",
+                        "in": "path",
+                        "description": "id of District",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/locations/districts/{region_id}": {
             "get": {
                 "tags": [

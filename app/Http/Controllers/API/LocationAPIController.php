@@ -8,6 +8,7 @@ use App\Http\Resources\Locations\LocationResource;
 use App\Http\Resources\Projects\ProjectOverview;
 use App\Http\Resources\Projects\ProjectOverviewWithLocation;
 use App\Http\Resources\SimpleLocationResource;
+use App\Http\Resources\SubProjectResource;
 use App\Models\District;
 use App\Models\Location;
 use App\Models\Region;
@@ -307,6 +308,43 @@ class LocationAPIController extends AppBaseController
         return $this->sendResponse(ProjectOverviewWithLocation::collection($projectsOverview), 'Region projects retrieved successfully');
     }
 
+    /**
+     * @param string $district_id
+     * @return JsonResponse
+     * @SWG\Get(
+     *      path="/locations/districts/{district_id}/sub_projects",
+     *      summary="get sub projects  based on district",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description=" get sub projects  based on district ",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="district_id",
+     *          description="id of District",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation"
+     *      )
+     * )
+     */
+    public function getSubProjectsByDistrict(string $district_id): JsonResponse
+    {
+        /** @var District $district */
+        $district = District::find($district_id);
+
+        if (empty($district)) {
+            return $this->sendError('District not found');
+        }
+
+        $subProjectsOverview = District::getSubProjects($district_id);
+
+        return $this->sendResponse(SubProjectResource::collection($subProjectsOverview), 'District sub projects retrieved successfully');
+    }
+
 
 
 
@@ -407,8 +445,9 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
+     * @param string $id
      *
+     * @return JsonResponse
      * @SWG\Get(
      *      path="/locations/{id}",
      *      summary="Display the specified Location",
@@ -443,7 +482,6 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
-     * @return JsonResponse
      */
     public function show(string $id): JsonResponse
     {
