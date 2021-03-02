@@ -268,24 +268,9 @@ class SubProject extends Model implements HasMedia
         $this->sub_project_locations()->attach($locationsToAttach);
     }
 
-    static public function statistics($sub_project_id = ""): array
+    static public function statistics(): array
     {
-        if ($sub_project_id) {
-            $sub_project_districts_count = DB::table('locations')
-                ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
-                ->where('level', '=', 'district')
-                ->where('sub_project_id', '=', $sub_project_id)
-                ->select(DB::raw('count(*) AS total'))
-                ->first();
 
-            $sub_project_regions_count = DB::table('locations')
-                ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
-                ->where('level', '=', 'region')
-                ->where('sub_project_id', '=', $sub_project_id)
-                ->select(DB::raw('count(*) AS total'))
-                ->first();
-            return [ 'districts' =>$sub_project_districts_count->total,  'regions' => $sub_project_regions_count->total ];
-        }
 
         $total_sub_projects = SubProject::count();
         $district_locations_count = DB::table('locations')

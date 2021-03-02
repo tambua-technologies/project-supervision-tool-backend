@@ -5970,15 +5970,6 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "id of SubProject",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",

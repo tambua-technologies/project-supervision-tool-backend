@@ -181,8 +181,6 @@ class SubProjectAPIController extends AppBaseController
 
 
     /**
-     * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_projects/statistics",
@@ -191,13 +189,6 @@ class SubProjectAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get SubProject(s) statistics",
      *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of SubProject",
-     *          type="string",
-     *          required=false,
-     *          in="query"
-     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -219,18 +210,8 @@ class SubProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function statistics(Request $request): JsonResponse
+    public function statistics(): JsonResponse
     {
-        $id = $request->query('id');
-        if ($id) {
-            /** @var SubProject $project */
-            $sub_project = $this->subProjectRepository->find($id);
-            if (empty($sub_project)) {
-                return $this->sendError('SubProject not found');
-            }
-
-            return $this->sendResponse(SubProject::statistics($sub_project->id), 'SubProject statistics retrieved');
-        }
 
         return $this->sendResponse(SubProject::statistics(), 'SubProjects statistics retrieved');
     }
