@@ -67,7 +67,7 @@ class District extends Model
             ->join('locations', 'locations.district_id', '=','districts.id')
             ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
             ->where('locations.level', '=', 'district')
-            ->groupBy('district.id')
+            ->groupBy('districts.id')
             ->select(DB::raw('districts.id, districts.name, st_asgeojson(districts.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
             ->get();
     }

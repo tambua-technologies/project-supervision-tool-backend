@@ -31,6 +31,7 @@ Route::middleware('auth:api')
         Route::get('/locations/regions', 'LocationAPIController@regions');
         Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
         Route::get('/locations/regions/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerRegion');
+        Route::get('/locations/districts/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerDistrict');
         Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
         Route::get('/locations/region/{id}', 'LocationAPIController@getRegion');
         Route::get('/locations/region/{id}/project_statistics', 'LocationAPIController@project_statistics');

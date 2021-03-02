@@ -113,7 +113,6 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/regions/projects_overview",
@@ -144,7 +143,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function projectsOverviewPerRegion()
+    public function projectsOverviewPerRegion(): JsonResponse
     {
         $projectsOverview = Region::projectsOverview();
 
@@ -187,11 +186,10 @@ class LocationAPIController extends AppBaseController
     {
         $subProjectsOverview = District::subProjectsOverview();
 
-        return $this->sendResponse(ProjectOverview::collection($subProjectsOverview), 'SubProjects Overview retrieved successfully');
+        return $this->sendResponse($subProjectsOverview, 'SubProjects Overview retrieved successfully');
     }
 
     /**
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/regions/sub_projects_overview",

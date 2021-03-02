@@ -2901,6 +2901,45 @@
                 ]
             }
         },
+        "/locations/districts/sub_projects_overview": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get an overview of sub projects per district ",
+                "description": "Get an overview of sub projects per districts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Region"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/locations/regions/sub_projects_overview": {
             "get": {
                 "tags": [
