@@ -7,8 +7,8 @@ use App\Http\Requests\API\UpdateLocationAPIRequest;
 use App\Http\Resources\Locations\LocationResource;
 use App\Http\Resources\Projects\ProjectOverview;
 use App\Http\Resources\Projects\ProjectOverviewWithLocation;
-use App\Http\Resources\Projects\ProjectResource;
 use App\Http\Resources\SimpleLocationResource;
+use App\Http\Resources\SubProjectResource;
 use App\Models\District;
 use App\Models\Location;
 use App\Models\Region;
@@ -16,7 +16,6 @@ use App\Repositories\LocationRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Response;
 
 /**
  * Class LocationController
@@ -35,7 +34,6 @@ class LocationAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations",
@@ -65,8 +63,9 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $locations = $this->locationRepository->paginate($request->get('per_page', 15));
 
@@ -74,7 +73,6 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/regions",
@@ -105,7 +103,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function regions()
+    public function regions(): JsonResponse
     {
         $locations = Region::all();
 
@@ -113,7 +111,6 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/regions/projects_overview",
@@ -144,7 +141,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function projectsOverviewPerRegion()
+    public function projectsOverviewPerRegion(): JsonResponse
     {
         $projectsOverview = Region::projectsOverview();
 
@@ -152,7 +149,81 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/locations/districts/sub_projects_overview",
+     *      summary="Get an overview of sub projects per district ",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get an overview of sub projects per districts",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Region")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function subProjectsOverviewPerDistrict(): JsonResponse
+    {
+        $subProjectsOverview = District::subProjectsOverview();
+
+        return $this->sendResponse($subProjectsOverview, 'SubProjects Overview retrieved successfully');
+    }
+
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/locations/sub_projects_overview_by_region/{region_id}",
+     *      summary="Get SubProject(s) overview per region",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description="Get SubProject(s) overview per region",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="region_id",
+     *          description="id of region",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation"
+     *      )
+     * )
+     * @param string $region_id
+     * @return JsonResponse
+     */
+    public function subProjectsOverViewByRegion(string $region_id): JsonResponse
+    {
+        /** @var Region $region */
+        $region = Region::find($region_id);
+
+        if (empty($region)) {
+            return $this->sendError('Region not found');
+        }
+
+        return $this->sendResponse(District::subProjectsOverviewPerRegion($region_id), 'SubProjects overview retrieved');
+    }
+
+    /**
      *
      * @SWG\Get(
      *      path="/locations/regions/sub_projects_overview",
@@ -192,7 +263,6 @@ class LocationAPIController extends AppBaseController
 
     /**
      * @param $region_id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/regions/{region_id}/projects",
@@ -229,18 +299,58 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function getProjectsByRegion($region_id)
+    public function getProjectsByRegion($region_id): JsonResponse
     {
         $projectsOverview = Region::getProjects($region_id);
 
         return $this->sendResponse(ProjectOverviewWithLocation::collection($projectsOverview), 'Region projects retrieved successfully');
     }
 
+    /**
+     * @param string $district_id
+     * @return JsonResponse
+     * @SWG\Get(
+     *      path="/locations/districts/{district_id}/sub_projects",
+     *      summary="get sub projects  based on district",
+     *      tags={"Location"},
+     *     security={{"Bearer":{}}},
+     *      description=" get sub projects  based on district ",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="district_id",
+     *          description="id of District",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation"
+     *      )
+     * )
+     */
+    public function getSubProjectsByDistrict(string $district_id): JsonResponse
+    {
+        /** @var District $district */
+        $district = District::find($district_id);
+
+        if (empty($district)) {
+            return $this->sendError('District not found');
+        }
+
+        $subProjectsOverview = District::getSubProjects($district_id);
+
+        return $this->sendResponse(SubProjectResource::collection($subProjectsOverview), 'District sub projects retrieved successfully');
+    }
+
+
+
+
 
     /**
      * @param $region_id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/districts/{region_id}",
@@ -277,8 +387,9 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function districts($region_id)
+    public function districts($region_id): JsonResponse
     {
         $locations = District::query()->where('region_id', $region_id)->get();
 
@@ -287,7 +398,6 @@ class LocationAPIController extends AppBaseController
 
     /**
      * @param CreateLocationAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/locations",
@@ -323,8 +433,9 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function store(CreateLocationAPIRequest $request)
+    public function store(CreateLocationAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -334,9 +445,9 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
-     * @return Response
+     * @param string $id
      *
+     * @return JsonResponse
      * @SWG\Get(
      *      path="/locations/{id}",
      *      summary="Display the specified Location",
@@ -372,7 +483,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show(string $id): JsonResponse
     {
         /** @var Location $location */
         $location = $this->locationRepository->find($id);
@@ -384,10 +495,12 @@ class LocationAPIController extends AppBaseController
         return $this->sendResponse($location->toArray(), 'Location retrieved successfully');
     }
 
+
+
     /**
-     * @param int $id
-     * @return Response
+     * @param string $id
      *
+     * @return JsonResponse
      * @SWG\Get(
      *      path="/locations/region/{id}",
      *      summary="Display the specified Location",
@@ -423,7 +536,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function getRegion($id)
+    public function getRegion(string $id): JsonResponse
     {
         /** @var Region $location */
         $location = Region::query()->find($id);
@@ -437,7 +550,6 @@ class LocationAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/locations/region/{id}/project_statistics",
@@ -473,8 +585,9 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function project_statistics($id)
+    public function project_statistics(string $id): JsonResponse
     {
         /** @var Region $location */
         $location = Region::query()->find($id);
@@ -522,6 +635,8 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param string $id
+     * @return JsonResponse
      */
     public function sub_project_statistics(string $id): JsonResponse
     {
@@ -538,7 +653,6 @@ class LocationAPIController extends AppBaseController
     /**
      * @param int $id
      * @param UpdateLocationAPIRequest $request
-     * @return Response
      *
      * @SWG\Put(
      *      path="/locations/{id}",
@@ -581,8 +695,9 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function update($id, UpdateLocationAPIRequest $request)
+    public function update(string $id, UpdateLocationAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -599,9 +714,9 @@ class LocationAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
-     * @return Response
+     * @param string $id
      *
+     * @return JsonResponse
      * @SWG\Delete(
      *      path="/locations/{id}",
      *      summary="Remove the specified Location from storage",
@@ -637,7 +752,7 @@ class LocationAPIController extends AppBaseController
      *      )
      * )
      */
-    public function destroy($id)
+    public function destroy(string $id): JsonResponse
     {
         /** @var Location $location */
         $location = $this->locationRepository->find($id);

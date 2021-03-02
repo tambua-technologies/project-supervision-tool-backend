@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -57,4 +58,56 @@ class District extends Model
 
         return json_decode($geom);
     }
+
+
+    static public function subProjectsOverview(): Collection
+    {
+
+        return DB::table('districts')
+            ->join('locations', 'locations.district_id', '=','districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
+            ->where('locations.level', '=', 'district')
+            ->groupBy('districts.id')
+            ->select(DB::raw('districts.id, districts.name, st_asgeojson(districts.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
+            ->get();
+    }
+
+
+
+
+
+    static public function subProjectsOverviewPerRegion(string $region_id): Collection
+    {
+
+        return DB::table('districts')
+            ->join('locations', 'locations.district_id', '=','districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=','locations.id')
+            ->where('locations.level', '=', 'district')
+            ->where('districts.region_id', '=', $region_id)
+            ->groupBy('districts.id')
+            ->select(DB::raw('districts.id, districts.name, st_asgeojson(districts.geom)::json as geom,count(sub_project_locations.sub_project_id) as sub_projects_count'))
+            ->get();
+    }
+
+
+
+    static public function getSubProjects($districts_id)
+    {
+//        DB::enableQueryLog();
+        $subProjectIds = DB::table('districts')
+            ->join('locations', 'locations.district_id', '=', 'districts.id')
+            ->join('sub_project_locations', 'sub_project_locations.location_id', '=', 'locations.id')
+            ->join('sub_projects', 'sub_projects.id', '=', 'sub_project_locations.sub_project_id')
+            ->where('districts.id', '=', $districts_id)
+            ->groupBy('sub_projects.id', 'district_id', 'districts.id', 'sub_projects.name')
+            ->select(DB::raw('sub_projects.id'))
+            ->get()->pluck(['id']);
+//        Log::info(DB::getQueryLog());
+        return SubProject::find($subProjectIds);
+    }
+
+
+
+
+
 }
