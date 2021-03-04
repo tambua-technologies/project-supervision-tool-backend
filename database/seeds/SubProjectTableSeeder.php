@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\SubProject;
+use App\Models\SubProjectDetail;
 use Illuminate\Database\Seeder;
 
 class SubProjectTableSeeder extends Seeder
@@ -12,6 +13,6 @@ class SubProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(SubProject::class, 30)->create();
+        factory(SubProjectDetail::class, 50)->create();
     }
 }
