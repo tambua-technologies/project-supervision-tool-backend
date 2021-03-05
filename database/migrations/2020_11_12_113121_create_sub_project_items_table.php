@@ -21,18 +21,12 @@ class CreateSubProjectItemsTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('sub_project_id');
-            $table->unsignedBigInteger('progress_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('sub_project_id')
                 ->references('id')
                 ->on('sub_projects')
-                ->onDelete('cascade');
-
-            $table->foreign('progress_id')
-                ->references('id')
-                ->on('progress')
                 ->onDelete('cascade');
 
             $table->foreign('item_id')

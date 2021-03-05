@@ -22,9 +22,7 @@ class SubProjectItemsResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'item' => $this->item,
-            'progress' => $this->progress,
             'sub_project_id' => $this->sub_project_id,
-            'locations' => LocationAllGeoJsons::collection($this->locations),
             'created_at' => $this->created_at,
             'updated_at' =>$this->updated_at,
         ];
