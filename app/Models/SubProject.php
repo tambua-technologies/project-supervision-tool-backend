@@ -145,7 +145,9 @@ class SubProject extends Model implements HasMedia
 
     public $fillable = [
         'name',
+        'code',
         'description',
+        'project_id',
     ];
 
     /**
@@ -156,6 +158,7 @@ class SubProject extends Model implements HasMedia
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'code' => 'string',
         'description' => 'string',
         'project_id' => 'string',
     ];
@@ -165,8 +168,10 @@ class SubProject extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
+        'name' => 'required|string',
+        'code' => 'required|string',
+        'project_id' => 'required|string',
+        'description' => 'required|string',
     ];
 
 
@@ -185,7 +190,6 @@ class SubProject extends Model implements HasMedia
             $sub_project->sub_project_progress()->delete();
             $sub_project->sub_project_progress_history()->delete();
             $sub_project->sub_project_contracts()->delete();
-            // do the rest of the cleanup...
         });
 
 
