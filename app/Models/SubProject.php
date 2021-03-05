@@ -249,6 +249,11 @@ class SubProject extends Model implements HasMedia
         return $this->belongsToMany(Location::class, 'sub_project_locations', 'sub_project_id', 'location_id');
     }
 
+    public function progress_history()
+    {
+        return $this->belongsToMany(Progress::class, 'sub_project_progress_history', 'sub_project_id', 'progress_id');
+    }
+
     public function removeDuplicateIds($arr)
     {
         $attachedIds = $this->sub_project_locations()->get()->pluck(['id']);
