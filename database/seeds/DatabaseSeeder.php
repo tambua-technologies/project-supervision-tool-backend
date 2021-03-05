@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UnitsTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
-        $this->call(ProgressTableSeeder::class);
         $this->call(EnvironmentalCategoriesTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
         $this->call(SectorsTableSeeder::class);
@@ -39,6 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SubProjectEquipmentsTableSeeder::class);
         $this->call(SubProjectItemsTableSeeder::class);
         $this->call(SubProjectMilestonesTableSeeder::class);
+        $this->call(ProgressTableSeeder::class);
+
 
 
     }

@@ -20,7 +20,8 @@ class ProgressRepository extends BaseRepository
         'planned',
         'actual',
         'ahead',
-        'behind'
+        'behind',
+        'sub_project_id'
     ];
 
     /**

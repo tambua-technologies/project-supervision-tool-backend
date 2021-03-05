@@ -29,7 +29,7 @@ class SubProjectResource extends JsonResource
             'sub_project_equipments' => SubProjectEquipmentResource::collection($this->sub_project_equipments),
             'sub_project_milestones' => $this->sub_project_milestones,
             'human_resources' => SubProjectHrResource::collection($this->human_resources),
-            'sub_project_progress' => $this->sub_project_progress,
+            'progress' => $this->progress,
             'progress_history' => $this->progress_history,
             'sub_project_contracts' => SubProjectContractResource::collection($this->sub_project_contracts),
             'sub_project_locations' => LocationWithDistrict::collection($this->sub_project_locations),
