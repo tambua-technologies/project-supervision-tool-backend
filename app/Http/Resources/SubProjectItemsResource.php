@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Items\ItemResource;
 use App\Http\Resources\Locations\LocationAllGeoJsons;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -21,7 +22,7 @@ class SubProjectItemsResource extends JsonResource
             'quantity' => $this->quantity,
             'name' => $this->name,
             'description' => $this->description,
-            'item' => $this->item,
+            'item' => new ItemResource($this->item),
             'sub_project_id' => $this->sub_project_id,
             'created_at' => $this->created_at,
             'updated_at' =>$this->updated_at,
