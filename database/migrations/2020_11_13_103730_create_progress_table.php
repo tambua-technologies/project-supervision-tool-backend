@@ -16,12 +16,18 @@ class CreateProgressTable extends Migration
     {
         Schema::create('progress', function (Blueprint $table) {
             $table->increments('id');
+            $table->float('actual');
             $table->float('planned')->nullable();
-            $table->float('actual')->nullable();
             $table->float('ahead')->nullable();
             $table->float('behind')->nullable();
+            $table->unsignedBigInteger('sub_project_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('sub_project_id')
+                ->references('id')
+                ->on('sub_projects')
+                ->onDelete('set null');
         });
     }
 

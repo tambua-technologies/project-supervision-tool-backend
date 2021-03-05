@@ -56,11 +56,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          description="locations",
  *          @SWG\Items(type="integer")
  *      ),
- *      @SWG\Property(
- *          property="progress_id",
- *          description="progress_id",
- *          type="string"
- *      ),
+
  *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
@@ -114,11 +110,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="progress_id",
- *          description="progress_id",
- *          type="string"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -155,8 +146,6 @@ class SubProject extends Model implements HasMedia
     public $fillable = [
         'name',
         'description',
-        'project_id',
-        'progress_id'
     ];
 
     /**
@@ -169,7 +158,6 @@ class SubProject extends Model implements HasMedia
         'name' => 'string',
         'description' => 'string',
         'project_id' => 'string',
-        'progress_id' => 'string',
     ];
 
     /**
@@ -195,6 +183,7 @@ class SubProject extends Model implements HasMedia
             $sub_project->human_resources()->delete();
             $sub_project->sub_project_equipments()->delete();
             $sub_project->sub_project_progress()->delete();
+            $sub_project->sub_project_progress_history()->delete();
             $sub_project->sub_project_contracts()->delete();
             // do the rest of the cleanup...
         });
@@ -239,14 +228,20 @@ class SubProject extends Model implements HasMedia
         return $this->hasMany(SubProjectContract::class);
     }
 
-    public function sub_project_progress()
+    public function progress()
     {
-        return $this->belongsTo(Progress::class, 'progress_id');
+        return $this->hasOne(Progress::class);
     }
 
     public function sub_project_locations()
     {
         return $this->belongsToMany(Location::class, 'sub_project_locations', 'sub_project_id', 'location_id');
+    }
+
+    public function progress_history()
+    {
+        return $this->belongsToMany(Progress::class, 'sub_project_progress_history', 'sub_project_id', 'progress_id')->as('details')
+            ->withTimestamps();
     }
 
     public function removeDuplicateIds($arr)

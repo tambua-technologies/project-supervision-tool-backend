@@ -2,16 +2,23 @@
 
 namespace App\Models;
 
+use App\Observers\ProgressObserver;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
  *      definition="Progress",
- *      required={""},
+ *      required={"sub_project_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub_project_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -68,8 +75,17 @@ class Progress extends Model
         'planned',
         'actual',
         'ahead',
+        'sub_project_id',
         'behind'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::observe(ProgressObserver::class);
+
+    }
 
     /**
      * The attributes that should be casted to native types.
@@ -78,6 +94,7 @@ class Progress extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'sub_project_id' => 'integer',
         'planned' => 'float',
         'actual' => 'float',
         'ahead' => 'float',
@@ -95,6 +112,6 @@ class Progress extends Model
 
     public function sub_project()
     {
-        return $this->hasOne(SubProject::class);
+        return $this->belongsTo(SubProject::class);
     }
 }

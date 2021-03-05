@@ -25,9 +25,6 @@ $factory->define(SubProject::class, function (Faker $faker) {
         'description' => $faker->text,
         'project_id' => function () {
             return Project::query()->inRandomOrder()->first()->id;
-        },
-        'progress_id' => function () {
-            return Progress::query()->inRandomOrder()->first()->id;
-        },
+        }
     ];
 });

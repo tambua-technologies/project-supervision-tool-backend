@@ -9542,12 +9542,6 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "locations": {
-                    "description": "locations",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
                 "sub_project_id": {
                     "description": "sub_project_id",
                     "type": "integer",

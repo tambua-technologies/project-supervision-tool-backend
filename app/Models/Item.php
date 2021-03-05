@@ -16,6 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="unit_id",
+ *          description="unit_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="name",
  *          description="name",
  *          type="string"
@@ -49,7 +55,7 @@ class Item extends Model
     use SoftDeletes;
 
     public $table = 'items';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -69,6 +75,7 @@ class Item extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'unit_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
         'capacity' => 'string'
@@ -80,8 +87,12 @@ class Item extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
 }
