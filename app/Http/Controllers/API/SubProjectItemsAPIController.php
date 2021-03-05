@@ -7,9 +7,9 @@ use App\Http\Requests\API\UpdateSubProjectItemsAPIRequest;
 use App\Http\Resources\SubProjectItemsResource;
 use App\Models\SubProjectItems;
 use App\Repositories\SubProjectItemsRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Response;
 
 /**
  * Class SubProjectItemsController
@@ -28,7 +28,6 @@ class SubProjectItemsAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_project_items",
@@ -58,8 +57,9 @@ class SubProjectItemsAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $subProjectItems = $this->subProjectItemsRepository->all(
             $request->except(['skip', 'limit']),
@@ -72,7 +72,6 @@ class SubProjectItemsAPIController extends AppBaseController
 
     /**
      * @param CreateSubProjectItemsAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/sub_project_items",
@@ -108,8 +107,9 @@ class SubProjectItemsAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function store(CreateSubProjectItemsAPIRequest $request)
+    public function store(CreateSubProjectItemsAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -120,7 +120,6 @@ class SubProjectItemsAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_project_items/{id}",
@@ -156,8 +155,9 @@ class SubProjectItemsAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
         /** @var SubProjectItems $subProjectItems */
         $subProjectItems = $this->subProjectItemsRepository->find($id);
@@ -172,7 +172,6 @@ class SubProjectItemsAPIController extends AppBaseController
     /**
      * @param int $id
      * @param UpdateSubProjectItemsAPIRequest $request
-     * @return Response
      *
      * @SWG\Put(
      *      path="/sub_project_items/{id}",
@@ -215,8 +214,9 @@ class SubProjectItemsAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function update($id, UpdateSubProjectItemsAPIRequest $request)
+    public function update(int $id, UpdateSubProjectItemsAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -234,7 +234,6 @@ class SubProjectItemsAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Delete(
      *      path="/sub_project_items/{id}",
@@ -270,8 +269,9 @@ class SubProjectItemsAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
         /** @var SubProjectItems $subProjectItems */
         $subProjectItems = $this->subProjectItemsRepository->find($id);
