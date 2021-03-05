@@ -19,14 +19,13 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('capacity');
-            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->unsignedBigInteger('unit_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('unit_id')
                 ->references('id')
-                ->on('units')
-                ->onDelete('set null');
+                ->on('units');
         });
     }
 
