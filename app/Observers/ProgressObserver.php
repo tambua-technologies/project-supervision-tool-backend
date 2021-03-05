@@ -2,17 +2,32 @@
 
 namespace App\Observers;
 
-use App\Models\Media;
 use App\Models\Progress;
-use App\Models\User;
+use App\Models\SubProjectProgressHistory;
 use Illuminate\Support\Facades\Log;
 
 class ProgressObserver
 {
 
-//    public function creating(Progress $progress)
-//    {
-//        $sub_project->progress_history()->attach($progress->id);
-//
-//    }
+    public function created(Progress $progress)
+    {
+
+        SubProjectProgressHistory::create(
+            [
+                'sub_project_id' => $progress->sub_project_id,
+                'progress_id' => $progress->id
+            ]
+        );
+    }
+
+    public function updated(Progress $progress)
+    {
+
+        SubProjectProgressHistory::create(
+            [
+                'sub_project_id' => $progress->sub_project_id,
+                'progress_id' => $progress->id
+            ]
+        );
+    }
 }

@@ -240,7 +240,8 @@ class SubProject extends Model implements HasMedia
 
     public function progress_history()
     {
-        return $this->belongsToMany(Progress::class, 'sub_project_progress_history', 'sub_project_id', 'progress_id');
+        return $this->belongsToMany(Progress::class, 'sub_project_progress_history', 'sub_project_id', 'progress_id')->as('details')
+            ->withTimestamps();
     }
 
     public function removeDuplicateIds($arr)

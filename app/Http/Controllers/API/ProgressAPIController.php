@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateProgressAPIRequest;
 use App\Http\Requests\API\UpdateProgressAPIRequest;
 use App\Models\Progress;
 use App\Repositories\ProgressRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -27,7 +28,6 @@ class ProgressAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/progress",
@@ -57,8 +57,9 @@ class ProgressAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $progress = $this->progressRepository->all(
             $request->except(['skip', 'limit']),
@@ -71,7 +72,6 @@ class ProgressAPIController extends AppBaseController
 
     /**
      * @param CreateProgressAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/progress",
@@ -107,19 +107,18 @@ class ProgressAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function store(CreateProgressAPIRequest $request)
+    public function store(CreateProgressAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
         $progress = $this->progressRepository->create($input);
-
         return $this->sendResponse($progress->toArray(), 'Progress saved successfully');
     }
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/progress/{id}",
@@ -155,8 +154,9 @@ class ProgressAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
         /** @var Progress $progress */
         $progress = $this->progressRepository->find($id);
@@ -171,7 +171,6 @@ class ProgressAPIController extends AppBaseController
     /**
      * @param int $id
      * @param UpdateProgressAPIRequest $request
-     * @return Response
      *
      * @SWG\Put(
      *      path="/progress/{id}",
@@ -214,8 +213,9 @@ class ProgressAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function update($id, UpdateProgressAPIRequest $request)
+    public function update(int  $id, UpdateProgressAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -233,7 +233,6 @@ class ProgressAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Delete(
      *      path="/progress/{id}",
@@ -269,8 +268,9 @@ class ProgressAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(init $id): JsonResponse
     {
         /** @var Progress $progress */
         $progress = $this->progressRepository->find($id);

@@ -112,6 +112,6 @@ class Progress extends Model
 
     public function sub_project()
     {
-        return $this->hasOne(SubProject::class);
+        return $this->belongsTo(SubProject::class);
     }
 }
