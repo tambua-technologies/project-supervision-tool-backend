@@ -7363,6 +7363,230 @@
                 ]
             }
         },
+        "/sub_project_surveys": {
+            "get": {
+                "tags": [
+                    "SubProjectSurvey"
+                ],
+                "summary": "Get a listing of the SubProjectSurveys.",
+                "description": "Get all SubProjectSurveys",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/SubProjectSurvey"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SubProjectSurvey"
+                ],
+                "summary": "Store a newly created SubProjectSurvey in storage",
+                "description": "Store SubProjectSurvey",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectSurvey that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectSurveyPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectSurvey"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/sub_project_surveys/{id}": {
+            "get": {
+                "tags": [
+                    "SubProjectSurvey"
+                ],
+                "summary": "Display the specified SubProjectSurvey",
+                "description": "Get SubProjectSurvey",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectSurvey",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectSurvey"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SubProjectSurvey"
+                ],
+                "summary": "Update the specified SubProjectSurvey in storage",
+                "description": "Update SubProjectSurvey",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectSurvey",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectSurvey that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectSurvey"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectSurvey"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SubProjectSurvey"
+                ],
+                "summary": "Remove the specified SubProjectSurvey from storage",
+                "description": "Delete SubProjectSurvey",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectSurvey",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/supervising_agencies": {
             "get": {
                 "tags": [
@@ -8843,6 +9067,11 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "unit_id": {
+                    "description": "unit_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "name": {
                     "description": "name",
                     "type": "string"
@@ -8991,11 +9220,16 @@
         },
         "Progress": {
             "required": [
-                ""
+                "sub_project_id"
             ],
             "properties": {
                 "id": {
                     "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "sub_project_id": {
+                    "description": "sub_project_id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -9328,10 +9562,6 @@
                         "type": "integer"
                     }
                 },
-                "progress_id": {
-                    "description": "progress_id",
-                    "type": "string"
-                },
                 "created_at": {
                     "description": "created_at",
                     "type": "string",
@@ -9374,10 +9604,6 @@
                 },
                 "project_id": {
                     "description": "project_id",
-                    "type": "string"
-                },
-                "progress_id": {
-                    "description": "progress_id",
                     "type": "string"
                 },
                 "created_at": {
@@ -9586,6 +9812,55 @@
                 "description": {
                     "description": "description",
                     "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "SubProjectSurveyPayload": {
+            "required": [
+                "survey_id",
+                "category_name",
+                "sub_project_id"
+            ],
+            "properties": {
+                "survey_id": {
+                    "description": "survey_id",
+                    "type": "string"
+                },
+                "category_name": {
+                    "description": "category_name",
+                    "type": "string"
+                },
+                "sub_project_id": {
+                    "description": "sub_project_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "SubProjectSurvey": {
+            "properties": {
+                "survey_id": {
+                    "description": "survey_id",
+                    "type": "survey_id"
+                },
+                "category_name": {
+                    "description": "category_name",
+                    "type": "string"
+                },
+                "sub_project_id": {
+                    "description": "sub_project_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",

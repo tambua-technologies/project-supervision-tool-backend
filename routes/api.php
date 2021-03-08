@@ -87,6 +87,7 @@ Route::middleware('auth:api')
         Route::resource('contract_times', 'ContractTimeAPIController');
         Route::resource('contract_costs', 'ContractCostAPIController');
         Route::resource('sub_project_contracts', 'SubProjectContractAPIController');
+        Route::resource('sub_project_surveys', 'SubProjectSurveyController');
 
 
     });
