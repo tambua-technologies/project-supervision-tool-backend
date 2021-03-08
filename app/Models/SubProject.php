@@ -212,6 +212,11 @@ class SubProject extends Model implements HasMedia
         return $this->hasMany(SubProjectItems::class);
     }
 
+    public function surveys()
+    {
+        return $this->hasMany(SubProjectSurvey::class);
+    }
+
     public function sub_project_equipments()
     {
         return $this->hasMany(SubProjectEquipment::class);

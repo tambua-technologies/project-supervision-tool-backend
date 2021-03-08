@@ -22,6 +22,7 @@ class SubProjectSimpleResource extends JsonResource
             'code' => $this->code,
             'description' => $this->description,
             'project_id' => $this->project_id,
+            'surveys' => $this->surveys,
             'sub_project_milestones' => $this->sub_project_milestones,
             'sub_project_progress' => $this->sub_project_progress,
             'sub_project_locations' => LocationWithPoint::collection($this->sub_project_locations),
