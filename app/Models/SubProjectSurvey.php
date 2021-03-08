@@ -91,7 +91,7 @@ class SubProjectSurvey extends Model
         'id' => 'integer',
         'category_name' => 'string',
         'survey_id' => 'string',
-        'sub_project_id' => 'string',
+        'sub_project_id' => 'integer',
     ];
 
     /**
