@@ -29,16 +29,16 @@ class DatabaseSeeder extends Seeder
 
 
         // tobe commented later before demo
-        $this->call(ProjectsTableSeeder::class);
-        $this->call(ProjectLocationsTableSeeder::class);
-        $this->call(SubProjectTableSeeder::class);
-        $this->call(SubProjectLocationsSeeder::class);
-        $this->call(SubProjectItemLocationSeeder::class);
-        $this->call(SubProjectContractsTableSeeder::class);
-        $this->call(SubProjectEquipmentsTableSeeder::class);
-        $this->call(SubProjectItemsTableSeeder::class);
-        $this->call(SubProjectMilestonesTableSeeder::class);
-        $this->call(ProgressTableSeeder::class);
+//        $this->call(ProjectsTableSeeder::class);
+//        $this->call(ProjectLocationsTableSeeder::class);
+//        $this->call(SubProjectTableSeeder::class);
+//        $this->call(SubProjectLocationsSeeder::class);
+//        $this->call(SubProjectItemLocationSeeder::class);
+//        $this->call(SubProjectContractsTableSeeder::class);
+//        $this->call(SubProjectEquipmentsTableSeeder::class);
+//        $this->call(SubProjectItemsTableSeeder::class);
+//        $this->call(SubProjectMilestonesTableSeeder::class);
+//        $this->call(ProgressTableSeeder::class);
 
 
 
