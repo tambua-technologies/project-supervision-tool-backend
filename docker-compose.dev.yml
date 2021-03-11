@@ -11,8 +11,6 @@ services:
       - POSTGRES_USER=postgres-dev-project-supervision-tool
       - POSTGRES_PASSWORD=StrongPass@dev-project-supervision-tool
       - POSTGRES_DB=dev-project-supervision-tool
-    ports:
-      - "5432:5432"
 
   php:
     build: .
