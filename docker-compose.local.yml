@@ -16,8 +16,8 @@ services:
 
   php:
     build: .
-    image: project-supervision-tool
-    container_name: project-superviosion-tool
+    image: dev-project-supervision-tool
+    container_name: dev-project-superviosion-tool
     restart: unless-stopped
     depends_on:
       - db
