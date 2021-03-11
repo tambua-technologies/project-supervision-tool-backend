@@ -20,7 +20,6 @@ class DevDataSeeder extends Seeder
         $this->call(UnitsTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
-        $this->call(ProgressTableSeeder::class);
         $this->call(EnvironmentalCategoriesTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
         $this->call(SectorsTableSeeder::class);
@@ -43,7 +42,7 @@ class DevDataSeeder extends Seeder
         $this->call(SubProjectContractsTableSeeder::class);
         $this->call(ProjectLocationsTableSeeder::class);
         $this->call(SubProjectLocationsSeeder::class);
-        $this->call(SubProjectItemLocationSeeder::class);
+        $this->call(ProgressTableSeeder::class);
 
     }
 }
