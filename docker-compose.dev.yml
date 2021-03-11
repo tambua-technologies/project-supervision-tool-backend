@@ -3,21 +3,21 @@ version: '3'
 services:
   db:
     image: postgis/postgis
-    container_name: postgres-tukutane
+    container_name: postgres-dev-project-supervision-tool
     restart: unless-stopped
     volumes:
-      - "tukutane-dbdata:/var/lib/postgresql/data"
+      - "dev-project-supervision-tool-dbdata:/var/lib/postgresql/data"
     environment:
-      - POSTGRES_USER=postgres-tukutane
-      - POSTGRES_PASSWORD=StrongPass@tukutane
-      - POSTGRES_DB=tukutane
+      - POSTGRES_USER=postgres-dev-project-supervision-tool
+      - POSTGRES_PASSWORD=StrongPass@dev-project-supervision-tool
+      - POSTGRES_DB=dev-project-supervision-tool
     ports:
       - "5432:5432"
 
   php:
     build: .
-    image: project-supervision-tool
-    container_name: project-superviosion-tool
+    image: dev-project-supervision-tool
+    container_name: dev-project-superviosion-tool
     restart: unless-stopped
     depends_on:
       - db
@@ -26,7 +26,7 @@ services:
 
   web:
     image: nginx:alpine
-    container_name: webserver
+    container_name: webserver-dev-project-supervision-tool
     restart: unless-stopped
     tty: true
     ports:
@@ -36,4 +36,4 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
 
 volumes:
-  tukutane-dbdata:
+  dev-project-supervision-tool-dbdata:

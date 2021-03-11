@@ -26,7 +26,7 @@ services:
 
   web:
     image: nginx:alpine
-    container_name: webserver
+    container_name: webserver-dev-project-supervision-tool
     restart: unless-stopped
     tty: true
     ports:
