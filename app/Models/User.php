@@ -126,6 +126,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required',
+        'password' => 'required'
+    ];
+
 
     /**
      * @return BelongsTo
