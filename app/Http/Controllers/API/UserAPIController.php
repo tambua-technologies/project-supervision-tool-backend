@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
+use App\Http\Resources\Users\UsersCollection;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -60,13 +61,18 @@ class UserAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $users = $this->userRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
 
-        return $this->sendResponse($users->toArray(), 'Users retrieved successfully');
+
+        $users = $this->userRepository->paginate(
+            $request->get('per_page', 15),
+            [
+                '*'
+            ],
+            [
+                $request->get('searchField') => $request->get('searchQuery')
+            ]);
+
+        return $this->sendResponse(new UsersCollection($users), 'Users retrieved successfully');
     }
 
     /**
