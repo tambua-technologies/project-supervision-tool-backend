@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateSubProjectContractAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectContractAPIRequest;
+use App\Http\Resources\SubProjectContracts\SubProjectContractsCollection;
 use App\Models\SubProjectContract;
 use App\Repositories\SubProjectContractRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -58,15 +60,18 @@ class SubProjectContractAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
-        $subProjectContracts = $this->subProjectContractRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $subProjectContracts = $this->subProjectContractRepository->paginate(
+            $request->get('per_page', 15),
+            [
+                '*'
+            ],
+            [
+                $request->get('searchField') => $request->get('searchQuery')
+            ]);
 
-        return $this->sendResponse($subProjectContracts->toArray(), 'Sub Project Contracts retrieved successfully');
+        return $this->sendResponse(new SubProjectContractsCollection($subProjectContracts), 'Sub Project Contracts retrieved successfully');
     }
 
     /**
