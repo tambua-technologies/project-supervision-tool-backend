@@ -122,6 +122,7 @@ class User extends Authenticatable
         'middle_name' => 'string',
         'phone' => 'string',
         'email' => 'string',
+        'password' => 'string',
         'email_verified_at' => 'datetime',
     ];
 
@@ -134,7 +135,6 @@ class User extends Authenticatable
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required',
-        'password' => 'required'
     ];
 
 
