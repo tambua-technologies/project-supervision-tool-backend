@@ -17,6 +17,7 @@ class SubProjectContractRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'name',
         'sub_project_id',
         'contract_cost_id',
         'contract_time_id',
