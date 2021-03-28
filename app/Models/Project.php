@@ -203,6 +203,11 @@ class Project extends Model
         return $this->hasMany(SubProject::class);
     }
 
+    public function components()
+    {
+        return $this->hasMany(ProjectComponent::class);
+    }
+
 
     static public function statistics($project_id = "")
     {
