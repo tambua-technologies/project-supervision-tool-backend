@@ -75,13 +75,17 @@ class ProjectComponent extends Model
 
     /**
      * Validation rules
-     *
      * @var array
      */
     public static $rules = [
         'name' => 'required',
         'project_id' => 'required',
     ];
+
+    public function sub_components()
+    {
+        return $this->hasMany(ProjectSubComponent::class);
+    }
 
 
 }
