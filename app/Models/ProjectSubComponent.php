@@ -84,5 +84,10 @@ class ProjectSubComponent extends Model
         'project_component_id' => 'required',
     ];
 
+    public function procuring_entities()
+    {
+        return $this->hasMany(ProcuringEntity::class);
+    }
+
 
 }
