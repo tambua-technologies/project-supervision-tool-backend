@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="ProjectComponent",
- *      required={"name, project_id"},
+ *      definition="ProjectSubComponent",
+ *      required={"name,project_component_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,9 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="project_id",
- *          description="project_id",
- *          type="string"
+ *          property="project_component_id",
+ *          description="project_component_id",
+ *           type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -44,11 +45,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class ProjectComponent extends Model
+class ProjectSubComponent extends Model
 {
     use SoftDeletes;
 
-    public $table = 'project_components';
+    public $table = 'project_sub_components';
 
 
     protected $dates = ['deleted_at'];
@@ -58,7 +59,7 @@ class ProjectComponent extends Model
     public $fillable = [
         'name',
         'description',
-        'project_id'
+        'project_component_id'
     ];
 
     /**
@@ -70,7 +71,7 @@ class ProjectComponent extends Model
         'id' => 'integer',
         'name' => 'string',
         'description' => 'string',
-        'project_id' => 'string'
+        'project_component_id' => 'string'
     ];
 
     /**
@@ -80,7 +81,7 @@ class ProjectComponent extends Model
      */
     public static $rules = [
         'name' => 'required',
-        'project_id' => 'required',
+        'project_component_id' => 'required',
     ];
 
 
