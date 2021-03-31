@@ -12,22 +12,22 @@ class ProjectComponentsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('project_components')->delete();
-        
+
         \DB::table('project_components')->insert(array (
-            0 => 
+            0 =>
             array (
-                'id' => 1,
-                'name' => 'accusantium',
-                'description' => 'Doloribus vel recusandae neque dolor repellendus deserunt. Et aut ea autem voluptas et quia eveniet. Repellendus amet molestiae atque vitae. Sit quod et explicabo quis.',
-                'project_id' => 'hulda.wolf',
-                'created_at' => '2021-03-28 14:13:48',
-                'updated_at' => '2021-03-28 14:13:48',
+                'name' => 'Priority Infrastructure',
+                'description' => 'Priority Infrastructure',
+                'project_id' => 'P123134',
+                'created_at' => '2021-03-31 14:29:32',
+                'updated_at' => '2021-03-31 14:29:32',
+                'deleted_at' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

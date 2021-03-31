@@ -19,10 +19,9 @@ class AgenciesTableSeeder extends Seeder
         \DB::table('agencies')->insert(array (
             0 =>
             array (
-                'id' => 7,
                 'name' => 'Ministry of Finance',
                 'website' => 'yost.com',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'borrower',
                 'created_at' => '2021-01-17 10:23:34',
@@ -31,10 +30,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             1 =>
             array (
-                'id' => 8,
                 'name' => 'Ministry of Education',
                 'website' => 'collier.com',
-                'focal_person_id' => 902,
+                'focal_person_id' => 2,
                 'location_id' => NULL,
                 'type' => 'borrower',
                 'created_at' => '2021-01-17 10:23:34',
@@ -43,10 +41,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             2 =>
             array (
-                'id' => 9,
                 'name' => 'Ministry of Health',
                 'website' => 'bailey.net',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'borrower',
                 'created_at' => '2021-01-17 10:23:34',
@@ -55,10 +52,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             3 =>
             array (
-                'id' => 10,
             'name' => 'Regional Administration and Local Government (PMO-RALG)',
                 'website' => 'maggio.net',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'implementing_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -67,10 +63,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             4 =>
             array (
-                'id' => 11,
                 'name' => 'kihn',
                 'website' => 'mertz.info',
-                'focal_person_id' => 902,
+                'focal_person_id' => 2,
                 'location_id' => NULL,
                 'type' => 'implementing_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -79,10 +74,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             5 =>
             array (
-                'id' => 12,
                 'name' => 'reichel',
                 'website' => 'hudson.biz',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'implementing_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -91,10 +85,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             6 =>
             array (
-                'id' => 4,
                 'name' => 'WorldBank',
                 'website' => 'klein.com',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'funding_organisation',
                 'created_at' => '2021-01-17 10:23:34',
@@ -103,10 +96,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             7 =>
             array (
-                'id' => 5,
                 'name' => 'DFID Tanzania',
                 'website' => 'dfid.com',
-                'focal_person_id' => 902,
+                'focal_person_id' => 2,
                 'location_id' => NULL,
                 'type' => 'funding_organisation',
                 'created_at' => '2021-01-17 10:23:34',
@@ -115,10 +107,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             8 =>
             array (
-                'id' => 6,
                 'name' => 'abbott',
                 'website' => 'pagac.info',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'funding_organisation',
                 'created_at' => '2021-01-17 10:23:34',
@@ -127,10 +118,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             9 =>
             array (
-                'id' => 1,
                 'name' => 'Ilala Municipal',
                 'website' => 'lehner.org',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'actor',
                 'created_at' => '2021-01-17 10:23:34',
@@ -139,10 +129,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             10 =>
             array (
-                'id' => 2,
                 'name' => 'Temeke Municipal',
                 'website' => 'lehner.org',
-                'focal_person_id' => 902,
+                'focal_person_id' => 2,
                 'location_id' => NULL,
                 'type' => 'actor',
                 'created_at' => '2021-01-17 10:23:34',
@@ -151,10 +140,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             11 =>
             array (
-                'id' => 3,
                 'name' => 'Dodoma Municipal',
                 'website' => 'lehner.org',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'actor',
                 'created_at' => '2021-01-17 10:23:34',
@@ -163,10 +151,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             12 =>
             array (
-                'id' => 13,
                 'name' => 'LUCENT MANAGEMENT CONSULTANTS',
                 'website' => 'farrell.biz',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'supervising_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -175,10 +162,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             13 =>
             array (
-                'id' => 15,
                 'name' => 'NICE Tanzania Management and Cooperate Consultant',
                 'website' => 'lynch.org',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'supervising_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -187,10 +173,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             14 =>
             array (
-                'id' => 14,
                 'name' => 'MTL Consulting Company Limited',
                 'website' => 'quitzon.com',
-                'focal_person_id' => 901,
+                'focal_person_id' => 1,
                 'location_id' => NULL,
                 'type' => 'supervising_agency',
                 'created_at' => '2021-01-17 10:23:34',
@@ -199,10 +184,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             15 =>
             array (
-                'id' => 16,
                 'name' => 'HAINAN INTERNATIONAL JOINT VENTURE',
                 'website' => 'www.com',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'contractor',
                 'created_at' => '2021-01-17 10:23:34',
@@ -211,10 +195,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             16 =>
             array (
-                'id' => 17,
                 'name' => 'GROUP SIX INTERNATIONAL CO. LTD',
                 'website' => 'www.com',
-                'focal_person_id' => 902,
+                'focal_person_id' => 2,
                 'location_id' => NULL,
                 'type' => 'contractor',
                 'created_at' => '2021-01-17 10:23:34',
@@ -223,10 +206,9 @@ class AgenciesTableSeeder extends Seeder
             ),
             17 =>
             array (
-                'id' => 18,
                 'name' => 'NYANZA ROAD WORKS LTD',
                 'website' => 'www.com',
-                'focal_person_id' => 903,
+                'focal_person_id' => 3,
                 'location_id' => NULL,
                 'type' => 'contractor',
                 'created_at' => '2021-01-17 10:23:34',

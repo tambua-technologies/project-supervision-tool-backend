@@ -24,7 +24,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * @SWG\Definition(
  *      definition="SubProjectPayload",
- *      required={"name", "description"},
+ *      required={"name", "description", "procuring_entity_package_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -47,9 +47,10 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="project_id",
- *          description="project_id",
- *          type="string"
+ *          property="procuring_entity_package_id",
+ *          description="procuring_entity_package_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="locations",
@@ -82,7 +83,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * @SWG\Definition(
  *      definition="SubProject",
- *      required={"name", "description"},
+ *      required={"name", "description", "procuring_entity_package_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -105,9 +106,10 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="project_id",
- *          description="project_id",
- *          type="string"
+ *          property="procuring_entity_package_id",
+ *          description="procuring_entity_package_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -147,7 +149,7 @@ class SubProject extends Model implements HasMedia
         'name',
         'code',
         'description',
-        'project_id',
+        'procuring_entity_package_id',
     ];
 
     /**
@@ -160,7 +162,7 @@ class SubProject extends Model implements HasMedia
         'name' => 'string',
         'code' => 'string',
         'description' => 'string',
-        'project_id' => 'string',
+        'procuring_entity_package_id' => 'string',
     ];
 
     /**
@@ -170,7 +172,7 @@ class SubProject extends Model implements HasMedia
     public static $rules = [
         'name' => 'required|string',
         'code' => 'required|string',
-        'project_id' => 'required|string',
+        'procuring_entity_package_id' => 'required',
         'description' => 'required|string',
     ];
 
@@ -260,9 +262,9 @@ class SubProject extends Model implements HasMedia
         return $collection->diff($attachedIds);
     }
 
-    public function project()
+    public function procuring_entity_package()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(ProcuringEntityPackage::class);
     }
 
 

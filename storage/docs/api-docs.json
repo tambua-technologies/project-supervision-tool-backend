@@ -9668,7 +9668,8 @@
         "SubProjectPayload": {
             "required": [
                 "name",
-                "description"
+                "description",
+                "procuring_entity_package_id"
             ],
             "properties": {
                 "id": {
@@ -9688,9 +9689,10 @@
                     "description": "description",
                     "type": "string"
                 },
-                "project_id": {
-                    "description": "project_id",
-                    "type": "string"
+                "procuring_entity_package_id": {
+                    "description": "procuring_entity_package_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "locations": {
                     "description": "locations",
@@ -9718,7 +9720,8 @@
         "SubProject": {
             "required": [
                 "name",
-                "description"
+                "description",
+                "procuring_entity_package_id"
             ],
             "properties": {
                 "id": {
@@ -9738,9 +9741,10 @@
                     "description": "description",
                     "type": "string"
                 },
-                "project_id": {
-                    "description": "project_id",
-                    "type": "string"
+                "procuring_entity_package_id": {
+                    "description": "procuring_entity_package_id",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",

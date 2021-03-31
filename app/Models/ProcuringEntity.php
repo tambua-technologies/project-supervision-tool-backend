@@ -90,7 +90,4 @@ class ProcuringEntity extends Model
     {
         return $this->hasMany(ProcuringEntityPackage::class);
     }
-
-
-
 }

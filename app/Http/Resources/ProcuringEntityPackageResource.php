@@ -6,7 +6,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProcuringEntityResource extends JsonResource
+class ProcuringEntityPackageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,9 +19,10 @@ class ProcuringEntityResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'packages' => ProcuringEntityPackageResource::collection($this->packages),
-            'agency' => $this->agency,
-            'project_sub_component' => $this->project_sub_component
+            'name' => $this->name,
+            'description' => $this->description,
+            'procuring_entity_id' => $this->procuring_entity_id,
+            'sub_projects' => $this->sub_projects
         ];
     }
 }

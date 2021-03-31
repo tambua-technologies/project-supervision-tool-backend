@@ -198,11 +198,6 @@ class Project extends Model
         return $this->belongsToMany(Location::class, 'project_locations', 'project_id', 'location_id');
     }
 
-    public function sub_projects()
-    {
-        return $this->hasMany(SubProject::class);
-    }
-
     public function components()
     {
         return $this->hasMany(ProjectComponent::class);

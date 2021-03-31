@@ -2,8 +2,7 @@
 
 /** @var Factory $factory */
 
-use App\Models\Progress;
-use App\Models\Project;
+use App\Models\ProcuringEntityPackage;
 use App\Models\SubProject;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
@@ -23,8 +22,8 @@ $factory->define(SubProject::class, function (Faker $faker) {
         'name' => $string,
         'code' => $abbreviation,
         'description' => $faker->text,
-        'project_id' => function () {
-            return Project::query()->inRandomOrder()->first()->id;
+        'procuring_entity_package_id' => function () {
+            return ProcuringEntityPackage::query()->inRandomOrder()->first()->id;
         }
     ];
 });

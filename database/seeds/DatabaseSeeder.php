@@ -26,12 +26,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(LocationsSeeder::class);
         $this->call(AgenciesTableSeeder::class);
-
-
-        // tobe commented later before demo
-//        $this->call(ProjectsTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
+        $this->call(ProjectComponentsTableSeeder::class);
+        $this->call(ProjectSubComponentsTableSeeder::class);
+        $this->call(ProcuringEntitiesTableSeeder::class);
+        $this->call(ProcuringEntityPackagesTableSeeder::class);
+        $this->call(SubProjectsTableSeeder::class);
 //        $this->call(ProjectLocationsTableSeeder::class);
-//        $this->call(SubProjectTableSeeder::class);
 //        $this->call(SubProjectLocationsSeeder::class);
 //        $this->call(SubProjectItemLocationSeeder::class);
 //        $this->call(SubProjectContractsTableSeeder::class);
@@ -41,9 +42,5 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ProgressTableSeeder::class);
 
 
-
-        $this->call(ProjectComponentsTableSeeder::class);
-        $this->call(ProjectSubComponentsTableSeeder::class);
-        $this->call(ProcuringEntityPackagesTableSeeder::class);
     }
 }

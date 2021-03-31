@@ -82,4 +82,9 @@ class ProcuringEntityPackage extends Model
         'name',
     ];
 
+    public function sub_projects()
+    {
+        return $this->hasMany(SubProject::class);
+    }
+
 }
