@@ -9218,6 +9218,38 @@
                 }
             }
         },
+        "ProcuringEntity": {
+            "required": [
+                "agency_id,project_sub_component_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "agency_id": {
+                    "description": "agency_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "project_sub_component_id": {
+                    "description": "project_sub_component_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "Progress": {
             "required": [
                 "sub_project_id"
