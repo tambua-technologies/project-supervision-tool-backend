@@ -1,16 +1,17 @@
 <?php
 
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectSubComponentResource extends JsonResource
+class ProcuringEntityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request)
@@ -18,9 +19,9 @@ class ProjectSubComponentResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'procuring_entities' => ProcuringEntityResource::collection($this->procuring_entities),
+            'packages' => $this->packages,
+            'agency' => $this->agency,
+            'project_sub_component' => $this->project_sub_component
         ];
     }
 }

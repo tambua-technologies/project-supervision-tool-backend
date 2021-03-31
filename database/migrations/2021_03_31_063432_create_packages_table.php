@@ -19,6 +19,7 @@ class CreatePackagesTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('procuring_entity_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('procuring_entity_id')
                 ->references('id')

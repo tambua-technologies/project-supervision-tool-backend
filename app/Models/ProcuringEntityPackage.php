@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="ProcuringEntity",
+ *      definition="ProcuringEntityPackage",
  *      required={"agency_id,project_sub_component_id"},
  *      @SWG\Property(
  *          property="id",
