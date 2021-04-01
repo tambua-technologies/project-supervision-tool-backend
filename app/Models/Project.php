@@ -163,19 +163,26 @@ class Project extends Model
         $this->leaders()->attach($leadersToAttach);
     }
 
-    public function attachLocations($locations)
-    {
-        $attachedIds = $this->locations()->get()->pluck(['id']);
-        $collection = collect($locations);
-        $locationsToAttach = $collection->diff($attachedIds);
-
-        $this->locations()->attach($locationsToAttach);
-    }
-
 
     public function leaders()
     {
         return $this->belongsToMany(FocalPerson::class, 'project_leaders', 'project_id', 'leader_id');
+    }
+
+
+    public function country() {
+        return $this->belongsTo(Country::class);
+
+    }
+
+    public function regions()
+    {
+        return $this->belongsToMany(Region::class, 'project_regions', 'project_id', 'region_id');
+    }
+
+    public function districts()
+    {
+        return $this->belongsToMany(District::class, 'project_districts', 'project_id', 'district_id');
     }
 
     public function details()
@@ -193,11 +200,6 @@ class Project extends Model
         return $this->belongsToMany(Sector::class, 'project_sectors', 'project_id', 'sector_id')->as('details')->withPivot('percent');
     }
 
-    public function locations()
-    {
-        return $this->belongsToMany(Location::class, 'project_locations', 'project_id', 'location_id');
-    }
-
     public function components()
     {
         return $this->hasMany(ProjectComponent::class);
@@ -207,16 +209,14 @@ class Project extends Model
     static public function statistics($project_id = "")
     {
         if ($project_id) {
-            $project_districts_count = DB::table('locations')
-                ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
-                ->where('level', '=', 'district')
-                ->where('project_id', '=', $project_id)
+            $project_districts_count = DB::table('projects')
+                ->join('project_districts', 'projects.id', '=', 'project_districts.project_id')
+                ->where('project_districts.project_id', '=', $project_id)
                 ->select(DB::raw('count(*) AS total'))
                 ->first();
 
-            $project_regions_count = DB::table('locations')
-                ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
-                ->where('level', '=', 'region')
+            $project_regions_count = DB::table('projects')
+                ->join('project_regions', 'projects.id', '=', 'project_regions.project_id')
                 ->where('project_id', '=', $project_id)
                 ->select(DB::raw('count(*) AS total'))
                 ->first();
@@ -224,9 +224,8 @@ class Project extends Model
         }
 
         $total_projects = Project::count();
-        $district_locations_count = DB::table('locations')
-            ->join('project_locations', 'locations.id', '=', 'project_locations.location_id')
-            ->where('level', '=', 'district')
+        $district_locations_count = DB::table('projects')
+            ->join('project_districts', 'projects.id', '=', 'project_districts.project_id')
             ->select(DB::raw('count(*) AS total'))
             ->first();
 
@@ -239,17 +238,15 @@ class Project extends Model
             ->first();
 
         $regions_locations_count = DB::table('regions')
-            ->join('locations', 'locations.region_id', '=', 'regions.id')
-            ->join('project_locations', 'project_locations.location_id', '=', 'locations.id')
-            ->groupBy('regions.id')
-            ->select(DB::raw('regions.id, regions.name, regions.geom, count(project_locations.project_id) as projects_count'))
-            ->get()->count();
+            ->join('project_regions', 'projects.id', '=', 'project_regions.project_id')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
 
         return [
             'projects' => $total_projects,
             'commitment_amount' => $total_commitment_amount,
             'districts' =>$district_locations_count->total,
-            'regions' => $regions_locations_count
+            'regions' => $regions_locations_count->total
         ];
     }
 

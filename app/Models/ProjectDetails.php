@@ -196,9 +196,4 @@ class ProjectDetails extends Model
         return $this->belongsTo(Money::class);
     }
 
-    public function country ()
-    {
-        return $this->belongsTo(Location::class);
-    }
-
 }

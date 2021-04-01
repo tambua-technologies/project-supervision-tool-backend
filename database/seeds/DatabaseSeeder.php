@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\SupervisingAgency;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,9 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionsTableSeeder::class);
         $this->call(EnvironmentalCategoriesTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
+        $this->call(MoneyTableSeeder::class);
         $this->call(SectorsTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
-        $this->call(LocationsSeeder::class);
         $this->call(AgenciesTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
         $this->call(ProjectComponentsTableSeeder::class);
@@ -32,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProcuringEntitiesTableSeeder::class);
         $this->call(ProcuringEntityPackagesTableSeeder::class);
         $this->call(SubProjectsTableSeeder::class);
+        $this->call(ProjectDetailsTableSeeder::class);
 //        $this->call(ProjectLocationsTableSeeder::class);
 //        $this->call(SubProjectLocationsSeeder::class);
 //        $this->call(SubProjectItemLocationSeeder::class);
@@ -40,7 +40,5 @@ class DatabaseSeeder extends Seeder
 //        $this->call(SubProjectItemsTableSeeder::class);
 //        $this->call(SubProjectMilestonesTableSeeder::class);
 //        $this->call(ProgressTableSeeder::class);
-
-
     }
 }

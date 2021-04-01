@@ -22,17 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('type')->nullable();
-            $table->unsignedBigInteger('location_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations')
-                ->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,6 @@ class CreateAgenciesTable extends Migration
             $table->string('name');
             $table->string('website');
             $table->unsignedBigInteger('focal_person_id');
-            $table->unsignedBigInteger('location_id')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -27,11 +26,6 @@ class CreateAgenciesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('set null');
-
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations')
-                ->onDelete('cascade');
         });
     }
 

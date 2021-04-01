@@ -8766,8 +8766,7 @@
             "properties": {
                 "id": {
                     "description": "id",
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "name": {
                     "description": "name",

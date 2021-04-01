@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class CreateProjectRegionsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,11 +13,11 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->string('name');
+        Schema::create('project_regions', function (Blueprint $table) {
+            $table->id();
+            $table->string("project_id")->nullable();
+            $table->string("region_id")->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('countries');
+        Schema::dropIfExists('project_regions');
     }
 }

@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="id",
  *          description="id",
- *          type="integer",
- *          format="int32"
+ *          type="string",
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -39,14 +38,15 @@ class Country extends Model
     use SoftDeletes;
 
     public $table = 'countries';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'name',
+        'id',
     ];
 
     /**
@@ -55,7 +55,7 @@ class Country extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id' => 'string',
         'name' => 'string'
     ];
 
@@ -65,8 +65,8 @@ class Country extends Model
      * @var array
      */
     public static $rules = [
-        
+        'id', 'name'
     ];
 
-    
+
 }

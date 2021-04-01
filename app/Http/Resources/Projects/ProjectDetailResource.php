@@ -18,11 +18,6 @@ class ProjectDetailResource extends JsonResource
     public function toArray($request)
     {
 
-        // get country object, aim is
-        // to reduce level of  country object nesting
-        $location = $this->country()->first();
-        $country = $location ? $location->country : null;
-
         return [
             'id' => $this->id,
             'project_id' => $this->project_id,
@@ -32,7 +27,6 @@ class ProjectDetailResource extends JsonResource
             'approval_date' => $this->approval_date,
             'approval_fy' => $this->approval_fy,
             'closing_date' => $this->closing_date,
-            'country' => $country,
             'implementing_agency' => new AgencyResource($this->implementing_agency),
             'funding_organisation' => new AgencyResource($this->funding_organisation),
             'environmental_category' => $this->environmental_category,
