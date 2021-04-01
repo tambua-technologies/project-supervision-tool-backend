@@ -220,10 +220,21 @@ class Project extends Model
                 ->where('project_id', '=', $project_id)
                 ->select(DB::raw('count(*) AS total'))
                 ->first();
-            return [ 'districts' =>$project_districts_count->total,  'regions' => $project_regions_count->total ];
+
+            $total_sub_projects = DB::table('projects')
+                ->join('project_components', 'projects.id', '=', 'project_components.project_id')
+                ->join('project_sub_components', 'project_components.id', '=', 'project_sub_components.project_component_id')
+                ->join('procuring_entities', 'project_sub_components.id', '=', 'procuring_entities.project_sub_component_id')
+                ->join('procuring_entity_packages', 'procuring_entities.id', '=', 'procuring_entity_packages.procuring_entity_id')
+                ->join('sub_projects', 'procuring_entity_packages.id', '=', 'sub_projects.procuring_entity_package_id')
+                ->where('project_id', '=', $project_id)
+                ->select(DB::raw('count(*) AS total'))
+                ->first();
+
+            return ['sub_projects' =>$total_sub_projects->total,  'regions' => $project_regions_count->total ];
         }
 
-        $total_projects = Project::count();
+        $total_projects = self::count();
         $district_locations_count = DB::table('projects')
             ->join('project_districts', 'projects.id', '=', 'project_districts.project_id')
             ->select(DB::raw('count(*) AS total'))
@@ -237,7 +248,16 @@ class Project extends Model
             ->select(DB::raw('CAST(SUM(money.amount) AS BIGINT) AS total, currencies.iso'))
             ->first();
 
-        $regions_locations_count = DB::table('regions')
+        $total_sub_projects = DB::table('projects')
+            ->join('project_components', 'projects.id', '=', 'project_components.project_id')
+            ->join('project_sub_components', 'project_components.id', '=', 'project_sub_components.project_component_id')
+            ->join('procuring_entities', 'project_sub_components.id', '=', 'procuring_entities.project_sub_component_id')
+            ->join('procuring_entity_packages', 'procuring_entities.id', '=', 'procuring_entity_packages.procuring_entity_id')
+            ->join('sub_projects', 'procuring_entity_packages.id', '=', 'sub_projects.procuring_entity_package_id')
+            ->select(DB::raw('count(*) AS total'))
+            ->first();
+
+        $regions_locations_count = DB::table('projects')
             ->join('project_regions', 'projects.id', '=', 'project_regions.project_id')
             ->select(DB::raw('count(*) AS total'))
             ->first();
@@ -245,7 +265,7 @@ class Project extends Model
         return [
             'projects' => $total_projects,
             'commitment_amount' => $total_commitment_amount,
-            'districts' =>$district_locations_count->total,
+            'sub_projects' =>$total_sub_projects->total,
             'regions' => $regions_locations_count->total
         ];
     }
