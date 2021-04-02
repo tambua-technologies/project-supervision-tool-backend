@@ -17,10 +17,16 @@ class CreateProjectsTable extends Migration
             $table->string('id')->unique();
             $table->string('name');
             $table->string('code')->nullable();
+            $table->unsignedBigInteger('project_status_id')->nullable();
             $table->string('country_id')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('project_status_id')
+                ->references('id')
+                ->on('project_statuses')
+                ->onDelete('set null');
 
             $table->foreign('country_id')
                 ->references('id')

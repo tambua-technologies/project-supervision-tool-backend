@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\DB;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="project_status_id",
+ *          description="project_status_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
  *          property="description",
  *          description="description",
  *          type="string"
@@ -72,6 +77,11 @@ use Illuminate\Support\Facades\DB;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="project_status_id",
+ *          description="project_status_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
  *          property="code",
  *          description="code",
  *          type="string"
@@ -112,6 +122,7 @@ class Project extends Model
         'id',
         'code',
         'name',
+        'project_status_id',
         'description'
     ];
 
@@ -124,6 +135,7 @@ class Project extends Model
         'id' => 'string',
         'code' => 'string',
         'name' => 'string',
+        'project_status_id' => 'integer',
         'description' => 'string'
     ];
 
@@ -135,6 +147,7 @@ class Project extends Model
     public static $rules = [
         'name' => 'required|string|max:255',
         'code' => 'required|string',
+        'project_status_id' => 'required|integer',
     ];
 
     // this is a recommended way to declare event handlers
@@ -145,6 +158,8 @@ class Project extends Model
             $project->leaders()->detach();
             $project->themes()->detach();
             $project->sectors()->detach();
+            $project->regions()->detach();
+            $project->districts()->detach();
             $project->locations()->delete();
             $project->details()->delete();
             $project->sub_projects()->delete();
