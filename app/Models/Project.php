@@ -190,6 +190,11 @@ class Project extends Model
 
     }
 
+
+    public function status() {
+        return $this->belongsTo(ProjectStatus::class, 'project_status_id');
+    }
+
     public function regions()
     {
         return $this->belongsToMany(Region::class, 'project_regions', 'project_id', 'region_id');
