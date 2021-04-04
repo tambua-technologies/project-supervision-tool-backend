@@ -57,6 +57,7 @@ Route::middleware('auth:api')
         Route::resource('actor_types', 'ActorTypeAPIController');
         Route::resource('initiative_types', 'InitiativeTypeAPIController');
         Route::resource('funding_organisations', 'FundingOrganisationAPIController');
+        Route::resource('project_status', 'ProjectStatusAPIController');
         Route::resource('projects', 'ProjectAPIController');
         Route::resource('sub_projects', 'SubProjectAPIController');
         Route::resource('supervising_agencies', 'SupervisingAgencyAPIController');
