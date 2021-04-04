@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Project;
 use App\Repositories\BaseRepository;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ProjectRepository

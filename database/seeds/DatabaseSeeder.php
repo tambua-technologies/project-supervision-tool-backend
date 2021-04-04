@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ProjectStatusesTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(DistrictsWithGeomTableSeeder::class);
         $this->call(RegionsWithGeomTableSeeder::class);

@@ -9344,6 +9344,10 @@
                     "description": "name",
                     "type": "string"
                 },
+                "project_status_id": {
+                    "description": "project_status_id",
+                    "type": "integer"
+                },
                 "description": {
                     "description": "description",
                     "type": "string"
@@ -9388,6 +9392,10 @@
                 "name": {
                     "description": "name",
                     "type": "string"
+                },
+                "project_status_id": {
+                    "description": "project_status_id",
+                    "type": "integer"
                 },
                 "code": {
                     "description": "code",
@@ -9530,6 +9538,36 @@
                     "description": "percent",
                     "type": "number",
                     "format": "number"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ProjectStatus": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",
