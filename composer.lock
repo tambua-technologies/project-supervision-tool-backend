@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41f8278d9f1a722d7945e7e8495a1819",
+    "content-hash": "559c5709f0c42206b063a681e8a3274b",
     "packages": [
         {
             "name": "appointer/swaggervel",
@@ -1513,12 +1513,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/swagger-generator.git",
-                "reference": "b2933374f66ca96f7937e6a043ed1af61db8f9b8"
+                "reference": "9ba01594147e5b85560d827fa3cb755e5bd19fc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/swagger-generator/zipball/b2933374f66ca96f7937e6a043ed1af61db8f9b8",
-                "reference": "b2933374f66ca96f7937e6a043ed1af61db8f9b8",
+                "url": "https://api.github.com/repos/InfyOmLabs/swagger-generator/zipball/9ba01594147e5b85560d827fa3cb755e5bd19fc0",
+                "reference": "9ba01594147e5b85560d827fa3cb755e5bd19fc0",
                 "shasum": ""
             },
             "require": {
@@ -1545,10 +1545,10 @@
             "funding": [
                 {
                     "url": "https://opencollective.com/infyomlabs",
-                    "type": "open_collective"
+                    "type": "opencollective"
                 }
             ],
-            "time": "2020-09-13T08:56:56+00:00"
+            "time": "2020-12-19T07:28:40+00:00"
         },
         {
             "name": "intervention/image",
@@ -4300,10 +4300,6 @@
                 "media",
                 "spatie"
             ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/7.19.5"
-            },
             "funding": [
                 {
                     "url": "https://spatie.be/open-source/support-us",
@@ -4393,6 +4389,72 @@
                 }
             ],
             "time": "2021-01-27T23:03:34+00:00"
+        },
+        {
+            "name": "spatie/laravel-query-builder",
+            "version": "3.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-query-builder.git",
+                "reference": "2e131b0c8ae600b6e3aabb5a1501c721862a0b8f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/2e131b0c8ae600b6e3aabb5a1501c721862a0b8f",
+                "reference": "2e131b0c8ae600b6e3aabb5a1501c721862a0b8f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/http": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "laravel/legacy-factories": "^1.0.4",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^4.9|^5.8|^6.3",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\QueryBuilder\\QueryBuilderServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\QueryBuilder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily build Eloquent queries from API requests",
+            "homepage": "https://github.com/spatie/laravel-query-builder",
+            "keywords": [
+                "laravel-query-builder",
+                "spatie"
+            ],
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-11-26T14:51:30+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -9074,5 +9136,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

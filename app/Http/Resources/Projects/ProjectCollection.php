@@ -15,22 +15,24 @@ class ProjectCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        $per_page = $this->perPage();
-        $total = $this->total();
-        $total_pages = ceil($total / $per_page);
+        $total_pages = ceil($this->total() / $this->perPage());
         return [
             'data' => ProjectResource::collection($this->collection),
             'links' => [
                 'next_page_url' => $this->nextPageUrl(),
                 'prev_page_url' => $this->previousPageUrl(),
-                'last_page_url' => $this->url($total_pages),
+                'last_page_url' => $this->url($this->lastPage()),
                 'first_page_url' => $this->url(1),
+                'path' => $this->path(),
             ],
             'meta' => [
-                'per_page' => $per_page,
+                'per_page' => $this->perPage(),
+                'from' => $this->firstItem(),
+                'to' => $this->lastItem(),
+                'last_page' => $this->lastPage(),
                 'current_page' => $this->currentPage(),
                 'total_pages' => $total_pages,
-                'total' => $total,
+                'total' => $this->total(),
             ],
         ];
     }

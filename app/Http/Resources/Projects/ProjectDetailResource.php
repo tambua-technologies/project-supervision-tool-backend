@@ -21,7 +21,6 @@ class ProjectDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'project_id' => $this->project_id,
-            'status' => $this->status,
             'borrower' => new  AgencyResource($this->borrower),
             'project_region' => $this->project_region,
             'approval_date' => $this->approval_date,

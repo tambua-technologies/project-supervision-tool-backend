@@ -12,6 +12,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ProjectController
@@ -29,8 +31,6 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/projects",
@@ -60,17 +60,19 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
-        $projects = $this->projectRepository->paginate(
-            $request->get('per_page', 15),
-            [
-                '*'
-            ],
-            [
-                $request->get('searchField') => $request->get('searchQuery')
-            ]);
+
+        $projects = QueryBuilder::for(Project::class)
+            ->allowedFilters([
+                AllowedFilter::exact('project_status_id'),
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('regions.id'),
+            ])
+            ->paginate(3);
 
         return $this->sendResponse(new ProjectCollection($projects), 'Projects retrieved successfully');
     }
