@@ -18,13 +18,20 @@ class CreateSubProjectsTable extends Migration
             $table->string('name');
             $table->string('code')->nullable();
             $table->string('description');
+            $table->float('quantity')->nullable();
             $table->unsignedBigInteger('procuring_entity_package_id');
+            $table->unsignedBigInteger('sub_project_type_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('procuring_entity_package_id')
                 ->references('id')
                 ->on('procuring_entity_packages')
+                ->onDelete('set null');
+
+            $table->foreign('sub_project_type_id')
+                ->references('id')
+                ->on('sub_project_types')
                 ->onDelete('set null');
         });
     }

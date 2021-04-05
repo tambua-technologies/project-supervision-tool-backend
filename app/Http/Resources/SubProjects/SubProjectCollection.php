@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\SubProjects;
 
-use App\Http\Resources\SubProjectResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SubProjectCollection extends ResourceCollection
