@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
+ *      definition="SubProjectTypePayload",
+ *      required={"name, unit_id"},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="unit_id",
+ *          description="unit_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      )
+ * )
+ */
+
+/**
+ * @SWG\Definition(
  *      definition="SubProjectType",
  *      required={"name, unit_id"},
  *      @SWG\Property(
