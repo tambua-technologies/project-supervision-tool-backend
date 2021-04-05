@@ -32,6 +32,11 @@ class ProjectStatusesTableSeeder extends Seeder
                 'name' => 'dropped',
                 'description' => 'dropped'
             ),
+            3 =>
+            array (
+                'name' => 'pipeline',
+                'description' => 'pipeline'
+            ),
         ));
 
 

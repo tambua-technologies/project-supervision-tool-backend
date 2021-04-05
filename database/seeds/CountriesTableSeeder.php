@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Country;
 use Illuminate\Database\Seeder;
 
 class CountriesTableSeeder extends Seeder
@@ -13,6 +12,21 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Country::class)->create();
+        
+
+        \DB::table('countries')->delete();
+        
+        \DB::table('countries')->insert(array (
+            0 => 
+            array (
+                'id' => 'TZ',
+                'name' => 'Tanzania',
+                'created_at' => '2021-04-04 13:08:48',
+                'updated_at' => '2021-04-04 13:08:48',
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        
     }
 }

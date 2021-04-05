@@ -72,14 +72,13 @@ class ProjectAPIController extends AppBaseController
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('regions.id'),
             ])
-            ->paginate(3);
+            ->paginate($request->get('per_page', 15));
 
         return $this->sendResponse(new ProjectCollection($projects), 'Projects retrieved successfully');
     }
 
     /**
      * @param CreateProjectAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/projects",
@@ -115,6 +114,7 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
     public function store(CreateProjectAPIRequest $request): JsonResponse
     {

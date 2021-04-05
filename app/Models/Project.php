@@ -135,6 +135,7 @@ class Project extends Model
         'id' => 'string',
         'code' => 'string',
         'name' => 'string',
+        'country_id' => 'string',
         'project_status_id' => 'integer',
         'description' => 'string'
     ];
