@@ -28,6 +28,7 @@ class ProjectResource extends JsonResource
             'leaders' => $this->leaders,
             'sectors' => $this->sectors,
             'themes' => $this->themes,
+            'regions' => $this->regions,
             'components' => ProjectComponentResource::collection($this->components),
             'details' => new ProjectDetailResource($this->details)
 
