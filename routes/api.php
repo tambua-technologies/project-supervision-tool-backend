@@ -90,4 +90,5 @@ Route::middleware('auth:api')
         Route::resource('sub_project_contracts', 'SubProjectContractAPIController');
         Route::resource('sub_project_surveys', 'SubProjectSurveyController');
         Route::resource('sub_project_types', 'SubProjectTypeAPIController');
+        Route::resource('sub_project_status', 'SubProjectStatusAPIController');
     });
