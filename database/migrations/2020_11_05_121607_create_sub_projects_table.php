@@ -21,6 +21,7 @@ class CreateSubProjectsTable extends Migration
             $table->float('quantity')->nullable();
             $table->unsignedBigInteger('procuring_entity_package_id');
             $table->unsignedBigInteger('sub_project_type_id')->nullable();
+            $table->unsignedBigInteger('sub_project_status_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -32,6 +33,11 @@ class CreateSubProjectsTable extends Migration
             $table->foreign('sub_project_type_id')
                 ->references('id')
                 ->on('sub_project_types')
+                ->onDelete('set null');
+
+            $table->foreign('sub_project_status_id')
+                ->references('id')
+                ->on('sub_project_statuses')
                 ->onDelete('set null');
         });
     }

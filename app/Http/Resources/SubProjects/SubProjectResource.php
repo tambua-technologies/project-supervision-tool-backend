@@ -26,6 +26,7 @@ class SubProjectResource extends JsonResource
             'details' => new SubProjectDetailResource($this->details),
             'surveys' => $this->surveys,
             'quantity' => $this->quantity,
+            'status' => $this->status,
             'type' => new SubProjectTypeResource($this->type),
             'sub_project_milestones' => $this->sub_project_milestones,
             'progress' => $this->progress,

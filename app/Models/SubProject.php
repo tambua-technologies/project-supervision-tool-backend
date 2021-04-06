@@ -112,6 +112,12 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="sub_project_status_id",
+ *          description="sub_project_status_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="quantity",
  *          description="quantity",
  *          type="float",
@@ -162,6 +168,7 @@ class SubProject extends Model implements HasMedia
         'description',
         'procuring_entity_package_id',
         'sub_project_type_id',
+        'sub_project_status_id',
     ];
 
     /**
@@ -177,6 +184,7 @@ class SubProject extends Model implements HasMedia
         'quantity' => 'float',
         'procuring_entity_package_id' => 'string',
         'sub_project_type_id' => 'integer',
+        'sub_project_status_id' => 'integer',
     ];
 
     /**
@@ -188,6 +196,7 @@ class SubProject extends Model implements HasMedia
         'code' => 'required|string',
         'procuring_entity_package_id' => 'required',
         'sub_project_type_id' => 'required',
+        'sub_project_status_id' => 'required',
         'quantity' => 'required',
         'description' => 'required|string',
     ];
@@ -228,6 +237,11 @@ class SubProject extends Model implements HasMedia
     public function type()
     {
         return $this->belongsTo(SubProjectType::class, 'sub_project_type_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(SubProjectStatus::class, 'sub_project_status_id');
     }
 
     public function surveys()
