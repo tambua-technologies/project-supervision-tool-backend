@@ -16,6 +16,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="procuring_entity_package_id",
+ *          description="procuring_entity_package_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="contract_no",
+ *          description="contract_no",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -42,7 +58,8 @@ class SubProjectContract extends Model
 
     public $fillable = [
         'name',
-        'sub_project_id',
+        'contract_no',
+        'procuring_entity_package_id',
         'contract_cost_id',
         'contract_time_id',
         'contractor_id'
@@ -56,7 +73,8 @@ class SubProjectContract extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'sub_project_id' => 'integer',
+        'contract_no' => 'string',
+        'procuring_entity_package_id' => 'integer',
         'contract_cost_id' => 'integer',
         'contract_time_id' => 'integer',
         'contractor_id' => 'integer',
@@ -68,7 +86,7 @@ class SubProjectContract extends Model
      * @var array
      */
     public static $rules = [
-
+        'procuring_entity_package_id' => 'required',
     ];
 
     public function contract_cost()

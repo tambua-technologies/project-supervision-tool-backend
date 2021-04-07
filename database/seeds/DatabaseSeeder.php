@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProcuringEntitiesTableSeeder::class);
         $this->call(ProcuringEntityPackagesTableSeeder::class);
         $this->call(SubProjectsTableSeeder::class);
+        $this->call(SubProjectDistrictTableSeeder::class);
         $this->call(ProjectDetailsTableSeeder::class);
         $this->call(ProjectRegionsTableSeeder::class);
 //        $this->call(SubProjectContractsTableSeeder::class);
