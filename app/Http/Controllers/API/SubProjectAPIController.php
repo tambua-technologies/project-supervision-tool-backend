@@ -85,6 +85,13 @@ class SubProjectAPIController extends AppBaseController
      *          in="query"
      *      ),
      *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.contract.contractor_id]",
+     *          description="sub project contractors filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
      *          name="filter[procuringEntityPackage.procuringEntity.project_sub_component_id]",
      *          description="sub project procuring entity sub component filter",
      *          type="string",
@@ -131,6 +138,7 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('districts.id'),
                 AllowedFilter::exact('districts.region_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuring_entity_id'),
+                AllowedFilter::exact('procuringEntityPackage.contract.contractor_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.project_sub_component_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
             ])

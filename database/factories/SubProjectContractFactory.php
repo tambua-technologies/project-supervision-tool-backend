@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
 use App\Models\ContractCost;
 use App\Models\Contractor;
@@ -8,12 +8,14 @@ use App\Models\ContractTime;
 use App\Models\SubProject;
 use App\Models\SubProjectContract;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(SubProjectContract::class, function (Faker $faker) {
 
     return [
         'name' => $faker->sentence,
-        'sub_project_id' => function () {
+        'contract_no' => $faker->sentence,
+        'procuring_entity_package_id' => function () {
         return SubProject::query()->inRandomOrder()->first()->id;
     },
         'contract_cost_id' => function () {

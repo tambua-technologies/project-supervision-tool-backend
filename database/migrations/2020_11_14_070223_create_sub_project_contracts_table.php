@@ -17,16 +17,17 @@ class CreateSubProjectContractsTable extends Migration
         Schema::create('sub_project_contracts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->unsignedBigInteger('sub_project_id');
+            $table->string('contract_no')->nullable();
+            $table->unsignedBigInteger('procuring_entity_package_id');
             $table->unsignedBigInteger('contract_cost_id')->nullable();
             $table->unsignedBigInteger('contract_time_id')->nullable();
-            $table->unsignedBigInteger('contractor_id');
+            $table->unsignedBigInteger('contractor_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('sub_project_id')
+            $table->foreign('procuring_entity_package_id')
                 ->references('id')
-                ->on('sub_projects')
+                ->on('procuring_entity_packages')
                 ->onDelete('set null');
 
             $table->foreign('contractor_id')
