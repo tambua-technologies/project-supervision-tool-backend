@@ -28,11 +28,8 @@ class SubProjectResource extends JsonResource
             'quantity' => $this->quantity,
             'status' => $this->status,
             'type' => new SubProjectTypeResource($this->type),
-            'sub_project_milestones' => $this->sub_project_milestones,
-            'progress' => $this->progress,
-            'progress_history' => $this->progress_history,
             'photos' =>  MediaResource::collection($this->getMedia('photos')),
-
+            'districts' => $this->districts,
         ];
     }
 }

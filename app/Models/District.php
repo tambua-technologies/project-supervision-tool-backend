@@ -56,7 +56,7 @@ class District extends Model
             ->select(DB::raw('ST_AsGeoJSON(geom) AS geom'))
             ->where('id', '=', $this->id)->first()->geom;
 
-        return json_decode($geom);
+        return $geom;
     }
 
 

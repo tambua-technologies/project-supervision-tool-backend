@@ -280,6 +280,11 @@ class SubProject extends Model implements HasMedia
             ->withTimestamps();
     }
 
+    public function districts()
+    {
+        return $this->belongsToMany(District::class, 'sub_project_district', 'sub_project_id', 'district_id');
+    }
+
     public function removeDuplicateIds($arr)
     {
         $attachedIds = $this->sub_project_locations()->get()->pluck(['id']);
