@@ -4308,6 +4308,230 @@
                 ]
             }
         },
+        "/procuring_entity_packages": {
+            "get": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Get a listing of the ProcuringEntityPackages.",
+                "description": "Get all ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProcuringEntityPackage"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Store a newly created ProcuringEntityPackages in storage",
+                "description": "Store ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProcuringEntityPackages that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProcuringEntityPackage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/procuring_entity_packages/{id}": {
+            "get": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Display the specified ProcuringEntityPackages",
+                "description": "Get ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackage",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Update the specified ProcuringEntityPackages in storage",
+                "description": "Update ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackages",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProcuringEntityPackages that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProcuringEntityPackage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Remove the specified ProcuringEntityPackages from storage",
+                "description": "Delete ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackages",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/progress": {
             "get": {
                 "tags": [
@@ -10452,6 +10676,11 @@
                 },
                 "procuring_entity_package_id": {
                     "description": "procuring_entity_package_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "sub_project_status_id": {
+                    "description": "sub_project_status_id",
                     "type": "integer",
                     "format": "int32"
                 },

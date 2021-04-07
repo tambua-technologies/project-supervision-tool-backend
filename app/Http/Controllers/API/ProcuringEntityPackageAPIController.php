@@ -2,38 +2,40 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateSubProjectTypeAPIRequest;
-use App\Http\Requests\API\UpdateSubProjectTypeAPIRequest;
-use App\Http\Resources\SubProjects\SubProjectTypeResource;
-use App\Models\SubProjectType;
-use App\Repositories\SubProjectTypeRepository;
+use App\Http\Requests\API\CreateProcuringEntityPackagesAPIRequest;
+use App\Http\Requests\API\UpdateProcuringEntityPackagesAPIRequest;
+use App\Http\Resources\ProcuringEntityPackageResource;
+use App\Models\ProcuringEntityPackage;
+use App\Repositories\ProcuringEntityPackageRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Response;
 
 /**
- * Class SubProjectTypeController
+ * Class ProcuringEntityPackagesController
  * @package App\Http\Controllers\API
  */
 
-class SubProjectTypeAPIController extends AppBaseController
+class ProcuringEntityPackageAPIController extends AppBaseController
 {
-    /** @var  SubProjectTypeRepository */
-    private $subProjectTypeRepository;
+    /** @var  ProcuringEntityPackageRepository */
+    private $procuringEntityPackageRepository;
 
-    public function __construct(SubProjectTypeRepository $subProjectTypeRepo)
+    public function __construct(ProcuringEntityPackageRepository $procuringEntityPackageRepo)
     {
-        $this->subProjectTypeRepository = $subProjectTypeRepo;
+        $this->procuringEntityPackageRepository = $procuringEntityPackageRepo;
     }
 
     /**
+     * @param Request $request
      *
      * @SWG\Get(
-     *      path="/sub_project_types",
-     *      summary="Get a listing of the SubProjectTypes.",
-     *      tags={"SubProjectType"},
+     *      path="/procuring_entity_packages",
+     *      summary="Get a listing of the ProcuringEntityPackages.",
+     *      tags={"ProcuringEntityPackages"},
      *     security={{"Bearer":{}}},
-     *      description="Get all SubProjectTypes",
+     *      description="Get all ProcuringEntityPackages",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -47,41 +49,44 @@ class SubProjectTypeAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/SubProjectType")
+     *                  @SWG\Items(ref="#/definitions/ProcuringEntityPackage")
      *              ),
      *              @SWG\Property(
      *                  property="message",
      *                  type="string"
      *              )
      *          )
-     *      ),
+     *      )
      * )
-     * @param Request $request
-     * @return mixed
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
-        $subProjectTypes = $this->subProjectTypeRepository->paginate($request->get('per_page', 15));
+        $procuringEntityPackages = $this->procuringEntityPackageRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
 
-        return $this->sendResponse(SubProjectTypeResource::collection($subProjectTypes), 'SubProjectTypes retrieved successfully');
+        return $this->sendResponse(ProcuringEntityPackageResource::collection($procuringEntityPackages), 'Procuring Entity packages retrieved successfully');
     }
 
     /**
-     * @param CreateSubProjectTypeAPIRequest $request
+     * @param CreateProcuringEntityPackagesAPIRequest $request
      *
      * @SWG\Post(
-     *      path="/sub_project_types",
-     *      summary="Store a newly created SubProjectType in storage",
-     *      tags={"SubProjectType"},
+     *      path="/procuring_entity_packages",
+     *      summary="Store a newly created ProcuringEntityPackages in storage",
+     *      tags={"ProcuringEntityPackages"},
      *     security={{"Bearer":{}}},
-     *      description="Store SubProjectType",
+     *      description="Store ProcuringEntityPackages",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="SubProjectType that should be stored",
+     *          description="ProcuringEntityPackages that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/SubProjectTypePayload")
+     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackage")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -94,7 +99,7 @@ class SubProjectTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/SubProjectType"
+     *                  ref="#/definitions/ProcuringEntityPackage"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -105,28 +110,29 @@ class SubProjectTypeAPIController extends AppBaseController
      * )
      * @return JsonResponse
      */
-    public function store(CreateSubProjectTypeAPIRequest $request): JsonResponse
+    public function store(CreateProcuringEntityPackagesAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        $subProjectType = $this->subProjectTypeRepository->create($input);
+        $procuringEntityPackages = $this->procuringEntityPackageRepository->create($input);
 
-        return $this->sendResponse(new SubProjectTypeResource($subProjectType), 'SubProjectType saved successfully');
+        return $this->sendResponse($procuringEntityPackages->toArray(), 'ProcuringEntityPackage saved successfully');
     }
 
     /**
      * @param int $id
      *
+     * @return JsonResponse
      * @SWG\Get(
-     *      path="/sub_project_types/{id}",
-     *      summary="Display the specified SubProjectType",
-     *      tags={"SubProjectType"},
+     *      path="/procuring_entity_packages/{id}",
+     *      summary="Display the specified ProcuringEntityPackages",
+     *      tags={"ProcuringEntityPackages"},
      *     security={{"Bearer":{}}},
-     *      description="Get SubProjectType",
+     *      description="Get ProcuringEntityPackages",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of SubProjectType",
+     *          description="id of ProcuringEntityPackage",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -142,7 +148,7 @@ class SubProjectTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/SubProjectType"
+     *                  ref="#/definitions/ProcuringEntityPackage"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -151,34 +157,33 @@ class SubProjectTypeAPIController extends AppBaseController
      *          )
      *      )
      * )
-     * @return JsonResponse
      */
     public function show(int $id): JsonResponse
     {
-        /** @var SubProjectType $subProjectType */
-        $subProjectType = $this->subProjectTypeRepository->find($id);
+        /** @var ProcuringEntityPackage $procuringEntityPackages */
+        $procuringEntityPackage = $this->procuringEntityPackageRepository->find($id);
 
-        if ($subProjectType === null) {
-            return $this->sendError('SubProjectType not found');
+        if ($procuringEntityPackage === null) {
+            return $this->sendError('ProcuringEntityPackage not found');
         }
 
-        return $this->sendResponse(new SubProjectTypeResource($subProjectType), 'SubProjectType retrieved successfully');
+        return $this->sendResponse($procuringEntityPackages->toArray(), 'ProcuringEntityPackage retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateSubProjectTypeAPIRequest $request
+     * @param UpdateProcuringEntityPackagesAPIRequest $request
      *
      * @SWG\Put(
-     *      path="/sub_project_types/{id}",
-     *      summary="Update the specified SubProjectType in storage",
-     *      tags={"SubProjectType"},
+     *      path="/procuring_entity_packages/{id}",
+     *      summary="Update the specified ProcuringEntityPackages in storage",
+     *      tags={"ProcuringEntityPackages"},
      *     security={{"Bearer":{}}},
-     *      description="Update SubProjectType",
+     *      description="Update ProcuringEntityPackages",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of SubProjectType",
+     *          description="id of ProcuringEntityPackages",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -186,9 +191,9 @@ class SubProjectTypeAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="SubProjectType that should be updated",
+     *          description="ProcuringEntityPackages that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/SubProjectType")
+     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackage")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +206,7 @@ class SubProjectTypeAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/SubProjectType"
+     *                  ref="#/definitions/ProcuringEntityPackage"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -212,35 +217,35 @@ class SubProjectTypeAPIController extends AppBaseController
      * )
      * @return JsonResponse
      */
-    public function update(int $id, UpdateSubProjectTypeAPIRequest $request): JsonResponse
+    public function update(int $id, UpdateProcuringEntityPackagesAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        /** @var SubProjectType $subProjectType */
-        $subProjectType = $this->subProjectTypeRepository->find($id);
+        /** @var ProcuringEntityPackage $procuringEntityPackages */
+        $procuringEntityPackage = $this->procuringEntityPackageRepository->find($id);
 
-        if ($subProjectType === null) {
-            return $this->sendError('SubProjectType not found');
+        if (empty($procuringEntityPackage)) {
+            return $this->sendError('ProcuringEntityPackage not found');
         }
 
-        $subProjectType = $this->subProjectTypeRepository->update($input, $id);
+        $procuringEntityPackage = $this->procuringEntityPackageRepository->update($input, $id);
 
-        return $this->sendResponse(new SubProjectTypeResource($subProjectType), 'SubProjectType updated successfully');
+        return $this->sendResponse($procuringEntityPackage->toArray(), 'ProcuringEntityPackages updated successfully');
     }
 
     /**
      * @param int $id
      *
      * @SWG\Delete(
-     *      path="/sub_project_types/{id}",
-     *      summary="Remove the specified SubProjectType from storage",
-     *      tags={"SubProjectType"},
+     *      path="/procuring_entity_packages/{id}",
+     *      summary="Remove the specified ProcuringEntityPackages from storage",
+     *      tags={"ProcuringEntityPackages"},
      *     security={{"Bearer":{}}},
-     *      description="Delete SubProjectType",
+     *      description="Delete ProcuringEntityPackages",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of SubProjectType",
+     *          description="id of ProcuringEntityPackages",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -269,15 +274,15 @@ class SubProjectTypeAPIController extends AppBaseController
      */
     public function destroy(int $id): JsonResponse
     {
-        /** @var SubProjectType $subProjectType */
-        $subProjectType = $this->subProjectTypeRepository->find($id);
+        /** @var ProcuringEntityPackage $procuringEntityPackage */
+        $procuringEntityPackage = $this->procuringEntityPackageRepository->find($id);
 
-        if ($subProjectType === null) {
-            return $this->sendError('SubProjectType not found');
+        if ($procuringEntityPackage === null) {
+            return $this->sendError('procuring entity package not found');
         }
 
-        $subProjectType->delete();
+        $procuringEntityPackage->delete();
 
-        return $this->sendSuccess('SubProjectType deleted successfully');
+        return $this->sendSuccess('ProcuringEntityPackage deleted successfully');
     }
 }
