@@ -48,7 +48,7 @@ class ProjectAPIController extends AppBaseController
      *      ),
      *      @SWG\Parameter(
      *          name="filter[project_status_id]",
-     *          description="project project status  filter",
+     *          description="project status  filter",
      *          type="string",
      *          required=false,
      *          in="query"

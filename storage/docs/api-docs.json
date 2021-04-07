@@ -4777,7 +4777,7 @@
                     {
                         "name": "filter[project_status_id]",
                         "in": "query",
-                        "description": "project project status  filter",
+                        "description": "project status  filter",
                         "required": false,
                         "type": "string"
                     },
@@ -6845,10 +6845,40 @@
                 "tags": [
                     "SubProject"
                 ],
-                "summary": "Get a listing of the SubProjects.",
+                "summary": "Get a listing of the SubProject",
                 "description": "Get all SubProjects",
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "filter[sub_project_type_id]",
+                        "in": "query",
+                        "description": "sub project type filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[sub_project_status_id]",
+                        "in": "query",
+                        "description": "sub project status  filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[procuring_entity_package_id]",
+                        "in": "query",
+                        "description": "sub project procuring entity package  filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[procuring_entity_packages.procuring_entity_id]",
+                        "in": "query",
+                        "description": "sub project procuring entity filter",
+                        "required": false,
+                        "type": "string"
+                    }
                 ],
                 "responses": {
                     "200": {
