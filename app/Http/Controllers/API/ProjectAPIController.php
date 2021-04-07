@@ -39,6 +39,27 @@ class ProjectAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get all Projects",
      *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[id]",
+     *          description="project id filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[project_status_id]",
+     *          description="project status  filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[regions.id]",
+     *          description="project region  filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -128,7 +149,6 @@ class ProjectAPIController extends AppBaseController
 
     /**
      * @param string $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/projects/{id}",
@@ -164,13 +184,14 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
     public function show(string $id): JsonResponse
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
 
-        if (empty($project)) {
+        if ($project === null) {
             return $this->sendError('Project not found');
         }
 

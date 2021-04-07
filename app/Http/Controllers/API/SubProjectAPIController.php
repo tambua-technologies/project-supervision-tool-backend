@@ -4,18 +4,18 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateSubProjectAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectAPIRequest;
-use App\Http\Resources\SubProjectResource;
 use App\Http\Resources\SubProjects\SubProjectCollection;
+use App\Http\Resources\SubProjects\SubProjectResource;
 use App\Http\Resources\SubProjectWithDistrict;
-use App\Models\District;
-use App\Models\Region;
+use App\Models\Project;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\Log;
-use Response;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+
 
 /**
  * Class SubProjectController
@@ -34,15 +34,42 @@ class SubProjectAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_projects",
-     *      summary="Get a listing of the SubProjects.",
+     *      summary="Get a listing of the SubProject",
      *      tags={"SubProject"},
      *     security={{"Bearer":{}}},
      *      description="Get all SubProjects",
      *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[sub_project_type_id]",
+     *          description="sub project type filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[sub_project_status_id]",
+     *          description="sub project status  filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuring_entity_package_id]",
+     *          description="sub project procuring entity package  filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuring_entity_packages.procuring_entity_id]",
+     *          description="sub project procuring entity filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -64,17 +91,20 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
-        $subProjects = $this->subProjectRepository->paginate(
-            $request->get('per_page', 15),
-            [
-                '*'
-            ],
-            [
-                $request->get('searchField') => $request->get('searchQuery')
-            ]);
+        $addRelationConstraint = false;
+        $subProjects = QueryBuilder::for(SubProject::class)
+            ->join('procuring_entity_packages', 'procuring_entity_packages.id', 'sub_projects.procuring_entity_package_id')
+            ->allowedFilters([
+                AllowedFilter::exact('procuring_entity_package_id'),
+                AllowedFilter::exact('sub_project_status_id'),
+                AllowedFilter::exact('sub_project_type_id'),
+                AllowedFilter::exact('procuring_entity_packages.procuring_entity_id',null, $addRelationConstraint),
+            ])
+            ->paginate($request->get('per_page', 15));
 
 
         return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
@@ -117,6 +147,7 @@ class SubProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
     public function store(CreateSubProjectAPIRequest $request): JsonResponse
     {
@@ -172,7 +203,7 @@ class SubProjectAPIController extends AppBaseController
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
 
-        if (empty($subProject)) {
+        if ($subProject === null) {
             return $this->sendError('Sub Project not found');
         }
 
@@ -272,7 +303,7 @@ class SubProjectAPIController extends AppBaseController
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
 
-        if (empty($subProject)) {
+        if ($subProject === null) {
             return $this->sendError('Sub Project not found');
         }
 
@@ -325,7 +356,7 @@ class SubProjectAPIController extends AppBaseController
         /** @var SubProject $subProject */
         $subProject = $this->subProjectRepository->find($id);
 
-        if (empty($subProject)) {
+        if ($subProject === null) {
             return $this->sendError('Sub Project not found');
         }
 

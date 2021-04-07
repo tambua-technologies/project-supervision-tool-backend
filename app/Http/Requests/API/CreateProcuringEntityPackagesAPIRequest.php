@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\ProjectTheme;
-use InfyOm\Generator\Request\APIRequest;
+use App\Models\ProcuringEntityPackage;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProjectThemeAPIRequest extends APIRequest
+class CreateProcuringEntityPackagesAPIRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,6 @@ class UpdateProjectThemeAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return ProjectTheme::$rules;
-
+        return ProcuringEntityPackage::$rules;
     }
 }

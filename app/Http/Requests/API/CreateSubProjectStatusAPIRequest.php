@@ -2,17 +2,17 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\ProjectTheme;
+use App\Models\SubProjectStatus;
 use InfyOm\Generator\Request\APIRequest;
 
-class UpdateProjectThemeAPIRequest extends APIRequest
+class CreateSubProjectStatusAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,9 +22,8 @@ class UpdateProjectThemeAPIRequest extends APIRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return ProjectTheme::$rules;
-
+        return SubProjectStatus::$rules;
     }
 }

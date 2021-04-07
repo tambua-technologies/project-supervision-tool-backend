@@ -112,6 +112,23 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="sub_project_status_id",
+ *          description="sub_project_status_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="quantity",
+ *          description="quantity",
+ *          type="float",
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_type_id",
+ *          description="sub_project_type_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -150,6 +167,8 @@ class SubProject extends Model implements HasMedia
         'code',
         'description',
         'procuring_entity_package_id',
+        'sub_project_type_id',
+        'sub_project_status_id',
     ];
 
     /**
@@ -162,7 +181,10 @@ class SubProject extends Model implements HasMedia
         'name' => 'string',
         'code' => 'string',
         'description' => 'string',
+        'quantity' => 'float',
         'procuring_entity_package_id' => 'string',
+        'sub_project_type_id' => 'integer',
+        'sub_project_status_id' => 'integer',
     ];
 
     /**
@@ -173,6 +195,9 @@ class SubProject extends Model implements HasMedia
         'name' => 'required|string',
         'code' => 'required|string',
         'procuring_entity_package_id' => 'required',
+        'sub_project_type_id' => 'required',
+        'sub_project_status_id' => 'required',
+        'quantity' => 'required',
         'description' => 'required|string',
     ];
 
@@ -209,9 +234,14 @@ class SubProject extends Model implements HasMedia
         return $this->hasOne(SubProjectDetail::class);
     }
 
-    public function sub_project_items()
+    public function type()
     {
-        return $this->hasMany(SubProjectItems::class);
+        return $this->belongsTo(SubProjectType::class, 'sub_project_type_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(SubProjectStatus::class, 'sub_project_status_id');
     }
 
     public function surveys()
@@ -242,11 +272,6 @@ class SubProject extends Model implements HasMedia
     public function progress()
     {
         return $this->hasOne(Progress::class);
-    }
-
-    public function sub_project_locations()
-    {
-        return $this->belongsToMany(Location::class, 'sub_project_locations', 'sub_project_id', 'location_id');
     }
 
     public function progress_history()

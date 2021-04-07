@@ -4308,6 +4308,230 @@
                 ]
             }
         },
+        "/procuring_entity_packages": {
+            "get": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Get a listing of the ProcuringEntityPackages.",
+                "description": "Get all ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProcuringEntityPackage"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Store a newly created ProcuringEntityPackages in storage",
+                "description": "Store ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProcuringEntityPackages that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProcuringEntityPackage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/procuring_entity_packages/{id}": {
+            "get": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Display the specified ProcuringEntityPackages",
+                "description": "Get ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackage",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Update the specified ProcuringEntityPackages in storage",
+                "description": "Update ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackages",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProcuringEntityPackages that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProcuringEntityPackage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProcuringEntityPackage"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ProcuringEntityPackages"
+                ],
+                "summary": "Remove the specified ProcuringEntityPackages from storage",
+                "description": "Delete ProcuringEntityPackages",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProcuringEntityPackages",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/progress": {
             "get": {
                 "tags": [
@@ -4541,6 +4765,29 @@
                 "description": "Get all Projects",
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "filter[id]",
+                        "in": "query",
+                        "description": "project id filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[project_status_id]",
+                        "in": "query",
+                        "description": "project status  filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[regions.id]",
+                        "in": "query",
+                        "description": "project region  filter",
+                        "required": false,
+                        "type": "string"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -4785,6 +5032,230 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/Project"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/project_components": {
+            "get": {
+                "tags": [
+                    "ProjectComponent"
+                ],
+                "summary": "Get a listing of the ProjectComponents.",
+                "description": "Get all ProjectComponents",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProjectComponent"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ProjectComponent"
+                ],
+                "summary": "Store a newly created ProjectComponent in storage",
+                "description": "Store ProjectComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectComponent that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectComponent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/project_components/{id}": {
+            "get": {
+                "tags": [
+                    "ProjectComponent"
+                ],
+                "summary": "Display the specified ProjectComponent",
+                "description": "Get ProjectComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectComponent",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "ProjectComponent"
+                ],
+                "summary": "Update the specified ProjectComponent in storage",
+                "description": "Update ProjectComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectComponent",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectComponent that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectComponent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ProjectComponent"
+                ],
+                "summary": "Remove the specified ProjectComponent from storage",
+                "description": "Delete ProjectComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectComponent",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
                                 },
                                 "message": {
                                     "type": "string"
@@ -5443,6 +5914,230 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of ProjectStatus",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/project_sub_components": {
+            "get": {
+                "tags": [
+                    "ProjectSubComponent"
+                ],
+                "summary": "Get a listing of the ProjectSubComponents.",
+                "description": "Get all ProjectSubComponents",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProjectSubComponent"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ProjectSubComponent"
+                ],
+                "summary": "Store a newly created ProjectSubComponent in storage",
+                "description": "Store ProjectSubComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectSubComponent that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectSubComponent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectSubComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/project_sub_components/{id}": {
+            "get": {
+                "tags": [
+                    "ProjectSubComponent"
+                ],
+                "summary": "Display the specified ProjectSubComponent",
+                "description": "Get ProjectSubComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectSubComponent",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectSubComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "ProjectSubComponent"
+                ],
+                "summary": "Update the specified ProjectSubComponent in storage",
+                "description": "Update ProjectSubComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectSubComponent",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ProjectSubComponent that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ProjectSubComponent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ProjectSubComponent"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ProjectSubComponent"
+                ],
+                "summary": "Remove the specified ProjectSubComponent from storage",
+                "description": "Delete ProjectSubComponent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ProjectSubComponent",
                         "required": true,
                         "type": "integer"
                     }
@@ -6150,10 +6845,40 @@
                 "tags": [
                     "SubProject"
                 ],
-                "summary": "Get a listing of the SubProjects.",
+                "summary": "Get a listing of the SubProject",
                 "description": "Get all SubProjects",
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "filter[sub_project_type_id]",
+                        "in": "query",
+                        "description": "sub project type filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[sub_project_status_id]",
+                        "in": "query",
+                        "description": "sub project status  filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[procuring_entity_package_id]",
+                        "in": "query",
+                        "description": "sub project procuring entity package  filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[procuring_entity_packages.procuring_entity_id]",
+                        "in": "query",
+                        "description": "sub project procuring entity filter",
+                        "required": false,
+                        "type": "string"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -7587,6 +8312,230 @@
                 ]
             }
         },
+        "/sub_project_status": {
+            "get": {
+                "tags": [
+                    "SubProjectStatus"
+                ],
+                "summary": "Get a listing of the SubProjectStatuses.",
+                "description": "Get all SubProjectStatuses",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/SubProjectStatus"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SubProjectStatus"
+                ],
+                "summary": "Store a newly created SubProjectStatus in storage",
+                "description": "Store SubProjectStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectStatus that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectStatus"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/sub_project_status/{id}": {
+            "get": {
+                "tags": [
+                    "SubProjectStatus"
+                ],
+                "summary": "Display the specified SubProjectStatus",
+                "description": "Get SubProjectStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectStatus",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectStatus"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SubProjectStatus"
+                ],
+                "summary": "Update the specified SubProjectStatus in storage",
+                "description": "Update SubProjectStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectStatus",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectStatus that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectStatus"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SubProjectStatus"
+                ],
+                "summary": "Remove the specified SubProjectStatus from storage",
+                "description": "Delete SubProjectStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectStatus",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/sub_project_surveys": {
             "get": {
                 "tags": [
@@ -7781,6 +8730,230 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of SubProjectSurvey",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/sub_project_types": {
+            "get": {
+                "tags": [
+                    "SubProjectType"
+                ],
+                "summary": "Get a listing of the SubProjectTypes.",
+                "description": "Get all SubProjectTypes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/SubProjectType"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SubProjectType"
+                ],
+                "summary": "Store a newly created SubProjectType in storage",
+                "description": "Store SubProjectType",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectType that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectTypePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectType"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/sub_project_types/{id}": {
+            "get": {
+                "tags": [
+                    "SubProjectType"
+                ],
+                "summary": "Display the specified SubProjectType",
+                "description": "Get SubProjectType",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectType",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectType"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SubProjectType"
+                ],
+                "summary": "Update the specified SubProjectType in storage",
+                "description": "Update SubProjectType",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectType",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "SubProjectType that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/SubProjectType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/SubProjectType"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SubProjectType"
+                ],
+                "summary": "Remove the specified SubProjectType from storage",
+                "description": "Delete SubProjectType",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of SubProjectType",
                         "required": true,
                         "type": "integer"
                     }
@@ -10007,6 +11180,20 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "sub_project_status_id": {
+                    "description": "sub_project_status_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "quantity": {
+                    "description": "quantity",
+                    "type": "float"
+                },
+                "sub_project_type_id": {
+                    "description": "sub_project_type_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "created_at": {
                     "description": "created_at",
                     "type": "string",
@@ -10226,6 +11413,36 @@
                 }
             }
         },
+        "SubProjectStatus": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "SubProjectSurveyPayload": {
             "required": [
                 "survey_id",
@@ -10262,6 +11479,66 @@
                     "description": "sub_project_id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "SubProjectTypePayload": {
+            "required": [
+                "name, unit_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "unit_id": {
+                    "description": "unit_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                }
+            }
+        },
+        "SubProjectType": {
+            "required": [
+                "name, unit_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "unit_id": {
+                    "description": "unit_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",

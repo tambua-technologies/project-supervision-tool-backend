@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\SubProjects;
 
-use App\Http\Resources\Locations\LocationResource;
-use App\Http\Resources\Locations\LocationWithDistrict;
-use App\Models\SubProjectItems;
+
+use App\Http\Resources\MediaResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,16 +23,14 @@ class SubProjectResource extends JsonResource
             'code' => $this->code,
             'description' => $this->description,
             'project_id' => $this->project_id,
-            'details' =>new SubProjectDetailResource($this->details),
+            'details' => new SubProjectDetailResource($this->details),
             'surveys' => $this->surveys,
-            'sub_project_items' => SubProjectItemsResource::collection($this->sub_project_items),
-            'sub_project_equipments' => SubProjectEquipmentResource::collection($this->sub_project_equipments),
+            'quantity' => $this->quantity,
+            'status' => $this->status,
+            'type' => new SubProjectTypeResource($this->type),
             'sub_project_milestones' => $this->sub_project_milestones,
-            'human_resources' => SubProjectHrResource::collection($this->human_resources),
             'progress' => $this->progress,
             'progress_history' => $this->progress_history,
-            'sub_project_contracts' => SubProjectContractResource::collection($this->sub_project_contracts),
-            'sub_project_locations' => LocationWithDistrict::collection($this->sub_project_locations),
             'photos' =>  MediaResource::collection($this->getMedia('photos')),
 
         ];

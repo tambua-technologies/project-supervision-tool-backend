@@ -2,15 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\ProjectSubComponent;
+use App\Models\SubProjectType;
+use App\Repositories\BaseRepository;
 
 /**
- * Class ProjectSubComponentRepository
+ * Class ImplementingPartnerRepository
  * @package App\Repositories
- * @version November 11, 2020, 8:54 am UTC
+ * @version June 4, 2020, 6:07 am UTC
  */
 
-class ProjectSubComponentRepository extends BaseRepository
+class SubProjectTypeRepository extends BaseRepository
 {
     /**
      * @var array
@@ -18,7 +19,7 @@ class ProjectSubComponentRepository extends BaseRepository
     protected $fieldSearchable = [
         'name',
         'description',
-        'project_component_id'
+        'unit_id'
     ];
 
     /**
@@ -36,6 +37,6 @@ class ProjectSubComponentRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProjectSubComponent::class;
+        return SubProjectType::class;
     }
 }

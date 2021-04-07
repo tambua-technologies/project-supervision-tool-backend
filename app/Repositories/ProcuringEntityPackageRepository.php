@@ -2,23 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Models\ProjectSubComponent;
+use App\Models\Position;
+use App\Models\ProcuringEntityPackage;
+use App\Repositories\BaseRepository;
 
 /**
- * Class ProjectSubComponentRepository
+ * Class PositionRepository
  * @package App\Repositories
- * @version November 11, 2020, 8:54 am UTC
+ * @version November 13, 2020, 11:28 am UTC
  */
 
-class ProjectSubComponentRepository extends BaseRepository
+class ProcuringEntityPackageRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
+        'procuring_entity_id',
         'name',
         'description',
-        'project_component_id'
     ];
 
     /**
@@ -36,6 +38,6 @@ class ProjectSubComponentRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProjectSubComponent::class;
+        return ProcuringEntityPackage::class;
     }
 }
