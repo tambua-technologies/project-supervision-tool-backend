@@ -6873,9 +6873,16 @@
                         "type": "string"
                     },
                     {
-                        "name": "filter[procuring_entity_packages.procuring_entity_id]",
+                        "name": "filter[procuring_entity_package.procuring_entity_id]",
                         "in": "query",
                         "description": "sub project procuring entity filter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "filter[procuring_entities.project_sub_component_id]",
+                        "in": "query",
+                        "description": "sub project procuring entity sub component filter",
                         "required": false,
                         "type": "string"
                     }

@@ -64,8 +64,22 @@ class SubProjectAPIController extends AppBaseController
      *          in="query"
      *      ),
      *      @SWG\Parameter(
-     *          name="filter[procuring_entity_packages.procuring_entity_id]",
+     *          name="filter[procuringEntityPackage.procuring_entity_id]",
      *          description="sub project procuring entity filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.procuringEntity.project_sub_component_id]",
+     *          description="sub project procuring entity sub component filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id]",
+     *          description="sub project procuring entity component filter",
      *          type="string",
      *          required=false,
      *          in="query"
@@ -97,17 +111,18 @@ class SubProjectAPIController extends AppBaseController
     {
         $addRelationConstraint = false;
         $subProjects = QueryBuilder::for(SubProject::class)
-            ->join('procuring_entity_packages', 'procuring_entity_packages.id', 'sub_projects.procuring_entity_package_id')
             ->allowedFilters([
-                AllowedFilter::exact('procuring_entity_package_id'),
                 AllowedFilter::exact('sub_project_status_id'),
                 AllowedFilter::exact('sub_project_type_id'),
-                AllowedFilter::exact('procuring_entity_packages.procuring_entity_id',null, $addRelationConstraint),
+                AllowedFilter::exact('procuring_entity_package_id'),
+                AllowedFilter::exact('procuringEntityPackage.procuring_entity_id'),
+                AllowedFilter::exact('procuringEntityPackage.procuringEntity.project_sub_component_id'),
+                AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
             ])
             ->paginate($request->get('per_page', 15));
 
 
-        return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
+        return $this->sendResponse($subProjects, 'Sub Projects retrieved successfully');
     }
 
     /**

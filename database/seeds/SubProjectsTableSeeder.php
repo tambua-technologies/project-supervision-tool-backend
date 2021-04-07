@@ -27,9 +27,6 @@ class SubProjectsTableSeeder extends Seeder
                 'sub_project_type_id' => 1,
                 'sub_project_status_id' => 2,
                 'quantity' => 10,
-                'created_at' => '2021-03-31 14:50:22',
-                'updated_at' => '2021-03-31 14:50:22',
-                'deleted_at' => NULL,
             ),
             1 =>
             array (
@@ -41,9 +38,6 @@ class SubProjectsTableSeeder extends Seeder
                 'sub_project_type_id' => 2,
                 'sub_project_status_id' => 3,
                 'quantity' => 50,
-                'created_at' => '2021-03-31 14:50:22',
-                'updated_at' => '2021-03-31 14:50:22',
-                'deleted_at' => NULL,
             ),
             2 =>
             array (
@@ -55,9 +49,6 @@ class SubProjectsTableSeeder extends Seeder
                 'quantity' => 30,
                 'sub_project_type_id' => 1,
                 'sub_project_status_id' => 2,
-                'created_at' => '2021-03-31 14:50:22',
-                'updated_at' => '2021-03-31 14:50:22',
-                'deleted_at' => NULL,
             ),
             3 =>
             array (
@@ -69,9 +60,6 @@ class SubProjectsTableSeeder extends Seeder
                 'quantity' => 14,
                 'sub_project_type_id' => 2,
                 'sub_project_status_id' => 1,
-                'created_at' => '2021-03-31 14:50:22',
-                'updated_at' => '2021-03-31 14:50:22',
-                'deleted_at' => NULL,
             ),
             4 =>
             array (
@@ -83,9 +71,50 @@ class SubProjectsTableSeeder extends Seeder
                 'quantity' => 19,
                 'sub_project_type_id' => 3,
                 'sub_project_status_id' => 4,
-                'created_at' => '2021-03-31 14:50:22',
-                'updated_at' => '2021-03-31 14:50:22',
-                'deleted_at' => NULL,
+            ),
+            5 =>
+            array (
+
+                'name' => 'Makanya',
+                'code' => 'M',
+                'description' => 'Makanya',
+                'procuring_entity_package_id' => 2,
+                'quantity' => 30,
+                'sub_project_type_id' => 2,
+                'sub_project_status_id' => 3,
+            ),
+            6 =>
+            array (
+
+                'name' => 'Korogwe-Kilungule-Majichumvi',
+                'code' => 'KKM',
+                'description' => 'Korogwe-Kilungule-Majichumvi',
+                'procuring_entity_package_id' => 3,
+                'quantity' => 30,
+                'sub_project_type_id' => 1,
+                'sub_project_status_id' => 2,
+            ),
+            7 =>
+            array (
+
+                'name' => 'Omary Londo',
+                'code' => 'ON',
+                'description' => 'Omary Londo',
+                'procuring_entity_package_id' => 8,
+                'quantity' => 10,
+                'sub_project_type_id' => 1,
+                'sub_project_status_id' => 3,
+            ),
+            8 =>
+            array (
+
+                'name' => 'Buguruni-Kisiwani-Tenge-Liwiti',
+                'code' => 'BITL',
+                'description' => 'Buguruni-Kisiwani-Tenge-Liwiti',
+                'procuring_entity_package_id' => 12,
+                'quantity' => 10,
+                'sub_project_type_id' => 1,
+                'sub_project_status_id' => 1,
             ),
         ));
 

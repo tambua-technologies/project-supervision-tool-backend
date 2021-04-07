@@ -82,6 +82,11 @@ class ProcuringEntityPackage extends Model
         'name',
     ];
 
+    public function procuringEntity()
+    {
+        return $this->belongsTo(ProcuringEntity::class, 'procuring_entity_id');
+    }
+
     public function sub_projects()
     {
         return $this->hasMany(SubProject::class);

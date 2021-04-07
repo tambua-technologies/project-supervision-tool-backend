@@ -287,7 +287,7 @@ class SubProject extends Model implements HasMedia
         return $collection->diff($attachedIds);
     }
 
-    public function procuring_entity_package()
+    public function procuringEntityPackage()
     {
         return $this->belongsTo(ProcuringEntityPackage::class);
     }

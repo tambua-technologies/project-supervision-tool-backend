@@ -81,6 +81,11 @@ class ProcuringEntity extends Model
         return $this->belongsTo(Agency::class);
     }
 
+    public function projectSubComponent ()
+    {
+        return $this->belongsTo(ProjectSubComponent::class, 'project_sub_component_id');
+    }
+
     public function project_sub_component()
     {
         return $this->belongsTo(ProjectSubComponent::class);

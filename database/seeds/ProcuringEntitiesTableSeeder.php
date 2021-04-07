@@ -19,11 +19,73 @@ class ProcuringEntitiesTableSeeder extends Seeder
         \DB::table('procuring_entities')->insert(array (
             0 =>
             array (
-                'agency_id' => 8,
+                'agency_id' => 10,
                 'project_sub_component_id' => 1,
-                'created_at' => '2021-03-31 14:38:30',
-                'updated_at' => '2021-03-31 14:38:30',
-                'deleted_at' => NULL,
+            ),
+            1 =>
+            array (
+                'agency_id' => 11,
+                'project_sub_component_id' => 1,
+            ),
+            2 =>
+            array (
+                'agency_id' => 12,
+                'project_sub_component_id' => 1,
+            ),
+            3 =>
+            array (
+                'agency_id' => 10,
+                'project_sub_component_id' => 2,
+            ),
+            4 =>
+            array (
+                'agency_id' => 11,
+                'project_sub_component_id' => 2,
+            ),
+            5 =>
+            array (
+                'agency_id' => 12,
+                'project_sub_component_id' => 2,
+            ),
+            6 =>
+            array (
+                'agency_id' => 10,
+                'project_sub_component_id' => 4,
+            ),
+            7 =>
+            array (
+                'agency_id' => 11,
+                'project_sub_component_id' => 5,
+            ),
+            8 =>
+            array (
+                'agency_id' => 12,
+                'project_sub_component_id' => 6,
+            ),
+            9 =>
+            array (
+                'agency_id' => 1,
+                'project_sub_component_id' => 7,
+            ),
+            10 =>
+            array (
+                'agency_id' => 1,
+                'project_sub_component_id' => 9,
+            ),
+            11 =>
+            array (
+                'agency_id' => 1,
+                'project_sub_component_id' => 10,
+            ),
+            12 =>
+            array (
+                'agency_id' => 1,
+                'project_sub_component_id' => 11,
+            ),
+            13 =>
+            array (
+                'agency_id' => 1,
+                'project_sub_component_id' => 13,
             ),
         ));
 
