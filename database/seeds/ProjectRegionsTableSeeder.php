@@ -12,21 +12,28 @@ class ProjectRegionsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('project_regions')->delete();
-        
+
         \DB::table('project_regions')->insert(array (
-            0 => 
+            0 =>
             array (
-                'id' => 1,
                 'project_id' => 'P123134',
                 'region_id' => 'TZ07',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+            ),
+            1 =>
+            array (
+                'project_id' => 'P171189',
+                'region_id' => 'TZ02',
+            ),
+            2 =>
+            array (
+                'project_id' => 'P165128',
+                'region_id' => 'TZ54',
             ),
         ));
-        
-        
+
+
     }
 }
