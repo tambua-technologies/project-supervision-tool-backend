@@ -245,7 +245,7 @@ class SubProjectAPIController extends AppBaseController
             return $this->sendError('Sub Project not found');
         }
 
-        return $this->sendResponse(new SubProjectWithDistrict($subProject), 'Sub Project retrieved successfully');
+        return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project retrieved successfully');
     }
 
 

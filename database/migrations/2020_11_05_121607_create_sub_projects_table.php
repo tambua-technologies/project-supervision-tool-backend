@@ -19,6 +19,7 @@ class CreateSubProjectsTable extends Migration
             $table->string('code')->nullable();
             $table->string('description');
             $table->float('quantity')->nullable();
+            $table->jsonb('geo_json')->nullable();
             $table->unsignedBigInteger('procuring_entity_package_id');
             $table->unsignedBigInteger('sub_project_type_id')->nullable();
             $table->unsignedBigInteger('sub_project_status_id')->nullable();

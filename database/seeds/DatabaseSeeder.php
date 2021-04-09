@@ -42,5 +42,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(SubProjectItemsTableSeeder::class);
 //        $this->call(SubProjectMilestonesTableSeeder::class);
 //        $this->call(ProgressTableSeeder::class);
+        $this->call(SubProjectSurveysTableSeeder::class);
     }
 }
