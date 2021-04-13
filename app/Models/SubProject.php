@@ -165,6 +165,7 @@ class SubProject extends Model implements HasMedia
     public $fillable = [
         'name',
         'code',
+        'geo_json',
         'description',
         'procuring_entity_package_id',
         'sub_project_type_id',
@@ -180,6 +181,7 @@ class SubProject extends Model implements HasMedia
         'id' => 'integer',
         'name' => 'string',
         'code' => 'string',
+        'geo_json' => 'object',
         'description' => 'string',
         'quantity' => 'float',
         'procuring_entity_package_id' => 'string',
@@ -194,6 +196,7 @@ class SubProject extends Model implements HasMedia
     public static $rules = [
         'name' => 'required|string',
         'code' => 'required|string',
+        'geo_json' => 'required',
         'procuring_entity_package_id' => 'required',
         'sub_project_type_id' => 'required',
         'sub_project_status_id' => 'required',
@@ -207,24 +210,11 @@ class SubProject extends Model implements HasMedia
         parent::boot();
 
         static::deleting(function ($sub_project) { // before delete() method call this
-            $sub_project->sub_project_locations()->delete();
+            $sub_project->districts()->detach();
             $sub_project->details()->delete();
-            $sub_project->sub_project_items()->delete();
-            $sub_project->sub_project_milestones()->delete();
-            $sub_project->human_resources()->delete();
-            $sub_project->sub_project_equipments()->delete();
-            $sub_project->sub_project_progress()->delete();
-            $sub_project->sub_project_progress_history()->delete();
-            $sub_project->sub_project_contracts()->delete();
         });
 
 
-    }
-
-
-    public function registerMediaCollections()
-    {
-        $this->addMediaCollection('photos');
     }
 
 

@@ -28,7 +28,7 @@ class SubProjectResource extends JsonResource
             'quantity' => $this->quantity,
             'status' => $this->status,
             'type' => new SubProjectTypeResource($this->type),
-            'photos' =>  MediaResource::collection($this->getMedia('photos')),
+            'geo_json' => $this->geo_json,
             'districts' => $this->districts,
         ];
     }
