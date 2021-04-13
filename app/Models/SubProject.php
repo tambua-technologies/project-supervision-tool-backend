@@ -197,7 +197,6 @@ class SubProject extends Model implements HasMedia
         'procuring_entity_package_id' => 'required',
         'sub_project_type_id' => 'required',
         'sub_project_status_id' => 'required',
-        'quantity' => 'required',
         'description' => 'required|string',
     ];
 

@@ -7,6 +7,7 @@ use App\Http\Requests\API\UpdateSubProjectAPIRequest;
 use App\Http\Resources\SubProjects\SubProjectCollection;
 use App\Http\Resources\SubProjects\SubProjectResource;
 use App\Http\Resources\SubProjectWithDistrict;
+use App\Models\ProcuringEntity;
 use App\Models\Project;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
@@ -192,8 +193,7 @@ class SubProjectAPIController extends AppBaseController
         $input = $request->all();
 
         $subProject = $this->subProjectRepository->create($input);
-        $subProject->attachLocations($request->locations);
-
+        $subProject->districts()->attach($request->district_id);
         return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project saved successfully');
     }
 
