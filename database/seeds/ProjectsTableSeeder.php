@@ -28,6 +28,8 @@ class ProjectsTableSeeder extends Seeder
                     'created_at' => '2021-03-31 14:11:47',
                     'updated_at' => '2021-03-31 14:11:47',
                     'deleted_at' => NULL,
+                    'layer_typename' => 'geonode:DMDPupgradingWards0',
+                    'color' => '#558fa5',
                 ),
             1 =>
                 array(
@@ -40,6 +42,8 @@ class ProjectsTableSeeder extends Seeder
                     'created_at' => '2021-04-04 13:15:23',
                     'updated_at' => '2021-04-04 13:15:23',
                     'deleted_at' => NULL,
+                    'layer_typename' => 'geonode:DMDPupgradingWards0',
+                    'color' => '#e49124',
                 ),
             2 =>
                 array(
@@ -52,6 +56,8 @@ class ProjectsTableSeeder extends Seeder
                     'created_at' => '2021-04-04 13:15:23',
                     'updated_at' => '2021-04-04 13:15:23',
                     'deleted_at' => NULL,
+                    'layer_typename' => 'geonode:DMDPupgradingWards0',
+                    'color' => '#8b60b7',
                 ),
         ));
 
