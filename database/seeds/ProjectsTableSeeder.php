@@ -28,7 +28,7 @@ class ProjectsTableSeeder extends Seeder
                     'created_at' => '2021-03-31 14:11:47',
                     'updated_at' => '2021-03-31 14:11:47',
                     'deleted_at' => NULL,
-                    'layer_typename' => 'geonode:final_proj_sites_12_04_2020',
+                    'layer_typename' => 'geonode:ref_roads_merge',
                     'color' => '#558fa5',
                 ),
             1 =>
