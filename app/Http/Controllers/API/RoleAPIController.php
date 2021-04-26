@@ -118,6 +118,53 @@ class RoleAPIController extends AppBaseController
     }
 
     /**
+     *
+     * @SWG\Post(
+     *      path="/roles/assign_permission",
+     *      summary="assign permission to a role",
+     *      tags={"Role"},
+     *     security={{"Bearer":{}}},
+     *      description="assign permission to role",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="assign permission to role",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/AssignRolePermision")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Role"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param $request
+     * @return mixed
+     */
+    public function assign_permission(Request $request)
+    {
+        $role = Role::where('name', $request->role)->first();
+        $role->givePermissionTo($request->permission);
+
+        return $this->sendResponse($role->toArray(), 'Role saved successfully');
+    }
+
+    /**
      * @param int $id
      * @return Response
      *

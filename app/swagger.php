@@ -28,6 +28,22 @@
  * )
  */
 
+/**
+ * @SWG\Definition(
+ *      definition="AssignRolePermision",
+ *      @SWG\Property(
+ *          property="role",
+ *          description="role",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="permission",
+ *          description="permission",
+ *          type="string"
+ *      ),
+ * )
+ */
+
 
 
 /**

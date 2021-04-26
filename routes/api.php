@@ -43,6 +43,7 @@ Route::middleware('auth:api')
         Route::get('/locations/sub_projects_overview_by_region/{region_id}', 'LocationAPIController@subProjectsOverViewByRegion');
         Route::get('/users/auth_user', 'UserAPIController@auth_user');
         Route::get('/users/{id}/assign_role/{role}', 'UserAPIController@assign_role');
+        Route::post('/roles/assign_permission', 'RoleAPIController@assign_permission');
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
