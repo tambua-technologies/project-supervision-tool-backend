@@ -28,6 +28,7 @@ class UserResource extends JsonResource
             'updated_at' => $this->updated_at,
             'location' => $this->location,
             'roles' => $this->roles,
+            'permissions' => $this->permissions,
         ];
     }
 }

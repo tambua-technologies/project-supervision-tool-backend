@@ -4,11 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
+use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\Users\UsersCollection;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 /**
@@ -167,11 +169,113 @@ class UserAPIController extends AppBaseController
         /** @var User $user */
         $user = $this->userRepository->find($id);
 
-        if (empty($user)) {
+        if ($user === null) {
             return $this->sendError('User not found');
         }
 
         return $this->sendResponse($user->toArray(), 'User retrieved successfully');
+    }
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/users/{id}/assign_role/{role}",
+     *      summary="Assign role to user",
+     *      tags={"User"},
+     *     security={{"Bearer":{}}},
+     *      description="Assign role to user",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of User",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="role",
+     *          description="role name",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/User"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param int $id
+     * @param string $role
+     * @return mixed
+     */
+    public function assign_role(int $id, string $role)
+    {
+        /** @var User $user */
+        $user = $this->userRepository->find($id);
+
+        if ($user === null) {
+            return $this->sendError('User not found');
+        }
+        $user->assignRole($role);
+
+        return $this->sendResponse(new UserResource($user), 'Role assigned to User successfully');
+    }
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/users/auth_user",
+     *      summary="Gets authenticated user",
+     *      tags={"User"},
+     *     security={{"Bearer":{}}},
+     *      description="Get Authenticated User",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/User"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function auth_user()
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user === null) {
+            return $this->sendError('User not found');
+        }
+
+        return $this->sendResponse(new UserResource($user), 'Authenticated User retrieved successfully');
     }
 
     /**
