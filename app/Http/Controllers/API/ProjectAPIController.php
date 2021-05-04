@@ -40,6 +40,13 @@ class ProjectAPIController extends AppBaseController
      *      description="Get all Projects",
      *      produces={"application/json"},
      *      @SWG\Parameter(
+     *          name="filter[name]",
+     *          description="search by project name",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
      *          name="filter[id]",
      *          description="project id filter",
      *          type="string",
@@ -89,6 +96,7 @@ class ProjectAPIController extends AppBaseController
 
         $projects = QueryBuilder::for(Project::class)
             ->allowedFilters([
+                'name',
                 AllowedFilter::exact('project_status_id'),
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('regions.id'),
