@@ -97,4 +97,5 @@ Route::middleware('auth:api')
         Route::resource('procuring_entity_packages', 'ProcuringEntityPackageAPIController');
         Route::resource('project_sub_components', 'ProjectSubComponentAPIController');
         Route::resource('project_components', 'ProjectComponentAPIController');
+        Route::resource('procuring_entities', 'ProcuringEntityAPIController');
     });

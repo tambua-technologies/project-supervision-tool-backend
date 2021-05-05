@@ -84,6 +84,11 @@ class ProjectSubComponent extends Model
         'project_component_id' => 'required',
     ];
 
+    public function projectComponent ()
+    {
+        return $this->belongsTo(ProjectComponent::class, 'project_component_id');
+    }
+
     public function procuring_entities()
     {
         return $this->hasMany(ProcuringEntity::class);
