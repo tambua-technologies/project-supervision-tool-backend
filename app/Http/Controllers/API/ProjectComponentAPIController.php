@@ -9,6 +9,8 @@ use App\Repositories\ProjectComponentRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ProjectComponentController
@@ -35,6 +37,13 @@ class ProjectComponentAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get all ProjectComponents",
      *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[project_id]",
+     *          description="search by project name",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -60,11 +69,11 @@ class ProjectComponentAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $projectComponents = $this->projectComponentRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $projectComponents = QueryBuilder::for(ProjectComponent::class)
+            ->allowedFilters([
+                AllowedFilter::exact('project_id')
+            ])
+            ->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($projectComponents->toArray(), 'Project Components retrieved successfully');
     }
