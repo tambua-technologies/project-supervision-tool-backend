@@ -19,17 +19,17 @@ class ProjectRegionsTableSeeder extends Seeder
         \DB::table('project_regions')->insert(array (
             0 =>
             array (
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'region_id' => 'TZ07',
             ),
             1 =>
             array (
-                'project_id' => 'P171189',
+                'project_id' => 2,
                 'region_id' => 'TZ02',
             ),
             2 =>
             array (
-                'project_id' => 'P165128',
+                'project_id' => 3,
                 'region_id' => 'TZ54',
             ),
         ));

@@ -14,7 +14,8 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->increments('id');
+            $table->string('wb_project_id')->unique();
             $table->string('name');
             $table->string('layer_typename')->nullable();
             $table->string('color')->nullable();

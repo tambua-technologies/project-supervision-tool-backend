@@ -19,7 +19,7 @@ class ProjectDetailsTableSeeder extends Seeder
         \DB::table('project_details')->insert(array (
             0 =>
             array (
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'borrower_id' => 3,
                 'implementing_agency_id' => 4,
                 'funding_organisation_id' => 8,
@@ -36,7 +36,7 @@ class ProjectDetailsTableSeeder extends Seeder
             ),
             1 =>
             array (
-                'project_id' => 'P171189',
+                'project_id' => 2,
                 'borrower_id' => 2,
                 'implementing_agency_id' => 3,
                 'funding_organisation_id' => 4,
@@ -53,7 +53,7 @@ class ProjectDetailsTableSeeder extends Seeder
             ),
             2 =>
             array (
-                'project_id' => 'P165128',
+                'project_id' => 3,
                 'borrower_id' => 1,
                 'implementing_agency_id' => 2,
                 'funding_organisation_id' => 3,

@@ -21,7 +21,7 @@ class ProjectComponentsTableSeeder extends Seeder
             array (
                 'name' => 'Priority Infrastructure',
                 'description' => 'Priority Infrastructure',
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'created_at' => '2021-03-31 14:29:32',
                 'updated_at' => '2021-03-31 14:29:32',
                 'deleted_at' => NULL,
@@ -30,7 +30,7 @@ class ProjectComponentsTableSeeder extends Seeder
             array (
                 'name' => 'Upgrading in Low Income Communities',
                 'description' => 'Upgrading in Low Income Communities',
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'created_at' => '2021-03-31 14:29:32',
                 'updated_at' => '2021-03-31 14:29:32',
                 'deleted_at' => NULL,
@@ -39,7 +39,7 @@ class ProjectComponentsTableSeeder extends Seeder
             array (
                 'name' => 'Institutional Strengthening',
                 'description' => 'Institutional Strengthening',
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'created_at' => '2021-03-31 14:29:32',
                 'updated_at' => '2021-03-31 14:29:32',
                 'deleted_at' => NULL,
@@ -48,7 +48,7 @@ class ProjectComponentsTableSeeder extends Seeder
             array (
                 'name' => 'Implementation Support and Monitoring and Evaluation',
                 'description' => 'Implementation Support and Monitoring and Evaluation',
-                'project_id' => 'P123134',
+                'project_id' => 1,
                 'created_at' => '2021-03-31 14:29:32',
                 'updated_at' => '2021-03-31 14:29:32',
                 'deleted_at' => NULL,

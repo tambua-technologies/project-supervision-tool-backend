@@ -21,7 +21,7 @@ class ProjectComponentResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'sub_components' => ProjectSubComponentResource::collection($this->sub_components),
+            'sub_components' => ProjectSubComponentResource::collection($this->whenLoaded('sub_components')),
         ];
     }
 }

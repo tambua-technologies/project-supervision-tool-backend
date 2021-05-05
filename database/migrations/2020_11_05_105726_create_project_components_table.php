@@ -17,7 +17,7 @@ class CreateProjectComponentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('project_id');
+            $table->unsignedBigInteger('project_id');
             $table->timestamps();
             $table->softDeletes();
 

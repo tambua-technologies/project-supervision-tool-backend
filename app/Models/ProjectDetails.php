@@ -115,7 +115,7 @@ class ProjectDetails extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'project_id' => 'string',
+        'project_id' => 'integer',
         'status' => 'string',
         'borrower_id' => 'integer',
         'project_region' => 'string',

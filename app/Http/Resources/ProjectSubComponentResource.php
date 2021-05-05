@@ -20,7 +20,7 @@ class ProjectSubComponentResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'procuring_entities' => ProcuringEntityResource::collection($this->procuring_entities),
+            'procuring_entities' => ProcuringEntityResource::collection($this->whenLoaded('procuring_entities')),
         ];
     }
 }

@@ -19,7 +19,7 @@ class ProcuringEntityResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'packages' => ProcuringEntityPackageResource::collection($this->packages),
+            'packages' => ProcuringEntityPackageResource::collection($this->whenLoaded('packages')),
             'agency' => $this->agency,
             'project_sub_component' => $this->project_sub_component
         ];

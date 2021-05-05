@@ -122,6 +122,7 @@ class Project extends Model
         'id',
         'code',
         'name',
+        'wb_project_id',
         'project_status_id',
         'description'
     ];
@@ -132,9 +133,10 @@ class Project extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'string',
+        'id' => 'integer',
         'code' => 'string',
         'name' => 'string',
+        'wb_project_id' => 'string',
         'country_id' => 'string',
         'project_status_id' => 'integer',
         'description' => 'string'
@@ -148,6 +150,7 @@ class Project extends Model
     public static $rules = [
         'name' => 'required|string|max:255',
         'code' => 'required|string',
+        'wb_project_id' => 'required|string',
         'project_status_id' => 'required|integer',
     ];
 

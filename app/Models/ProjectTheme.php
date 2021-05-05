@@ -71,7 +71,7 @@ class ProjectTheme extends Model
     protected $casts = [
         'id' => 'integer',
         'theme_id' => 'integer',
-        'project_id' => 'string',
+        'project_id' => 'integer',
         'percent' => 'float'
     ];
 

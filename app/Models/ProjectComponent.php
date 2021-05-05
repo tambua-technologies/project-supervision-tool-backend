@@ -70,7 +70,7 @@ class ProjectComponent extends Model
         'id' => 'integer',
         'name' => 'string',
         'description' => 'string',
-        'project_id' => 'string'
+        'project_id' => 'integer'
     ];
 
     /**

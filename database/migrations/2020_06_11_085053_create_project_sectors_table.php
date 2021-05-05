@@ -17,7 +17,7 @@ class CreateProjectSectorsTable extends Migration
         Schema::create('project_sectors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('sector_id');
-            $table->string('project_id');
+            $table->unsignedBigInteger('project_id');
             $table->float('percent');
             $table->timestamps();
             $table->softDeletes();

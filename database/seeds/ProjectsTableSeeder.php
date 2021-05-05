@@ -19,7 +19,7 @@ class ProjectsTableSeeder extends Seeder
         \DB::table('projects')->insert(array(
             0 =>
                 array(
-                    'id' => 'P123134',
+                    'wb_project_id' => 'P123134',
                     'name' => 'Dar es Salaam Metropolitan Development Project',
                     'code' => 'DMDP',
                     'project_status_id' => 1,
@@ -33,7 +33,7 @@ class ProjectsTableSeeder extends Seeder
                 ),
             1 =>
                 array(
-                    'id' => 'P171189',
+                    'wb_project_id' => 'P171189',
                     'name' => 'Tanzania Cities Transforming Infrastructure & Competitiveness Project',
                     'code' => 'TACTIC',
                     'project_status_id' => 4,
@@ -47,7 +47,7 @@ class ProjectsTableSeeder extends Seeder
                 ),
             2 =>
                 array(
-                    'id' => 'P165128',
+                    'wb_project_id' => 'P165128',
                     'name' => 'Boosting Inclusive Growth for Zanzibar: Integrated Development Project',
                     'code' => 'BIGZ',
                     'project_status_id' => 4,

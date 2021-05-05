@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateProjectComponentAPIRequest;
 use App\Http\Requests\API\UpdateProjectComponentAPIRequest;
+use App\Http\Resources\ProjectComponentResource;
 use App\Models\ProjectComponent;
 use App\Repositories\ProjectComponentRepository;
 use Illuminate\Http\JsonResponse;
@@ -73,9 +74,10 @@ class ProjectComponentAPIController extends AppBaseController
             ->allowedFilters([
                 AllowedFilter::exact('project_id')
             ])
+            ->with('sub_components')
             ->paginate($request->get('per_page', 15));
 
-        return $this->sendResponse($projectComponents->toArray(), 'Project Components retrieved successfully');
+        return $this->sendResponse(ProjectComponentResource::collection($projectComponents), 'Project Components retrieved successfully');
     }
 
     /**

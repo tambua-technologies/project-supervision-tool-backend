@@ -24,6 +24,7 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'code' => $this->code,
             'color' => $this->color,
+            'wb_project_id' => $this->wb_project_id,
             'layer_typename' => $this->layer_typename,
             'description' => $this->description,
             'status' => $this->status,
@@ -31,9 +32,9 @@ class ProjectResource extends JsonResource
             'sectors' => $this->sectors,
             'themes' => $this->themes,
             'country' => $this->country,
+            'components' => ProjectComponentResource::collection($this->whenLoaded('components')),
+            'details' => new ProjectDetailResource($this->details),
             'regions' => $this->regions,
-            'components' => ProjectComponentResource::collection($this->components),
-            'details' => new ProjectDetailResource($this->details)
 
         ];
     }

@@ -72,7 +72,7 @@ class ProjectSectors extends Model
         'id' => 'integer',
         'percent' => 'float',
         'sector_id' => 'integer',
-        'project_id' => 'string'
+        'project_id' => 'integer'
     ];
 
     /**
