@@ -5,10 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateContractorAPIRequest;
 use App\Http\Requests\API\UpdateContractorAPIRequest;
 use App\Models\Contractor;
+use App\Models\ProcuringEntity;
 use App\Repositories\ContractorRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ContractorController
@@ -36,6 +39,13 @@ class ContractorAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get all Contractors",
      *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[contracts.procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id]",
+     *          description="filter contractors by project id",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -60,11 +70,11 @@ class ContractorAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $contractors = $this->contractorRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $contractors = QueryBuilder::for(Contractor::class)
+            ->allowedFilters([
+                AllowedFilter::exact('contracts.procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id')
+            ])
+            ->get();
 
         return $this->sendResponse($contractors->toArray(), 'Contractors retrieved successfully');
     }
@@ -161,7 +171,7 @@ class ContractorAPIController extends AppBaseController
         /** @var Contractor $contractor */
         $contractor = $this->contractorRepository->find($id);
 
-        if (empty($contractor)) {
+        if ($contractor === null) {
             return $this->sendError('Contractor not found');
         }
 

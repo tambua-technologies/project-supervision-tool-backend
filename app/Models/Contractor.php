@@ -49,4 +49,9 @@ class Contractor extends Agency
 {
     use SoftDeletes, HasParent;
 
+    public function contracts()
+    {
+        return $this->hasMany(SubProjectContract::class, 'contractor_id');
+    }
+
 }

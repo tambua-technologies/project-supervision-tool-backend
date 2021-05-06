@@ -22,6 +22,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="contractor_id",
+ *          description="contractor_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="name",
  *          description="name",
  *          type="string"
@@ -97,6 +103,11 @@ class SubProjectContract extends Model
     public function contract_time()
     {
         return $this->belongsTo(ContractTime::class);
+    }
+
+    public function procuringEntityPackage()
+    {
+        return $this->belongsTo(ProcuringEntityPackage::class, 'procuring_entity_package_id');
     }
 
     public function contractor()
