@@ -15,7 +15,7 @@ class CreateProjectRegionsTable extends Migration
     {
         Schema::create('project_regions', function (Blueprint $table) {
             $table->id();
-            $table->string("project_id")->nullable();
+            $table->unsignedBigInteger("project_id")->nullable();
             $table->string("region_id")->nullable();
             $table->timestamps();
         });

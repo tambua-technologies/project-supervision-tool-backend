@@ -58,7 +58,7 @@ class Region extends Model
     }
 
 
-    static public function projectsOverview()
+    public static function projectsOverview()
     {
         return DB::table('regions')
             ->join('locations', 'locations.region_id', '=', 'regions.id')
@@ -69,7 +69,7 @@ class Region extends Model
     }
 
 
-    static public function subProjectsOverview()
+    public static function subProjectsOverview()
     {
 
         return DB::table('regions')
@@ -82,7 +82,7 @@ class Region extends Model
             ->get();
     }
 
-    static public function get_region_projects_statistics($region_id)
+    public static function get_region_projects_statistics($region_id)
     {
 
         $total_region_projects = DB::table('projects')
@@ -121,7 +121,7 @@ class Region extends Model
 
     }
 
-    static public function get_region_sub_projects_statistics($region_id): array
+    public static function get_region_sub_projects_statistics($region_id): array
     {
 
 
@@ -139,7 +139,7 @@ class Region extends Model
 
     }
 
-    static public function getProjects($region_id)
+    public static function getProjects($region_id)
     {
 //        DB::enableQueryLog();
 
@@ -153,6 +153,16 @@ class Region extends Model
             ->get()->pluck(['id']);
 //        Log::info(DB::getQueryLog());
         return Project::find($projectIds);
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_regions', 'region_id', 'project_id');
+    }
+
+    public function districts()
+    {
+        return $this->hasMany(District::class);
     }
 
 }

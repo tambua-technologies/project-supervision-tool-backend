@@ -75,8 +75,7 @@ class ProcuringEntityAPIController extends AppBaseController
                 AllowedFilter::exact('projectSubComponent.projectComponent.project_id')
             ])
             ->with('packages')
-            ->paginate($request->get('per_page', 15));
-
+            ->get();
         return $this->sendResponse(ProcuringEntityResource::collection($procuringEntities), 'Procuring Entitys retrieved successfully');
     }
 

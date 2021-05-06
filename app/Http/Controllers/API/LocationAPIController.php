@@ -11,11 +11,14 @@ use App\Http\Resources\SimpleLocationResource;
 use App\Http\Resources\SubProjectResource;
 use App\Models\District;
 use App\Models\Location;
+use App\Models\ProcuringEntity;
 use App\Models\Region;
 use App\Repositories\LocationRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class LocationController
@@ -32,45 +35,6 @@ class LocationAPIController extends AppBaseController
         $this->locationRepository = $locationRepo;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @SWG\Get(
-     *      path="/locations",
-     *      summary="Get a listing of the Locations.",
-     *      tags={"Location"},
-     *     security={{"Bearer":{}}},
-     *      description="Get all Locations",
-     *      produces={"application/json"},
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Location")
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     * @return JsonResponse
-     */
-    public function index(Request $request): JsonResponse
-    {
-        $locations = $this->locationRepository->paginate($request->get('per_page', 15));
-
-        return $this->sendResponse(LocationResource::collection($locations), 'Locations retrieved successfully');
-    }
 
     /**
      *
@@ -81,6 +45,13 @@ class LocationAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get all regions",
      *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[projects.id]",
+     *          description="filter regions by project id",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -102,10 +73,16 @@ class LocationAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function regions(): JsonResponse
+    public function regions(Request $request): JsonResponse
     {
-        $locations = Region::all();
+        $locations = QueryBuilder::for(Region::class)
+            ->allowedFilters([
+                AllowedFilter::exact('projects.id')
+            ])
+            ->get();
 
         return $this->sendResponse(SimpleLocationResource::collection($locations), 'Regions retrieved successfully');
     }

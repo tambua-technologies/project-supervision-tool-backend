@@ -75,8 +75,7 @@ class ProjectComponentAPIController extends AppBaseController
                 AllowedFilter::exact('project_id')
             ])
             ->with('sub_components')
-            ->paginate($request->get('per_page', 15));
-
+            ->get();
         return $this->sendResponse(ProjectComponentResource::collection($projectComponents), 'Project Components retrieved successfully');
     }
 
