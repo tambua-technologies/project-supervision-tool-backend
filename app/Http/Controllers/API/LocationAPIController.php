@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateLocationAPIRequest;
 use App\Http\Requests\API\UpdateLocationAPIRequest;
+use App\Http\Resources\Locations\DistrictResource;
 use App\Http\Resources\Locations\LocationResource;
 use App\Http\Resources\Projects\ProjectOverview;
 use App\Http\Resources\Projects\ProjectOverviewWithLocation;
@@ -370,7 +371,7 @@ class LocationAPIController extends AppBaseController
     {
         $locations = District::query()->where('region_id', $region_id)->get();
 
-        return $this->sendResponse(SimpleLocationResource::collection($locations), 'Districts retrieved successfully');
+        return $this->sendResponse(DistrictResource::collection($locations), 'Districts retrieved successfully');
     }
 
     /**

@@ -46,21 +46,21 @@ class SubProjectAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="filter[sub_project_type_id]",
      *          description="sub project type filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
      *      @SWG\Parameter(
      *          name="filter[sub_project_status_id]",
      *          description="sub project status  filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
      *      @SWG\Parameter(
      *          name="filter[procuring_entity_package_id]",
      *          description="sub project procuring entity package  filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
@@ -81,28 +81,28 @@ class SubProjectAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="filter[procuringEntityPackage.procuring_entity_id]",
      *          description="sub project procuring entity filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
      *      @SWG\Parameter(
      *          name="filter[procuringEntityPackage.contract.contractor_id]",
      *          description="sub project contractors filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
      *      @SWG\Parameter(
      *          name="filter[procuringEntityPackage.procuringEntity.project_sub_component_id]",
      *          description="sub project procuring entity sub component filter",
-     *          type="string",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
      *      @SWG\Parameter(
-     *          name="filter[procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id]",
-     *          description="sub project procuring entity component filter",
-     *          type="string",
+     *          name="filter[procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id]",
+     *          description="filter sub projects  by project",
+     *          type="integer",
      *          required=false,
      *          in="query"
      *      ),
@@ -142,6 +142,7 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('procuringEntityPackage.contract.contractor_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.project_sub_component_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
+                AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id'),
             ])
             ->paginate($request->get('per_page', 15));
 
