@@ -7,6 +7,7 @@ use App\Http\Requests\API\CreateProjectTicketAPIRequest;
 use App\Http\Requests\API\UpdateProjectAPIRequest;
 use App\Http\Resources\Projects\ProjectCollection;
 use App\Http\Resources\Projects\ProjectResource;
+use App\Http\Resources\Projects\ProjectTicketResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
 use App\Repositories\TicketRepository;
@@ -205,7 +206,7 @@ class ProjectAPIController extends AppBaseController
         $code = $this->ticketRepository->code();
         $input['code'] = $code;
         $projectTicket = $this->ticketRepository->create($input);
-        return $this->sendResponse($projectTicket, 'Project Ticket created successfully');
+        return $this->sendResponse(new ProjectTicketResource($projectTicket), 'Project Ticket created successfully');
     }
 
     /**
