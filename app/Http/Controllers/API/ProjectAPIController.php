@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateProjectAPIRequest;
+use App\Http\Requests\API\CreateProjectTicketAPIRequest;
 use App\Http\Requests\API\UpdateProjectAPIRequest;
 use App\Http\Resources\Projects\ProjectCollection;
 use App\Http\Resources\Projects\ProjectResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
+use App\Repositories\TicketRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -24,10 +26,12 @@ class ProjectAPIController extends AppBaseController
 {
     /** @var  ProjectRepository */
     private $projectRepository;
+    private $ticketRepository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(ProjectRepository $projectRepo, TicketRepository $ticketRepo)
     {
         $this->projectRepository = $projectRepo;
+        $this->ticketRepository = $ticketRepo;
     }
 
     /**
@@ -157,6 +161,54 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
+     * @param CreateProjectTicketAPIRequest $request
+     *
+     * @SWG\Post(
+     *      path="/projects/create_ticket",
+     *      summary="Create a new ticket associated with  a project",
+     *      tags={"Project"},
+     *     security={{"Bearer":{}}},
+     *      description="Create a new ticket in a Project",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="Project that should be stored",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/ProjectTicketPayload")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProjectTicket"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function createTicket(CreateProjectTicketAPIRequest $request): JsonResponse
+    {
+        $input = $request->all();
+        $code = $this->ticketRepository->code();
+        $input['code'] = $code;
+        $projectTicket = $this->ticketRepository->create($input);
+        return $this->sendResponse($projectTicket, 'Project Ticket created successfully');
+    }
+
+    /**
      * @param string $id
      *
      * @SWG\Get(
@@ -208,8 +260,6 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/projects/statistics",
@@ -245,6 +295,8 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param Request $request
+     * @return JsonResponse
      */
     public function statistics(Request $request): JsonResponse
     {
@@ -252,7 +304,7 @@ class ProjectAPIController extends AppBaseController
         if ($id) {
             /** @var Project $project */
             $project = $this->projectRepository->find($id);
-            if (empty($project)) {
+            if ($project === null) {
                 return $this->sendError('Project not found');
             }
 
@@ -265,8 +317,8 @@ class ProjectAPIController extends AppBaseController
     /**
      * @param int $id
      * @param UpdateProjectAPIRequest $request
-     * @return Response
      *
+     * @return JsonResponse
      * @SWG\Put(
      *      path="/projects/{id}",
      *      summary="Update the specified Project in storage",
@@ -309,14 +361,14 @@ class ProjectAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update(string $id, UpdateProjectAPIRequest $request): JsonResponse
+    public function update(int $id, UpdateProjectAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
 
-        if (empty($project)) {
+        if ($project === null) {
             return $this->sendError('Project not found');
         }
 
@@ -326,8 +378,6 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
-     * @return Response
      *
      * @SWG\Delete(
      *      path="/projects/{id}",
@@ -363,13 +413,15 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy(string $id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
 
-        if (empty($project)) {
+        if ($project === null) {
             return $this->sendError('Project not found');
         }
 

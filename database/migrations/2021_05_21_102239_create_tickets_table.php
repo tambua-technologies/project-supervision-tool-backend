@@ -15,10 +15,11 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->text('description');
+            $table->unsignedBigInteger('project_id');
             $table->point('location')->nullable(); // A geo point of where service ticket(issue) happened.
-            $table->float('address')->nullable(); // A human entered address or description of location where service ticket(issue) happened.
+            $table->text('address')->nullable(); // A human entered address or description of location where service ticket(issue) happened.
             $table->float('ttr')->nullable();
             $table->date('expected_at')->nullable(); // A time when the issue is expected to be resolved.
             $table->date('resolved_at')->nullable(); // A time when the issue was resolved.
@@ -30,41 +31,40 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('ticket_reporting_method_id')->nullable(); // A party that reported the  ticket(issue).
             $table->unsignedBigInteger('ticket_status_id')->nullable(); // A current status of the service ticket(issue).It used to track ticket pipeline.
             $table->unsignedBigInteger('ticket_type_id')->nullable();
+            $table->unsignedBigInteger('component_id')->nullable();
+            $table->unsignedBigInteger('sub_component_id')->nullable();
+            $table->unsignedBigInteger('procuring_entity_id')->nullable();
+            $table->unsignedBigInteger('package_id')->nullable();
+            $table->unsignedBigInteger('sub_project_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
 
-            $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')
                 ->references('id')
                 ->on('projects')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('component_id')->nullable();
             $table->foreign('component_id')
                 ->references('id')
                 ->on('project_components')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('sub_component_id')->nullable();
             $table->foreign('sub_component_id')
                 ->references('id')
                 ->on('project_sub_components')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('procuring_entity_id')->nullable();
             $table->foreign('procuring_entity_id')
                 ->references('id')
                 ->on('procuring_entities')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('package_id')->nullable();
             $table->foreign('package_id')
                 ->references('id')
                 ->on('procuring_entity_packages')
                 ->onDelete('set null');
 
-            $table->unsignedBigInteger('sub_project_id')->nullable();
             $table->foreign('sub_project_id')
                 ->references('id')
                 ->on('sub_projects')

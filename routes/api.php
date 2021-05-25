@@ -27,6 +27,8 @@ Route::middleware('auth:api')
         // file uploading  routes
         Route::post('sub_projects/{subProject}/upload_photo', 'SubProjectFilesAPIController@upload');
 
+        // Ticket(issues ) routes
+        Route::post('projects/create_ticket', 'ProjectAPIController@createTicket');
 
         Route::get('/locations/regions', 'LocationAPIController@regions');
         Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');

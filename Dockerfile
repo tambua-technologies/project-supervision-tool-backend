@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -55,8 +55,8 @@ RUN docker-php-ext-enable \
     xdebug
 
 # Configure php extensions
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-configure zip --with-libzip
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-configure zip
 
 # Install php extensions
 RUN docker-php-ext-install \
@@ -67,7 +67,6 @@ RUN docker-php-ext-install \
     gd \
     iconv \
     intl \
-    mbstring \
     pdo \
     pdo_mysql \
     pdo_pgsql \
@@ -102,6 +101,8 @@ RUN adduser -u 1000 -G www -h /home/username -D www
 
 # Copy existing application directory contents
 COPY . /var/www
+
+RUN composer install
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
