@@ -366,6 +366,11 @@ class Project extends Model
         return $this->hasMany(ProjectComponent::class);
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 
     static public function statistics($project_id = "")
     {

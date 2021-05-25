@@ -210,7 +210,6 @@ class ProjectAPIController extends AppBaseController
     }
 
     /**
-     * @param string $id
      *
      * @SWG\Get(
      *      path="/projects/{id}",
@@ -246,9 +245,10 @@ class ProjectAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(string $id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         /** @var Project $project */
         $project = $this->projectRepository->find($id);
@@ -258,6 +258,59 @@ class ProjectAPIController extends AppBaseController
         }
 
         return $this->sendResponse(new ProjectResource($project), 'Project retrieved successfully');
+    }
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/projects/{id}/tickets",
+     *      summary="Gets all tickets in a project",
+     *      tags={"Project"},
+     *     security={{"Bearer":{}}},
+     *      description="Get Project",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of Project",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProjectTicket"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function tickets(int $id): JsonResponse
+    {
+        /** @var Project $project */
+        $project = $this->projectRepository->find($id);
+
+        if ($project === null) {
+            return $this->sendError('Project not found');
+        }
+
+        $tickets = $project->tickets()->get();
+
+        return $this->sendResponse(ProjectTicketResource::collection($tickets), 'Project Tickets retrieved successfully');
     }
 
     /**
