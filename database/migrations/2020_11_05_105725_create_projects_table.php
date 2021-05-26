@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('wb_project_id')->unique();
             $table->string('name');
             $table->string('layer_typename')->nullable();
+            $table->jsonb('shapefiles')->nullable();
             $table->string('color')->nullable();
             $table->string('code')->nullable();
             $table->unsignedBigInteger('project_status_id')->nullable();

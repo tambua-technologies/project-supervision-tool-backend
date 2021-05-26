@@ -27,6 +27,9 @@ Route::middleware('auth:api')
         // file uploading  routes
         Route::post('sub_projects/{subProject}/upload_photo', 'SubProjectFilesAPIController@upload');
 
+        // Ticket(issues ) routes
+        Route::post('projects/create_ticket', 'ProjectAPIController@createTicket');
+        Route::get('projects/{id}/tickets', 'ProjectAPIController@tickets');
 
         Route::get('/locations/regions', 'LocationAPIController@regions');
         Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
@@ -50,6 +53,7 @@ Route::middleware('auth:api')
         Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
         Route::resource('actors', 'ActorAPIController');
         Route::resource('units', 'UnitAPIController');
+        Route::resource('tickets', 'TicketAPIController');
         Route::resource('locations', 'LocationAPIController');
         Route::resource('stock_types', 'StockTypeAPIController');
         Route::resource('stock_statuses', 'StockStatusesAPIController');
