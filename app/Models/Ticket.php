@@ -5,38 +5,91 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 /**
  * @SWG\Definition(
  *      definition="Ticket",
- *      required={""},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="code",
- *          description="code",
- *          type="string"
- *      ),
  *      @SWG\Property(
  *          property="description",
  *          description="description",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
+ *          property="location",
+ *          description="location",
+ *          type="object",
+ *           ref="#/definitions/GeoJSON"
  *      ),
  *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
- *      )
+ *          property="address",
+ *          description="address",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="ticket_type_id",
+ *          description="ticket_type_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="ticket_status_id",
+ *          description="ticket_status_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="agency_responsible_id",
+ *          description="agency_responsible_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="operator_id",
+ *          description="operator_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="assignee_id",
+ *          description="assignee_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="reporter_id",
+ *          description="reporter_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="ticket_reporting_method_id",
+ *          description="ticket_reporting_method_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="component_id",
+ *          description="component_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_component_id",
+ *          description="sub_component_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="procuring_entity_id",
+ *          description="procuring_entity_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="package_id",
+ *          description="package_id",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub_project_id",
+ *          type="integer"
+ *      ),
  * )
  */
 class Ticket extends Model

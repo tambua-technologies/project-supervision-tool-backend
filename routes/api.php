@@ -53,6 +53,7 @@ Route::middleware('auth:api')
         Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
         Route::resource('actors', 'ActorAPIController');
         Route::resource('units', 'UnitAPIController');
+        Route::resource('tickets', 'TicketAPIController');
         Route::resource('locations', 'LocationAPIController');
         Route::resource('stock_types', 'StockTypeAPIController');
         Route::resource('stock_statuses', 'StockStatusesAPIController');

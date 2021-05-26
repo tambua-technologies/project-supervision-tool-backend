@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string('code')->unique();
             $table->text('description');
             $table->unsignedBigInteger('project_id');
-            $table->point('location')->nullable(); // A geo point of where service ticket(issue) happened.
+            $table->jsonb('location')->nullable(); // A geo point of where service ticket(issue) happened.
             $table->text('address')->nullable(); // A human entered address or description of location where service ticket(issue) happened.
             $table->float('ttr')->nullable();
             $table->date('expected_at')->nullable(); // A time when the issue is expected to be resolved.

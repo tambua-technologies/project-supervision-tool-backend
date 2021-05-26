@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\DB;
  *      @SWG\Property(
  *          property="location",
  *          description="location",
- *          type="object"
+ *          type="object",
+ *           ref="#/definitions/GeoJSON"
  *      ),
  *      @SWG\Property(
  *          property="address",
@@ -174,14 +175,14 @@ use Illuminate\Support\Facades\DB;
  *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
+ *          property="shapefiles",
+ *          description="shapefiles",
+ *          @SWG\Items(ref="#/definitions/Shapefiles")
+ *      ),
+ *      @SWG\Property(
  *          property="code",
  *          description="code",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="locations",
- *          description="locations",
- *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -227,6 +228,11 @@ use Illuminate\Support\Facades\DB;
  *          property="description",
  *          description="description",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="shapefiles",
+ *          description="shapefiles",
+ *          @SWG\Items(ref="#/definitions/Shapefiles")
  *      ),
  *      @SWG\Property(
  *          property="created_at",
