@@ -18,6 +18,7 @@ class CreateTicketPrioritiesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('weight');
+            $table->string('color');
             $table->timestamps();
             $table->softDeletes();
         });
