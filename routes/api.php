@@ -54,6 +54,7 @@ Route::middleware('auth:api')
         Route::resource('actors', 'ActorAPIController');
         Route::resource('units', 'UnitAPIController');
         Route::resource('tickets', 'TicketAPIController');
+        Route::resource('ticket_priorities', 'TicketPriorityAPIController');
         Route::resource('locations', 'LocationAPIController');
         Route::resource('stock_types', 'StockTypeAPIController');
         Route::resource('stock_statuses', 'StockStatusesAPIController');
