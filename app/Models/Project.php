@@ -150,9 +150,55 @@ use Illuminate\Support\Facades\DB;
  *      definition="ProjectPayload",
  *      required={"name"},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
+ *          property="wb_project_id",
+ *          description="wb_project_id",
  *          type="string"
+ *      ),
+ *    @SWG\Property(
+ *          property="status",
+ *          description="status",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="borrower_id",
+ *          description="borrower_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="total_project_cost_id",
+ *          description="total_project_cost_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="approval_date",
+ *          description="approval_date",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="approval_fy",
+ *          description="approval_fy",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_region",
+ *          description="project_region",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="closing_date",
+ *          description="closing_date",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="commitment_amount_id",
+ *          description="commitment_amount_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -234,6 +280,52 @@ use Illuminate\Support\Facades\DB;
  *          description="shapefiles",
  *          @SWG\Items(ref="#/definitions/Shapefiles")
  *      ),
+ *     *      @SWG\Property(
+ *          property="status",
+ *          description="status",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="borrower_id",
+ *          description="borrower_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="total_project_cost_id",
+ *          description="total_project_cost_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="approval_date",
+ *          description="approval_date",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="approval_fy",
+ *          description="approval_fy",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_region",
+ *          description="project_region",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="closing_date",
+ *          description="closing_date",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="commitment_amount_id",
+ *          description="commitment_amount_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
  *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
@@ -267,7 +359,19 @@ class Project extends Model
         'name',
         'wb_project_id',
         'project_status_id',
-        'description'
+        'description',
+        'borrower_id',
+        'project_region',
+        'approval_date',
+        'approval_fy',
+        'closing_date',
+        'implementing_agency_id',
+        'funding_organisation_id',
+        'coordinating_agency_id',
+        'country_id',
+        'total_project_cost_id',
+        'environmental_category_id',
+        'commitment_amount_id'
     ];
 
     /**
@@ -282,7 +386,18 @@ class Project extends Model
         'wb_project_id' => 'string',
         'country_id' => 'string',
         'project_status_id' => 'integer',
-        'description' => 'string'
+        'description' => 'string',
+        'borrower_id' => 'integer',
+        'project_region' => 'string',
+        'approval_date' => 'datetime',
+        'approval_fy' => 'date',
+        'closing_date' => 'datetime',
+        'implementing_agency_id' => 'integer',
+        'funding_organisation_id' => 'integer',
+        'coordinating_agency_id' => 'integer',
+        'environmental_category_id' => 'integer',
+        'total_project_cost_id' => 'integer',
+        'commitment_amount_id' => 'integer',
     ];
 
     /**
@@ -307,9 +422,6 @@ class Project extends Model
             $project->sectors()->detach();
             $project->regions()->detach();
             $project->districts()->detach();
-            $project->locations()->delete();
-            $project->details()->delete();
-            $project->sub_projects()->delete();
 
             // do the rest of the cleanup...
         });
@@ -352,11 +464,6 @@ class Project extends Model
         return $this->belongsToMany(District::class, 'project_districts', 'project_id', 'district_id');
     }
 
-    public function details()
-    {
-        return $this->hasOne(ProjectDetails::class);
-    }
-
     public function themes()
     {
         return $this->belongsToMany(Theme::class, 'project_themes', 'project_id', 'theme_id')->as('details')->withPivot('percent');
@@ -375,6 +482,37 @@ class Project extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+
+    public function implementing_agency()
+    {
+        return $this->belongsTo(ImplementingAgency::class, 'implementing_agency_id');
+    }
+
+    public function funding_organisation()
+    {
+        return $this->belongsTo(FundingOrganisation::class);
+    }
+
+    public function environmental_category()
+    {
+        return $this->belongsTo(EnvironmentalCategory::class);
+    }
+
+    public function borrower()
+    {
+        return $this->belongsTo(Borrower::class);
+    }
+
+    public function total_project_cost()
+    {
+        return $this->belongsTo(Money::class);
+    }
+
+    public function commitment_amount()
+    {
+        return $this->belongsTo(Money::class);
     }
 
 
@@ -441,6 +579,4 @@ class Project extends Model
             'regions' => $regions_locations_count->total
         ];
     }
-
-
 }

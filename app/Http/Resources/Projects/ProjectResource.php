@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\Projects;
 
-use App\Http\Resources\Locations\LocationWithRegion;
+use App\Http\Resources\AgencyResource;
+use App\Http\Resources\MoneyResource;
 use App\Http\Resources\ProjectComponentResource;
-use App\Http\Resources\SubProjectResource;
-use App\Http\Resources\SubProjectSimpleResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -32,8 +31,17 @@ class ProjectResource extends JsonResource
             'sectors' => $this->sectors,
             'themes' => $this->themes,
             'country' => $this->country,
+            'borrower' => new  AgencyResource($this->borrower),
+            'project_region' => $this->project_region,
+            'approval_date' => $this->approval_date,
+            'approval_fy' => $this->approval_fy,
+            'closing_date' => $this->closing_date,
+            'implementing_agency' => new AgencyResource($this->implementing_agency),
+            'funding_organisation' => new AgencyResource($this->funding_organisation),
+            'environmental_category' => $this->environmental_category,
+            'total_project_cost' => new MoneyResource($this->total_project_cost),
+            'commitment_amount' => new MoneyResource($this->commitment_amount),
             'components' => ProjectComponentResource::collection($this->whenLoaded('components')),
-            'details' => new ProjectDetailResource($this->details),
             'regions' => $this->regions,
 
         ];
