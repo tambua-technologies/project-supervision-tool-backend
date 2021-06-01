@@ -452,7 +452,7 @@ class Project extends Model
     }
 
 
-    public function status() {
+    public function projectStatus() {
         return $this->belongsTo(ProjectStatus::class, 'project_status_id');
     }
 

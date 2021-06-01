@@ -26,7 +26,7 @@ class ProjectResource extends JsonResource
             'wb_project_id' => $this->wb_project_id,
             'shapefiles' => $this->shapefiles,
             'description' => $this->description,
-            'status' => $this->status,
+            'status' => $this->projectStatus,
             'leaders' => $this->leaders,
             'sectors' => $this->sectors,
             'themes' => $this->themes,
