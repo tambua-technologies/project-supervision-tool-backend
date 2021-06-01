@@ -38,11 +38,7 @@
 /**
  * @SWG\Definition(
  *      definition="Shapefiles",
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
- *      )
+ *
  * )
  */
 

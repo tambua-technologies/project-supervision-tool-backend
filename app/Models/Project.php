@@ -222,8 +222,8 @@ use Illuminate\Support\Facades\DB;
  *      ),
  *      @SWG\Property(
  *          property="shapefiles",
- *          description="shapefiles",
- *          @SWG\Items(ref="#/definitions/Shapefiles")
+ *          type="array",
+ *          @SWG\Items(type="string")
  *      ),
  *      @SWG\Property(
  *          property="code",
@@ -277,10 +277,10 @@ use Illuminate\Support\Facades\DB;
  *      ),
  *      @SWG\Property(
  *          property="shapefiles",
- *          description="shapefiles",
- *          @SWG\Items(ref="#/definitions/Shapefiles")
+ *          type="array",
+ *          @SWG\Items(type="string")
  *      ),
- *     *      @SWG\Property(
+ *     @SWG\Property(
  *          property="status",
  *          description="status",
  *          type="boolean"
@@ -369,6 +369,7 @@ class Project extends Model
         'funding_organisation_id',
         'coordinating_agency_id',
         'country_id',
+        'shapefiles',
         'total_project_cost_id',
         'environmental_category_id',
         'commitment_amount_id'
@@ -383,6 +384,7 @@ class Project extends Model
         'id' => 'integer',
         'code' => 'string',
         'name' => 'string',
+        'shapefiles' => 'object',
         'wb_project_id' => 'string',
         'country_id' => 'string',
         'project_status_id' => 'integer',
