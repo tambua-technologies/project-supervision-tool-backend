@@ -31,7 +31,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('total_project_cost_id')->nullable();
             $table->unsignedBigInteger('commitment_amount_id')->nullable();
             $table->dateTime('approval_date')->nullable();
-            $table->date('approval_fy')->nullable();
+            $table->string('approval_fy')->nullable();
             $table->string('project_region')->nullable();
             $table->dateTime('closing_date')->nullable();
             $table->unsignedBigInteger('environmental_category_id')->nullable();

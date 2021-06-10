@@ -397,7 +397,7 @@ class Project extends Model
         'borrower_id' => 'integer',
         'project_region' => 'string',
         'approval_date' => 'datetime',
-        'approval_fy' => 'date',
+        'approval_fy' => 'string',
         'closing_date' => 'datetime',
         'implementing_agency_id' => 'integer',
         'funding_organisation_id' => 'integer',
