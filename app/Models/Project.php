@@ -221,6 +221,11 @@ use Illuminate\Support\Facades\DB;
  *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
+ *          property="regions",
+ *          description="regions",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
  *          property="shapefiles",
  *          type="array",
  *          @SWG\Items(type="string")
@@ -437,6 +442,14 @@ class Project extends Model
         $collection = collect($leaders);
         $leadersToAttach = $collection->diff($attachedIds);
         $this->leaders()->attach($leadersToAttach);
+    }
+
+    public function attachRegions($leaders)
+    {
+        $attachedIds = $this->regions()->get()->pluck(['id']);
+        $collection = collect($leaders);
+        $regionsToAttach = $collection->diff($attachedIds);
+        $this->regions()->attach($regionsToAttach);
     }
 
 

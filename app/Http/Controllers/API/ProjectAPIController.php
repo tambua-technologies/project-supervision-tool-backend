@@ -156,7 +156,7 @@ class ProjectAPIController extends AppBaseController
         $input = $request->all();
         $project = $this->projectRepository->create($input);
         if ($request->leaders) $project->attachLeaders($request->leaders);
-        if ($request->locations) $project->attachLocations($request->locations);
+        if ($request->regions) $project->attachRegions($request->regions);
         $project->refresh();
         return $this->sendResponse(new ProjectResource($project), 'Project saved successfully');
     }
@@ -428,6 +428,7 @@ class ProjectAPIController extends AppBaseController
 
         $project = $this->projectRepository->update($input, $id);
         if ($request->leaders) $project->attachLeaders($request->leaders);
+        if ($request->regions) $project->attachRegions($request->regions);
 
         return $this->sendResponse(new ProjectResource($project), 'Project updated successfully');
     }
