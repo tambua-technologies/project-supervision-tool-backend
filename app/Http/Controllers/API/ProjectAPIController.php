@@ -427,6 +427,7 @@ class ProjectAPIController extends AppBaseController
         }
 
         $project = $this->projectRepository->update($input, $id);
+        if ($request->leaders) $project->attachLeaders($request->leaders);
 
         return $this->sendResponse(new ProjectResource($project), 'Project updated successfully');
     }
