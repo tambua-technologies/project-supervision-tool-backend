@@ -21,6 +21,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Sokoni Makumbusho',
+                'project_id' => 1,
                 'code' => 'SM',
                 'description' => 'Sokoni Makumbusho',
                 'procuring_entity_package_id' => 1,
@@ -32,6 +33,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Tanesco-Soko la Samaki',
+                'project_id' => 1,
                 'code' => 'TSLS',
                 'description' => 'Tanesco-Soko la Samaki',
                 'procuring_entity_package_id' => 1,
@@ -43,6 +45,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Nzasa',
+                'project_id' => 1,
                 'code' => 'N',
                 'description' => 'Nzasa',
                 'procuring_entity_package_id' => 1,
@@ -54,6 +57,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'MMK',
+                'project_id' => 1,
                 'code' => 'M',
                 'description' => 'MMK',
                 'procuring_entity_package_id' => 1,
@@ -65,6 +69,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Viwandani',
+                'project_id' => 1,
                 'code' => 'V',
                 'description' => 'Viwandani',
                 'procuring_entity_package_id' => 1,
@@ -76,6 +81,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Makanya',
+                'project_id' => 1,
                 'code' => 'M',
                 'description' => 'Makanya',
                 'procuring_entity_package_id' => 2,
@@ -87,6 +93,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Korogwe-Kilungule-Majichumvi',
+                'project_id' => 1,
                 'code' => 'KKM',
                 'description' => 'Korogwe-Kilungule-Majichumvi',
                 'procuring_entity_package_id' => 3,
@@ -98,6 +105,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Omary Londo',
+                'project_id' => 1,
                 'code' => 'ON',
                 'description' => 'Omary Londo',
                 'procuring_entity_package_id' => 8,
@@ -109,6 +117,7 @@ class SubProjectsTableSeeder extends Seeder
             array (
 
                 'name' => 'Buguruni-Kisiwani-Tenge-Liwiti',
+                'project_id' => 1,
                 'code' => 'BITL',
                 'description' => 'Buguruni-Kisiwani-Tenge-Liwiti',
                 'procuring_entity_package_id' => 12,

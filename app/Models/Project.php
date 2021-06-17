@@ -436,6 +436,12 @@ class Project extends Model
 
     }
 
+
+    public function getLgaCountAttribute(): int
+    {
+        return $this->procuringEntities()->count();
+    }
+
     public function attachLeaders($leaders)
     {
         $attachedIds = $this->leaders()->get()->pluck(['id']);
@@ -497,6 +503,11 @@ class Project extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function procuringEntities()
+    {
+        return $this->hasMany(ProcuringEntity::class);
     }
 
 

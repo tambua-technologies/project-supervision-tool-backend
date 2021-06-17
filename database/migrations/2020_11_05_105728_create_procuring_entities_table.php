@@ -16,9 +16,15 @@ class CreateProcuringEntitiesTable extends Migration
         Schema::create('procuring_entities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('agency_id');
-            $table->unsignedBigInteger('project_sub_component_id');
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('project_sub_component_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->onDelete('cascade');
 
             $table->foreign('agency_id')
                 ->references('id')
@@ -28,7 +34,7 @@ class CreateProcuringEntitiesTable extends Migration
             $table->foreign('project_sub_component_id')
                 ->references('id')
                 ->on('project_sub_components')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
         });
     }
