@@ -154,6 +154,11 @@ use Illuminate\Support\Facades\DB;
  *          description="wb_project_id",
  *          type="string"
  *      ),
+ *      @SWG\Property(
+ *          property="color",
+ *          description="color",
+ *          type="string"
+ *      ),
  *    @SWG\Property(
  *          property="status",
  *          description="status",
@@ -276,6 +281,11 @@ use Illuminate\Support\Facades\DB;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="color",
+ *          description="color",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="description",
  *          description="description",
  *          type="string"
@@ -361,6 +371,7 @@ class Project extends Model
     public $fillable = [
         'id',
         'code',
+        'color',
         'name',
         'wb_project_id',
         'project_status_id',
@@ -388,6 +399,7 @@ class Project extends Model
     protected $casts = [
         'id' => 'integer',
         'code' => 'string',
+        'color' => 'string',
         'name' => 'string',
         'shapefiles' => 'object',
         'wb_project_id' => 'string',
