@@ -161,7 +161,7 @@ class ProjectSectorsAPIController extends AppBaseController
         /** @var ProjectSectors $projectSectors */
         $projectSectors = $this->projectSectorsRepository->find($id);
 
-        if (empty($projectSectors)) {
+        if ($projectSectors === null) {
             return $this->sendError('Project Sectors not found');
         }
 

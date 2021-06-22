@@ -251,7 +251,7 @@ class ProjectAPIController extends AppBaseController
     public function show(int $id): JsonResponse
     {
         /** @var Project $project */
-        $project = $this->projectRepository->find($id);
+        $project = Project::with(['components', 'components.sub_components'])->find($id);
 
         if ($project === null) {
             return $this->sendError('Project not found');
