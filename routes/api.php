@@ -52,6 +52,7 @@ Route::middleware('auth:api')
         Route::resource('focal_people', 'FocalPersonAPIController');
         Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
         Route::resource('actors', 'ActorAPIController');
+        Route::resource('agencies', 'AgencyAPIController');
         Route::resource('units', 'UnitAPIController');
         Route::resource('tickets', 'TicketAPIController');
         Route::resource('ticket_priorities', 'TicketPriorityAPIController');
