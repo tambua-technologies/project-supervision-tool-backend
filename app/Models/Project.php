@@ -263,7 +263,17 @@ use Illuminate\Support\Facades\DB;
  *      @SWG\Property(
  *          property="id",
  *          description="id",
- *          type="string"
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="lga_count",
+ *          description="lga_count",
+ *          type="integer"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_projects_count",
+ *          description="sub_projects_count",
+ *          type="integer"
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -454,6 +464,12 @@ class Project extends Model
         return $this->procuringEntities()->count();
     }
 
+
+    public function getSubProjectsCountAttribute(): int
+    {
+        return $this->subProjects()->count();
+    }
+
     public function attachLeaders($leaders)
     {
         $attachedIds = $this->leaders()->get()->pluck(['id']);
@@ -515,6 +531,11 @@ class Project extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function subProjects()
+    {
+        return $this->hasMany(SubProject::class);
     }
 
     public function procuringEntities()

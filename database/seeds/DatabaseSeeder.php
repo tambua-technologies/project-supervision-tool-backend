@@ -42,5 +42,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ContractCostsTableSeeder::class);
         $this->call(ContractTimesTableSeeder::class);
         $this->call(SubProjectContractsTableSeeder::class);
+        $this->call(SubProjectsTableSeeder::class);
     }
 }
