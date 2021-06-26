@@ -26,8 +26,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 class ProjectAPIController extends AppBaseController
 {
     /** @var  ProjectRepository */
-    private $projectRepository;
-    private $ticketRepository;
+    private ProjectRepository $projectRepository;
+    private TicketRepository $ticketRepository;
 
     public function __construct(ProjectRepository $projectRepo, TicketRepository $ticketRepo)
     {

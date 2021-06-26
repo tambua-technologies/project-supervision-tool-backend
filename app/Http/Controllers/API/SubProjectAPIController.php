@@ -4,13 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateSubProjectAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectAPIRequest;
+use App\Http\Resources\SubProjects\SubProjectTicketResource;
 use App\Http\Resources\SubProjects\SubProjectCollection;
 use App\Http\Resources\SubProjects\SubProjectResource;
-use App\Http\Resources\SubProjectWithDistrict;
-use App\Models\ProcuringEntity;
-use App\Models\Project;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
+use App\Repositories\TicketRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -26,11 +25,14 @@ use Spatie\QueryBuilder\QueryBuilder;
 class SubProjectAPIController extends AppBaseController
 {
     /** @var  SubProjectRepository */
-    private $subProjectRepository;
+    private SubProjectRepository $subProjectRepository;
+    private TicketRepository $ticketRepository;
 
-    public function __construct(SubProjectRepository $subProjectRepo)
+
+    public function __construct(SubProjectRepository $subProjectRepo, TicketRepository $ticketRepo)
     {
         $this->subProjectRepository = $subProjectRepo;
+        $this->ticketRepository = $ticketRepo;
     }
 
     /**
@@ -149,6 +151,110 @@ class SubProjectAPIController extends AppBaseController
 
         return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
     }
+
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/sub_projects/create_ticket",
+     *      summary="Create a new ticket associated with  a sub project",
+     *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
+     *      description="Create a new ticket in a SubProject",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="SubProject that should be stored",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/SubProjectTicketPayload")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/SubProjectTicket"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function createTicket(Request $request): JsonResponse
+    {
+        $input = $request->all();
+        $code = $this->ticketRepository->code();
+        $input['code'] = $code;
+        $projectTicket = $this->ticketRepository->create($input);
+        return $this->sendResponse(new SubProjectTicketResource($projectTicket), 'Project Ticket created successfully');
+    }
+
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/sub_projects/{id}/tickets",
+     *      summary="Gets all tickets in a sub project",
+     *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
+     *      description="Gets all tickets in a sub project",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of SubProject",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/SubProjectTicket"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function tickets(int $id): JsonResponse
+    {
+        /** @var SubProject $subProject */
+        $subProject = $this->subProjectRepository->find($id);
+
+        if ($subProject === null) {
+            return $this->sendError('SubProject not found');
+        }
+
+        $tickets = $subProject->tickets()->get();
+
+        return $this->sendResponse(SubProjectTicketResource::collection($tickets), 'SubProject Tickets retrieved successfully');
+    }
+
 
     /**
      * @param CreateSubProjectAPIRequest $request

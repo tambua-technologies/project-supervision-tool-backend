@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Projects;
+namespace App\Http\Resources\SubProjects;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectTicketResource extends JsonResource
+class SubProjectTicketResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -32,7 +32,7 @@ class ProjectTicketResource extends JsonResource
             'ticket_reporting_method_id' => $this->ticketReportingMethod,
             'ticket_status_id' => $this->ticketStatus,
             'ticket_type_id' => $this->ticketType,
-            'project' => $this->project
+            'sub_project' => $this->project
         ];
     }
 }

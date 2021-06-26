@@ -29,7 +29,9 @@ Route::middleware('auth:api')
 
         // Ticket(issues ) routes
         Route::post('projects/create_ticket', 'ProjectAPIController@createTicket');
+        Route::post('sub_projects/create_ticket', 'SubProjectAPIController@createTicket');
         Route::get('projects/{id}/tickets', 'ProjectAPIController@tickets');
+        Route::get('sub_projects/{id}/tickets', 'SubProjectAPIController@tickets');
 
         Route::get('/locations/regions', 'LocationAPIController@regions');
         Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
