@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ProcuringEntity",
- *      required={"agency_id,project_sub_component_id"},
+ *      required={"agency_id,project_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,8 +16,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="agency_id",
  *          description="agency_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_component_id",
+ *          description="project_component_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -53,8 +65,10 @@ class ProcuringEntity extends Model
 
 
     public $fillable = [
+        'project_component_id',
         'project_sub_component_id',
         'agency_id',
+        'project_id',
     ];
 
     /**
@@ -63,6 +77,8 @@ class ProcuringEntity extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'project_id' => 'integer',
+        'project_component_id' => 'integer',
         'project_sub_component_id' => 'integer',
         'agency_id' => 'integer',
     ];
@@ -73,7 +89,7 @@ class ProcuringEntity extends Model
      */
     public static $rules = [
         'agency_id',
-        'project_sub_component_id',
+        'project_id',
     ];
 
     public function agency ()
@@ -84,6 +100,16 @@ class ProcuringEntity extends Model
     public function projectSubComponent ()
     {
         return $this->belongsTo(ProjectSubComponent::class, 'project_sub_component_id');
+    }
+
+    public function projectComponent ()
+    {
+        return $this->belongsTo(ProjectComponent::class, 'project_component_id');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
     }
 
     public function project_sub_component()

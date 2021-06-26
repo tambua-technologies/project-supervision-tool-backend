@@ -18,6 +18,7 @@ class CreateProcuringEntitiesTable extends Migration
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('project_sub_component_id')->nullable();
+            $table->unsignedBigInteger('project_component_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -34,6 +35,11 @@ class CreateProcuringEntitiesTable extends Migration
             $table->foreign('project_sub_component_id')
                 ->references('id')
                 ->on('project_sub_components')
+                ->onDelete('set null');
+
+            $table->foreign('project_component_id')
+                ->references('id')
+                ->on('project_components')
                 ->onDelete('set null');
 
         });
