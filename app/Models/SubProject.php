@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * @SWG\Definition(
  *      definition="SubProjectTicketPayload",
- *      required={"description"},
+ *      required={"description, project_id, sub_project_id"},
  *      @SWG\Property(
  *          property="description",
  *          description="description",
@@ -30,6 +30,11 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          property="address",
  *          description="address",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="integer"
  *      ),
  *      @SWG\Property(
  *          property="sub_project_id",
