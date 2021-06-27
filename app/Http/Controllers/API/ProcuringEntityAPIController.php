@@ -21,7 +21,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 class ProcuringEntityAPIController extends AppBaseController
 {
     /** @var  ProcuringEntityRepository */
-    private $procuringEntityRepository;
+    private ProcuringEntityRepository $procuringEntityRepository;
 
     public function __construct(ProcuringEntityRepository $procuringEntityRepo)
     {
