@@ -167,4 +167,9 @@ class Ticket extends Model
     ];
 
 
+    public function subProject()
+    {
+        return $this->belongsTo(SubProject::class, 'sub_project_id');
+    }
+
 }

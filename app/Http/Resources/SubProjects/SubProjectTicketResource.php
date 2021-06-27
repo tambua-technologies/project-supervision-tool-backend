@@ -32,7 +32,7 @@ class SubProjectTicketResource extends JsonResource
             'ticket_reporting_method_id' => $this->ticketReportingMethod,
             'ticket_status_id' => $this->ticketStatus,
             'ticket_type_id' => $this->ticketType,
-            'sub_project' => $this->project
+            'sub_project' => $this->subProject,
         ];
     }
 }
