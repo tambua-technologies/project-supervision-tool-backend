@@ -22,8 +22,11 @@ class ProcuringEntityPackageResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'procuring_entity_id' => $this->procuring_entity_id,
+            'procuring_entity' => new ProcuringEntityResource($this->procuringEntity),
             'contract' => new SubProjectContractResource($this->contract),
-            'sub_projects' => $this->whenLoaded('sub_projects')
+            'sub_projects' => $this->sub_projects,
+            'updated_at' => $this->updated_at,
+
         ];
     }
 }
