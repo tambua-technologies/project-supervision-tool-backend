@@ -5,12 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityPackagesAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityPackagesAPIRequest;
 use App\Http\Resources\ProcuringEntityPackageResource;
+use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
 use App\Repositories\ProcuringEntityPackageRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ProcuringEntityPackagesController
@@ -37,6 +40,13 @@ class ProcuringEntityPackageAPIController extends AppBaseController
      *     security={{"Bearer":{}}},
      *      description="Get all ProcuringEntityPackages",
      *      produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="filter[procuring_entity_id]",
+     *          description="filter packages by procuring entities",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -62,11 +72,11 @@ class ProcuringEntityPackageAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $procuringEntityPackages = $this->procuringEntityPackageRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $procuringEntityPackages = QueryBuilder::for(ProcuringEntityPackage::class)
+            ->allowedFilters([
+                AllowedFilter::exact('procuring_entity_id')
+            ])
+            ->get();
 
         return $this->sendResponse(ProcuringEntityPackageResource::collection($procuringEntityPackages), 'Procuring Entity packages retrieved successfully');
     }
