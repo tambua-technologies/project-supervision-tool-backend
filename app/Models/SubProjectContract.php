@@ -126,7 +126,7 @@ class SubProjectContract extends Model
 
     public function supervisingConsultant()
     {
-        return $this->belongsTo(SupervisingAgency::class);
+        return $this->belongsTo(SupervisingAgency::class, 'supervising_agency_id');
     }
 
 }
