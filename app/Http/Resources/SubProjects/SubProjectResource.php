@@ -4,6 +4,7 @@ namespace App\Http\Resources\SubProjects;
 
 
 use App\Http\Resources\MediaResource;
+use App\Http\Resources\ProcuringEntityPackageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,10 +26,15 @@ class SubProjectResource extends JsonResource
             'project_id' => $this->project_id,
             'details' => new SubProjectDetailResource($this->details),
             'surveys' => $this->surveys,
+            'physical_progress' => $this->physical_progress,
+            'financial_progress' => $this->financial_progress,
             'quantity' => $this->quantity,
             'status' => $this->status,
             'type' => new SubProjectTypeResource($this->type),
             'geo_json' => $this->geo_json,
+            'package' => new ProcuringEntityPackageResource($this->procuringEntityPackage),
+            'procuring_entity' => $this->procuringEntity,
+            'project' => $this->project,
             'districts' => $this->districts,
         ];
     }

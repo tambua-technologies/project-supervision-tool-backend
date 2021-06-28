@@ -342,6 +342,9 @@ class SubProject extends Model implements HasMedia
         'procuring_entity_id',
         'sub_project_type_id',
         'sub_project_status_id',
+        'physical_progress',
+        'financial_progress',
+        'contract_id',
     ];
 
     /**
@@ -356,9 +359,12 @@ class SubProject extends Model implements HasMedia
         'geo_json' => 'object',
         'description' => 'string',
         'quantity' => 'float',
+        'physical_progress' => 'float',
+        'financial_progress' => 'float',
         'procuring_entity_package_id' => 'integer',
         'procuring_entity_id' => 'integer',
         'project_id' => 'integer',
+        'contract_id' => 'integer',
         'sub_project_type_id' => 'integer',
         'sub_project_status_id' => 'integer',
     ];
@@ -412,6 +418,11 @@ class SubProject extends Model implements HasMedia
         return $this->belongsTo(SubProjectStatus::class, 'sub_project_status_id');
     }
 
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
     public function surveys()
     {
         return $this->hasMany(SubProjectSurvey::class);
@@ -458,6 +469,11 @@ class SubProject extends Model implements HasMedia
         $attachedIds = $this->sub_project_locations()->get()->pluck(['id']);
         $collection = collect($arr);
         return $collection->diff($attachedIds);
+    }
+
+    public function procuringEntity()
+    {
+        return $this->belongsTo(ProcuringEntity::class);
     }
 
     public function procuringEntityPackage()
