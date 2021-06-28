@@ -170,10 +170,16 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * @SWG\Definition(
  *      definition="SubProjectPayload",
- *      required={"name", "description", "procuring_entity_package_id"},
+ *      required={"name", "description", "project_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -195,6 +201,12 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *      @SWG\Property(
  *          property="procuring_entity_package_id",
  *          description="procuring_entity_package_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="procuring_entity_id",
+ *          description="procuring_entity_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -252,8 +264,20 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="project_id",
+ *          description="project_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="procuring_entity_package_id",
  *          description="procuring_entity_package_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="procuring_entity_id",
+ *          description="procuring_entity_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -314,6 +338,8 @@ class SubProject extends Model implements HasMedia
         'geo_json',
         'description',
         'procuring_entity_package_id',
+        'project_id',
+        'procuring_entity_id',
         'sub_project_type_id',
         'sub_project_status_id',
     ];
@@ -330,7 +356,9 @@ class SubProject extends Model implements HasMedia
         'geo_json' => 'object',
         'description' => 'string',
         'quantity' => 'float',
-        'procuring_entity_package_id' => 'string',
+        'procuring_entity_package_id' => 'integer',
+        'procuring_entity_id' => 'integer',
+        'project_id' => 'integer',
         'sub_project_type_id' => 'integer',
         'sub_project_status_id' => 'integer',
     ];
@@ -343,8 +371,8 @@ class SubProject extends Model implements HasMedia
         'name' => 'required|string',
         'code' => 'required|string',
         'geo_json' => 'required',
-        'procuring_entity_package_id' => 'required',
         'sub_project_type_id' => 'required',
+        'project_id' => 'required',
         'sub_project_status_id' => 'required',
         'description' => 'required|string',
     ];

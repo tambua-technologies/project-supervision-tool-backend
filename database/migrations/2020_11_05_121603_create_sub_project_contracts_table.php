@@ -18,10 +18,12 @@ class CreateSubProjectContractsTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('contract_no')->nullable();
-            $table->unsignedBigInteger('procuring_entity_package_id');
+            $table->unsignedBigInteger('procuring_entity_package_id')->nullable();
+            $table->unsignedBigInteger('procuring_entity_id');
             $table->unsignedBigInteger('contract_cost_id')->nullable();
             $table->unsignedBigInteger('contract_time_id')->nullable();
             $table->unsignedBigInteger('contractor_id')->nullable();
+            $table->unsignedBigInteger('supervising_agency_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -30,7 +32,17 @@ class CreateSubProjectContractsTable extends Migration
                 ->on('procuring_entity_packages')
                 ->onDelete('set null');
 
+            $table->foreign('procuring_entity_id')
+                ->references('id')
+                ->on('procuring_entities')
+                ->onDelete('set null');
+
             $table->foreign('contractor_id')
+                ->references('id')
+                ->on('agencies')
+                ->onDelete('set null');
+
+            $table->foreign('supervising_agency_id')
                 ->references('id')
                 ->on('agencies')
                 ->onDelete('set null');

@@ -121,4 +121,24 @@ class ProcuringEntity extends Model
     {
         return $this->hasMany(ProcuringEntityPackage::class);
     }
+
+    public function contracts()
+    {
+        return $this->hasMany(SubProjectContract::class, 'procuring_entity_id');
+    }
+
+    public function subProjects()
+    {
+        return $this->hasMany(SubProject::class);
+    }
+
+    public function contractors()
+    {
+        return $this->belongsToMany(Contractor::class, 'sub_project_contracts','procuring_entity_id', 'contractor_id');
+    }
+
+    public function supervisingConsultants()
+    {
+        return $this->belongsToMany(SupervisingAgency::class, 'sub_project_contracts','procuring_entity_id', 'supervising_agency_id');
+    }
 }

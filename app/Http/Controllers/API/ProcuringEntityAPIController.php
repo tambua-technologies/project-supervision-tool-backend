@@ -124,7 +124,7 @@ class ProcuringEntityAPIController extends AppBaseController
 
         $procuringEntity = $this->procuringEntityRepository->create($input);
 
-        return $this->sendResponse($procuringEntity->toArray(), 'Procuring Entity saved successfully');
+        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity saved successfully');
     }
 
     /**
@@ -175,7 +175,7 @@ class ProcuringEntityAPIController extends AppBaseController
             return $this->sendError('Procuring Entity not found');
         }
 
-        return $this->sendResponse($procuringEntity->toArray(), 'Procuring Entity retrieved successfully');
+        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity retrieved successfully');
     }
 
     /**
@@ -238,7 +238,7 @@ class ProcuringEntityAPIController extends AppBaseController
 
         $procuringEntity = $this->procuringEntityRepository->update($input, $id);
 
-        return $this->sendResponse($procuringEntity->toArray(), 'ProcuringEntity updated successfully');
+        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'ProcuringEntity updated successfully');
     }
 
     /**

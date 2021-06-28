@@ -66,6 +66,8 @@ class SubProjectContract extends Model
         'name',
         'contract_no',
         'procuring_entity_package_id',
+        'supervising_agency_id',
+        'procuring_entity_id',
         'contract_cost_id',
         'contract_time_id',
         'contractor_id'
@@ -81,6 +83,8 @@ class SubProjectContract extends Model
         'name' => 'string',
         'contract_no' => 'string',
         'procuring_entity_package_id' => 'integer',
+        'procuring_entity_id' => 'integer',
+        'supervising_agency_id' => 'integer',
         'contract_cost_id' => 'integer',
         'contract_time_id' => 'integer',
         'contractor_id' => 'integer',
@@ -92,7 +96,7 @@ class SubProjectContract extends Model
      * @var array
      */
     public static $rules = [
-        'procuring_entity_package_id' => 'required',
+        'procuring_entity_id' => 'required',
     ];
 
     public function contract_cost()
@@ -110,9 +114,19 @@ class SubProjectContract extends Model
         return $this->belongsTo(ProcuringEntityPackage::class, 'procuring_entity_package_id');
     }
 
+    public function procuringEntity()
+    {
+        return $this->belongsTo(ProcuringEntity::class, 'procuring_entity_id');
+    }
+
     public function contractor()
     {
         return $this->belongsTo(Contractor::class);
+    }
+
+    public function supervisingConsultant()
+    {
+        return $this->belongsTo(SupervisingAgency::class);
     }
 
 }
