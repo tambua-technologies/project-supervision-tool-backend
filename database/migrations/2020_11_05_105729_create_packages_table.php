@@ -17,7 +17,7 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('procuring_entity_id');
+            $table->unsignedBigInteger('procuring_entity_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
