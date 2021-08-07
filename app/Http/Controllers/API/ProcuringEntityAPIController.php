@@ -139,8 +139,7 @@ class ProcuringEntityAPIController extends AppBaseController
 
 
 
-        return  $this->sendResponse($procuringEntity, 'new procuring entity');
-//        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity saved successfully');
+        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity saved successfully');
     }
 
     /**

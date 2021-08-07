@@ -19,18 +19,14 @@ class ProcuringEntityResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'packages' => $this->packages,
-            'contracts' => $this->contracts,
-            'contractors' => $this->contractors,
-            'subProjects' => $this->subProjects,
-            'supervisingConsultants' => $this->supervisingConsultants,
             'agency' => $this->agency,
-            'project_id' => $this->project_id,
             'project' => $this->project,
-            'project_sub_component' => $this->project_sub_component,
-            'project_component' => $this->projectComponent,
-            'project_component_id' => $this->project_component_id,
+            'packages' => $this->packages,
+            'subProjects' => $this->subProjects,
+            'procured_project_sub_components' => $this->procuredProjectSubcomponents,
+            'procured_project_components' => $this->procuredProjectComponents,
             'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ];
     }
 }
