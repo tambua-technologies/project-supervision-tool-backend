@@ -17,6 +17,8 @@ RUN apk add --no-cache --virtual .build-deps \
     postgresql-dev \
     sqlite-dev
 
+RUN apk add --update nodejs npm
+
 # Install production dependencies
 RUN apk add --no-cache \
     bash \
@@ -34,8 +36,6 @@ RUN apk add --no-cache \
     libzip-dev \
     make \
     mysql-client \
-    nodejs \
-    nodejs-npm \
     yarn \
     openssh-client \
     postgresql-libs \

@@ -19,7 +19,7 @@ class ProcuringEntityRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'project_sub_component_id',
+        'project_id',
         'agency_id',
     ];
 

@@ -17,8 +17,8 @@ class CreateProcuringEntitiesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('project_sub_component_id')->nullable();
-            $table->unsignedBigInteger('project_component_id')->nullable();
+            $table->unsignedBigInteger('project_sub_component_id')->nullable(); // TODO remove this field
+            $table->unsignedBigInteger('project_component_id')->nullable(); // TODO remove this field
             $table->timestamps();
             $table->softDeletes();
 

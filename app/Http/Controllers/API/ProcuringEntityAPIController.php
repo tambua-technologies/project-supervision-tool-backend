@@ -10,6 +10,7 @@ use App\Repositories\ProcuringEntityRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -94,7 +95,7 @@ class ProcuringEntityAPIController extends AppBaseController
      *          in="body",
      *          description="ProcuringEntity that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ProcuringEntity")
+     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPayload")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -121,10 +122,25 @@ class ProcuringEntityAPIController extends AppBaseController
     public function store(CreateProcuringEntityAPIRequest $request): JsonResponse
     {
         $input = $request->all();
-
+        $procured_project_components = $request->procured_project_components;
+        $procured_project_sub_components = $request->procured_project_sub_components;
         $procuringEntity = $this->procuringEntityRepository->create($input);
 
-        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity saved successfully');
+           if ($procured_project_components) {
+               $procuringEntity->procuredProjectComponents()->detach($procured_project_components);
+               $procuringEntity->procuredProjectComponents()->attach($procured_project_components);
+           }
+
+           if ($procured_project_sub_components) {
+               $procuringEntity->procuredProjectSubComponents()->detach($procured_project_sub_components);
+               $procuringEntity->procuredProjectSubComponents()->attach($procured_project_sub_components);
+           }
+
+
+
+
+        return  $this->sendResponse($procuringEntity, 'new procuring entity');
+//        return $this->sendResponse(new ProcuringEntityResource($procuringEntity), 'Procuring Entity saved successfully');
     }
 
     /**

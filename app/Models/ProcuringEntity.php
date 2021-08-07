@@ -5,6 +5,40 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+/**
+ * @SWG\Definition(
+ *      definition="ProcuringEntityPayload",
+ *      required={"agency_id,project_id"},
+ *     @SWG\Property(
+ *          property="agency_id",
+ *          description="id of the municipal or district procuring sub-projects",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_id",
+ *          description="id of the project",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="procured_project_components",
+ *          description="ids of procured project components",
+ *          type="array",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
+ *          property="procured_project_sub_components",
+ *          description="ids of procured project sub_components",
+ *          type="array",
+ *          @SWG\Items(type="integer")
+ *      )
+ * )
+ */
+
+
+
 /**
  * @SWG\Definition(
  *      definition="ProcuringEntity",
@@ -24,18 +58,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="agency_id",
  *          description="agency_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="project_component_id",
- *          description="project_component_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="project_sub_component_id",
- *          description="project_sub_component_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -65,8 +87,6 @@ class ProcuringEntity extends Model
 
 
     public $fillable = [
-        'project_component_id',
-        'project_sub_component_id',
         'agency_id',
         'project_id',
     ];
@@ -78,8 +98,6 @@ class ProcuringEntity extends Model
     protected $casts = [
         'id' => 'integer',
         'project_id' => 'integer',
-        'project_component_id' => 'integer',
-        'project_sub_component_id' => 'integer',
         'agency_id' => 'integer',
     ];
 
@@ -97,24 +115,19 @@ class ProcuringEntity extends Model
         return $this->belongsTo(Agency::class);
     }
 
-    public function projectSubComponent ()
-    {
-        return $this->belongsTo(ProjectSubComponent::class, 'project_sub_component_id');
-    }
-
-    public function projectComponent ()
-    {
-        return $this->belongsTo(ProjectComponent::class, 'project_component_id');
-    }
-
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');
     }
 
-    public function project_sub_component()
+    public function procuredProjectComponents()
     {
-        return $this->belongsTo(ProjectSubComponent::class);
+        return $this->belongsToMany(ProjectComponent::class, 'procured_project_components', 'procuring_entity_id', 'project_component_id');
+    }
+
+    public function procuredProjectSubComponents()
+    {
+        return $this->belongsToMany(ProjectSubComponent::class, 'procured_project_sub_components', 'procuring_entity_id', 'project_sub_component_id');
     }
 
     public function packages()
@@ -122,23 +135,9 @@ class ProcuringEntity extends Model
         return $this->hasMany(ProcuringEntityPackage::class);
     }
 
-    public function contracts()
-    {
-        return $this->hasMany(SubProjectContract::class, 'procuring_entity_id');
-    }
-
     public function subProjects()
     {
         return $this->hasMany(SubProject::class);
     }
 
-    public function contractors()
-    {
-        return $this->belongsToMany(Contractor::class, 'sub_project_contracts','procuring_entity_id', 'contractor_id');
-    }
-
-    public function supervisingConsultants()
-    {
-        return $this->belongsToMany(SupervisingAgency::class, 'sub_project_contracts','procuring_entity_id', 'supervising_agency_id');
-    }
 }
