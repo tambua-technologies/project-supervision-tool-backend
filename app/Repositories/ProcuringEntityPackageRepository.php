@@ -2,9 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Position;
 use App\Models\ProcuringEntityPackage;
-use App\Repositories\BaseRepository;
 
 /**
  * Class PositionRepository
@@ -19,6 +17,8 @@ class ProcuringEntityPackageRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'procuring_entity_id',
+        'project_component_id',
+        'project_sub_component_id',
         'name',
         'description',
     ];
