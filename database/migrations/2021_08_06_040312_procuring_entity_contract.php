@@ -16,9 +16,18 @@ class ProcuringEntityContract extends Migration
         Schema::create('procuring_entity_contract', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('procuring_entity_id');
+            $table->unsignedBigInteger('employer_id')->nullable();
             $table->string('name');
-            $table->unsignedBigInteger('employer_id')->nullable(); // this is a user whose role is Municipal Director
+            $table->string('contract_no');
+            $table->jsonb('original_contract_sum')->nullable();
+            $table->jsonb('revised_contract_sum')->nullable();
+            $table->date('original_signing_date')->nullable();
+            $table->date('revised_signing_date')->nullable();
+            $table->date('commencement_date')->nullable();
+            $table->double('contract_period')->nullable();
+            $table->date('revised_end_date_of_contract')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
