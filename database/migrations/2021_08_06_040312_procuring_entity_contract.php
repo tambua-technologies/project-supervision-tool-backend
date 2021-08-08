@@ -28,6 +28,16 @@ class ProcuringEntityContract extends Migration
             $table->date('revised_end_date_of_contract')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('procuring_entity_id')
+                ->references('id')
+                ->on('procuring_entities')
+                ->onDelete('cascade');
+
+            $table->foreign('employer_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
         });
     }
 

@@ -14,6 +14,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="ProcuringEntityContractPayload",
  *      required={"procuring_entity_id,name,contract_no"},
  *     @SWG\Property(
+ *          property="name",
+ *          description="name of the contract",
+ *          type="string"
+ *      ),
+ *     @SWG\Property(
+ *          property="contract_no",
+ *          description="number of the contract",
+ *          type="string"
+ *      ),
+ *     @SWG\Property(
  *          property="procuring_entity_id",
  *          description="id of the procuring entity",
  *          type="integer",
@@ -24,6 +34,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="id of the employer",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="financers",
+ *          description="list of ids of agencies financing the contract",
+ *          type="array",
+ *          @SWG\Items(type="integer")
+ *      ),
+ *      @SWG\Property(
+ *          property="consultants",
+ *          description="list of ids of agencies supervising the contract",
+ *          type="array",
+ *          @SWG\Items(type="integer")
  *      ),
  *      @SWG\Property(
  *          property="original_contract_sum",
@@ -83,6 +105,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @SWG\Definition(
  *      definition="ProcuringEntityContract",
  *      required={"procuring_entity_id,name,contract_no"},
+ *     @SWG\Property(
+ *          property="name",
+ *          description="name of the contract",
+ *          type="string"
+ *      ),
+ *     @SWG\Property(
+ *          property="contract_no",
+ *          description="number of the contract",
+ *          type="string"
+ *      ),
  *     @SWG\Property(
  *          property="procuring_entity_id",
  *          description="id of the procuring entity",

@@ -52,6 +52,7 @@ Route::middleware('auth:api')
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
+        Route::resource('procuring_entities_contracts', 'ProcuringEntityContractAPIController');
         Route::resource('implementing_partners', 'ImplementingPartnerAPIController');
         Route::resource('actors', 'ActorAPIController');
         Route::resource('agencies', 'AgencyAPIController');
