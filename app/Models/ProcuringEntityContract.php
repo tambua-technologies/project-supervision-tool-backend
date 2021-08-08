@@ -30,12 +30,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="employer_id",
- *          description="id of the employer",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="financers",
  *          description="list of ids of agencies financing the contract",
  *          type="array",
@@ -122,12 +116,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="employer_id",
- *          description="id of the employer",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="original_contract_sum",
  *          type="object",
  *          @SWG\Property(
@@ -198,7 +186,6 @@ class ProcuringEntityContract extends Model
 
     public $fillable = [
         'procuring_entity_id',
-        'employer_id',
         'name',
         'contract_no',
         'original_contract_sum',
@@ -217,7 +204,6 @@ class ProcuringEntityContract extends Model
     protected $casts = [
         'id' => 'integer',
         'procuring_entity_id' => 'integer',
-        'employer_id' => 'integer',
         'name' => 'string',
         'contract_no' => 'string',
         'original_contract_sum' => 'object',

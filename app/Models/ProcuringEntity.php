@@ -115,6 +115,11 @@ class ProcuringEntity extends Model
         return $this->belongsTo(Agency::class);
     }
 
+    public function contract()
+    {
+        return $this->hasOne(ProcuringEntityContract::class);
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');

@@ -16,7 +16,6 @@ class ProcuringEntityContract extends Migration
         Schema::create('procuring_entity_contract', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('procuring_entity_id');
-            $table->unsignedBigInteger('employer_id')->nullable();
             $table->string('name');
             $table->string('contract_no');
             $table->jsonb('original_contract_sum')->nullable();
@@ -33,11 +32,6 @@ class ProcuringEntityContract extends Migration
                 ->references('id')
                 ->on('procuring_entities')
                 ->onDelete('cascade');
-
-            $table->foreign('employer_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null');
         });
     }
 
