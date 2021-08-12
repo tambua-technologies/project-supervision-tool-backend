@@ -26,7 +26,7 @@ class CreateProcuringEntityPackageContractTable extends Migration
             $table->date('date_of_end_of_mobilization_period');
             $table->date('date_of_contract_completion');
             $table->date('revised_date_of_contract_completion');
-            $table->date('defects_liability_notification_period');
+            $table->double('defects_liability_notification_period');
             $table->double('original_contract_period');
             $table->double('revised_contract_period');
             $table->double('actual_physical_progress');

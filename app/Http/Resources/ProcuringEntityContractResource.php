@@ -31,7 +31,6 @@ class ProcuringEntityContractResource extends JsonResource
             'revised_end_date_of_contract' => $this->revised_end_date_of_contract,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'financers' => $this->financers,
             'consultants' => $this->consultants
         ];
     }

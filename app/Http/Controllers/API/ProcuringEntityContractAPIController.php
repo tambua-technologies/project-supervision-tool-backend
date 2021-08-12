@@ -112,14 +112,8 @@ class ProcuringEntityContractAPIController extends AppBaseController
     public function store(CreateProcuringEntityContractAPIRequest $request): JsonResponse
     {
         $input = $request->all();
-        $financers = $request->financers;
         $consultants = $request->consultants;
         $procuringEntityContract = $this->procuringEntityContractRepository->create($input);
-
-        if ($financers) {
-            $procuringEntityContract->financers()->detach($financers);
-            $procuringEntityContract->financers()->attach($financers);
-        }
 
         if ($consultants) {
             $procuringEntityContract->consultants()->detach($consultants);
@@ -239,23 +233,16 @@ class ProcuringEntityContractAPIController extends AppBaseController
             return $this->sendError('Procuring Entity not found');
         }
 
-        $procuringEntityContract = $this->procuringEntityContractRepository->update($input, $id);
-        $financers = $request->financers;
+        $updatedProcuringEntityContract = $this->procuringEntityContractRepository->update($input, $id);
+
         $consultants = $request->consultants;
-        $procuringEntityContract = $this->procuringEntityContractRepository->create($input);
-
-        if ($financers) {
-            $procuringEntityContract->financers()->detach($financers);
-            $procuringEntityContract->financers()->attach($financers);
-        }
-
         if ($consultants) {
             $procuringEntityContract->consultants()->detach($consultants);
             $procuringEntityContract->consultants()->attach($consultants);
         }
 
 
-        return $this->sendResponse($procuringEntityContract, 'ProcuringEntityContract updated successfully');
+        return $this->sendResponse($updatedProcuringEntityContract, 'ProcuringEntityContract updated successfully');
     }
 
     /**

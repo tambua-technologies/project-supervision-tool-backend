@@ -6,13 +6,10 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-
-
-
 /**
  * @SWG\Definition(
- *      definition="ProcuringEntityContractPayload",
- *      required={"procuring_entity_id,name,contract_no"},
+ *      definition="ProcuringEntityPackageContractPayload",
+ *      required={"procuring_entity_package_id,name,contract_no"},
  *     @SWG\Property(
  *          property="name",
  *          description="name of the contract",
@@ -24,16 +21,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *     @SWG\Property(
- *          property="procuring_entity_id",
- *          description="id of the procuring entity",
+ *          property="procuring_entity_package_id",
+ *          description="id of the procuring entity package",
  *          type="integer",
  *          format="int32"
  *      ),
- *      @SWG\Property(
- *          property="consultants",
- *          description="list of ids of agencies supervising the contract",
- *          type="array",
- *          @SWG\Items(type="integer")
+ *     @SWG\Property(
+ *          property="contractor_id",
+ *          description="id of the procuring entity package contractor",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="original_contract_sum",
@@ -64,25 +61,53 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *               ),
  *      ),
  *      @SWG\Property(
- *          property="original_signing_date",
+ *          property="date_contract_agreement_signed",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="revised_end_date_of_contract",
+ *          property="date_of_commencement_of_works",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="revised_signing_date",
+ *          property="date_possession_of_site_given",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="commencement_date",
+ *          property="date_of_end_of_mobilization_period",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="contract_period",
+ *          property="date_of_contract_completion",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *          property="revised_date_of_contract_completion",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *          property="defects_liability_notification_period",
  *          type="number",
  *      ),
+ *      @SWG\Property(
+ *          property="original_contract_period",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="revised_contract_period",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="actual_physical_progress",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="planned_physical_progress",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="financial_progress",
+ *          type="number",
+ *      )
  * )
  */
 
@@ -91,8 +116,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="ProcuringEntityContract",
- *      required={"procuring_entity_id,name,contract_no"},
+ *      definition="ProcuringEntityPackageContract",
  *     @SWG\Property(
  *          property="name",
  *          description="name of the contract",
@@ -104,8 +128,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *     @SWG\Property(
- *          property="procuring_entity_id",
- *          description="id of the procuring entity",
+ *          property="procuring_entity_package_id",
+ *          description="id of the procuring entity package",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="contractor_id",
+ *          description="id of the procuring entity package contractor",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -138,23 +168,51 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *               ),
  *      ),
  *      @SWG\Property(
- *          property="original_signing_date",
+ *          property="date_contract_agreement_signed",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="revised_end_date_of_contract",
+ *          property="date_of_commencement_of_works",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="revised_signing_date",
+ *          property="date_possession_of_site_given",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="commencement_date",
+ *          property="date_of_end_of_mobilization_period",
  *          type="string",
  *      ),
  *      @SWG\Property(
- *          property="contract_period",
+ *          property="date_of_contract_completion",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *          property="revised_date_of_contract_completion",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *          property="defects_liability_notification_period",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="original_contract_period",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="revised_contract_period",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="actual_physical_progress",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="planned_physical_progress",
+ *          type="number",
+ *      ),
+ *      @SWG\Property(
+ *          property="financial_progress",
  *          type="number",
  *      ),
  *      @SWG\Property(
@@ -167,11 +225,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class ProcuringEntityContract extends Model
+class ProcuringEntityPackageContract extends Model
 {
     use SoftDeletes;
 
-    public $table = 'procuring_entity_contract';
+    public $table = 'procuring_entity_package_contract';
 
 
     protected $dates = ['deleted_at'];
@@ -179,7 +237,7 @@ class ProcuringEntityContract extends Model
 
 
     public $fillable = [
-        'procuring_entity_id',
+        'procuring_entity_package_id',
         'name',
         'contract_no',
         'original_contract_sum',
@@ -197,7 +255,7 @@ class ProcuringEntityContract extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'procuring_entity_id' => 'integer',
+        'procuring_entity_package_id' => 'integer',
         'name' => 'string',
         'contract_no' => 'string',
         'original_contract_sum' => 'object',
@@ -213,14 +271,9 @@ class ProcuringEntityContract extends Model
      * @var array
      */
     public static $rules = [
-        'procuring_entity_id',
+        'procuring_entity_package_id',
         'contract_no',
         'name',
     ];
-
-    public function consultants()
-    {
-        return $this->belongsToMany(Agency::class, 'procuring_entity_contract_supervising_consultants', 'procuring_entity_contract_id', 'agency_id');
-    }
 
 }
