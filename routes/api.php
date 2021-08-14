@@ -106,5 +106,6 @@ Route::middleware('auth:api')
         Route::resource('project_sub_components', 'ProjectSubComponentAPIController');
         Route::resource('project_components', 'ProjectComponentAPIController');
         Route::resource('procuring_entities', 'ProcuringEntityAPIController');
+        Route::resource('packages_contracts', 'ProcuringEntityPackageContractAPIController');
         Route::resource('contracts', 'ContractsAPIController');
     });

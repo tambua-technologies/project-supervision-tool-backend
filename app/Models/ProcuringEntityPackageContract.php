@@ -47,6 +47,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *               ),
  *      ),
  *      @SWG\Property(
+ *          property="addendum_amount_to_the_contract",
+ *          type="object",
+ *          @SWG\Property(
+ *             property="amount",
+ *             description="amount of money",
+ *             type="number"
+ *                ),
+ *          @SWG\Property(
+ *             property="currency",
+ *             description="currency of the money",
+ *             type="string"
+ *               ),
+ *      ),
+ *      @SWG\Property(
  *          property="revised_contract_sum",
  *          type="object",
  *          @SWG\Property(
@@ -112,8 +126,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 
 
-
-
 /**
  * @SWG\Definition(
  *      definition="ProcuringEntityPackageContract",
@@ -141,6 +153,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      ),
  *      @SWG\Property(
  *          property="original_contract_sum",
+ *          type="object",
+ *          @SWG\Property(
+ *             property="amount",
+ *             description="amount of money",
+ *             type="number"
+ *                ),
+ *          @SWG\Property(
+ *             property="currency",
+ *             description="currency of the money",
+ *             type="string"
+ *               ),
+ *      ),
+ *      @SWG\Property(
+ *          property="addendum_amount_to_the_contract",
  *          type="object",
  *          @SWG\Property(
  *             property="amount",
@@ -229,24 +255,32 @@ class ProcuringEntityPackageContract extends Model
 {
     use SoftDeletes;
 
-    public $table = 'procuring_entity_package_contract';
+    public $table = 'procuring_entity_package_contracts';
 
 
     protected $dates = ['deleted_at'];
 
 
-
     public $fillable = [
         'procuring_entity_package_id',
+        'contractor_id',
         'name',
         'contract_no',
         'original_contract_sum',
+        'addendum_amount_to_the_contract',
         'revised_contract_sum',
-        'original_signing_date',
-        'revised_signing_date',
-        'commencement_date',
-        'contract_period',
-        'revised_end_date_of_contract',
+        'date_contract_agreement_signed',
+        'date_of_commencement_of_works',
+        'date_possession_of_site_given',
+        'date_of_end_of_mobilization_period',
+        'date_of_contract_completion',
+        'revised_date_of_contract_completion',
+        'defects_liability_notification_period',
+        'original_contract_period',
+        'revised_contract_period',
+        'actual_physical_progress',
+        'planned_physical_progress',
+        'financial_progress',
     ];
 
     /**
@@ -254,16 +288,28 @@ class ProcuringEntityPackageContract extends Model
      * @var array
      */
     protected $casts = [
+
         'id' => 'integer',
-        'procuring_entity_package_id' => 'integer',
+        'procuring_entity_package_id' =>  'integer',
+        'contractor_id' => 'integer',
         'name' => 'string',
         'contract_no' => 'string',
         'original_contract_sum' => 'object',
+        'addendum_amount_to_the_contract' => 'object',
         'revised_contract_sum' => 'object',
-        'original_signing_date' => 'date',
-        'revised_signing_date' => 'date',
-        'commencement_date' => 'date',
-        'revised_end_date_of_contract' => 'date',
+        'date_contract_agreement_signed' => 'date',
+        'date_of_commencement_of_works' => 'date',
+        'date_possession_of_site_given' => 'date',
+        'date_of_end_of_mobilization_period' => 'date',
+        'date_of_contract_completion' => 'date',
+        'revised_date_of_contract_completion' => 'date',
+        'defects_liability_notification_period' => 'double',
+        'original_contract_period' => 'double',
+        'revised_contract_period' => 'double',
+        'actual_physical_progress' => 'double',
+        'planned_physical_progress' => 'double',
+        'financial_progress' => 'double',
+
     ];
 
     /**
@@ -272,8 +318,18 @@ class ProcuringEntityPackageContract extends Model
      */
     public static $rules = [
         'procuring_entity_package_id',
-        'contract_no',
+        'contractor_id',
         'name',
     ];
+
+    public function contractor()
+    {
+        return $this->belongsTo(Agency::class, 'contractor_id');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(ProcuringEntityPackage::class, 'procuring_entity_package_id');
+    }
 
 }

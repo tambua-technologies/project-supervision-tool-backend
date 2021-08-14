@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProcuringEntityContractSupervisingConsultantsTableSeeder::class);
         $this->call(ProcuredProjectComponentsTableSeeder::class);
         $this->call(ProcuredProjectSubComponentsTableSeeder::class);
+        $this->call(ProcuringEntityPackageContractsTableSeeder::class);
     }
 }

@@ -19,7 +19,7 @@ class ProcuringEntitiesTableSeeder extends Seeder
         \DB::table('procuring_entities')->insert(array (
             0 =>
             array (
-                'agency_id' => 12,
+                'agency_id' => 14,
                 'project_id' => 1,
                 'created_at' => '2021-06-28 11:14:53',
                 'updated_at' => '2021-06-28 11:14:53',

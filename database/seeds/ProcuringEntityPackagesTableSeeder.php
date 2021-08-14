@@ -19,9 +19,11 @@ class ProcuringEntityPackagesTableSeeder extends Seeder
         \DB::table('procuring_entity_packages')->insert(array (
             0 =>
             array (
-                'name' => 'Package 1',
-                'description' => 'Package 1',
+                'name' => 'Package 4',
+                'description' => 'Package 4',
                 'procuring_entity_id' => 1,
+                'project_component_id' => null,
+                'project_sub_component_id' => null,
             )
         ));
     }
