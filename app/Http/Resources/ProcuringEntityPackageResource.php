@@ -26,7 +26,7 @@ class ProcuringEntityPackageResource extends JsonResource
             'procuring_entity' => new ProcuringEntityResource($this->procuringEntity),
             'project_component' => $this->projectComponent,
             'project_sub_component' => $this->projectSubComponent,
-            'contract' => $this->contract,
+            'contract' => new ProcuringEntityPackageContractResource($this->contract),
             'sub_projects' => $this->subProjects,
         ];
     }
