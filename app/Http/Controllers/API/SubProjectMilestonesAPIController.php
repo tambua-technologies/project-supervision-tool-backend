@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateSubProjectMilestonesAPIRequest;
 use App\Http\Requests\API\UpdateSubProjectMilestonesAPIRequest;
 use App\Models\SubProjectMilestones;
 use App\Repositories\SubProjectMilestonesRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -18,7 +19,7 @@ use Response;
 class SubProjectMilestonesAPIController extends AppBaseController
 {
     /** @var  SubProjectMilestonesRepository */
-    private $subProjectMilestonesRepository;
+    private SubProjectMilestonesRepository $subProjectMilestonesRepository;
 
     public function __construct(SubProjectMilestonesRepository $subProjectMilestonesRepo)
     {
@@ -27,7 +28,6 @@ class SubProjectMilestonesAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_project_milestones",
@@ -57,8 +57,9 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $subProjectMilestones = $this->subProjectMilestonesRepository->all(
             $request->except(['skip', 'limit']),
@@ -71,7 +72,6 @@ class SubProjectMilestonesAPIController extends AppBaseController
 
     /**
      * @param CreateSubProjectMilestonesAPIRequest $request
-     * @return Response
      *
      * @SWG\Post(
      *      path="/sub_project_milestones",
@@ -85,7 +85,7 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *          in="body",
      *          description="SubProjectMilestones that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/SubProjectMilestones")
+     *          @SWG\Schema(ref="#/definitions/SubProjectMilestonesPayload")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -107,8 +107,9 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return JsonResponse
      */
-    public function store(CreateSubProjectMilestonesAPIRequest $request)
+    public function store(CreateSubProjectMilestonesAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
@@ -119,7 +120,6 @@ class SubProjectMilestonesAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Get(
      *      path="/sub_project_milestones/{id}",
@@ -156,12 +156,12 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
         /** @var SubProjectMilestones $subProjectMilestones */
         $subProjectMilestones = $this->subProjectMilestonesRepository->find($id);
 
-        if (empty($subProjectMilestones)) {
+        if ($subProjectMilestones === null) {
             return $this->sendError('Sub Project Milestones not found');
         }
 
@@ -171,7 +171,6 @@ class SubProjectMilestonesAPIController extends AppBaseController
     /**
      * @param int $id
      * @param UpdateSubProjectMilestonesAPIRequest $request
-     * @return Response
      *
      * @SWG\Put(
      *      path="/sub_project_milestones/{id}",
@@ -215,14 +214,14 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateSubProjectMilestonesAPIRequest $request)
+    public function update(int $id, UpdateSubProjectMilestonesAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
         /** @var SubProjectMilestones $subProjectMilestones */
         $subProjectMilestones = $this->subProjectMilestonesRepository->find($id);
 
-        if (empty($subProjectMilestones)) {
+        if ($subProjectMilestones === null) {
             return $this->sendError('Sub Project Milestones not found');
         }
 
@@ -233,7 +232,6 @@ class SubProjectMilestonesAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
      *
      * @SWG\Delete(
      *      path="/sub_project_milestones/{id}",
@@ -269,13 +267,14 @@ class SubProjectMilestonesAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @return mixed
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         /** @var SubProjectMilestones $subProjectMilestones */
         $subProjectMilestones = $this->subProjectMilestonesRepository->find($id);
 
-        if (empty($subProjectMilestones)) {
+        if ($subProjectMilestones === null) {
             return $this->sendError('Sub Project Milestones not found');
         }
 

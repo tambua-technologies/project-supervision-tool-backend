@@ -17,8 +17,9 @@ class CreateSubProjectMilestonesTable extends Migration
         Schema::create('sub_project_milestones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('is_measurable')->default(true);
+            $table->jsonb('quantity')->nullable();
             $table->text('description')->nullable();
-            $table->jsonb('tasks')->nullable();
             $table->unsignedBigInteger('sub_project_id');
             $table->timestamps();
             $table->softDeletes();

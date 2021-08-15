@@ -66,7 +66,7 @@ class SubProjectTypesTableSeeder extends Seeder
             array (
                 'name' => 'Drainage',
                 'description' => 'Drainage',
-                'unit_id' => 4,
+                'unit_id' => 3,
                 'created_at' => '2021-04-05 14:06:57',
                 'updated_at' => '2021-04-05 14:06:57',
                 'deleted_at' => NULL,

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\SubProject;
-use App\Repositories\BaseRepository;
 
 /**
  * Class SubProjectRepository
@@ -17,8 +16,16 @@ class SubProjectRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'code',
         'name',
+        'code',
+        'geo_json',
+        'description',
+        'quantity',
+        'procuring_entity_package_id',
+        'project_id',
+        'procuring_entity_id',
+        'sub_project_type_id',
+        'sub_project_status_id',
     ];
 
     /**

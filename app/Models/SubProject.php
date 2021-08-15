@@ -172,16 +172,27 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *      definition="SubProjectPayload",
  *      required={"name", "description", "project_id"},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="project_id",
  *          description="project_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="sub_project_type_id",
+ *          description="sub_project_type_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="sub_project_status_id",
+ *          description="sub_project_status_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="district_id",
+ *          description="district_id",
+ *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="name",
@@ -198,6 +209,22 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          description="description",
  *          type="string"
  *      ),
+ *     @SWG\Property(
+ *         property="quantity",
+ *         type="object",
+ *         @SWG\Property(
+ *           property="amount",
+ *           type="number"
+ *         ),
+ *         @SWG\Property(
+ *           property="unit",
+ *           type="string"
+ *         )
+ *     ),
+ *     @SWG\Property(
+ *       property="geo_json",
+ *       type="object"
+ *     ),
  *      @SWG\Property(
  *          property="procuring_entity_package_id",
  *          description="procuring_entity_package_id",
@@ -209,30 +236,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          description="procuring_entity_id",
  *          type="integer",
  *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="locations",
- *          description="locations",
- *          @SWG\Items(type="integer")
- *      ),
-
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
@@ -241,7 +244,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 /**
  * @SWG\Definition(
  *      definition="SubProject",
- *      required={"name", "description", "procuring_entity_package_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -270,6 +272,27 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="district_id",
+ *          description="district_id",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *         property="quantity",
+ *         type="object",
+ *         @SWG\Property(
+ *           property="amount",
+ *           type="number"
+ *         ),
+ *         @SWG\Property(
+ *           property="unit",
+ *           type="string"
+ *         )
+ *     ),
+ *     @SWG\Property(
+ *       property="geo_json",
+ *       type="object"
+ *     ),
+ *      @SWG\Property(
  *          property="procuring_entity_package_id",
  *          description="procuring_entity_package_id",
  *          type="integer",
@@ -282,19 +305,14 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="sub_project_status_id",
- *          description="sub_project_status_id",
+ *          property="sub_project_type_id",
+ *          description="sub_project_type_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="quantity",
- *          description="quantity",
- *          type="float",
- *      ),
- *      @SWG\Property(
- *          property="sub_project_type_id",
- *          description="sub_project_type_id",
+ *          property="sub_project_status_id",
+ *          description="sub_project_status_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -307,12 +325,6 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *      @SWG\Property(
  *          property="updated_at",
  *          description="updated_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
  *          type="string",
  *          format="date-time"
  *      )
@@ -337,14 +349,13 @@ class SubProject extends Model implements HasMedia
         'code',
         'geo_json',
         'description',
+        'quantity',
         'procuring_entity_package_id',
         'project_id',
+        'district_id',
         'procuring_entity_id',
         'sub_project_type_id',
         'sub_project_status_id',
-        'physical_progress',
-        'financial_progress',
-        'contract_id',
     ];
 
     /**
@@ -358,13 +369,11 @@ class SubProject extends Model implements HasMedia
         'code' => 'string',
         'geo_json' => 'object',
         'description' => 'string',
-        'quantity' => 'float',
-        'physical_progress' => 'float',
-        'financial_progress' => 'float',
+        'quantity' => 'object',
         'procuring_entity_package_id' => 'integer',
+        'district_id' => 'string',
         'procuring_entity_id' => 'integer',
         'project_id' => 'integer',
-        'contract_id' => 'integer',
         'sub_project_type_id' => 'integer',
         'sub_project_status_id' => 'integer',
     ];
@@ -375,33 +384,10 @@ class SubProject extends Model implements HasMedia
      */
     public static $rules = [
         'name' => 'required|string',
-        'code' => 'required|string',
-        'geo_json' => 'required',
-        'sub_project_type_id' => 'required',
         'project_id' => 'required',
-        'sub_project_status_id' => 'required',
-        'description' => 'required|string',
+        'district_id' => 'required',
     ];
 
-
-    // this is a recommended way to declare event handlers
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($sub_project) { // before delete() method call this
-            $sub_project->districts()->detach();
-            $sub_project->details()->delete();
-        });
-
-
-    }
-
-
-    public function details()
-    {
-        return $this->hasOne(SubProjectDetail::class);
-    }
 
     public function tickets()
     {
@@ -428,47 +414,14 @@ class SubProject extends Model implements HasMedia
         return $this->hasMany(SubProjectSurvey::class);
     }
 
-    public function sub_project_equipments()
-    {
-        return $this->hasMany(SubProjectEquipment::class);
-    }
-
-    public function sub_project_milestones()
+    public function milestones()
     {
         return $this->hasMany(SubProjectMilestones::class);
     }
 
-    public function human_resources()
+    public function district()
     {
-        return $this->hasMany(HumanResource::class);
-    }
-
-    public function sub_project_contracts()
-    {
-        return $this->hasMany(SubProjectContract::class);
-    }
-
-    public function progress()
-    {
-        return $this->hasOne(Progress::class);
-    }
-
-    public function progress_history()
-    {
-        return $this->belongsToMany(Progress::class, 'sub_project_progress_history', 'sub_project_id', 'progress_id')->as('details')
-            ->withTimestamps();
-    }
-
-    public function districts()
-    {
-        return $this->belongsToMany(District::class, 'sub_project_district', 'sub_project_id', 'district_id');
-    }
-
-    public function removeDuplicateIds($arr)
-    {
-        $attachedIds = $this->sub_project_locations()->get()->pluck(['id']);
-        $collection = collect($arr);
-        return $collection->diff($attachedIds);
+        return $this->belongsTo(District::class, 'district_id');
     }
 
     public function procuringEntity()
@@ -480,40 +433,4 @@ class SubProject extends Model implements HasMedia
     {
         return $this->belongsTo(ProcuringEntityPackage::class);
     }
-
-
-    public function attachLocations($locations)
-    {
-        $locationsToAttach = $this->removeDuplicateIds($locations);
-        $this->sub_project_locations()->attach($locationsToAttach);
-    }
-
-    static public function statistics(): array
-    {
-
-
-        $total_sub_projects = SubProject::count();
-        $district_locations_count = DB::table('locations')
-            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
-            ->where('level', '=', 'district')
-            ->select(DB::raw('count(*) AS total'))
-            ->first();
-
-        $regions_locations_count = DB::table('locations')
-            ->join('sub_project_locations', 'locations.id', '=', 'sub_project_locations.location_id')
-            ->join('districts', 'locations.district_id', '=', 'districts.id')
-            ->join('regions', 'districts.region_id', '=', 'regions.id')
-            ->where('level', '=', 'district')
-            ->groupBy('districts.region_id')
-            ->select(DB::raw('count(*) AS total'))
-            ->first();
-
-        return [
-            'sub_projects' => $total_sub_projects,
-            'districts' =>$district_locations_count->total,
-            'regions' => $regions_locations_count->total,
-        ];
-    }
-
-
 }

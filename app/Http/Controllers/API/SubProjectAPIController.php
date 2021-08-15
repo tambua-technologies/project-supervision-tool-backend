@@ -300,7 +300,6 @@ class SubProjectAPIController extends AppBaseController
         $input = $request->all();
 
         $subProject = $this->subProjectRepository->create($input);
-        $subProject->districts()->attach($request->district_id);
         return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project saved successfully');
     }
 
