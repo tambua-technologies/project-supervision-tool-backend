@@ -31,6 +31,20 @@ class ProcuringEntityContractSupervisingConsultantsTableSeeder extends Seeder
                 'created_at' => '2021-08-12 08:59:23',
                 'updated_at' => '2021-08-12 08:59:25',
             ),
+            2 =>
+            array (
+                'procuring_entity_contract_id' => 2,
+                'agency_id' => 15,
+                'created_at' => '2021-08-12 08:59:23',
+                'updated_at' => '2021-08-12 08:59:25',
+            ),
+            3 =>
+            array (
+                'procuring_entity_contract_id' => 2,
+                'agency_id' => 16,
+                'created_at' => '2021-08-12 08:59:23',
+                'updated_at' => '2021-08-12 08:59:25',
+            ),
         ));
 
 

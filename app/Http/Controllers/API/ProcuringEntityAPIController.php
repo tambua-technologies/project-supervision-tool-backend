@@ -40,7 +40,7 @@ class ProcuringEntityAPIController extends AppBaseController
      *      description="Get all ProcuringEntitys",
      *      produces={"application/json"},
      *      @SWG\Parameter(
-     *          name="filter[projectSubComponent.projectComponent.project_id]",
+     *          name="filter[project_id]",
      *          description="filter procuring entities by project id",
      *          type="integer",
      *          required=false,
@@ -73,7 +73,7 @@ class ProcuringEntityAPIController extends AppBaseController
     {
         $procuringEntities = QueryBuilder::for(ProcuringEntity::class)
             ->allowedFilters([
-                AllowedFilter::exact('projectSubComponent.projectComponent.project_id')
+                AllowedFilter::exact('project_id')
             ])
             ->with('packages')
             ->get();

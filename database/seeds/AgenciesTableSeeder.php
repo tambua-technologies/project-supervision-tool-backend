@@ -157,6 +157,26 @@ class AgenciesTableSeeder extends Seeder
                 'updated_at' => NULL,
                 'deleted_at' => NULL,
             ),
+            14 =>
+                array (
+                    'name' => 'China Civil Engineering Construction Corporation (CCECC)',
+                    'website' => 'farrell.biz',
+                    'focal_person_id' => 3,
+                    'type' => 'supervising_agency',
+                    'created_at' => NULL,
+                    'updated_at' => NULL,
+                    'deleted_at' => NULL,
+                ),
+            15 =>
+                array (
+                    'name' => 'China Henan International Cooperation Group Co. LTD',
+                    'website' => 'farrell.biz',
+                    'focal_person_id' => 3,
+                    'type' => 'supervising_agency',
+                    'created_at' => NULL,
+                    'updated_at' => NULL,
+                    'deleted_at' => NULL,
+                ),
         ));
 
 

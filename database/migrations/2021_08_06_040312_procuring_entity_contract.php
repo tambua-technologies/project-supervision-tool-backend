@@ -17,7 +17,7 @@ class ProcuringEntityContract extends Migration
             $table->id();
             $table->unsignedBigInteger('procuring_entity_id');
             $table->string('name');
-            $table->string('contract_no');
+            $table->string('contract_no')->nullable();
             $table->jsonb('original_contract_sum')->nullable();
             $table->jsonb('revised_contract_sum')->nullable();
             $table->date('original_signing_date')->nullable();
