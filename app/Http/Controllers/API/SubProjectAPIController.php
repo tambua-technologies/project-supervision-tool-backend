@@ -146,6 +146,7 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id'),
             ])
+            ->with(['procuringEntity.agency', 'procuringEntityPackage.contract'])
             ->paginate($request->get('per_page', 15));
 
 
@@ -300,7 +301,6 @@ class SubProjectAPIController extends AppBaseController
         $input = $request->all();
 
         $subProject = $this->subProjectRepository->create($input);
-        $subProject->districts()->attach($request->district_id);
         return $this->sendResponse(new SubProjectResource($subProject), 'Sub Project saved successfully');
     }
 
@@ -346,7 +346,7 @@ class SubProjectAPIController extends AppBaseController
     public function show(string $id): JsonResponse
     {
         /** @var SubProject $subProject */
-        $subProject = $this->subProjectRepository->find($id);
+        $subProject = SubProject::find($id)->with(['procuringEntity.agency', 'procuringEntityPackage.contract'])->first();
 
         if ($subProject === null) {
             return $this->sendError('Sub Project not found');

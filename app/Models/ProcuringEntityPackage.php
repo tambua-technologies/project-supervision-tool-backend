@@ -7,6 +7,41 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
+ *      definition="ProcuringEntityPackagePayload",
+ *      @SWG\Property(
+ *          property="procuring_entity_id",
+ *          description="procuring_entity_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_component_id",
+ *          description="project_component_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_sub_component_id",
+ *          description="project_sub_component_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string",
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string",
+ *      )
+ * )
+ */
+
+
+/**
+ * @SWG\Definition(
  *      definition="ProcuringEntityPackage",
  *      required={"agency_id,project_sub_component_id"},
  *      @SWG\Property(
@@ -18,6 +53,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="procuring_entity_id",
  *          description="procuring_entity_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_component_id",
+ *          description="project_component_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="project_sub_component_id",
+ *          description="project_sub_component_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -58,6 +105,8 @@ class ProcuringEntityPackage extends Model
 
     public $fillable = [
         'procuring_entity_id',
+        'project_component_id',
+        'project_sub_component_id',
         'name',
         'description',
     ];
@@ -69,6 +118,8 @@ class ProcuringEntityPackage extends Model
     protected $casts = [
         'id' => 'integer',
         'procuring_entity_id' => 'integer',
+        'project_component_id' => 'integer',
+        'project_sub_component_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
     ];
@@ -87,12 +138,22 @@ class ProcuringEntityPackage extends Model
         return $this->belongsTo(ProcuringEntity::class, 'procuring_entity_id');
     }
 
-    public function contract()
+    public function projectComponent()
     {
-        return $this->hasOne(SubProjectContract::class, 'procuring_entity_package_id');
+        return $this->belongsTo(ProjectComponent::class, 'project_component_id');
     }
 
-    public function sub_projects()
+    public function projectSubComponent()
+    {
+        return $this->belongsTo(ProjectSubComponent::class, 'project_sub_component_id');
+    }
+
+    public function contract()
+    {
+        return $this->hasOne(ProcuringEntityPackageContract::class, 'procuring_entity_package_id');
+    }
+
+    public function subProjects()
     {
         return $this->hasMany(SubProject::class);
     }

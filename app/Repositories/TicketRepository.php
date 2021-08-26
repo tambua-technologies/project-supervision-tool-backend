@@ -39,7 +39,7 @@ class TicketRepository extends BaseRepository
         $check = Ticket::where('code', $unique)->first();
 
         if ($check) {
-            return $this->reference();
+            return $this->code();
         }
 
         return $unique;

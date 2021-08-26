@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\SubProjectMilestones;
-use App\Repositories\BaseRepository;
 
 /**
  * Class SubProjectMilestonesRepository
@@ -19,7 +18,8 @@ class SubProjectMilestonesRepository extends BaseRepository
     protected $fieldSearchable = [
         'name',
         'description',
-        'tasks',
+        'quantity',
+        'is_measurable',
         'sub_project_id'
     ];
 

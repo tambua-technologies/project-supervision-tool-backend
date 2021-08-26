@@ -30,12 +30,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="financers",
- *          description="list of ids of agencies financing the contract",
- *          type="array",
- *          @SWG\Items(type="integer")
- *      ),
- *      @SWG\Property(
  *          property="consultants",
  *          description="list of ids of agencies supervising the contract",
  *          type="array",
@@ -223,11 +217,6 @@ class ProcuringEntityContract extends Model
         'contract_no',
         'name',
     ];
-
-    public function financers()
-    {
-        return $this->belongsToMany(Agency::class, 'procuring_entity_contract_financers', 'procuring_entity_contract_id', 'agency_id');
-    }
 
     public function consultants()
     {

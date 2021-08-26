@@ -106,7 +106,6 @@ class ProjectAPIController extends AppBaseController
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('regions.id'),
             ])
-            ->with('components.sub_components.procuring_entities.packages.sub_projects')
             ->paginate($request->get('per_page', 15));
 
         return $this->sendResponse(new ProjectCollection($projects), 'Projects retrieved successfully');

@@ -71,7 +71,7 @@ class ProjectSubComponent extends Model
         'id' => 'integer',
         'name' => 'string',
         'description' => 'string',
-        'project_component_id' => 'string'
+        'project_component_id' => 'integer'
     ];
 
     /**

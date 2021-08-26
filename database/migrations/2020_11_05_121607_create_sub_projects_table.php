@@ -17,19 +17,22 @@ class CreateSubProjectsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code')->nullable();
-            $table->string('description');
-            $table->float('physical_progress')->nullable();
-            $table->float('financial_progress')->nullable();
-            $table->float('quantity')->nullable();
+            $table->string('description')->nullable();
+            $table->jsonb('quantity')->nullable();
             $table->jsonb('geo_json')->nullable();
+            $table->string('district_id')->nullable();
             $table->unsignedBigInteger('procuring_entity_package_id')->nullable();
             $table->unsignedBigInteger('procuring_entity_id')->nullable();
             $table->unsignedBigInteger('sub_project_type_id')->nullable();
-            $table->unsignedBigInteger('contract_id')->nullable();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('sub_project_status_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('district_id')
+                ->references('id')
+                ->on('districts')
+                ->onDelete('set null');
 
             $table->foreign('procuring_entity_package_id')
                 ->references('id')
@@ -45,11 +48,6 @@ class CreateSubProjectsTable extends Migration
                 ->references('id')
                 ->on('projects')
                 ->onDelete('cascade');
-
-            $table->foreign('contract_id')
-                ->references('id')
-                ->on('sub_project_contracts')
-                ->onDelete('set null');
 
             $table->foreign('sub_project_type_id')
                 ->references('id')

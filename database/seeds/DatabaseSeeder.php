@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectComponentsTableSeeder::class);
         $this->call(ProjectSubComponentsTableSeeder::class);
         $this->call(ProcuringEntitiesTableSeeder::class);
+        $this->call(ProcuringEntityContractTableSeeder::class);
         $this->call(ProcuringEntityPackagesTableSeeder::class);
         $this->call(ProjectRegionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
@@ -39,9 +40,14 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelHasPermissionsTableSeeder::class);
         $this->call(ModelHasRolesTableSeeder::class);
         $this->call(RoleHasPermissionsTableSeeder::class);
-        $this->call(ContractCostsTableSeeder::class);
-        $this->call(ContractTimesTableSeeder::class);
-        $this->call(SubProjectContractsTableSeeder::class);
+        $this->call(ProcuringEntityContractSupervisingConsultantsTableSeeder::class);
+        $this->call(ProcuredProjectComponentsTableSeeder::class);
+        $this->call(ProcuredProjectSubComponentsTableSeeder::class);
+        $this->call(ProcuringEntityPackageContractsTableSeeder::class);
+        $this->call(PackageContractStaffsTableSeeder::class);
+        $this->call(PackageContractEquipmentsTableSeeder::class);
+        $this->call(PackageContractFinancialsTableSeeder::class);
         $this->call(SubProjectsTableSeeder::class);
+        $this->call(SubProjectMilestonesTableSeeder::class);
     }
 }

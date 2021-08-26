@@ -7,8 +7,46 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
+ *      definition="SubProjectMilestonesPayload",
+ *      required={"name,sub_project_id"},
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="is_measurable",
+ *          description="is_measurable",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_id",
+ *          type="integer",
+ *      ),
+ *      @SWG\Property(
+ *          property="quantity",
+ *          type="object",
+ *          @SWG\Property(
+ *             property="amount",
+ *             type="number"
+ *           ),
+ *          @SWG\Property(
+ *             property="unit",
+ *             type="string"
+ *           ),
+ *      )
+ * )
+ */
+
+
+/**
+ * @SWG\Definition(
  *      definition="SubProjectMilestones",
- *      required={""},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -24,6 +62,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="description",
  *          description="description",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="is_measurable",
+ *          description="is_measurable",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="sub_project_id",
+ *          type="integer",
+ *      ),
+ *      @SWG\Property(
+ *          property="quantity",
+ *          type="object",
+ *          @SWG\Property(
+ *             property="amount",
+ *             type="number"
+ *           ),
+ *          @SWG\Property(
+ *             property="unit",
+ *             type="string"
+ *           ),
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -44,7 +103,7 @@ class SubProjectMilestones extends Model
     use SoftDeletes;
 
     public $table = 'sub_project_milestones';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -53,7 +112,8 @@ class SubProjectMilestones extends Model
     public $fillable = [
         'name',
         'description',
-        'tasks',
+        'quantity',
+        'is_measurable',
         'sub_project_id'
     ];
 
@@ -64,7 +124,10 @@ class SubProjectMilestones extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'sub_project_id' => 'integer',
         'name' => 'string',
+        'quantity' => 'object',
+        'is_measurable' => 'boolean',
         'description' => 'string'
     ];
 
@@ -74,8 +137,9 @@ class SubProjectMilestones extends Model
      * @var array
      */
     public static $rules = [
-        
+        'sub_project_id' => 'required',
+        'name' => 'required',
     ];
 
-    
+
 }

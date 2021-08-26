@@ -96,7 +96,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
      *          in="body",
      *          description="ProcuringEntityPackages that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackage")
+     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackagePayload")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -203,7 +203,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
      *          in="body",
      *          description="ProcuringEntityPackages that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackage")
+     *          @SWG\Schema(ref="#/definitions/ProcuringEntityPackagePayload")
      *      ),
      *      @SWG\Response(
      *          response=200,
