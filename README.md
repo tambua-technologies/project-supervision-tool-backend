@@ -33,6 +33,8 @@ $ php artisan migrate
 # 9. seed dummy data for testing
 $ php artisan db:seed
 
+# 10. create the encryption keys needed to generate secure access tokens
+$ php artisan passport:install
 
 
 
