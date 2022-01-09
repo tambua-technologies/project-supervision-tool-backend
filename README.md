@@ -42,5 +42,5 @@ $ php artisan key:generate
 ```
 
 ## Accessing & using API
-- Open [localhost:800/api/docs](localhost:800/api/docs) to view documentation
+- Open [localhost:800/api/docs](http://localhost:8000/api/docs) to view documentation
 
