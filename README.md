@@ -44,3 +44,5 @@ $ php artisan key:generate
 ## Access the API docs to learn how to use API
 - Open [localhost:800/api/docs](http://localhost:8000/api/docs) to view documentation
 
+
+
