@@ -13,7 +13,8 @@ services:
       - POSTGRES_DB=${DB_DATABASE}
 
   php:
-    image: mloweedgar/project-supervision-tool
+    build: .
+    image: project-supervision-tool
     container_name: project-superviosion-tool
     restart: unless-stopped
     depends_on:
