@@ -7,10 +7,13 @@ services:
     restart: unless-stopped
     volumes:
       - "project_supervision_tool_db_data:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
 
   php:
-    build: .
-    image: project-supervision-tool
+    image: mloweedgar/project-supervision-tool
     container_name: project-superviosion-tool
     restart: unless-stopped
     depends_on:
@@ -26,6 +29,8 @@ services:
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8000:80"
 
 volumes:
   project_supervision_tool_db_data:
