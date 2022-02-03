@@ -102,7 +102,7 @@ class SubProjectAPIController extends AppBaseController
      *          in="query"
      *      ),
      *      @SWG\Parameter(
-     *          name="filter[procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id]",
+     *          name="filter[project_id]",
      *          description="filter sub projects  by project",
      *          type="integer",
      *          required=false,
@@ -139,12 +139,12 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('sub_project_type_id'),
                 AllowedFilter::exact('procuring_entity_package_id'),
                 AllowedFilter::exact('districts.id'),
+                AllowedFilter::exact('project_id'),
                 AllowedFilter::exact('districts.region_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuring_entity_id'),
                 AllowedFilter::exact('procuringEntityPackage.contract.contractor_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.project_sub_component_id'),
                 AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
-                AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.projectComponent.project_id'),
             ])
             ->with(['procuringEntity.agency', 'procuringEntityPackage.contract'])
             ->paginate($request->get('per_page', 15));
