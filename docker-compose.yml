@@ -30,11 +30,11 @@ services:
     container_name: webserver
     restart: unless-stopped
     tty: true
+    ports:
+      - "80:80"
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
-    ports:
-      - "8000:80"
 
 volumes:
   project_supervision_tool_db_data:
