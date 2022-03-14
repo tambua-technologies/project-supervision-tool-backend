@@ -11,6 +11,9 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - "5432:5432"
+
 
   php:
     build: .
@@ -27,11 +30,24 @@ services:
     container_name: webserver
     restart: unless-stopped
     tty: true
-    volumes:
-      - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - letsencrypt/:/letsencrypt
+      - certs:/etc/nginx/ssl/:ro
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - letsencrypt/:/var/www/certbot/:rw
+      - certs:/etc/letsencrypt/:rw
 
 volumes:
   project_supervision_tool_db_data:
+  letsencrypt:
+  certs:
+
+
