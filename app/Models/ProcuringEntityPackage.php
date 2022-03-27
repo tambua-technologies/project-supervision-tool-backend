@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Imports\ProcuringEntityPackagesImport;
 use Eloquent as Model;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -132,6 +134,15 @@ class ProcuringEntityPackage extends Model
         'procuring_entity_id',
         'name',
     ];
+
+
+
+    public static function import()
+    {
+        $import = new ProcuringEntityPackagesImport();
+
+        Excel::import($import, 'packages_data_model.xlsx');
+    }
 
     public function procuringEntity()
     {
