@@ -26,6 +26,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
+        "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^2.6",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-permission": "^4.0",

@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm-alpine3.12
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -59,21 +59,22 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     && docker-php-ext-configure zip
 
 # Install php extensions
-RUN docker-php-ext-install \
-    bcmath \
-    calendar \
-    curl \
-    exif \
-    gd \
-    intl \
-    pdo \
-    pdo_mysql \
-    pdo_pgsql \
-    pdo_sqlite \
-    pcntl \
-    tokenizer \
-    xml \
-    zip
+    RUN docker-php-ext-install \
+        bcmath \
+        calendar \
+        curl \
+        exif \
+        gd \
+        iconv \
+        intl \
+        pdo \
+        pdo_mysql \
+        pdo_pgsql \
+        pdo_sqlite \
+        pcntl \
+        tokenizer \
+        xml \
+        zip
 
 # Install composer
 ENV COMPOSER_HOME /composer
