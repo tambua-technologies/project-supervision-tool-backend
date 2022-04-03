@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Imports;
+namespace App\Imports\Packages;
 
 use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class FirstSheetImport implements ToCollection,SkipsEmptyRows,WithHeadingRow
+class CreatePackages implements ToCollection,SkipsEmptyRows,WithHeadingRow
 {
 
-    public function collection(Collection $rows)
+    public function collection(Collection $collection)
     {
 
-        $rows->map(function($data)  {
+        $collection->map(function($data)  {
 
             // get procuring entity id
             $procuring_entity = ProcuringEntity::join('agencies','procuring_entities.agency_id', 'agencies.id' )

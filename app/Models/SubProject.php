@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Imports\Packages\ProcuringEntityPackagesImport;
+use App\Imports\SubProjects\SubProjectsImport;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -387,6 +390,13 @@ class SubProject extends Model implements HasMedia
         'project_id' => 'required',
         'district_id' => 'required',
     ];
+
+    public static function import()
+    {
+        $import = new SubProjectsImport();
+
+        Excel::import($import, 'subprojects_data_model.xlsx');
+    }
 
 
     public function tickets()

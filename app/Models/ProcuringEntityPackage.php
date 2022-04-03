@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Imports\ProcuringEntityPackagesImport;
+use App\Imports\Packages\ProcuringEntityPackagesImport;
 use Eloquent as Model;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * @SWG\Definition(
