@@ -14,16 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/api/docs');
 });
 
-Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->middleware('verified');
 
 
-Route::resource('focalPeople', 'FocalPersonController');
 
-Route::resource('implementingPartners', 'ImplementingPartnerController');
-
-Route::resource('fundingOrganisations', 'FundingOrganisationController');
