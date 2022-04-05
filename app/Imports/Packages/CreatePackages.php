@@ -24,10 +24,10 @@ class CreatePackages implements ToCollection,SkipsEmptyRows,WithHeadingRow
             $procuring_entity_id = $procuring_entity->id;
 
             // create package
-            ProcuringEntityPackage::create([
+            ProcuringEntityPackage::updateOrCreate([
                 'name' => $data['package_name'],
-                'description' => $data['package_description'],
-                'procuring_entity_id' => $procuring_entity_id
+                'procuring_entity_id' => $procuring_entity_id,
+                'description' => $data['package_description']
             ]);
 
         });

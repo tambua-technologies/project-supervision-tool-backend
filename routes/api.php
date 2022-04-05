@@ -50,6 +50,9 @@ Route::middleware('auth:api')
         Route::get('/users/{id}/assign_role/{role}', 'UserAPIController@assign_role');
         Route::post('/roles/assign_permission', 'RoleAPIController@assign_permission');
 
+        // imports
+        Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
+
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
         Route::resource('procuring_entities_contracts', 'ProcuringEntityContractAPIController');

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityPackagesAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityPackagesAPIRequest;
 use App\Http\Resources\ProcuringEntityPackageResource;
+use App\Imports\Packages\ProcuringEntityPackagesImport;
 use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
 use App\Repositories\ProcuringEntityPackageRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Maatwebsite\Excel\Facades\Excel;
 use Response;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -294,5 +296,49 @@ class ProcuringEntityPackageAPIController extends AppBaseController
         $procuringEntityPackage->delete();
 
         return $this->sendSuccess('ProcuringEntityPackage deleted successfully');
+    }
+
+    /**
+     * @param int $id
+     *
+     * @SWG\Post(
+     *      path="/procuring_entity_packages/import",
+     *      summary="import packages",
+     *      tags={"ProcuringEntityPackages"},
+     *     security={{"Bearer":{}}},
+     *      description="insert packages in bulky by importing them via excel file",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file containing packages to be imported",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function import(Request $request)
+    {
+        Excel::import(new ProcuringEntityPackagesImport(), $request->file);
+
+        return $this->sendSuccess('packages have been imported successfully');
     }
 }

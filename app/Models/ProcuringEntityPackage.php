@@ -137,13 +137,6 @@ class ProcuringEntityPackage extends Model
 
 
 
-    public static function import()
-    {
-        $import = new ProcuringEntityPackagesImport();
-
-        Excel::import($import, 'packages_data_model.xlsx');
-    }
-
     public function procuringEntity()
     {
         return $this->belongsTo(ProcuringEntity::class, 'procuring_entity_id');
