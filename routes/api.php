@@ -52,6 +52,7 @@ Route::middleware('auth:api')
 
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
+        Route::post('/sub_projects/import', 'SubProjectAPIController@import');
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');

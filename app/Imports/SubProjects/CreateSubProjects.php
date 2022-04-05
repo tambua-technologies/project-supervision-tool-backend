@@ -43,18 +43,40 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
 
                 $geoJson = DB::select($subProjectGeoDataQuery)[0];
                 $district = DB::select($subProjectDistrictQuery)[0];
+                $subProject = SubProject::where('name',$data['name'])
+                    ->where('project_id',$package->project_id)
+                    ->where('procuring_entity_id',$package->procuring_entity_id)
+                    ->where('procuring_entity_package_id', $package->id)
+                    ->where('quantity',$quantity,)
+                    ->first();
 
-                SubProject::create([
-                    'name' => $data['name'],
-                    'quantity' => $quantity,
-                    'project_id' => $package->project_id,
-                    'procuring_entity_id' => $package->procuring_entity_id,
-                    'sub_project_status_id' => $status->id,
-                    'sub_project_type_id' => $type->id,
-                    'district_id' => $district->id,
-                    'procuring_entity_package_id' => $package->id,
-                    'geo_json' => json_decode($geoJson->json)
-                ]);
+                if ($subProject)
+                {
+                    $subProject->update([
+                        'name' => $data['name'],
+                        'quantity' => $quantity,
+                        'project_id' => $package->project_id,
+                        'procuring_entity_id' => $package->procuring_entity_id,
+                        'sub_project_status_id' => $status->id,
+                        'sub_project_type_id' => $type->id,
+                        'district_id' => $district->id,
+                        'procuring_entity_package_id' => $package->id,
+                        'geo_json' => json_decode($geoJson->json)
+                    ]);
+                }
+                else {
+                    SubProject::create([
+                        'name' => $data['name'],
+                        'quantity' => $quantity,
+                        'project_id' => $package->project_id,
+                        'procuring_entity_id' => $package->procuring_entity_id,
+                        'sub_project_status_id' => $status->id,
+                        'sub_project_type_id' => $type->id,
+                        'district_id' => $district->id,
+                        'procuring_entity_package_id' => $package->id,
+                        'geo_json' => json_decode($geoJson->json)
+                    ]);
+                }
             }
         });
     }

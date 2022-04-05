@@ -7,19 +7,13 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use function info;
 
 
-class SubProjectsImport implements WithMultipleSheets,SkipsUnknownSheets
+class SubProjectsImport implements WithMultipleSheets
 {
 
     public function sheets(): array
     {
         return [
-            'sub_projects' => new CreateSubProjects()
+            new CreateSubProjects()
         ];
-    }
-
-    public function onUnknownSheet($sheetName)
-    {
-        // E.g. you can log that a sheet was not found.
-        info("Sheet {$sheetName} was skipped");
     }
 }

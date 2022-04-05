@@ -7,12 +7,14 @@ use App\Http\Requests\API\UpdateSubProjectAPIRequest;
 use App\Http\Resources\SubProjects\SubProjectTicketResource;
 use App\Http\Resources\SubProjects\SubProjectCollection;
 use App\Http\Resources\SubProjects\SubProjectResource;
+use App\Imports\SubProjects\SubProjectsImport;
 use App\Models\SubProject;
 use App\Repositories\SubProjectRepository;
 use App\Repositories\TicketRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -508,5 +510,51 @@ class SubProjectAPIController extends AppBaseController
         $subProject->delete();
 
         return $this->sendSuccess('Sub Project deleted successfully');
+    }
+
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/sub_projects/import",
+     *      summary="import sub-projects",
+     *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
+     *      description="insert sub-projects in bulky by importing them via excel file",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file containing sub-projects to be imported",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function import(Request $request): JsonResponse
+    {
+        Excel::import(new SubProjectsImport(), $request->file);
+
+
+        return $this->sendSuccess('sub-projects have been imported successfully');
     }
 }

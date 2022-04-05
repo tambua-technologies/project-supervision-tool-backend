@@ -299,7 +299,6 @@ class ProcuringEntityPackageAPIController extends AppBaseController
     }
 
     /**
-     * @param int $id
      *
      * @SWG\Post(
      *      path="/procuring_entity_packages/import",
@@ -333,9 +332,10 @@ class ProcuringEntityPackageAPIController extends AppBaseController
      *          )
      *      )
      * )
+     * @param Request $request
      * @return JsonResponse
      */
-    public function import(Request $request)
+    public function import(Request $request): JsonResponse
     {
         Excel::import(new ProcuringEntityPackagesImport(), $request->file);
 
