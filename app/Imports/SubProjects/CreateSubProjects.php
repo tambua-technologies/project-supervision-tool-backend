@@ -46,8 +46,7 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                 $subProject = SubProject::where('name',$data['name'])
                     ->where('project_id',$package->project_id)
                     ->where('procuring_entity_id',$package->procuring_entity_id)
-                    ->where('procuring_entity_package_id', $package->id)
-                    ->where('quantity',$quantity,)
+                    ->where('procuring_entity_package_id',$package->id)
                     ->first();
 
                 if ($subProject)
