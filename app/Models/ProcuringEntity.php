@@ -110,6 +110,13 @@ class ProcuringEntity extends Model
         'project_id',
     ];
 
+    public static function getByName($name)
+    {
+        return ProcuringEntity::join('agencies','procuring_entities.agency_id', 'agencies.id' )
+            ->select('procuring_entities.*')
+            ->where('agencies.name', 'ilike', $name );
+    }
+
     public function agency ()
     {
         return $this->belongsTo(Agency::class);

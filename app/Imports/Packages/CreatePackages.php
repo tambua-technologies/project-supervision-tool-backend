@@ -18,9 +18,7 @@ class CreatePackages implements ToCollection,SkipsEmptyRows,WithHeadingRow
         $collection->map(function($data)  {
 
             // get procuring entity id
-            $procuring_entity = ProcuringEntity::join('agencies','procuring_entities.agency_id', 'agencies.id' )
-                ->select('procuring_entities.*')
-                ->where('agencies.name', 'ilike', $data['procuring_entity'])->first();
+            $procuring_entity = ProcuringEntity::getByName($data['procuring_entity'])->first();
             $procuring_entity_id = $procuring_entity->id;
 
             // create package

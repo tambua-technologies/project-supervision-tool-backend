@@ -16,7 +16,7 @@ class CreateProcuringEntityPackageContractTable extends Migration
         Schema::create('procuring_entity_package_contracts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('procuring_entity_package_id');
-            $table->unsignedBigInteger('contractor_id');
+            $table->unsignedBigInteger('contractor_id')->nullable();
             $table->string('name');
             $table->string('contract_no')->nullable();
             $table->jsonb('original_contract_sum')->nullable();
@@ -44,8 +44,8 @@ class CreateProcuringEntityPackageContractTable extends Migration
 
             $table->foreign('contractor_id')
                 ->references('id')
-                ->on('agencies')
-                ->onDelete('cascade');
+                ->on('contractors')
+                ->onDelete('set null');
         });
     }
 

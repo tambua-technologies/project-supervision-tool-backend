@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Parental\HasParent;
+use Eloquent as Model;
 
 /**
  * @SWG\Definition(
  *      definition="Contractor",
- *      required={"name", "website", "focal_person_id"},
+ *      required={"name"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -21,15 +21,9 @@ use Parental\HasParent;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="website",
- *          description="website",
+ *          property="address",
+ *          description="address",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="focal_person_id",
- *          description="focal_person_id",
- *          type="integer",
- *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -45,13 +39,18 @@ use Parental\HasParent;
  *      ),
  * )
  */
-class Contractor extends Agency
+class Contractor extends Model
 {
-    use SoftDeletes, HasParent;
+    use SoftDeletes;
+
+    public $fillable = [
+        'name',
+        'address'
+    ];
 
     public function contracts()
     {
-        return $this->hasMany(SubProjectContract::class, 'contractor_id');
+        return $this->hasMany(ProcuringEntityPackageContract::class, 'contractor_id');
     }
 
 }

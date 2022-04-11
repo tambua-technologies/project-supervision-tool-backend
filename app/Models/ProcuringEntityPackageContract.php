@@ -324,7 +324,7 @@ class ProcuringEntityPackageContract extends Model
 
     public function contractor()
     {
-        return $this->belongsTo(Agency::class, 'contractor_id');
+        return $this->belongsTo(Contractor::class, 'contractor_id');
     }
 
     public function package()

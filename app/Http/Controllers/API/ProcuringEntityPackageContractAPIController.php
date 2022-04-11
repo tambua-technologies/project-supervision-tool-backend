@@ -5,12 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityPackageContractAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityPackageContractAPIRequest;
 use App\Http\Resources\ProcuringEntityPackageContractResource;
+use App\Imports\Packages\ProcuringEntityPackagesContractImport;
 use App\Models\ProcuringEntityPackage;
 use App\Models\ProcuringEntityPackageContract;
 use App\Repositories\ProcuringEntityPackageContractRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class ProcuringEntityPackageController
@@ -287,4 +290,47 @@ class ProcuringEntityPackageContractAPIController extends AppBaseController
 
         return $this->sendSuccess('Procuring EntityPackage Contract deleted successfully');
     }
+
+    /**
+     * @param int $id
+     *
+     * @SWG\Post(
+     *      path="/packages_contracts/import",
+     *      summary="import procuring entity package contracts",
+     *      tags={"ProcuringEntityPackageContracts"},
+     *     security={{"Bearer":{}}},
+     *      description="Using excel bulk import procuring entity contracts",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file with procuring entity package contracts data",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function import(Request $request): JsonResponse
+    {
+        Excel::import(new ProcuringEntityPackagesContractImport(), $request->file);
+        return $this->sendSuccess('Procuring Entity contracts have been created successfully');
+    }
+
 }

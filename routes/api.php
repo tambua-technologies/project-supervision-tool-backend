@@ -53,6 +53,7 @@ Route::middleware('auth:api')
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
         Route::post('/sub_projects/import', 'SubProjectAPIController@import');
+        Route::post('/packages_contracts/import', 'ProcuringEntityPackageContractAPIController@import');
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
@@ -114,5 +115,4 @@ Route::middleware('auth:api')
         Route::resource('package_contract_staffs', 'PackageContractStaffAPIController');
         Route::resource('package_contract_equipments', 'PackageContractEquipmentAPIController');
         Route::resource('package_contract_financials', 'PackageContractFinancialAPIController');
-        Route::resource('contracts', 'ContractsAPIController');
     });
