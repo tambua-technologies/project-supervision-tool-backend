@@ -23,8 +23,11 @@ class ProcuringEntityContract extends Migration
             $table->date('original_signing_date')->nullable();
             $table->date('revised_signing_date')->nullable();
             $table->date('commencement_date')->nullable();
-            $table->double('contract_period')->nullable();
+            $table->string('consortium_name')->nullable();
+            $table->string('consultant_role_description')->nullable();
+            $table->string('organisation_chart_url')->nullable();
             $table->date('revised_end_date_of_contract')->nullable();
+            $table->date('end_date_of_contract')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

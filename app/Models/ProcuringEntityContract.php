@@ -187,8 +187,9 @@ class ProcuringEntityContract extends Model
         'original_signing_date',
         'revised_signing_date',
         'commencement_date',
-        'contract_period',
+        'consortium_name',
         'revised_end_date_of_contract',
+        'end_date_of_contract'
     ];
 
     /**
@@ -199,6 +200,8 @@ class ProcuringEntityContract extends Model
         'id' => 'integer',
         'procuring_entity_id' => 'integer',
         'name' => 'string',
+        'consortium_name' => 'string',
+        'end_date_of_contract' => 'date',
         'contract_no' => 'string',
         'original_contract_sum' => 'object',
         'revised_contract_sum' => 'object',

@@ -12,7 +12,6 @@ use App\Repositories\ProcuringEntityPackageContractRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 /**
@@ -299,7 +298,7 @@ class ProcuringEntityPackageContractAPIController extends AppBaseController
      *      summary="import procuring entity package contracts",
      *      tags={"ProcuringEntityPackageContracts"},
      *     security={{"Bearer":{}}},
-     *      description="Using excel bulk import procuring entity contracts",
+     *      description="Using excel bulk import procuring entity package contracts",
      *      produces={"application/json"},
      *     consumes={"multipart/form-data"},
      *      @SWG\Parameter(
@@ -330,7 +329,7 @@ class ProcuringEntityPackageContractAPIController extends AppBaseController
     public function import(Request $request): JsonResponse
     {
         Excel::import(new ProcuringEntityPackagesContractImport(), $request->file);
-        return $this->sendSuccess('Procuring Entity contracts have been created successfully');
+        return $this->sendSuccess('Procuring Entity package contracts have been created successfully');
     }
 
 }
