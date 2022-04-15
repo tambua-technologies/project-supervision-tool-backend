@@ -1,6 +1,6 @@
 <?php
 
-namespace App\exports;
+namespace App\Exports;
 
 use App\Models\ProcuringEntityContract;
 use Illuminate\Support\Facades\Log;
@@ -35,20 +35,19 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
         $original_contract_sum = $contract->original_contract_sum->amount . ' ' . $contract->original_contract_sum->currency;
 
         // fill contract information
-        $project = $contract->procuringEntity()->first()->project()->first();
-        Log::info('project', [$project]);
+        $procuringEntity = $contract->procuringEntity()->first();
+        $project = $procuringEntity->project()->first();
 
         $templateProcessor->setValue('projectName', $project->name);
         $templateProcessor->setValue('contractName', $contract->name);
         $templateProcessor->setValue('contractNumber', $contract->contract_no);
-        $templateProcessor->setValue('consultantName', 'consultant name');
-        $templateProcessor->setValue('consultantContact', 'consultant contact');
-        $templateProcessor->setValue('procuringEntity', 'procuring entity');
+        $templateProcessor->setValue('consultantName', $contract->consortium_name);
+        $templateProcessor->setValue('procuringEntity', $procuringEntity->agency()->first()->name);
         $templateProcessor->setValue('originalContractSum', $original_contract_sum);
         $templateProcessor->setValue('revisedContractSum', $revised_contract_sum);
         $templateProcessor->setValue('addendumSigningDate', $contract->original_signing_date);
         $templateProcessor->setValue('contractCommencementDate', $contract->commencement_date);
-        $templateProcessor->setValue('contractEndDate', $contract->revised_end_date_of_contract);
+        $templateProcessor->setValue('contractEndDate', $contract->end_date_of_contract);
 
 
         $templateProcessor->saveAs(storage_path('monthly_report.docx'));
