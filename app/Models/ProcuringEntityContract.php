@@ -223,4 +223,14 @@ class ProcuringEntityContract extends Model
         return $this->belongsToMany(Agency::class, 'procuring_entity_contract_supervising_consultants', 'procuring_entity_contract_id', 'agency_id');
     }
 
+    public function procuringEntity()
+    {
+        return $this->belongsTo(ProcuringEntity::class,'procuring_entity_id');
+    }
+
+    public function project()
+    {
+        return $this->procuringEntity()->project();
+    }
+
 }
