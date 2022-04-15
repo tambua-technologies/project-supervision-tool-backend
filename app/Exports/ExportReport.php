@@ -49,7 +49,6 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
         $templateProcessor->setValue('contractCommencementDate', $contract->commencement_date);
         $templateProcessor->setValue('contractEndDate', $contract->end_date_of_contract);
 
-
         $templateProcessor->saveAs(storage_path('monthly_report.docx'));
     }
 }
