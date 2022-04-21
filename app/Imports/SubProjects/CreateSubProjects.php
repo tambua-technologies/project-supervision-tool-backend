@@ -22,61 +22,64 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
         $collection->map(function ($data) {
 
             $geo = $data['geo'];
+            $subProjectDistrictQuery = null;
+            $subProjectGeoDataQuery = null;
             if ($geo) {
-
-                // get package
-                $package = ProcuringEntityPackage::join('procuring_entities', 'procuring_entity_packages.procuring_entity_id', 'procuring_entities.id')
-                    ->join('agencies', 'procuring_entities.agency_id', 'agencies.id')
-                    ->selectRaw('procuring_entity_packages.*, project_id')
-                    ->where('agencies.name', 'ilike', $data['procuring_entity'])
-                    ->where('procuring_entity_packages.name', 'ilike', $data['package'])
-                    ->first();
-
-                $type = SubProjectType::where('name', 'ilike', $data['type'])->first();
-                $status = SubProjectStatus::where('name', 'ilike', $data['status'])->first();
-                $unit = $type->unit()->first();
-                $quantity = ["unit" => $unit->code, "quantity" => $data["quantity"]];
-
-
                 $subProjectDistrictQuery = "select * from districts where ST_Intersects(ST_Transform(ST_GeomFromText('$geo',21037),4326), geom::geometry)";
                 $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
-
-                $geoJson = DB::select($subProjectGeoDataQuery)[0];
-                $district = DB::select($subProjectDistrictQuery)[0];
-                $subProject = SubProject::where('name',$data['name'])
-                    ->where('project_id',$package->project_id)
-                    ->where('procuring_entity_id',$package->procuring_entity_id)
-                    ->where('procuring_entity_package_id',$package->id)
-                    ->first();
-
-                if ($subProject)
-                {
-                    $subProject->update([
-                        'name' => $data['name'],
-                        'quantity' => $quantity,
-                        'project_id' => $package->project_id,
-                        'procuring_entity_id' => $package->procuring_entity_id,
-                        'sub_project_status_id' => $status->id,
-                        'sub_project_type_id' => $type->id,
-                        'district_id' => $district->id,
-                        'procuring_entity_package_id' => $package->id,
-                        'geo_json' => json_decode($geoJson->json)
-                    ]);
-                }
-                else {
-                    SubProject::create([
-                        'name' => $data['name'],
-                        'quantity' => $quantity,
-                        'project_id' => $package->project_id,
-                        'procuring_entity_id' => $package->procuring_entity_id,
-                        'sub_project_status_id' => $status->id,
-                        'sub_project_type_id' => $type->id,
-                        'district_id' => $district->id,
-                        'procuring_entity_package_id' => $package->id,
-                        'geo_json' => json_decode($geoJson->json)
-                    ]);
-                }
             }
+
+
+            // get package
+            $package = ProcuringEntityPackage::join('procuring_entities', 'procuring_entity_packages.procuring_entity_id', 'procuring_entities.id')
+                ->join('agencies', 'procuring_entities.agency_id', 'agencies.id')
+                ->selectRaw('procuring_entity_packages.*, project_id')
+                ->where('agencies.name', 'ilike', $data['procuring_entity'])
+                ->where('procuring_entity_packages.name', 'ilike', $data['package'])
+                ->first();
+
+            $type = $data['type'] ? SubProjectType::where('name', 'ilike', $data['type'])->first() : null;
+            $status = SubProjectStatus::where('name', 'ilike', $data['status'])->first();
+            $unit = $type ? $type->unit()->first() : null;
+            $quantity = ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
+
+            $geoJson = $subProjectGeoDataQuery ? DB::select($subProjectGeoDataQuery)[0] : null;
+            $district = $subProjectDistrictQuery ? DB::select($subProjectDistrictQuery)[0] : null;
+
+            $subProject = SubProject::where('name',$data['name'])
+                ->where('project_id',$package->project_id)
+                ->where('procuring_entity_id',$package->procuring_entity_id)
+                ->where('procuring_entity_package_id',$package->id)
+                ->first();
+
+            if ($subProject)
+            {
+                $subProject->update([
+                    'name' => $data['name'],
+                    'quantity' => $quantity,
+                    'project_id' => $package->project_id,
+                    'procuring_entity_id' => $package->procuring_entity_id,
+                    'sub_project_status_id' => $status->id,
+                    'sub_project_type_id' => $type->id ?? null,
+                    'district_id' => $district->id ?? null,
+                    'procuring_entity_package_id' => $package->id,
+                    'geo_json' => $geoJson ? json_decode($geoJson->json) : null
+                ]);
+            }
+            else {
+                SubProject::create([
+                    'name' => $data['name'],
+                    'quantity' => $quantity,
+                    'project_id' => $package->project_id,
+                    'procuring_entity_id' => $package->procuring_entity_id,
+                    'sub_project_status_id' => $status->id,
+                    'sub_project_type_id' => $type->id ?? null,
+                    'district_id' => $district->id ?? null,
+                    'procuring_entity_package_id' => $package->id,
+                    'geo_json' => $geoJson ? json_decode($geoJson->json) : null
+                ]);
+            }
+
         });
     }
 }
