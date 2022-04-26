@@ -54,6 +54,7 @@ Route::middleware('auth:api')
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
         Route::post('/sub_projects/import', 'SubProjectAPIController@import');
         Route::post('/packages_contracts/import', 'ProcuringEntityPackageContractAPIController@import');
+        Route::post('/packages_contracts/import_progress_data', 'ProcuringEntityPackageContractAPIController@importProgressData');
         Route::post('/procuring_entities_contracts/import', 'ProcuringEntityContractAPIController@import');
 
         // resource routes

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityPackageContractAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityPackageContractAPIRequest;
 use App\Http\Resources\ProcuringEntityPackageContractResource;
+use App\Imports\Packages\PackagesProgressImport;
 use App\Imports\Packages\ProcuringEntityPackagesContractImport;
 use App\Models\ProcuringEntityPackage;
 use App\Models\ProcuringEntityPackageContract;
@@ -330,6 +331,49 @@ class ProcuringEntityPackageContractAPIController extends AppBaseController
     {
         Excel::import(new ProcuringEntityPackagesContractImport(), $request->file);
         return $this->sendSuccess('Procuring Entity package contracts have been created successfully');
+    }
+
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/packages_contracts/import_progress_data",
+     *      summary="import procuring entity package contracts progress",
+     *      tags={"ProcuringEntityPackageContracts"},
+     *     security={{"Bearer":{}}},
+     *      description="Using excel bulk import procuring entity package contracts progress",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file with procuring entity package contracts progress data",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function importProgressData(Request $request): JsonResponse
+    {
+        Excel::import(new PackagesProgressImport(), $request->file);
+        return $this->sendSuccess('Procuring Entity package contracts progress data have been created successfully');
     }
 
 }

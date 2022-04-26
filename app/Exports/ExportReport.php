@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\ProcuringEntityContract;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -16,6 +17,7 @@ class ExportReport
      */
     public static function create()
     {
+        \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
 
         $templateProcessor = new TemplateProcessor(resource_path('csc_monthly_monitoring_reports_template.docx'));
 
@@ -49,6 +51,27 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
         $templateProcessor->setValue('contractCommencementDate', $contract->commencement_date);
         $templateProcessor->setValue('contractEndDate', $contract->end_date_of_contract);
 
+
+        // fill works summary section
+        $worksSummaryQuery = "select p.name package,
+       pepc.name contract,
+       pepc.original_contract_sum contractcost,
+       c.name contractor
+from procuring_entity_packages p
+join procuring_entity_package_contracts pepc on p.id = pepc.procuring_entity_package_id
+join contractors c on c.id = pepc.contractor_id
+where p.procuring_entity_id = $procuringEntity->id";
+
+
+
+
+
+        $worksSummary = DB::select($worksSummaryQuery);
+
+        $templateProcessor->cloneRowAndSetValues('package', $worksSummary);
+//        $templateProcessor->cloneRow('package', 2);
+
+        // save the report
         $templateProcessor->saveAs(storage_path('monthly_report.docx'));
     }
 }
