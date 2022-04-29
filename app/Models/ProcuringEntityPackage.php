@@ -154,7 +154,7 @@ class ProcuringEntityPackage extends Model
 
     public function contract()
     {
-        return $this->hasOne(ProcuringEntityPackageContract::class, 'procuring_entity_package_id');
+        return $this->hasMany(ProcuringEntityPackageContract::class, 'procuring_entity_package_id');
     }
 
     public function subProjects()

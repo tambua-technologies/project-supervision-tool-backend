@@ -27,7 +27,7 @@ class CreatePackagesContractProgress implements ToCollection,SkipsEmptyRows,With
                 ->where('name', $data['package'])->first();
             $contract = $package->contract->first();
 
-            Log::info('lets look at date', [$data['date']]);
+
 
             PackageContractProgress::updateOrCreate([
                 'package_contract_id' => $contract->id,

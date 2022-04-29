@@ -5,19 +5,21 @@ namespace App\Exports;
 use App\Models\ProcuringEntityContract;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpWord\Exception\CopyFileException;
 use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
+use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class ExportReport
 {
 
     /**
-     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
+     * @throws CopyFileException
      * @throws CreateTemporaryFileException
      */
     public static function create()
     {
-        \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
+        Settings::setOutputEscapingEnabled(true);
 
         $templateProcessor = new TemplateProcessor(resource_path('csc_monthly_monitoring_reports_template.docx'));
 
@@ -34,7 +36,6 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
         $templateProcessor->setValue('reportStartDate', '01/03/2022');
         $templateProcessor->setValue('reportEndDate', '30/03/2022');
         $templateProcessor->setValue('executiveSummary', $executiveSummary);
-
 
 
 
@@ -70,11 +71,6 @@ join contractors c on c.id = pepc.contractor_id
 where p.procuring_entity_id = $procuringEntity->id";
 
 
-
-
-
-
-
         $worksSummary = collect(DB::select($worksSummaryQuery));
 
         $works = $worksSummary->map(function ($work) {
@@ -88,7 +84,53 @@ where p.procuring_entity_id = $procuringEntity->id";
             ];
         });
 
-        $templateProcessor->cloneRowAndSetValues('package', $works);
+        $templateProcessor->cloneRowAndSetValues('package', $works->all());
+
+
+        // fill construction progress summary
+        $constructionProgressSummaryQuery  = "select *
+
+    from (select pep.name package,
+                 pep.procuring_entity_id,
+                 c.name contractor,
+                 pe_contracts.date_of_commencement_of_works,
+                 pe_contracts.date_of_contract_completion,
+                 pe_contracts.id id
+
+        from  procuring_entity_package_contracts pe_contracts
+
+                  join contractors c on c.id = pe_contracts.contractor_id
+                  join procuring_entity_packages pep on pep.id = pe_contracts.procuring_entity_package_id) contracts
+left join (SELECT  pcp.package_contract_id,
+                  pcp.actual_financial_progress,
+                  pcp.actual_physical_progress,
+                  pcp.planned_physical_progress
+
+           FROM procuring_entity_package_contracts pepc
+                    JOIN (
+               SELECT DISTINCT ON (package_contract_id) *
+               FROM package_contract_progress pcp
+               ORDER BY package_contract_id, progress_date DESC
+           ) pcp ON pcp.package_contract_id = pepc.id) progress on contracts.id = progress.package_contract_id
+           where procuring_entity_id = $procuringEntity->id";
+
+        $constructionProgressSummary = collect(DB::select($constructionProgressSummaryQuery));
+
+        $worksProgress = $constructionProgressSummary->map(function ($workProgress) {
+            return [
+                'packageProgress' => $workProgress->package,
+                'contractor' => $workProgress->contractor,
+                'commencementDate' => $workProgress->date_of_commencement_of_works,
+                'scheduledCompletionDate' => $workProgress->date_of_contract_completion,
+                'actualPhysicalProgress' => $workProgress->actual_physical_progress,
+                'plannedPhysicalProgress' => $workProgress->planned_physical_progress,
+                'financialProgress' => $workProgress->actual_financial_progress
+            ];
+        });
+
+        $templateProcessor->cloneRowAndSetValues('packageProgress', $worksProgress->all());
+
+
 
         // save the report
         $templateProcessor->saveAs(storage_path('monthly_report.docx'));
