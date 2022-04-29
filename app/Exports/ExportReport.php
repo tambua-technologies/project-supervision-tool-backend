@@ -21,6 +21,11 @@ class ExportReport
 
         $templateProcessor = new TemplateProcessor(resource_path('csc_monthly_monitoring_reports_template.docx'));
 
+
+        // fill report title
+        $reportTitle = 'Construction Supervision Consultant Monthly Progress Report';
+        $templateProcessor->setValue('reportTitle', $reportTitle);
+
         // fill the Executive section
         $executiveSummary = 'This report forms part of
 No.LGA/016/TMC/2015/2016/W/DMDP/01 for Temeke Municipal Council (TMC) project financed by World Bank. The project named as Construction Supervision of Infrastructure Components in Temeke Municipality under the Dar es Salaam Metropolitan Development Project (DMDP).
@@ -29,6 +34,8 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
         $templateProcessor->setValue('reportStartDate', '01/03/2022');
         $templateProcessor->setValue('reportEndDate', '30/03/2022');
         $templateProcessor->setValue('executiveSummary', $executiveSummary);
+
+
 
 
         // get contract
@@ -66,10 +73,22 @@ where p.procuring_entity_id = $procuringEntity->id";
 
 
 
-        $worksSummary = DB::select($worksSummaryQuery);
 
-        $templateProcessor->cloneRowAndSetValues('package', $worksSummary);
-//        $templateProcessor->cloneRow('package', 2);
+
+        $worksSummary = collect(DB::select($worksSummaryQuery));
+
+        $works = $worksSummary->map(function ($work) {
+            $cost = json_decode($work->contractcost);
+            $contractCost = $cost->amount . ' ' .  $cost->currency;
+            return [
+                'package' => $work->package,
+                'contract' => $work->contract,
+                'contractor' => $work->contractor,
+                'contractCost' => $contractCost
+            ];
+        });
+
+        $templateProcessor->cloneRowAndSetValues('package', $works);
 
         // save the report
         $templateProcessor->saveAs(storage_path('monthly_report.docx'));
