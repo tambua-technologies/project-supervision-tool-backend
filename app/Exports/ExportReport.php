@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\ProcuringEntityContract;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpWord\Exception\CopyFileException;
@@ -40,7 +41,7 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
 
 
         // get contract
-        $contract = ProcuringEntityContract::first();
+        $contract = ProcuringEntityContract::where('procuring_entity_id', 1)->first();
         $revised_contract_sum = $contract->revised_contract_sum->amount . ' ' . $contract->revised_contract_sum->currency;
         $original_contract_sum = $contract->original_contract_sum->amount . ' ' . $contract->original_contract_sum->currency;
 
@@ -95,6 +96,7 @@ where p.procuring_entity_id = $procuringEntity->id";
                  c.name contractor,
                  pe_contracts.date_of_commencement_of_works,
                  pe_contracts.date_of_contract_completion,
+                 pe_contracts.revised_date_of_contract_completion,
                  pe_contracts.id id
 
         from  procuring_entity_package_contracts pe_contracts
@@ -117,6 +119,17 @@ left join (SELECT  pcp.package_contract_id,
         $constructionProgressSummary = collect(DB::select($constructionProgressSummaryQuery));
 
         $worksProgress = $constructionProgressSummary->map(function ($workProgress) {
+
+            // time elapsed
+            $now = Carbon::now();
+            $start = Carbon::createFromFormat('Y-m-d',$workProgress->date_of_commencement_of_works);
+            $end = Carbon::createFromFormat('Y-m-d',$workProgress->revised_date_of_contract_completion ?? $workProgress->date_of_contract_completion);
+            $mothsElapsed = $now > $end ? $end->diffInMonths($start) : $now->diffInMonths($start);
+            $allMonths = $end->diffInMonths($start);
+            $percentageMonthsElapsed = $mothsElapsed / $allMonths * 100;
+
+            Log::info('progress', [$workProgress->actual_physical_progress]);
+
             return [
                 'packageProgress' => $workProgress->package,
                 'contractor' => $workProgress->contractor,
@@ -124,7 +137,9 @@ left join (SELECT  pcp.package_contract_id,
                 'scheduledCompletionDate' => $workProgress->date_of_contract_completion,
                 'actualPhysicalProgress' => $workProgress->actual_physical_progress,
                 'plannedPhysicalProgress' => $workProgress->planned_physical_progress,
-                'financialProgress' => $workProgress->actual_financial_progress
+                'financialProgress' => $workProgress->actual_financial_progress,
+                'monthsElapsed' => $mothsElapsed,
+                'timeElapsed' => $percentageMonthsElapsed
             ];
         });
 
