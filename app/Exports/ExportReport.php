@@ -14,6 +14,15 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class ExportReport
 {
 
+
+    public static function getMoney($moneyObject): string
+    {
+        if (!$moneyObject) return 'N/A';
+
+        $m = json_decode($moneyObject);
+        return $m->amount . ' ' . $m->currency;
+    }
+
     /**
      * @throws CopyFileException
      * @throws CreateTemporaryFileException
@@ -75,8 +84,7 @@ where p.procuring_entity_id = $procuringEntity->id";
         $worksSummary = collect(DB::select($worksSummaryQuery));
 
         $works = $worksSummary->map(function ($work) {
-            $cost = json_decode($work->contractcost);
-            $contractCost = $cost->amount . ' ' .  $cost->currency;
+            $contractCost = self::getMoney($work->contractcost);
             return [
                 'package' => $work->package,
                 'contract' => $work->contract,
@@ -92,11 +100,20 @@ where p.procuring_entity_id = $procuringEntity->id";
         $constructionProgressSummaryQuery  = "select *
 
     from (select pep.name package,
+                 pe_contracts.name contract_name,
+                 pe_contracts.contract_no,
+                 pe_contracts.original_contract_sum,
+                 pe_contracts.revised_contract_sum,
                  pep.procuring_entity_id,
                  c.name contractor,
+                 c.address contractor_address,
                  pe_contracts.date_of_commencement_of_works,
                  pe_contracts.date_of_contract_completion,
                  pe_contracts.revised_date_of_contract_completion,
+                 pe_contracts.date_contract_agreement_signed,
+                 pe_contracts.date_possession_of_site_given,
+                 pe_contracts.date_of_end_of_mobilization_period,
+                 pe_contracts.defects_liability_notification_period,
                  pe_contracts.id id
 
         from  procuring_entity_package_contracts pe_contracts
@@ -128,8 +145,6 @@ left join (SELECT  pcp.package_contract_id,
             $allMonths = $end->diffInMonths($start);
             $percentageMonthsElapsed = $mothsElapsed / $allMonths * 100;
 
-            Log::info('progress', [$workProgress->actual_physical_progress]);
-
             return [
                 'packageProgress' => $workProgress->package,
                 'contractor' => $workProgress->contractor,
@@ -139,11 +154,43 @@ left join (SELECT  pcp.package_contract_id,
                 'plannedPhysicalProgress' => $workProgress->planned_physical_progress,
                 'financialProgress' => $workProgress->actual_financial_progress,
                 'monthsElapsed' => $mothsElapsed,
-                'timeElapsed' => $percentageMonthsElapsed
+                'timeElapsed' => $percentageMonthsElapsed,
+                'packageContractName' => $workProgress->contract_name
             ];
         });
 
         $templateProcessor->cloneRowAndSetValues('packageProgress', $worksProgress->all());
+
+
+        // fill packages section
+        $packages = $constructionProgressSummary->map(function ($w) use($procuringEntity) {
+            $packageOriginalContractSum = self::getMoney($w->original_contract_sum);
+            $packageRevisedContractSum = self::getMoney($w->revised_contract_sum);
+            return [
+                'packageContractName' => htmlspecialchars($w->contract_name),
+                'packageContractNumber' => $w->contract_no,
+                'packageContractor' => htmlspecialchars($w->contractor),
+                'packageContractorContact' => htmlspecialchars($w->contractor_address),
+                'packageProcuringEntity' => $procuringEntity->agency()->first()->name,
+                'packageOriginalContractSum' => $packageOriginalContractSum,
+                'packageRevisedContractSum' => $packageRevisedContractSum,
+                'packageContractAgreementSigningDate' => $w->date_contract_agreement_signed,
+                'packageSitePossessionDate' => $w->date_possession_of_site_given,
+                'packageWorksCommencementDate' => $w->date_of_commencement_of_works,
+                'packageMobilizationPeriodEndDate' => $w->date_of_end_of_mobilization_period,
+                'packageContractEndDate' => $w->date_of_contract_completion,
+                'packageContractRevisedEndDate' => $w->revised_date_of_contract_completion,
+                'packageDefectsLiabilityNotificationPeriod' => $w->defects_liability_notification_period,
+                'packageName' => htmlspecialchars($w->package),
+            ];
+        });
+
+
+
+
+
+
+        $templateProcessor->cloneBlock('clonePackage', 0, true, false, $packages->all());
 
 
 
