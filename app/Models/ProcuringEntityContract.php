@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
-
+use Illuminate\Support\Facades\Log;
 
 
 /**
@@ -200,6 +199,7 @@ class ProcuringEntityContract extends Model
         'id' => 'integer',
         'procuring_entity_id' => 'integer',
         'name' => 'string',
+        'period' => 'string',
         'consortium_name' => 'string',
         'end_date_of_contract' => 'date',
         'contract_no' => 'string',
@@ -220,6 +220,15 @@ class ProcuringEntityContract extends Model
         'contract_no',
         'name',
     ];
+
+
+    public function period()
+    {
+        if (!$this->commencement_date && !$this->end_date_of_contract) return null;
+
+        return $this->commencement_date->diffInMonths($this->end_date_of_contract);
+    }
+
 
     public function consultants()
     {
