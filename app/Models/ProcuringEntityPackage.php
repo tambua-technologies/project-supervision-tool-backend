@@ -157,6 +157,11 @@ class ProcuringEntityPackage extends Model
         return $this->hasOne(ProcuringEntityPackageContract::class, 'procuring_entity_package_id');
     }
 
+    public function progress()
+    {
+        return $this->hasManyThrough(PackageContractProgress::class, ProcuringEntityPackageContract::class,'procuring_entity_package_id','package_contract_id')->orderBy('progress_date');
+    }
+
     public function subProjects()
     {
         return $this->hasMany(SubProject::class);
