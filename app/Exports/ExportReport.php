@@ -27,7 +27,7 @@ class ExportReport
      * @throws CopyFileException
      * @throws CreateTemporaryFileException
      */
-    public static function create()
+    public static function create($procuringEntity)
     {
         Settings::setOutputEscapingEnabled(true);
 
@@ -42,7 +42,7 @@ class ExportReport
         $executiveSummary = 'This report forms part of
 No.LGA/016/TMC/2015/2016/W/DMDP/01 for Temeke Municipal Council (TMC) project financed by World Bank. The project named as Construction Supervision of Infrastructure Components in Temeke Municipality under the Dar es Salaam Metropolitan Development Project (DMDP).
 This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor`s and the Consultant`s activities undertaken during the reporting period; 1st May,2021to 31st May, 2021';
-        $templateProcessor->setValue('reportNumber', '70');
+        $templateProcessor->setValue('reportNumber', '59');
         $templateProcessor->setValue('reportStartDate', '01/03/2022');
         $templateProcessor->setValue('reportEndDate', '30/03/2022');
         $templateProcessor->setValue('executiveSummary', $executiveSummary);
