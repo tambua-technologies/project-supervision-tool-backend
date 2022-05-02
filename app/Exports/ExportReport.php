@@ -194,10 +194,12 @@ left join (SELECT  pcp.package_contract_id,
 
 
         $fileName = strtolower($procuringEntity->agency()->first()->name) . '_monthly_report_number_' . $report->report_number . '.docx';
+        $pathToReport = storage_path($fileName);
 
         // save the report
         $templateProcessor->saveAs(storage_path($fileName));
-
+        $report->addMedia($pathToReport)
+        ->toMediaCollection();
 
     }
 }

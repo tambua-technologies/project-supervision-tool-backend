@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/focal_people/login', 'FocalPersonAPIController@login');
+Route::resource('procuring_entity_reports', 'ProcuringEntityReportsAPIController');
+
 
 
 // Public Routes
@@ -117,5 +119,4 @@ Route::middleware('auth:api')
         Route::resource('package_contract_staffs', 'PackageContractStaffAPIController');
         Route::resource('package_contract_equipments', 'PackageContractEquipmentAPIController');
         Route::resource('package_contract_financials', 'PackageContractFinancialAPIController');
-        Route::resource('procuring_entity_reports', 'ProcuringEntityReportsAPIController');
     });

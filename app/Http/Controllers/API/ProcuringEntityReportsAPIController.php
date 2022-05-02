@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Exports\ExportReport;
-use App\Http\Requests\API\CreateProgressAPIRequest;
-use App\Http\Requests\API\UpdateProgressAPIRequest;
+use App\Http\Resources\ProcuringEntityReportsResource;
+use App\Models\Media;
 use App\Models\ProcuringEntityReport;
-use App\Models\Progress;
-use App\Repositories\ProgressRepository;
+
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -64,7 +63,7 @@ class ProcuringEntityReportsAPIController extends AppBaseController
     {
         $reports = ProcuringEntityReport::all();
 
-        return $this->sendResponse($reports->toArray(), 'Procuring Entity Reports retrieved successfully');
+        return $this->sendResponse(ProcuringEntityReportsResource::collection($reports), 'Procuring Entity Reports retrieved successfully');
     }
 
     /**
@@ -115,6 +114,18 @@ class ProcuringEntityReportsAPIController extends AppBaseController
         ExportReport::create($report->procuring_entity_id, $report->id);
         return $this->sendResponse($report->toArray(), 'Report saved successfully');
     }
+
+    public function show($id): Media
+    {
+        Log::info('report', [$id]);
+
+        $report = Media::find($id);
+
+
+
+        return $report;
+    }
+
 
 
 }

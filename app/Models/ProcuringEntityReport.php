@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Eloquent as Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * @SWG\Definition(
@@ -61,9 +63,10 @@ use Eloquent as Model;
  *      ),
  * )
  */
-class ProcuringEntityReport extends Model
+class ProcuringEntityReport extends Model implements HasMedia
 {
     use SoftDeletes;
+    use HasMediaTrait;
 
     public $fillable = [
         'report_title',
