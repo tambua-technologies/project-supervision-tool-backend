@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exports\ExportReport;
 use App\Http\Requests\API\CreateProgressAPIRequest;
 use App\Http\Requests\API\UpdateProgressAPIRequest;
 use App\Models\ProcuringEntityReport;
@@ -10,6 +11,7 @@ use App\Repositories\ProgressRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Log;
 use Response;
 
 /**
@@ -66,7 +68,6 @@ class ProcuringEntityReportsAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateProgressAPIRequest $request
      *
      * @SWG\Post(
      *      path="/procuring_entity_reports",
@@ -104,12 +105,15 @@ class ProcuringEntityReportsAPIController extends AppBaseController
      * )
      * @return JsonResponse
      */
-    public function store(CreateProgressAPIRequest $request): JsonResponse
+    public function store( Request $request): JsonResponse
     {
         $input = $request->all();
 
-        $progress = $this->progressRepository->create($input);
-        return $this->sendResponse($progress->toArray(), 'Progress saved successfully');
+        $report = ProcuringEntityReport::create($input);
+
+        // generate word report.
+        ExportReport::create($report->procuring_entity_id, $report->id);
+        return $this->sendResponse($report->toArray(), 'Report saved successfully');
     }
 
 

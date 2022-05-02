@@ -2,7 +2,9 @@
 
 namespace App\Exports;
 
+use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityContract;
+use App\Models\ProcuringEntityReport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -27,37 +29,39 @@ class ExportReport
      * @throws CopyFileException
      * @throws CreateTemporaryFileException
      */
-    public static function create($procuringEntity)
+    public static function create($procuringEntityId, $reportId)
     {
         Settings::setOutputEscapingEnabled(true);
 
         $templateProcessor = new TemplateProcessor(resource_path('csc_monthly_monitoring_reports_template.docx'));
 
+        Log::info('reportid', [$reportId]);
+        // get report & procuring entity
+        $report = ProcuringEntityReport::find($reportId);
+
+        Log::info('report', [$report]);
+
+        $procuringEntity = ProcuringEntity::find($procuringEntityId);
+        $contract = $procuringEntity->contract()->first();
+        $project = $procuringEntity->project()->first();
+        $revised_contract_sum = $contract->revised_contract_sum->amount . ' ' . $contract->revised_contract_sum->currency;
+        $original_contract_sum = $contract->original_contract_sum->amount . ' ' . $contract->original_contract_sum->currency;
+
 
         // fill report title
-        $reportTitle = 'Construction Supervision Consultant Monthly Progress Report';
+        $reportTitle = $report->report_title;
         $templateProcessor->setValue('reportTitle', $reportTitle);
 
         // fill the Executive section
-        $executiveSummary = 'This report forms part of
-No.LGA/016/TMC/2015/2016/W/DMDP/01 for Temeke Municipal Council (TMC) project financed by World Bank. The project named as Construction Supervision of Infrastructure Components in Temeke Municipality under the Dar es Salaam Metropolitan Development Project (DMDP).
-This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor`s and the Consultant`s activities undertaken during the reporting period; 1st May,2021to 31st May, 2021';
-        $templateProcessor->setValue('reportNumber', '59');
-        $templateProcessor->setValue('reportStartDate', '01/03/2022');
-        $templateProcessor->setValue('reportEndDate', '30/03/2022');
+        $executiveSummary = $report->summary;
+        $templateProcessor->setValue('reportNumber', $report->report_number);
+        $templateProcessor->setValue('reportStartDate', $report->start);
+        $templateProcessor->setValue('reportEndDate', $report->end);
         $templateProcessor->setValue('executiveSummary', $executiveSummary);
 
 
 
-        // get contract
-        $contract = ProcuringEntityContract::where('procuring_entity_id', 1)->first();
-        $revised_contract_sum = $contract->revised_contract_sum->amount . ' ' . $contract->revised_contract_sum->currency;
-        $original_contract_sum = $contract->original_contract_sum->amount . ' ' . $contract->original_contract_sum->currency;
-
         // fill contract information
-        $procuringEntity = $contract->procuringEntity()->first();
-        $project = $procuringEntity->project()->first();
-
         $templateProcessor->setValue('projectName', $project->name);
         $templateProcessor->setValue('contractName', $contract->name);
         $templateProcessor->setValue('contractNumber', $contract->contract_no);
@@ -78,7 +82,7 @@ This is the Supervision Consultant’s Progress Report No.59 which provides an u
 from procuring_entity_packages p
 join procuring_entity_package_contracts pepc on p.id = pepc.procuring_entity_package_id
 join contractors c on c.id = pepc.contractor_id
-where p.procuring_entity_id = $procuringEntity->id";
+where p.procuring_entity_id = $procuringEntityId";
 
 
         $worksSummary = collect(DB::select($worksSummaryQuery));
@@ -131,7 +135,7 @@ left join (SELECT  pcp.package_contract_id,
                FROM package_contract_progress pcp
                ORDER BY package_contract_id, progress_date DESC
            ) pcp ON pcp.package_contract_id = pepc.id) progress on contracts.id = progress.package_contract_id
-           where procuring_entity_id = $procuringEntity->id";
+           where procuring_entity_id = $procuringEntityId";
 
         $constructionProgressSummary = collect(DB::select($constructionProgressSummaryQuery));
 
@@ -186,16 +190,15 @@ left join (SELECT  pcp.package_contract_id,
         });
 
 
-
-
-
-
         $templateProcessor->cloneBlock('clonePackage', 0, true, false, $packages->all());
 
 
+        $fileName = strtolower($procuringEntity->agency()->first()->name) . '_monthly_report_number_' . $report->report_number . '.docx';
 
         // save the report
-        $templateProcessor->saveAs(storage_path('monthly_report.docx'));
+        $templateProcessor->saveAs(storage_path($fileName));
+
+
     }
 }
 
