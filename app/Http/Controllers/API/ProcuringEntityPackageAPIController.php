@@ -129,7 +129,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
 
         $procuringEntityPackages = $this->procuringEntityPackageRepository->create($input);
 
-        return $this->sendResponse(new ProcuringEntityReportsResource($procuringEntityPackages), 'ProcuringEntityPackage saved successfully');
+        return $this->sendResponse(new ProcuringEntityPackageResource($procuringEntityPackages), 'ProcuringEntityPackage saved successfully');
     }
 
     /**
@@ -180,7 +180,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
             return $this->sendError('ProcuringEntityPackage not found');
         }
 
-        return $this->sendResponse(new ProcuringEntityReportsResource($procuringEntityPackage), 'ProcuringEntityPackage retrieved successfully');
+        return $this->sendResponse(new ProcuringEntityPackageResource($procuringEntityPackage), 'ProcuringEntityPackage retrieved successfully');
     }
 
     /**
@@ -243,7 +243,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
 
         $procuringEntityPackage = $this->procuringEntityPackageRepository->update($input, $id);
 
-        return $this->sendResponse(new ProcuringEntityReportsResource($procuringEntityPackages), 'ProcuringEntityPackages updated successfully');
+        return $this->sendResponse(new ProcuringEntityPackageResource($procuringEntityPackages), 'ProcuringEntityPackages updated successfully');
     }
 
     /**

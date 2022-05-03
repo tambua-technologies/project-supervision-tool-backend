@@ -86,7 +86,6 @@ class ProcuringEntityReport extends Model implements HasMedia
         'report_title' => 'string',
         'procuring_entity_id' => 'integer',
         'report_number' => 'integer',
-        'period' => 'string',
         'end' => 'date',
         'start' => 'date'
     ];

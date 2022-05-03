@@ -112,7 +112,7 @@ class ProcuringEntityReportsAPIController extends AppBaseController
 
         // generate word report.
         ExportReport::create($report->procuring_entity_id, $report->id);
-        return $this->sendResponse($report->toArray(), 'Report saved successfully');
+        return $this->sendResponse(new ProcuringEntityReportsResource($report), 'Report saved successfully');
     }
 
     public function show($id): Media
