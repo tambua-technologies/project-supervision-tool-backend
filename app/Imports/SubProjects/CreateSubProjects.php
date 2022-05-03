@@ -6,6 +6,7 @@ use App\Models\ProcuringEntityPackage;
 use App\Models\SubProject;
 use App\Models\SubProjectStatus;
 use App\Models\SubProjectType;
+use App\Models\Unit;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -15,6 +16,36 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
 {
+
+    public function getSubProjectType($data)
+    {
+        // return if type is found
+        $type = $data['type'] ? SubProjectType::where('name', 'ilike', $data['type'])->first() : null;
+        if ($type) return $type;
+
+        // create new type if given one doesnt exist
+        if ($data['type'])
+        {
+
+            $u = $data['unit'] || 'unknown';
+
+            $unit = Unit::create([
+                'name' => $u,
+                'description' => $u,
+                'code' => $u,
+            ]);
+
+            return SubProjectType::create([
+                'name' => $data['type'],
+                'description' => $data['type'],
+                'unit_id' => $unit->id,
+            ]);
+        }
+
+        // return null if all above fails
+        return null;
+
+    }
 
     public function collection(Collection $collection)
     {
@@ -38,7 +69,8 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                 ->where('procuring_entity_packages.name', 'ilike', $data['package'])
                 ->first();
 
-            $type = $data['type'] ? SubProjectType::where('name', 'ilike', $data['type'])->first() : null;
+            $type = $this->getSubProjectType($data);
+
             $status = SubProjectStatus::where('name', 'ilike', $data['status'])->first();
             $unit = $type ? $type->unit()->first() : null;
             $quantity = ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
