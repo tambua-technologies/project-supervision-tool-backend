@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateFocalPersonAPIRequest;
 use App\Http\Requests\API\UpdateFocalPersonAPIRequest;
+use App\Http\Resources\Users\UserResource;
 use App\Models\FocalPerson;
 use App\Repositories\FocalPersonRepository;
 use Illuminate\Http\Request;
@@ -169,7 +170,8 @@ class FocalPersonAPIController extends AppBaseController
             return response(['failed' => 'These credentials do not match our records.'],'401');
         }
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        return $this->sendResponse(['access_token' => $accessToken], 'login was successful');
+        $user = auth()->user();
+        return $this->sendResponse(['access_token' => $accessToken, 'user' => new UserResource($user)], 'login was successful');
     }
 
     /**
