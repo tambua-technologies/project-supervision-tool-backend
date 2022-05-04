@@ -77,6 +77,7 @@ class Agency extends Model
         'website',
         'focal_person_id',
         'location_id',
+        'district_id',
         'agency_type_id',
         'type'
     ];
@@ -102,7 +103,8 @@ class Agency extends Model
         'type' => 'string',
         'focal_person_id' => 'integer',
         'location_id' => 'integer',
-        'agency_type_id' => 'integer'
+        'agency_type_id' => 'integer',
+        'district_id' => 'string'
     ];
 
     /**
@@ -131,5 +133,12 @@ class Agency extends Model
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+
 
 }

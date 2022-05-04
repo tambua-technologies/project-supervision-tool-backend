@@ -50,16 +50,10 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
     public function collection(Collection $collection)
     {
 
+
+
+
         $collection->map(function ($data) {
-
-            $geo = $data['geo'];
-            $subProjectDistrictQuery = null;
-            $subProjectGeoDataQuery = null;
-            if ($geo) {
-                $subProjectDistrictQuery = "select * from districts where ST_Intersects(ST_Transform(ST_GeomFromText('$geo',21037),4326), geom::geometry)";
-                $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
-            }
-
 
             // get package
             $package = ProcuringEntityPackage::join('procuring_entities', 'procuring_entity_packages.procuring_entity_id', 'procuring_entities.id')
@@ -69,14 +63,37 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                 ->where('procuring_entity_packages.name', 'ilike', $data['package'])
                 ->first();
 
+            Log::info('package', [$package]);
+
+            $procuringEntity = $package->procuringEntity()->first();
+            Log::info('procuring entity', [$procuringEntity]);
+            $agency = $procuringEntity->agency()->first();
+            Log::info('Agency', [$agency]);
+            $district = $agency->district()->first();
+
+
+
+
+            $geo = $data['geo'];
+            $subProjectGeoDataQuery = null;
+            if ($geo) {
+                $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
+            }
+            else {
+                $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 4326),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (SELECT ST_GeneratePoints(geom, 1) FROM (select geom::geometry from  districts where id='$district->id') geom)  AS t( geom)";
+            }
+
+
+
+
             $type = $this->getSubProjectType($data);
+
 
             $status = SubProjectStatus::where('name', 'ilike', $data['status'])->first();
             $unit = $type ? $type->unit()->first() : null;
             $quantity = ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
 
             $geoJson = $subProjectGeoDataQuery ? DB::select($subProjectGeoDataQuery)[0] : null;
-            $district = $subProjectDistrictQuery ? DB::select($subProjectDistrictQuery)[0] : null;
 
             $subProject = SubProject::where('name',$data['name'])
                 ->where('project_id',$package->project_id)
@@ -93,7 +110,7 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                     'procuring_entity_id' => $package->procuring_entity_id,
                     'sub_project_status_id' => $status->id,
                     'sub_project_type_id' => $type->id ?? null,
-                    'district_id' => $district->id ?? null,
+                    'district_id' => $district->id,
                     'procuring_entity_package_id' => $package->id,
                     'geo_json' => $geoJson ? json_decode($geoJson->json) : null
                 ]);
@@ -106,7 +123,7 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                     'procuring_entity_id' => $package->procuring_entity_id,
                     'sub_project_status_id' => $status->id,
                     'sub_project_type_id' => $type->id ?? null,
-                    'district_id' => $district->id ?? null,
+                    'district_id' => $district->id,
                     'procuring_entity_package_id' => $package->id,
                     'geo_json' => $geoJson ? json_decode($geoJson->json) : null
                 ]);

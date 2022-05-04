@@ -20,6 +20,7 @@ class AgenciesTableSeeder extends Seeder
             0 =>
             array (
                 'name' => 'Ministry of Education',
+                'district_id' => null,
                 'website' => 'collier.com',
                 'focal_person_id' => 2,
                 'type' => 'borrower',
@@ -30,6 +31,7 @@ class AgenciesTableSeeder extends Seeder
             1 =>
             array (
                 'name' => 'Ministry of Health',
+                'district_id' => null,
                 'website' => 'bailey.net',
                 'focal_person_id' => 3,
                 'type' => 'borrower',
@@ -40,6 +42,7 @@ class AgenciesTableSeeder extends Seeder
             2 =>
             array (
                 'name' => 'Regional Administration and Local Government (PMO-RALG)',
+                'district_id' => null,
                 'website' => 'maggio.net',
                 'focal_person_id' => 1,
                 'type' => 'implementing_agency',
@@ -50,6 +53,7 @@ class AgenciesTableSeeder extends Seeder
             3 =>
             array (
                 'name' => 'WorldBank',
+                'district_id' => null,
                 'website' => 'klein.com',
                 'focal_person_id' => 1,
                 'type' => 'funding_organisation',
@@ -60,6 +64,7 @@ class AgenciesTableSeeder extends Seeder
             4 =>
             array (
                 'name' => 'DFID Tanzania',
+                'district_id' => null,
                 'website' => 'dfid.com',
                 'focal_person_id' => 2,
                 'type' => 'funding_organisation',
@@ -70,6 +75,7 @@ class AgenciesTableSeeder extends Seeder
             5 =>
             array (
                 'name' => 'LUCENT MANAGEMENT CONSULTANTS',
+                'district_id' => null,
                 'website' => 'farrell.biz',
                 'focal_person_id' => 3,
                 'type' => 'supervising_agency',
@@ -80,6 +86,7 @@ class AgenciesTableSeeder extends Seeder
             6 =>
             array (
                 'name' => 'NICE Tanzania Management and Cooperate Consultant',
+                'district_id' => null,
                 'website' => 'lynch.org',
                 'focal_person_id' => 1,
                 'type' => 'supervising_agency',
@@ -90,6 +97,7 @@ class AgenciesTableSeeder extends Seeder
             7 =>
             array (
                 'name' => 'NICE Tanzania Management and Cooperate Consultant',
+                'district_id' => null,
                 'website' => 'lynch.org',
                 'focal_person_id' => 1,
                 'type' => 'supervising_agency',
@@ -100,6 +108,7 @@ class AgenciesTableSeeder extends Seeder
             8 =>
             array (
                 'name' => 'MTL Consulting Company Limited',
+                'district_id' => null,
                 'website' => 'quitzon.com',
                 'focal_person_id' => 1,
                 'type' => 'supervising_agency',
@@ -110,6 +119,7 @@ class AgenciesTableSeeder extends Seeder
             9 =>
             array (
                 'name' => 'GROUP SIX INTERNATIONAL CO. LTD',
+                'district_id' => null,
                 'website' => 'www.com',
                 'focal_person_id' => 2,
                 'type' => 'contractor',
@@ -120,6 +130,7 @@ class AgenciesTableSeeder extends Seeder
             10 =>
             array (
                 'name' => 'Kinondoni',
+                'district_id' => 'TZ0701',
                 'website' => 'lehner.org',
                 'focal_person_id' => 3,
                 'type' => 'actor',
@@ -130,6 +141,7 @@ class AgenciesTableSeeder extends Seeder
             11 =>
             array (
                 'name' => 'Ilala',
+                'district_id' => 'TZ0702',
                 'website' => 'lehner.org',
                 'focal_person_id' => 1,
                 'type' => 'actor',
@@ -140,6 +152,7 @@ class AgenciesTableSeeder extends Seeder
             12 =>
             array (
                 'name' => 'Temeke',
+                'district_id' => 'TZ0703',
                 'website' => 'lehner.org',
                 'focal_person_id' => 3,
                 'type' => 'actor',
@@ -150,6 +163,7 @@ class AgenciesTableSeeder extends Seeder
             13 =>
             array (
                 'name' => 'China Railway Seventh Group Co. Ltd',
+                'district_id' => null,
                 'website' => 'www.com',
                 'focal_person_id' => 3,
                 'type' => 'contractor',
@@ -160,6 +174,7 @@ class AgenciesTableSeeder extends Seeder
             14 =>
                 array (
                     'name' => 'China Civil Engineering Construction Corporation (CCECC)',
+                    'district_id' => null,
                     'website' => 'farrell.biz',
                     'focal_person_id' => 3,
                     'type' => 'supervising_agency',
@@ -170,6 +185,7 @@ class AgenciesTableSeeder extends Seeder
             15 =>
                 array (
                     'name' => 'China Henan International Cooperation Group Co. LTD',
+                    'district_id' => null,
                     'website' => 'farrell.biz',
                     'focal_person_id' => 3,
                     'type' => 'supervising_agency',
