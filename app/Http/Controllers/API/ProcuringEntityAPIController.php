@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityAPIRequest;
 use App\Http\Resources\ProcuringEntityResource;
+use App\Models\Contractor;
 use App\Models\ProcuringEntity;
 use App\Repositories\ProcuringEntityRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -307,5 +309,60 @@ class ProcuringEntityAPIController extends AppBaseController
         $procuringEntity->delete();
 
         return $this->sendSuccess('Procuring Entity deleted successfully');
+    }
+
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/procuring_entities/statistics/{id}",
+     *      summary="Display statistics for a procuring entity",
+     *      tags={"ProcuringEntity"},
+     *     security={{"Bearer":{}}},
+     *      description="Display statistics for a procuring entity",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of ProcuringEntity",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProcuringEntity"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param ProcuringEntity $procuringEntity
+     * @return JsonResponse
+     */
+    public function statistics($id): JsonResponse
+    {
+        $procuringEntity = ProcuringEntity::find($id);
+        $packages = $procuringEntity->packages()->count();
+        $subProjects = $procuringEntity->subProjects()->count();
+        $contractors = DB::select("select count(*) total from contractors
+join procuring_entity_package_contracts pepc on contractors.id = pepc.contractor_id
+join procuring_entity_packages pep on pepc.procuring_entity_package_id = pep.id
+where pep.procuring_entity_id = $procuringEntity->id");
+
+        return $this->sendResponse(['packages' => $packages, 'contractors' => $contractors[0]->total, 'subProjects' => $subProjects], 'ProcuringEntity statistics fetched successfully');
+
+
     }
 }

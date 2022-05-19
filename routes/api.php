@@ -58,6 +58,7 @@ Route::middleware('auth:api')
         Route::post('/packages_contracts/import', 'ProcuringEntityPackageContractAPIController@import');
         Route::post('/packages_contracts/import_progress_data', 'ProcuringEntityPackageContractAPIController@importProgressData');
         Route::post('/procuring_entities_contracts/import', 'ProcuringEntityContractAPIController@import');
+        Route::get('/procuring_entities/statistics/{id}', 'ProcuringEntityAPIController@statistics');
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');
