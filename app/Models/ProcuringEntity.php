@@ -152,4 +152,14 @@ class ProcuringEntity extends Model
         return $this->hasMany(SubProject::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(ProcuringEntityReport::class, 'procuring_entity_id');
+    }
+
+    public function packageProgress()
+    {
+
+    }
+
 }

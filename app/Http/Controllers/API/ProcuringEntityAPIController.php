@@ -360,8 +360,23 @@ class ProcuringEntityAPIController extends AppBaseController
 join procuring_entity_package_contracts pepc on contractors.id = pepc.contractor_id
 join procuring_entity_packages pep on pepc.procuring_entity_package_id = pep.id
 where pep.procuring_entity_id = $procuringEntity->id");
+        $package_progress = DB::select("select distinct on (pep.id) pep.id package_id,package_contract_progress.*, pep.name package_name, pep.description package_description
+from package_contract_progress
+join procuring_entity_package_contracts pepc on pepc.id = package_contract_progress.package_contract_id
+join procuring_entity_packages pep on pep.id = pepc.procuring_entity_package_id
+where pep.procuring_entity_id = $procuringEntity->id
+");
 
-        return $this->sendResponse(['packages' => $packages, 'contractors' => $contractors[0]->total, 'subProjects' => $subProjects], 'ProcuringEntity statistics fetched successfully');
+        $reports = $procuringEntity->reports()->get();
+
+        return $this->sendResponse([
+            'packages' => $packages,
+            'contractors' => $contractors[0]->total,
+            'subProjects' => $subProjects,
+            'reports' => $reports,
+            'package_progress' => $package_progress
+        ],
+            'ProcuringEntity statistics fetched successfully');
 
 
     }

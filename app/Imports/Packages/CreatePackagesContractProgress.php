@@ -26,6 +26,7 @@ class CreatePackagesContractProgress implements ToCollection,SkipsEmptyRows,With
             $package = ProcuringEntityPackage::where('procuring_entity_id', $procuring_entity_id)
                 ->where('name', $data['package'])->first();
             $contract = $package->contract->first();
+            Log::info('package', [$contract]);
 
 
 
