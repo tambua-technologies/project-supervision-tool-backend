@@ -16,6 +16,7 @@ class CreateSafeguardConcernsTable extends Migration
         Schema::create('safeguard_concerns', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('package_id')->nullable();
+            $table->unsignedInteger('procuring_entity_id')->nullable();
             $table->enum('concern_type', ['environmental','social','healthy and safety', 'other'])->default('other');
             $table->string('issue');
             $table->string('description')->nullable();
@@ -27,10 +28,16 @@ class CreateSafeguardConcernsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('procuring_entity_id')
+                ->references('id')
+                ->on('procuring_entities')
+                ->onDelete('set null');
+
             $table->foreign('package_id')
                 ->references('id')
                 ->on('procuring_entity_packages')
                 ->onDelete('set null');
+
         });
     }
 

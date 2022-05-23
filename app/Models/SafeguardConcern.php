@@ -62,6 +62,7 @@ class SafeguardConcern extends Model
         'concern_type',
         'description',
         'way_forward',
+        'procuring_entity_id',
         'issue',
         'commitment',
         'steps_taken',
@@ -77,6 +78,7 @@ class SafeguardConcern extends Model
     protected $casts = [
         'id' => 'integer',
         'package_id' => 'integer',
+        'procuring_entity_id' => 'integer',
         'concern_type' => 'string',
         'description' => 'string',
         'way_forward' => 'string',
@@ -93,6 +95,17 @@ class SafeguardConcern extends Model
      * @var array
      */
     public static $rules = [];
+
+
+    public function procuringEntity()
+    {
+        return $this->belongsTo(ProcuringEntity::class);
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(ProcuringEntityPackage::class);
+    }
 
 
 }
