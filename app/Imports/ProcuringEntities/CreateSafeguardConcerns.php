@@ -7,6 +7,7 @@ use App\Models\ProcuringEntityContract;
 use App\Models\ProcuringEntityPackage;
 use App\Models\SafeguardConcern;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -24,10 +25,12 @@ class CreateSafeguardConcerns implements ToCollection,SkipsEmptyRows,WithHeading
             $package = ProcuringEntityPackage::where('name', $data['package'])
                 ->where('procuring_entity_id', $procuringEntity->id)->first();
 
+            Log::info('package and package', [$data['package'], $package]);
+
             // create the contract
             SafeguardConcern::create([
                 'procuring_entity_id' => $procuringEntity->id,
-                'package_id' => $package->id,
+                'package_id' => $package->id ?? null,
                 'issue' => $data['issue'],
                 'description' => $data['description'],
                 'commitment' => $data['commitment'],
