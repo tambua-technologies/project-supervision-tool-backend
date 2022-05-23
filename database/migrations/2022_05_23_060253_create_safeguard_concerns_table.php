@@ -18,10 +18,12 @@ class CreateSafeguardConcernsTable extends Migration
             $table->unsignedInteger('package_id')->nullable();
             $table->enum('concern_type', ['environmental','social','healthy and safety', 'other'])->default('other');
             $table->string('issue');
+            $table->string('description')->nullable();
             $table->string('commitment')->nullable();
             $table->string('steps_taken')->nullable();
             $table->string('challenges')->nullable();
             $table->string('mitigation_measures')->nullable();
+            $table->string('way_forward')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -51,6 +51,7 @@ Route::middleware('auth:api')
         Route::get('/users/auth_user', 'UserAPIController@auth_user');
         Route::get('/users/{id}/assign_role/{role}', 'UserAPIController@assign_role');
         Route::post('/roles/assign_permission', 'RoleAPIController@assign_permission');
+        Route::get('/procuring_entities/statistics/{id}', 'ProcuringEntityAPIController@statistics');
 
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
@@ -58,7 +59,8 @@ Route::middleware('auth:api')
         Route::post('/packages_contracts/import', 'ProcuringEntityPackageContractAPIController@import');
         Route::post('/packages_contracts/import_progress_data', 'ProcuringEntityPackageContractAPIController@importProgressData');
         Route::post('/procuring_entities_contracts/import', 'ProcuringEntityContractAPIController@import');
-        Route::get('/procuring_entities/statistics/{id}', 'ProcuringEntityAPIController@statistics');
+        Route::post('/safeguard_concerns/import', 'SafeguardConcernsAPIController@import');
+
 
         // resource routes
         Route::resource('focal_people', 'FocalPersonAPIController');

@@ -60,6 +60,8 @@ class SafeguardConcern extends Model
     public $fillable = [
         'package_id',
         'concern_type',
+        'description',
+        'way_forward',
         'issue',
         'commitment',
         'steps_taken',
@@ -76,6 +78,8 @@ class SafeguardConcern extends Model
         'id' => 'integer',
         'package_id' => 'integer',
         'concern_type' => 'string',
+        'description' => 'string',
+        'way_forward' => 'string',
         'issue' => 'string',
         'commitment' => 'string',
         'steps_taken' => 'string',

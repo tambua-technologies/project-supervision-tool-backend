@@ -23,7 +23,6 @@ class CreateProcuringEntityContracts implements ToCollection,SkipsEmptyRows,With
         $collection->map(function ($data) {
             // get procuring entity
             $procuringEntity = ProcuringEntity::getByName($data['procuring_entity'])->first();
-            Log::info('end date', [$data['end_date']]);
 
 
 
