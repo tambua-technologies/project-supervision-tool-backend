@@ -52,6 +52,7 @@ Route::middleware('auth:api')
         Route::get('/users/{id}/assign_role/{role}', 'UserAPIController@assign_role');
         Route::post('/roles/assign_permission', 'RoleAPIController@assign_permission');
         Route::get('/procuring_entities/statistics/{id}', 'ProcuringEntityAPIController@statistics');
+        Route::get('/procuring_entities/{id}/safeguard_concerns/statistics', 'ProcuringEntityAPIController@safeguardConcernsStatistics');
 
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');

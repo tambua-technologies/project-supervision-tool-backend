@@ -7,6 +7,7 @@ use App\Http\Requests\API\UpdateProcuringEntityAPIRequest;
 use App\Http\Resources\ProcuringEntityResource;
 use App\Models\Contractor;
 use App\Models\ProcuringEntity;
+use App\Models\SafeguardConcern;
 use App\Repositories\ProcuringEntityRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -348,7 +349,6 @@ class ProcuringEntityAPIController extends AppBaseController
      *          )
      *      )
      * )
-     * @param ProcuringEntity $procuringEntity
      * @return JsonResponse
      */
     public function statistics($id): JsonResponse
@@ -378,6 +378,85 @@ where pep.procuring_entity_id = $procuringEntity->id
         ],
             'ProcuringEntity statistics fetched successfully');
 
+
+    }
+
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/procuring_entities/{id}/safeguard_concerns/statistics",
+     *      summary="Display statistics for a procuring entity safeguard concerns",
+     *      tags={"ProcuringEntity"},
+     *     security={{"Bearer":{}}},
+     *      description="Display statistics for a procuring entity safeguard concerns",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of ProcuringEntity",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProcuringEntity"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function safeguardConcernsStatistics($id): JsonResponse
+    {
+        $procuringEntity = ProcuringEntity::find($id);
+        $concerns = SafeguardConcern::where('procuring_entity_id', $id)->get();
+        $environmental = 0;
+        $social = 0;
+        $healthAndSafety = 0;
+        $other = 0;
+
+        foreach ($concerns as $concern) {
+            switch ($concern->concern_type)
+            {
+                case 'environmental':
+                    $environmental++;
+                    break;
+                case 'social':
+                    $social++;
+                    break;
+                case 'healthy and safety':
+                    $healthAndSafety++;
+                    break;
+                default:
+                    $other++;
+
+            }
+        }
+
+        $latestReport = $procuringEntity->reports()->orderBy('created_at', 'DESC')->first();
+
+        return $this->sendResponse([
+        'environmental_concerns_count' => $environmental,
+        'social_concerns_count' => $social,
+        'health_and_safety_concerns_count' => $healthAndSafety,
+        'other_concerns' => $other,
+        'latestReport' => $latestReport
+    ],
+        'ProcuringEntity safeguard concerns statistics fetched successfully');
 
     }
 }
