@@ -23,12 +23,12 @@ class ProcuringEntityPackageResource extends JsonResource
             'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'procuring_entity' => new ProcuringEntityResource($this->procuringEntity),
+            'procuring_entity_id' => $this->procuring_entity_id,
             'project_component' => $this->projectComponent,
             'project_sub_component' => $this->projectSubComponent,
-            'progress' => $this->progress()->first(),
+            'progress' => $this->progress()->orderBy('progress_date', 'DESC')->first(),
             'contract' => new ProcuringEntityPackageContractResource($this->contract),
-            'sub_projects' => $this->subProjects,
+            'sub_projects_count' => $this->subProjects()->count(),
         ];
     }
 }
