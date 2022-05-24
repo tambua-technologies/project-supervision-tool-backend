@@ -7,6 +7,7 @@ use App\Http\Requests\API\UpdateProcuringEntityAPIRequest;
 use App\Http\Resources\ProcuringEntityResource;
 use App\Models\Contractor;
 use App\Models\ProcuringEntity;
+use App\Models\ProcuringEntityPackage;
 use App\Models\SafeguardConcern;
 use App\Repositories\ProcuringEntityRepository;
 use Illuminate\Http\JsonResponse;
@@ -26,6 +27,7 @@ class ProcuringEntityAPIController extends AppBaseController
 {
     /** @var  ProcuringEntityRepository */
     private ProcuringEntityRepository $procuringEntityRepository;
+
 
     public function __construct(ProcuringEntityRepository $procuringEntityRepo)
     {
@@ -457,6 +459,79 @@ where pep.procuring_entity_id = $procuringEntity->id
         'latestReport' => $latestReport
     ],
         'ProcuringEntity safeguard concerns statistics fetched successfully');
+
+    }
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/procuring_entities/{id}/packages/statistics",
+     *      summary="Display statistics for a procuring entity packages",
+     *      tags={"ProcuringEntity"},
+     *     security={{"Bearer":{}}},
+     *      description="Display statistics for a procuring entity packages",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of ProcuringEntity",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProcuringEntity"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param $id
+     * @return JsonResponse
+     */
+    public function packagesStatistics($id): JsonResponse
+    {
+        $procuringEntity = ProcuringEntity::find($id);
+        $package_progress = DB::select("select distinct on (pep.id) pep.id package_id,package_contract_progress.*, pep.name package_name, pep.description package_description
+from package_contract_progress
+join procuring_entity_package_contracts pepc on pepc.id = package_contract_progress.package_contract_id
+join procuring_entity_packages pep on pep.id = pepc.procuring_entity_package_id
+where pep.procuring_entity_id = $procuringEntity->id
+");
+        $inProgress = 0;
+        $completed = 0;
+
+        foreach ($package_progress as $progress) {
+            if ($progress->actual_physical_progress === 100)
+            {
+                $completed++;
+            }
+            else {
+                $inProgress++;
+            }
+        }
+
+        $latestReport = $procuringEntity->reports()->orderBy('created_at', 'DESC')->first();
+
+        return $this->sendResponse([
+        'in_progress' => $inProgress,
+        'completed' => $completed,
+        'challenges' => 17,
+        'latestReport' => $latestReport
+    ],
+        'ProcuringEntity package statistics fetched successfully');
 
     }
 }
