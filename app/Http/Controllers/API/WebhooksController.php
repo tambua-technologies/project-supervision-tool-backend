@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\WebhooksRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class WebhooksController extends AppBaseController
 {
-//    protected $webhooksRepository;
-//    public function __construct(WebhooksRepository $webhooksRepo)
-//    {
-//        $this->$webhooksRepository = $webhooksRepo;
-//    }
-//
+     private $webhooksRepository;
+
+    public function __construct(WebhooksRepository $webhooksRepo)
+    {
+       $this->webhooksRepository = $webhooksRepo;
+    }
+
 
     public function consume(Request $request) {
-//        $this->webhooksRepository->consumeReport($request):
-        Log::info('data from kobotoolbox', [$request]);
+        if ($request->report) {
 
-        return $request->report;
+            $this->webhooksRepository->create(['payload' => $request->report ]);
+            return $this->sendSuccess('Report saved successfully');
+        }
+
+        return $this->sendError('unknown payload');
     }
 }
