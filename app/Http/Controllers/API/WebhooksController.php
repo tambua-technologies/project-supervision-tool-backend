@@ -19,6 +19,6 @@ class WebhooksController extends AppBaseController
 //        $this->webhooksRepository->consumeReport($request):
         Log::info('data from kobotoolbox', [$request]);
 
-        return $this->sendSuccess('Report submission received');
+        return $request->report;
     }
 }
