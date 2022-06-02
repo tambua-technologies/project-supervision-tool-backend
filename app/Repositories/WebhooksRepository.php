@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Exports\ExportReport;
+use App\Models\ProcuringEntityReport;
 use App\Models\Webhook;
 
 /**
@@ -19,6 +21,25 @@ class WebhooksRepository extends BaseRepository
         'id',
         'payload'
     ];
+
+    public function create($input)
+    {
+        $webhook = parent::create($input);
+        $payload = json_decode(json_encode($webhook->payload), true);
+
+        $report = ProcuringEntityReport::create([
+            'report_title' => $payload['executive_summary_section/report_title'],
+            'summary' => $payload['executive_summary_section/executive_summary'],
+            'report_number' => $payload['executive_summary_section/report_number'],
+            'start' => $payload['executive_summary_section/start_date'],
+            'end' => $payload['executive_summary_section/end_date'],
+            'procuring_entity_id' => 1
+        ]);
+
+
+        ExportReport::create(1, $report->id);
+        return $webhook;
+    }
 
     /**
      * Return searchable fields
