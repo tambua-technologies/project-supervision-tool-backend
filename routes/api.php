@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::post('/webhooks/reports', 'WebhooksController@consume');
 Route::post('/focal_people/login', 'FocalPersonAPIController@login');
 Route::resource('procuring_entity_reports', 'ProcuringEntityReportsAPIController');
 
