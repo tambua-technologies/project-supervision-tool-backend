@@ -3,8 +3,12 @@
 namespace App\Repositories;
 
 use App\Exports\ExportReport;
+use App\Models\PackageContractProgress;
+use App\Models\ProcuringEntityPackage;
+use App\Models\ProcuringEntityPackageContract;
 use App\Models\ProcuringEntityReport;
 use App\Models\Webhook;
+use Illuminate\Support\Str;
 
 /**
  * Class UserRepository
@@ -36,6 +40,20 @@ class WebhooksRepository extends BaseRepository
             'procuring_entity_id' => 1
         ]);
 
+
+        $packageName = Str::of($payload['progress/package'])->replace('_', ' ');
+        $package = ProcuringEntityPackage::where('name', $packageName)->first();
+        $contract = $package->contract()->first();
+        $progressArr = $payload['progress'];
+
+        foreach ($progressArr as $progress) {
+            PackageContractProgress::create([
+                'package_contract_id' => $contract->id,
+                'actual_physical_progress' => $progress['progress/actual_physical_progress'],
+                'planned_physical_progress' => $progress['progress/planned_physical_progress'],
+                'actual_financial_progress' => $progress['progress/financial_progress']
+            ]);
+        }
 
         ExportReport::create(1, $report->id);
         return $webhook;

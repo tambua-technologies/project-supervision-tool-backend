@@ -36,6 +36,7 @@ class CreatePackages implements ToCollection,SkipsEmptyRows,WithHeadingRow
                 'address' => $data['contractor_address']
             ]);
 
+
             // create the contract
             ProcuringEntityPackageContract::create([
                 'procuring_entity_package_id' => $package->id,

@@ -18,23 +18,17 @@ services:
   php:
     build: .
     image: project-supervision-tool
+    command: 'php artisan serve --host=0.0.0.0'
     container_name: project-superviosion-tool
     restart: unless-stopped
     depends_on:
       - db
     volumes:
       - ./:/var/www
-
-  web:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - ./:/var/www
-      - ./nginx/local/:/etc/nginx/conf.d/
+      - ./.docker/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     ports:
-      - "8000:80"
+      - "8000:8000"
+
 
 volumes:
   project_supervision_tool_db_data:
