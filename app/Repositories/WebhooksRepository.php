@@ -41,12 +41,14 @@ class WebhooksRepository extends BaseRepository
         ]);
 
 
-        $packageName = Str::of($payload['progress/package'])->replace('_', ' ');
-        $package = ProcuringEntityPackage::where('name', $packageName)->first();
-        $contract = $package->contract()->first();
+        // create package progress
         $progressArr = $payload['progress'];
-
         foreach ($progressArr as $progress) {
+
+            $packageName = Str::of($payload['progress/package'])->replace('_', ' ');
+            $package = ProcuringEntityPackage::where('name', $packageName)->first();
+            $contract = $package->contract()->first();
+
             PackageContractProgress::create([
                 'package_contract_id' => $contract->id,
                 'actual_physical_progress' => $progress['progress/actual_physical_progress'],
