@@ -45,7 +45,7 @@ class WebhooksRepository extends BaseRepository
         $progressArr = $payload['progress'];
         foreach ($progressArr as $progress) {
 
-            $packageName = Str::of($payload['progress/package'])->replace('_', ' ');
+            $packageName = Str::of($progress['progress/package'])->replace('_', ' ');
             $package = ProcuringEntityPackage::where('name', $packageName)->first();
             $contract = $package->contract()->first();
 
