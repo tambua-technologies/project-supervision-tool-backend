@@ -61,7 +61,7 @@ class ProcuringEntityReportsAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $reports = ProcuringEntityReport::all();
+        $reports = ProcuringEntityReport::orderBy('created_at', 'DESC')->all();
 
         return $this->sendResponse(ProcuringEntityReportsResource::collection($reports), 'Procuring Entity Reports retrieved successfully');
     }
