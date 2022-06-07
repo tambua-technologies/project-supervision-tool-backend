@@ -8,6 +8,7 @@ use App\Models\ProcuringEntityPackage;
 use App\Models\ProcuringEntityPackageContract;
 use App\Models\ProcuringEntityReport;
 use App\Models\Webhook;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -45,8 +46,8 @@ class WebhooksRepository extends BaseRepository
         $progressArr = $payload['progress'];
         foreach ($progressArr as $progress) {
 
-            $packageName = Str::of($progress['progress/package'])->replace('_', ' ');
-            $package = ProcuringEntityPackage::where('name', $packageName)->first();
+            $packageName = Str::of($progress['progress/package'])->replace('_', ' ')->__toString();
+            $package = ProcuringEntityPackage::where('name','ilike' , "%{$packageName}%")->first();
             $contract = $package->contract()->first();
 
             PackageContractProgress::create([
