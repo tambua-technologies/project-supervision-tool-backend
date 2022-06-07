@@ -54,7 +54,8 @@ class WebhooksRepository extends BaseRepository
                 'package_contract_id' => $contract->id,
                 'actual_physical_progress' => $progress['progress/actual_physical_progress'],
                 'planned_physical_progress' => $progress['progress/planned_physical_progress'],
-                'actual_financial_progress' => $progress['progress/financial_progress']
+                'actual_financial_progress' => $progress['progress/financial_progress'],
+                'progress_date' => $payload['executive_summary_section/end_date']
             ]);
         }
 
