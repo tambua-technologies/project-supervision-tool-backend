@@ -369,7 +369,7 @@ join procuring_entity_packages pep on pep.id = pepc.procuring_entity_package_id
 where pep.procuring_entity_id = $procuringEntity->id
 ");
 
-        $reports = $procuringEntity->reports()->get();
+        $reports = $procuringEntity->reports()->orderBy('created_at', 'DESC')->take(5)->get();
 
         return $this->sendResponse([
             'packages' => $packages,
