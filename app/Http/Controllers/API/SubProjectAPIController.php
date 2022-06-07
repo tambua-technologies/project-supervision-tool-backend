@@ -14,6 +14,7 @@ use App\Repositories\TicketRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -140,19 +141,20 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('sub_project_status_id'),
                 AllowedFilter::exact('sub_project_type_id'),
                 AllowedFilter::exact('procuring_entity_package_id'),
-                AllowedFilter::exact('districts.id'),
-                AllowedFilter::exact('project_id'),
-                AllowedFilter::exact('districts.region_id'),
-                AllowedFilter::exact('procuringEntityPackage.procuring_entity_id'),
-                AllowedFilter::exact('procuringEntityPackage.contract.contractor_id'),
-                AllowedFilter::exact('procuringEntityPackage.procuringEntity.project_sub_component_id'),
-                AllowedFilter::exact('procuringEntityPackage.procuringEntity.projectSubComponent.project_component_id'),
+                AllowedFilter::exact('procuring_entity_id'),
             ])
-            ->with(['procuringEntity.agency', 'procuringEntityPackage.contract'])
+
+            ->select('id', 'name', 'sub_project_status_id', 'procuring_entity_package_id')
+            ->with([
+                'status' => fn($query) => $query->select('id', 'name'),
+                'procuringEntityPackage' => fn($query) => $query->select('id', 'name'),
+                'procuringEntityPackage.contract' => fn($query) => $query->select( 'contractor_id', 'procuring_entity_package_id' ),
+                'procuringEntityPackage.contract.contractor' => fn($query) => $query->select('id', 'name')
+            ])
+            ->orderByDesc('sub_projects.created_at')
             ->paginate($request->get('per_page', 15));
 
-
-        return $this->sendResponse(new SubProjectCollection($subProjects), 'Sub Projects retrieved successfully');
+        return $this->sendResponse($subProjects, 'Sub Projects retrieved successfully');
     }
 
 
