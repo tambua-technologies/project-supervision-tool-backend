@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Imports\Packages\ProcuringEntityPackagesImport;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 /**
@@ -103,6 +104,7 @@ class ProcuringEntityPackage extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['progress', 'work_types'];
 
 
     public $fillable = [
@@ -124,6 +126,7 @@ class ProcuringEntityPackage extends Model
         'project_sub_component_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
+        'contract_progress' => 'object'
     ];
 
     /**
@@ -135,6 +138,27 @@ class ProcuringEntityPackage extends Model
         'name',
     ];
 
+
+    public function getProgressAttribute()
+    {
+        return $this->progressHistory()->first();
+    }
+
+
+    public function getWorkTypesAttribute()
+    {
+        return DB::table('sub_project_types')
+            ->join(
+                'sub_projects',
+                'sub_project_types.id',
+                '=',
+                'sub_projects.sub_project_type_id'
+            )
+            ->select('sub_project_types.name')
+            ->where('procuring_entity_package_id', $this->id)
+            ->distinct()
+            ->get();
+    }
 
 
     public function procuringEntity()
@@ -157,9 +181,9 @@ class ProcuringEntityPackage extends Model
         return $this->hasOne(ProcuringEntityPackageContract::class, 'procuring_entity_package_id');
     }
 
-    public function progress()
+    public function progressHistory()
     {
-        return $this->hasManyThrough(PackageContractProgress::class, ProcuringEntityPackageContract::class,'procuring_entity_package_id','package_contract_id')->orderBy('progress_date');
+        return $this->hasManyThrough(PackageContractProgress::class, ProcuringEntityPackageContract::class, 'procuring_entity_package_id', 'package_contract_id')->orderBy('progress_date');
     }
 
     public function subProjects()
@@ -167,7 +191,8 @@ class ProcuringEntityPackage extends Model
         return $this->hasMany(SubProject::class);
     }
 
-    public function equipments() {
+    public function equipments()
+    {
 
         return $this->hasManyThrough(
             PackageContractEquipment::class,
@@ -177,12 +202,14 @@ class ProcuringEntityPackage extends Model
         );
     }
 
-    public function staffs() {
+    public function staffs()
+    {
 
-        return $this->hasManyThrough( PackageContractStaffs::class, ProcuringEntityPackageContract::class);
+        return $this->hasManyThrough(PackageContractStaffs::class, ProcuringEntityPackageContract::class);
     }
 
-    public function safeguardConcerns(){
+    public function safeguardConcerns()
+    {
         return $this->hasMany(SafeguardConcern::class, 'procuring_entity_id');
     }
 

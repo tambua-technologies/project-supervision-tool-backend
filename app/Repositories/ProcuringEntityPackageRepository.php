@@ -40,7 +40,7 @@ class ProcuringEntityPackageRepository extends BaseRepository
         return ProcuringEntityPackage::where('id', $id)
             ->with([
 
-                // include SubProjects
+
                 'subProjects' => function ($query) use ($childCount) {
                     return $query->select([
                         'procuring_entity_package_id',
@@ -51,17 +51,23 @@ class ProcuringEntityPackageRepository extends BaseRepository
                         ->with(['type'])
                         ->take($childCount);
                 },
+
+
                 'equipments' => function ($query) use ($childCount) {
                     return $query->take($childCount);
                 },
+
 
                 'staffs' => function ($query) use ($childCount) {
                     return $query->take($childCount);
                 },
 
+
                 'safeguardConcerns' => function ($query) use ($childCount) {
                     return $query->take($childCount);
-                }
+                },
+
+                'contract'
             ])
             ->first();
 
