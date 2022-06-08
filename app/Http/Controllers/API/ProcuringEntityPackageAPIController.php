@@ -180,7 +180,7 @@ class ProcuringEntityPackageAPIController extends AppBaseController
             return $this->sendError('ProcuringEntityPackage not found');
         }
 
-        return $this->sendResponse(new ProcuringEntityPackageResource($procuringEntityPackage), 'ProcuringEntityPackage retrieved successfully');
+        return $this->sendResponse($procuringEntityPackage, 'ProcuringEntityPackage retrieved successfully');
     }
 
     /**

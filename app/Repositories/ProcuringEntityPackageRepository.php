@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
 
 /**
@@ -9,7 +10,6 @@ use App\Models\ProcuringEntityPackage;
  * @package App\Repositories
  * @version November 13, 2020, 11:28 am UTC
  */
-
 class ProcuringEntityPackageRepository extends BaseRepository
 {
     /**
@@ -31,6 +31,40 @@ class ProcuringEntityPackageRepository extends BaseRepository
     public function getFieldsSearchable()
     {
         return $this->fieldSearchable;
+    }
+
+
+    public function find($id, $columns = ['*'])
+    {
+        $childCount = 1;
+        return ProcuringEntityPackage::where('id', $id)
+            ->with([
+
+                // include SubProjects
+                'subProjects' => function ($query) use ($childCount) {
+                    return $query->select([
+                        'procuring_entity_package_id',
+                        'sub_project_type_id',
+                        'id',
+                        'name'
+                    ])
+                        ->with(['type'])
+                        ->take($childCount);
+                },
+                'equipments' => function ($query) use ($childCount) {
+                    return $query->take($childCount);
+                },
+
+                'staffs' => function ($query) use ($childCount) {
+                    return $query->take($childCount);
+                },
+
+                'safeguardConcerns' => function ($query) use ($childCount) {
+                    return $query->take($childCount);
+                }
+            ])
+            ->first();
+
     }
 
     /**

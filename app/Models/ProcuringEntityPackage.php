@@ -167,4 +167,23 @@ class ProcuringEntityPackage extends Model
         return $this->hasMany(SubProject::class);
     }
 
+    public function equipments() {
+
+        return $this->hasManyThrough(
+            PackageContractEquipment::class,
+            ProcuringEntityPackageContract::class,
+            'procuring_entity_package_id',
+            'package_contract_id',
+        );
+    }
+
+    public function staffs() {
+
+        return $this->hasManyThrough( PackageContractStaffs::class, ProcuringEntityPackageContract::class);
+    }
+
+    public function safeguardConcerns(){
+        return $this->hasMany(SafeguardConcern::class, 'procuring_entity_id');
+    }
+
 }
