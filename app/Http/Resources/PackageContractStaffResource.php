@@ -19,11 +19,10 @@ class PackageContractStaffResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'proposed_name' => $this->proposed_name,
+            'replacement' => $this->replacement,
             'remarks' => $this->remarks,
             'position' => $this->position,
-            'contract' => $this->contract
         ];
     }
 }

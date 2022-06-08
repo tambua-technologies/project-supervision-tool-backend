@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="PackageContractStaffPayload",
- *      required={"procuring_entity_package_contract_id,first_name"},
+ *      required={"procuring_entity_package_contract_id,proposed_name"},
  *     @SWG\Property(
  *          property="procuring_entity_package_contract_id",
  *          description="procuring_entity_package_contract_id",
@@ -20,13 +20,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer"
  *      ),
  *      @SWG\Property(
- *          property="first_name",
- *          description="first_name",
+ *          property="proposed_name",
+ *          description="proposed_name",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="last_name",
- *          description="last_name",
+ *          property="replacement",
+ *          description="replacement",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -59,13 +59,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer"
  *      ),
  *      @SWG\Property(
- *          property="first_name",
- *          description="first_name",
+ *          property="proposed_name",
+ *          description="proposed_name",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="last_name",
- *          description="last_name",
+ *          property="replacement",
+ *          description="replacement",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -101,8 +101,8 @@ class PackageContractStaffs extends Model
     public $fillable = [
         'position_id',
         'procuring_entity_package_contract_id',
-        'first_name',
-        'last_name',
+        'proposed_name',
+        'replacement',
         'remarks',
     ];
 
@@ -115,8 +115,8 @@ class PackageContractStaffs extends Model
         'id' => 'integer',
         'position_id' => 'integer',
         'procuring_entity_package_contract_id' => 'integer',
-        'first_name'=> 'string',
-        'last_name'=> 'string',
+        'proposed_name'=> 'string',
+        'replacement'=> 'string',
         'remarks'=> 'string',
     ];
 

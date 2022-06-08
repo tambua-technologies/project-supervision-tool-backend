@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreatePackageContractEquipmentAPIRequest;
 use App\Http\Requests\API\UpdatePackageContractEquipmentAPIRequest;
 use App\Http\Resources\PackageContractEquipmentResource;
+use App\Imports\Packages\PackageContractEquipmentImport;
 use App\Models\PackageContractEquipment;
 use App\Repositories\PackageContractEquipmentRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class PackageContractEquipmentController
@@ -283,4 +285,53 @@ class PackageContractEquipmentAPIController extends AppBaseController
 
         return $this->sendSuccess('PackageContractEquipment deleted successfully');
     }
+
+
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/package_contract_equipments/import",
+     *      summary="import package contract equiments",
+     *      tags={"PackageContractEquipment"},
+     *     security={{"Bearer":{}}},
+     *      description="insert package contract equiments in bulk by importing them via excel file",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file containing package contract equipments to be imported",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function import(Request $request): JsonResponse
+    {
+        Excel::import(new PackageContractEquipmentImport(), $request->file);
+
+        return $this->sendSuccess('Package contract equipments have been imported successfully');
+    }
+
+
+
 }

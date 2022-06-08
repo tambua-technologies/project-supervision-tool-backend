@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreatePackageContractStaffAPIRequest;
 use App\Http\Requests\API\UpdatePackageContractStaffAPIRequest;
 use App\Http\Resources\PackageContractStaffResource;
+use App\Imports\Packages\PackageContractStaffImport;
 use App\Models\PackageContractStaffs;
 use App\Repositories\PackageContractStaffRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class PackageContractStaffController
@@ -283,4 +285,51 @@ class PackageContractStaffAPIController extends AppBaseController
 
         return $this->sendSuccess('PackageContractStaff deleted successfully');
     }
+
+
+    /**
+     *
+     * @SWG\Post(
+     *      path="/package_contract_staffs/import",
+     *      summary="import safeguard concerns",
+     *      tags={"PackageContractStaff"},
+     *     security={{"Bearer":{}}},
+     *      description="insert package contract staff in bulk by importing them via excel file",
+     *      produces={"application/json"},
+     *     consumes={"multipart/form-data"},
+     *
+     *      @SWG\Parameter(
+     *          name="file",
+     *          description="excel file containing package contract staff to be imported",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function import(Request $request): JsonResponse
+    {
+        Excel::import(new PackageContractStaffImport(), $request->file);
+
+        return $this->sendSuccess('Package contract staffs have been imported successfully');
+    }
+
+
 }

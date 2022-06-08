@@ -24,7 +24,6 @@ class PackageContractEquipmentResource extends JsonResource
             'quantity_as_per_contract' => $this->quantity_as_per_contract,
             'total_available_now' => $this->total_available_now,
             'status_of_equipment' => $this->status_of_equipment,
-            'contract' => $this->contract
         ];
     }
 }

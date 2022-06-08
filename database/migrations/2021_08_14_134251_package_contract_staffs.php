@@ -15,8 +15,8 @@ class PackageContractStaffs extends Migration
     {
         Schema::create('package_contract_staffs', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name')->nullable();
+            $table->string('proposed_name')->nullable();
+            $table->string('replacement')->nullable();
             $table->string('remarks')->nullable();
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('procuring_entity_package_contract_id');
