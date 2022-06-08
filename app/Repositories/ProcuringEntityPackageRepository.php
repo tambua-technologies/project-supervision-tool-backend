@@ -36,7 +36,7 @@ class ProcuringEntityPackageRepository extends BaseRepository
 
     public function find($id, $columns = ['*'])
     {
-        $childCount = 1;
+        $childCount = 4;
         return ProcuringEntityPackage::where('id', $id)
             ->with([
 
