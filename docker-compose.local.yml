@@ -20,6 +20,8 @@ services:
     image: project-supervision-tool
     command: 'php artisan serve --host=0.0.0.0'
     container_name: project-superviosion-tool
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     depends_on:
       - db
