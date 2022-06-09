@@ -59,7 +59,7 @@ class ProcuringEntityPackageRepository extends BaseRepository
 
 
                 'staffs' => function ($query) use ($childCount) {
-                    return $query->take($childCount);
+                    return $query->with('position')->take($childCount);
                 },
 
 

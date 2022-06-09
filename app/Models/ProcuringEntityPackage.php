@@ -104,7 +104,11 @@ class ProcuringEntityPackage extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['progress', 'work_types'];
+    protected $appends = [
+        'progress',
+        'work_types',
+        'sub_projects_count'
+    ];
 
 
     public $fillable = [
@@ -145,6 +149,11 @@ class ProcuringEntityPackage extends Model
     }
 
 
+    public function getSubProjectsCountAttribute(){
+        return $this->subProjects()->count();
+    }
+
+
     public function getWorkTypesAttribute()
     {
         return DB::table('sub_project_types')
@@ -165,6 +174,8 @@ class ProcuringEntityPackage extends Model
     {
         return $this->belongsTo(ProcuringEntity::class, 'procuring_entity_id');
     }
+
+
 
     public function projectComponent()
     {
