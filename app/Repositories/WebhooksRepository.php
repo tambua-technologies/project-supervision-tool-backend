@@ -11,6 +11,8 @@ use App\Models\Webhook;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use PhpOffice\PhpWord\Exception\CopyFileException;
+use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
 
 /**
  * Class WebhooksRepository
@@ -40,14 +42,18 @@ class WebhooksRepository extends BaseRepository
         ]);
     }
 
+    private function getPackageHelper($packageName){
+        $cleanedPackageName = Str::of($packageName)->replace('_', ' ')->__toString();
+        return ProcuringEntityPackage::where('name','ilike' , "%{$cleanedPackageName}%")->first();
+
+    }
+
     private function recordProgress($payload)
     {
         // create package progress
         $progressArr = $payload['progress'];
         foreach ($progressArr as $progress) {
-
-            $packageName = Str::of($progress['progress/package'])->replace('_', ' ')->__toString();
-            $package = ProcuringEntityPackage::where('name','ilike' , "%{$packageName}%")->first();
+            $package = $this->getPackageHelper($progress['progress/package']);
 
             if ($package) {
                 $contract = $package->contract()->first();
@@ -63,14 +69,37 @@ class WebhooksRepository extends BaseRepository
         }
     }
 
+    private function recordChallenges($payload){
+        $challenges = $payload['challenges'];
+
+        foreach ($challenges as $challenge) {
+
+            /* @var ProcuringEntityPackage */
+            $package =  $this->getPackageHelper($challenge['challenges/challenge_package']);
+            if ($package) {
+                $package->challenges()->create([
+                    'name' => $challenge['challenges/Challenge'],
+                    'way_forward' => $challenge['challenges/Way_Forward']
+                ]);
+            }
+
+        }
+
+}
+
+    /**
+     * @throws CopyFileException
+     * @throws CreateTemporaryFileException
+     */
     public function create($input): Model
     {
-        $webhook = parent::create($input);
+        $webhook = parent::create($input); // save the webhook to the database
         $procuringEntityId = 1;
-        $payload = json_decode(json_encode($webhook->payload), true);
+        $payload = json_decode(json_encode($webhook->payload), true); // convert json object to php object
 
         $report = $this->createReport($procuringEntityId, $payload);
         $this->recordProgress($payload);
+        $this->recordChallenges($payload);
 
         ExportReport::create(1, $report->id);
         return $webhook;
