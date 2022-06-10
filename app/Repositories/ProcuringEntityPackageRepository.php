@@ -67,7 +67,7 @@ class ProcuringEntityPackageRepository extends BaseRepository
                     return $query->take($childCount);
                 },
 
-                'contract'
+                'contract' => fn($q) => $q->with(['contractor'])
             ])
             ->first();
 
