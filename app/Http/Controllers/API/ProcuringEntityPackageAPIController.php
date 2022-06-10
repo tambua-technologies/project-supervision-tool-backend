@@ -133,6 +133,73 @@ class ProcuringEntityPackageAPIController extends AppBaseController
     }
 
     /**
+     * @param CreateProcuringEntityPackagesAPIRequest $request
+     *
+     * @SWG\Post(
+     *      path="/procuring_entity_packages/{id}/challenges",
+     *      summary="Store a newly created package challege in storage",
+     *      tags={"ProcuringEntityPackages"},
+     *     security={{"Bearer":{}}},
+     *      description="Store package challenge",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="package id",
+     *          type="string"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="pakage challenge that should be stored",
+     *          required=false,
+     *          @SWG\Schema(
+     *           type="object",
+     *           @SWG\Property(
+     *                  property="name",
+     *                  type="string"
+     *              ),
+     *            @SWG\Property(
+     *                  property="way_forward",
+     *                  type="string"
+     *              ),
+     * )
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/ProcuringEntityPackage"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function storeChallenge( Request $request, ProcuringEntityPackage $package): JsonResponse
+    {
+        $input = $request->all();
+
+        $procuringEntityPackagesChallenge = $this->procuringEntityPackageRepository->createChallenge($package,$input);
+
+        return $this->sendResponse($procuringEntityPackagesChallenge, 'ProcuringEntityPackage challenge saved successfully');
+    }
+
+
+
+
+    /**
      * @param int $id
      *
      * @return JsonResponse

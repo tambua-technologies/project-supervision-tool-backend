@@ -73,6 +73,11 @@ class ProcuringEntityPackageRepository extends BaseRepository
 
     }
 
+    public function createChallenge(ProcuringEntityPackage $package, $input) {
+        return $package->challenges()->create($input);
+
+    }
+
     /**
      * Configure the Model
      **/

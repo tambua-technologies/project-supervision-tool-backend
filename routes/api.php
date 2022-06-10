@@ -55,6 +55,7 @@ Route::middleware('auth:api')
         Route::get('/procuring_entities/statistics/{id}', 'ProcuringEntityAPIController@statistics');
         Route::get('/procuring_entities/{id}/safeguard_concerns/statistics', 'ProcuringEntityAPIController@safeguardConcernsStatistics');
         Route::get('/procuring_entities/{id}/packages/statistics', 'ProcuringEntityAPIController@packagesStatistics');
+        Route::post('procuring_entity_packages/{package}/challenges', 'ProcuringEntityPackageAPIController@storeChallenge');
 
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
