@@ -17,6 +17,8 @@ class CreateChallengesTable extends Migration
             $table->id();
             $table->text('name');
             $table->text('way_forward')->nullable();
+            $table->unsignedInteger('entity_id');
+            $table->string('entity_type');
             $table->timestamps();
         });
     }

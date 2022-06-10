@@ -224,4 +224,9 @@ class ProcuringEntityPackage extends Model
         return $this->hasMany(SafeguardConcern::class, 'procuring_entity_id');
     }
 
+    public function challenges()
+    {
+        return $this->morphMany(Challenge::class, 'entity');
+    }
+
 }
