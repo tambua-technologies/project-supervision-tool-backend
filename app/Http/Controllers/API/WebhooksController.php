@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class WebhooksController extends AppBaseController
 {
-     private $webhooksRepository;
+
+     private WebhooksRepository $webhooksRepository;
 
     public function __construct(WebhooksRepository $webhooksRepo)
     {
