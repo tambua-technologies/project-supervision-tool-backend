@@ -20,6 +20,7 @@ class CreateChallengesTable extends Migration
             $table->unsignedInteger('entity_id');
             $table->string('entity_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -107,7 +107,8 @@ class ProcuringEntityPackage extends Model
     protected $appends = [
         'progress',
         'work_types',
-        'sub_projects_count'
+        'sub_projects_count',
+        'challenges_count'
     ];
 
 
@@ -151,6 +152,10 @@ class ProcuringEntityPackage extends Model
 
     public function getSubProjectsCountAttribute(){
         return $this->subProjects()->count();
+    }
+
+    public function getChallengesCountAttribute() {
+        return $this->challenges()->count();
     }
 
 
