@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => 'David',
                 'middle_name' => 'Victor',
                 'phone' => '0782120252',
-                'email' => 'project.coordinator@gmail.com',
+                'email' => 'navish45@gmail.com',
                 'type' => 'focal_person',
                 'email_verified_at' => '2020-11-16 08:14:25',
                 'password' => '$2y$10$TMuGZwRiElEtuuHGDzf4sOB6J5gOTPdyQUmeQnh8WJmPNXQRkxSBC',
@@ -72,7 +72,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => 'Mkumbo',
                 'middle_name' => 'Charles',
                 'phone' => '248-402-0400 x528',
-                'email' => 'temeke.csc@gmail.com',
+                'email' => 'charsbeaty@gmail.com',
                 'type' => 'focal_person',
                 'email_verified_at' => '2020-11-16 08:14:25',
                 'password' => '$2y$10$TMuGZwRiElEtuuHGDzf4sOB6J5gOTPdyQUmeQnh8WJmPNXQRkxSBC',
@@ -81,6 +81,39 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => NULL,
                 'deleted_at' => NULL,
             ),
+
+            4 =>
+                array (
+                    'name' => NULL,
+                    'first_name' => 'Project',
+                    'last_name' => 'Coordinator',
+                    'middle_name' => 'Coordinator',
+                    'phone' => '0782120263',
+                    'email' => 'project.coordinator@gmail.com',
+                    'type' => 'focal_person',
+                    'email_verified_at' => '2020-11-16 08:14:25',
+                    'password' => '$2y$10$TMuGZwRiElEtuuHGDzf4sOB6J5gOTPdyQUmeQnh8WJmPNXQRkxSBC',
+                    'remember_token' => NULL,
+                    'created_at' => NULL,
+                    'updated_at' => NULL,
+                    'deleted_at' => NULL,
+                ),
+            5 =>
+                array (
+                    'name' => NULL,
+                    'first_name' => 'Temeke',
+                    'last_name' => 'CSC',
+                    'middle_name' => 'Temeke',
+                    'phone' => '248-402-0400 x538',
+                    'email' => 'temeke.csc@gmail.com',
+                    'type' => 'focal_person',
+                    'email_verified_at' => '2020-11-16 08:14:25',
+                    'password' => '$2y$10$TMuGZwRiElEtuuHGDzf4sOB6J5gOTPdyQUmeQnh8WJmPNXQRkxSBC',
+                    'remember_token' => NULL,
+                    'created_at' => NULL,
+                    'updated_at' => NULL,
+                    'deleted_at' => NULL,
+                ),
         ));
 
 
