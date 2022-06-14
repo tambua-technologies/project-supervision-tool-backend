@@ -158,6 +158,121 @@ class SubProjectAPIController extends AppBaseController
     }
 
 
+
+
+    /**
+     * @param Request $request
+     *
+     * @SWG\Get(
+     *      path="/sub_projects_locations",
+     *      summary="Get a listing of  SubProject",
+     *      tags={"SubProject"},
+     *     security={{"Bearer":{}}},
+     *      description="Get all SubProjects",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="filter[sub_project_type_id]",
+     *          description="sub project type filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[sub_project_status_id]",
+     *          description="sub project status  filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuring_entity_package_id]",
+     *          description="sub project procuring entity package  filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[districts.id]",
+     *          description="sub project districts filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[districts.region_id]",
+     *          description="sub project regions filter",
+     *          type="string",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.procuring_entity_id]",
+     *          description="sub project procuring entity filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.contract.contractor_id]",
+     *          description="sub project contractors filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[procuringEntityPackage.procuringEntity.project_sub_component_id]",
+     *          description="sub project procuring entity sub component filter",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="filter[project_id]",
+     *          description="filter sub projects  by project",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/SubProject")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     * @return JsonResponse
+     */
+    public function locations(Request $request): JsonResponse
+    {
+        $subProjects = QueryBuilder::for(SubProject::class)
+            ->allowedFilters([
+                AllowedFilter::exact('sub_project_status_id'),
+                AllowedFilter::exact('sub_project_type_id'),
+                AllowedFilter::exact('procuring_entity_package_id'),
+                AllowedFilter::exact('procuring_entity_id'),
+            ])
+            ->get();
+
+        return $this->sendResponse($subProjects, 'Sub Projects retrieved successfully');
+    }
+
+
+
+
     /**
      *
      * @SWG\Post(

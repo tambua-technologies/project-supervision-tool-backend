@@ -36,19 +36,19 @@ Route::middleware('auth:api')
         Route::get('projects/{id}/tickets', 'ProjectAPIController@tickets');
         Route::get('sub_projects/{id}/tickets', 'SubProjectAPIController@tickets');
 
-        Route::get('/locations/regions', 'LocationAPIController@regions');
-        Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
-        Route::get('/locations/regions/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerRegion');
-        Route::get('/locations/districts/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerDistrict');
-        Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
-        Route::get('/locations/region/{id}', 'LocationAPIController@getRegion');
-        Route::get('/locations/region/{id}/project_statistics', 'LocationAPIController@project_statistics');
-        Route::get('/locations/region/{id}/sub_project_statistics', 'LocationAPIController@sub_project_statistics');
-        Route::get('/locations/regions/{region_id}/projects', 'LocationAPIController@getProjectsByRegion');
-        Route::get('/locations/districts/{district_id}/sub_projects', 'LocationAPIController@getSubProjectsByDistrict');
+//        Route::get('/locations/regions', 'LocationAPIController@regions');
+//        Route::get('/locations/regions/projects_overview', 'LocationAPIController@projectsOverviewPerRegion');
+//        Route::get('/locations/regions/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerRegion');
+//        Route::get('/locations/districts/sub_projects_overview', 'LocationAPIController@subProjectsOverviewPerDistrict');
+//        Route::get('/locations/districts/{region_id}', 'LocationAPIController@districts');
+//        Route::get('/locations/region/{id}', 'LocationAPIController@getRegion');
+//        Route::get('/locations/region/{id}/project_statistics', 'LocationAPIController@project_statistics');
+//        Route::get('/locations/region/{id}/sub_project_statistics', 'LocationAPIController@sub_project_statistics');
+//        Route::get('/locations/regions/{region_id}/projects', 'LocationAPIController@getProjectsByRegion');
+//        Route::get('/locations/districts/{district_id}/sub_projects', 'LocationAPIController@getSubProjectsByDistrict');
         Route::get('/projects/statistics', 'ProjectAPIController@statistics');
         Route::get('/sub_projects/statistics', 'SubProjectAPIController@statistics');
-        Route::get('/locations/sub_projects_overview_by_region/{region_id}', 'LocationAPIController@subProjectsOverViewByRegion');
+//        Route::get('/locations/sub_projects_overview_by_region/{region_id}', 'LocationAPIController@subProjectsOverViewByRegion');
         Route::get('/users/auth_user', 'UserAPIController@auth_user');
         Route::get('/users/{id}/assign_role/{role}', 'UserAPIController@assign_role');
         Route::post('/roles/assign_permission', 'RoleAPIController@assign_permission');
@@ -56,6 +56,7 @@ Route::middleware('auth:api')
         Route::get('/procuring_entities/{id}/safeguard_concerns/statistics', 'ProcuringEntityAPIController@safeguardConcernsStatistics');
         Route::get('/procuring_entities/{id}/packages/statistics', 'ProcuringEntityAPIController@packagesStatistics');
         Route::post('procuring_entity_packages/{package}/challenges', 'ProcuringEntityPackageAPIController@storeChallenge');
+        Route::get('/sub_projects_locations', 'SubProjectAPIController@locations');
 
         // imports
         Route::post('/procuring_entity_packages/import', 'ProcuringEntityPackageAPIController@import');
@@ -78,7 +79,7 @@ Route::middleware('auth:api')
         Route::resource('units', 'UnitAPIController');
         Route::resource('tickets', 'TicketAPIController');
         Route::resource('ticket_priorities', 'TicketPriorityAPIController');
-        Route::resource('locations', 'LocationAPIController');
+//        Route::resource('locations', 'LocationAPIController');
         Route::resource('stock_types', 'StockTypeAPIController');
         Route::resource('stock_statuses', 'StockStatusesAPIController');
         Route::resource('stock_groups', 'StockGroupAPIController');
