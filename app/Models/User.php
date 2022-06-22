@@ -95,6 +95,7 @@ class User extends Authenticatable
         'location_id',
         'middle_name',
         'phone',
+        'title'
     ];
 
     protected $childTypes = [
@@ -122,6 +123,7 @@ class User extends Authenticatable
         'middle_name' => 'string',
         'phone' => 'string',
         'email' => 'string',
+        'title' => 'string',
         'password' => 'string',
         'email_verified_at' => 'datetime',
     ];

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\App;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +51,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if (App::environment('testing')) {
+            throw $exception;
+        }
         return parent::render($request, $exception);
     }
 }

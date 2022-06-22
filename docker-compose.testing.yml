@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: postgis/postgis
+    container_name: project-supervision-tool_db
+    restart: unless-stopped
+    volumes:
+      - "project_supervision_tool_db_data:/var/lib/postgresql/data"
+    env_file:
+      - .env.testing
+
+    ports:
+      - "5432:5432"
+
+
+  php:
+    build: .
+    image: project-supervision-tool
+    command: 'php artisan serve --host=0.0.0.0'
+    container_name: project-superviosion-tool
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www
+      - ./.docker/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    ports:
+      - "8000:8000"
+
+
+volumes:
+  project_supervision_tool_db_data:

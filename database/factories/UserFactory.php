@@ -10,6 +10,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
+        'title' => $faker->title,
         'phone' => $faker->unique()->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'first_name' => $faker->firstName,
