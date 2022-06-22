@@ -122,7 +122,7 @@ class UserAPIController extends AppBaseController
 
         $user = $this->userRepository->create($input);
 
-        return $this->sendResponse($user->toArray(), 'User saved successfully');
+        return $this->sendResponse(new UserResource($user), 'User saved successfully');
     }
 
     /**

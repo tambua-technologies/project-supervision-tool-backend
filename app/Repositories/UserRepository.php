@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class UserRepository
@@ -35,10 +36,20 @@ class UserRepository extends BaseRepository
         return $this->fieldSearchable;
     }
 
+
+    public function create($input)
+    {
+        $user = parent::create($input);
+        $user->agencies()->attach([$input['agency_id']]);
+        $user->assignRole('admin',);
+        return $user->fresh(['agencies']);
+
+    }
+
     /**
      * Configure the Model
      **/
-    public function model()
+    public function model(): string
     {
         return User::class;
     }

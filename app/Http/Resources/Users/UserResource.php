@@ -19,6 +19,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
+            'title' => $this->title,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
             'phone' => $this->phone,
@@ -28,6 +29,7 @@ class UserResource extends JsonResource
             'updated_at' => $this->updated_at,
             'location' => $this->location,
             'roles' => RoleResource::collection($this->roles),
+            'agency' => $this->agencies()->first()
         ];
     }
 }

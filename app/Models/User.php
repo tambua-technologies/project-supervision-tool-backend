@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\FocalPerson;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,14 +30,36 @@ use Spatie\Permission\Traits\HasRoles;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="organisation_id",
+ *          description="organisation_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="first_name",
  *          description="first_name",
+ *          type="string"
+ *      ),
+ *     @SWG\Property(
+ *          property="title",
+ *          description="title",
  *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="last_name",
  *          description="last_name",
  *          type="string"
+ *      ),
+ *     @SWG\Property(
+ *          property="roles",
+ *          description="roles",
+ *          type="array",
+ *          @SWG\Items()
+ *      ),
+ *     @SWG\Property(
+ *          property="agency",
+ *          description="agency",
+ *          type="object"
  *      ),
  *      @SWG\Property(
  *          property="middle_name",
@@ -77,6 +100,8 @@ class User extends Authenticatable
 {
     use Notifiable, HasChildren, SoftDeletes, HasRoles;
 
+    protected $guard_name = 'api';
+
 
 
     protected $dates = ['deleted_at'];
@@ -95,7 +120,7 @@ class User extends Authenticatable
         'location_id',
         'middle_name',
         'phone',
-        'title'
+        'title',
     ];
 
     protected $childTypes = [
@@ -146,5 +171,10 @@ class User extends Authenticatable
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class, 'location_id');
+    }
+
+    public function agencies(): BelongsToMany
+    {
+        return $this->belongsToMany(Agency::class);
     }
 }
