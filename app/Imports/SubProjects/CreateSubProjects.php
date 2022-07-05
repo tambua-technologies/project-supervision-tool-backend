@@ -14,18 +14,17 @@ use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
+class CreateSubProjects implements ToCollection, SkipsEmptyRows, WithHeadingRow
 {
 
-    public function getSubProjectType($data)
+    private function getSubProjectQuantity($data): array
     {
         // return if type is found
         $type = $data['type'] ? SubProjectType::where('name', 'ilike', $data['type'])->first() : null;
-        if ($type) return $type;
+
 
         // create new type if given one doesnt exist
-        if ($data['type'])
-        {
+        if ($data['type']) {
 
             $u = $data['unit'] || 'unknown';
 
@@ -35,15 +34,16 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
                 'code' => $u,
             ]);
 
-            return SubProjectType::create([
+            $type = SubProjectType::create([
                 'name' => $data['type'],
                 'description' => $data['type'],
                 'unit_id' => $unit->id,
             ]);
         }
 
-        // return null if all above fails
-        return null;
+        $unit = $type ? $type->unit()->first() : null;
+        return ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
+
 
     }
 
@@ -62,76 +62,36 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
     {
 
 
-
-
         $collection->map(function ($data) {
-
-            // get package
             $package = ProcuringEntityPackage::join('procuring_entities', 'procuring_entity_packages.procuring_entity_id', 'procuring_entities.id')
                 ->join('agencies', 'procuring_entities.agency_id', 'agencies.id')
                 ->selectRaw('procuring_entity_packages.*, project_id')
                 ->where('agencies.name', 'ilike', $data['procuring_entity'])
                 ->where('procuring_entity_packages.name', 'ilike', $data['package'])
                 ->first();
-
-            Log::info('package', [$package]);
-
             $procuringEntity = $package->procuringEntity()->first();
-            Log::info('procuring entity', [$procuringEntity]);
             $agency = $procuringEntity->agency()->first();
-            Log::info('Agency', [$agency]);
             $district = $agency->district()->first();
-
-
-
-
-
-
-
-
-
-            $type = $this->getSubProjectType($data);
-
-
             $status = SubProjectStatus::where('name', 'ilike', $data['status'])->first();
-            $unit = $type ? $type->unit()->first() : null;
-            $quantity = ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
-
+            $quantity = $this->getSubProjectQuantity($data);
             $geoJson = $this->getSubProjectGeo($data);
 
-            $subProject = SubProject::where('name',$data['name'])
-                ->where('project_id',$package->project_id)
-                ->where('procuring_entity_id',$package->procuring_entity_id)
-                ->where('procuring_entity_package_id',$package->id)
-                ->first();
+            SubProject::createOrCreate(
+                [
+                    'name' => $data['name'],
+                    'project_id' => $package->project_id,
+                    'procuring_entity_id' => $package->procuring_entity_id,
+                    'procuring_entity_package_id' => $package->id,
+                ],
+                [
+                    'quantity' => $quantity,
+                    'sub_project_status_id' => $status->id,
+                    'sub_project_type_id' => $type->id ?? null,
+                    'district_id' => $district->id,
+                    'geo_json' => $geoJson ? json_decode($geoJson->json) : null
+                ]);
 
-            if ($subProject)
-            {
-                $subProject->update([
-                    'name' => $data['name'],
-                    'quantity' => $quantity,
-                    'project_id' => $package->project_id,
-                    'procuring_entity_id' => $package->procuring_entity_id,
-                    'sub_project_status_id' => $status->id,
-                    'sub_project_type_id' => $type->id ?? null,
-                    'district_id' => $district->id,
-                    'procuring_entity_package_id' => $package->id,
-                    'geo_json' => $geoJson ? json_decode($geoJson->json) : null
-                ]);
-            }
-            else {
-                SubProject::create([
-                    'name' => $data['name'],
-                    'quantity' => $quantity,
-                    'project_id' => $package->project_id,
-                    'procuring_entity_id' => $package->procuring_entity_id,
-                    'sub_project_status_id' => $status->id,
-                    'sub_project_type_id' => $type->id ?? null,
-                    'district_id' => $district->id,
-                    'procuring_entity_package_id' => $package->id,
-                    'geo_json' => $geoJson ? json_decode($geoJson->json) : null
-                ]);
-            }
+
 
         });
     }
