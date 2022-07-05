@@ -47,6 +47,17 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
 
     }
 
+    private function getSubProjectGeo($data)
+    {
+        $geo = $data['geo'];
+        if (!$geo) return null;
+
+        $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
+
+        return DB::select($subProjectGeoDataQuery)[0];
+
+    }
+
     public function collection(Collection $collection)
     {
 
@@ -74,14 +85,7 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
 
 
 
-            $geo = $data['geo'];
-            $subProjectGeoDataQuery = null;
-            if ($geo) {
-                $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
-            }
-            else {
-                $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 4326),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (SELECT ST_GeneratePoints(geom, 1) FROM (select geom::geometry from  districts where id='$district->id') geom)  AS t( geom)";
-            }
+
 
 
 
@@ -93,7 +97,7 @@ class CreateSubProjects implements ToCollection,SkipsEmptyRows,WithHeadingRow
             $unit = $type ? $type->unit()->first() : null;
             $quantity = ["unit" => $unit->code ?? null, "quantity" => $data["quantity"]];
 
-            $geoJson = $subProjectGeoDataQuery ? DB::select($subProjectGeoDataQuery)[0] : null;
+            $geoJson = $this->getSubProjectGeo($data);
 
             $subProject = SubProject::where('name',$data['name'])
                 ->where('project_id',$package->project_id)
