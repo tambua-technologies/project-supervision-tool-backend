@@ -50,11 +50,15 @@ class CreateSubProjects implements ToCollection, SkipsEmptyRows, WithHeadingRow
     private function getSubProjectGeo($data)
     {
         $geo = $data['geo'];
-        if (!$geo) return null;
+        if ($geo) {
 
-        $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
 
-        return DB::select($subProjectGeoDataQuery)[0];
+            $subProjectGeoDataQuery = "SELECT jsonb_build_object(  'type', 'Feature', 'geometry',   ST_AsGeoJSON(ST_Transform(ST_SetSRID(geom, 21037),4326))::jsonb, 'properties', to_jsonb('{}'::json)) AS json FROM (VALUES ('$geo'::geometry)) AS t( geom)";
+
+            return DB::select($subProjectGeoDataQuery)[0];
+        }
+
+        return null;
 
     }
 
