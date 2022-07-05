@@ -80,7 +80,7 @@ class CreateSubProjects implements ToCollection, SkipsEmptyRows, WithHeadingRow
             $quantity = $this->getSubProjectQuantity($data);
             $geoJson = $this->getSubProjectGeo($data);
 
-            SubProject::createOrCreate(
+            SubProject::updateOrCreate(
                 [
                     'name' => $data['name'],
                     'project_id' => $package->project_id,
