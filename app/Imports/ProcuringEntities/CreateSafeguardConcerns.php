@@ -25,8 +25,6 @@ class CreateSafeguardConcerns implements ToCollection,SkipsEmptyRows,WithHeading
             $package = ProcuringEntityPackage::where('name', $data['package'])
                 ->where('procuring_entity_id', $procuringEntity->id)->first();
 
-            Log::info('package and package', [$data['package'], $package]);
-
             // create the contract
             SafeguardConcern::create([
                 'procuring_entity_id' => $procuringEntity->id,
