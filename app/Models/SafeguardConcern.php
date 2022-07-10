@@ -14,6 +14,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer",
  *          format="int32"
  *      ),
+ *     @SWG\Property(
+ *          property="sub_project_id",
+ *          description="sub-project id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
  *      @SWG\Property(
  *          property="concern_type",
  *          description="concern  type",
@@ -62,6 +68,7 @@ class SafeguardConcern extends Model
         'concern_type',
         'description',
         'way_forward',
+        'sub_project_id',
         'procuring_entity_id',
         'issue',
         'commitment',
@@ -78,6 +85,7 @@ class SafeguardConcern extends Model
     protected $casts = [
         'id' => 'integer',
         'package_id' => 'integer',
+        'sub_project_id' => 'integer',
         'procuring_entity_id' => 'integer',
         'concern_type' => 'string',
         'description' => 'string',

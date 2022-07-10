@@ -17,6 +17,7 @@ class CreateSafeguardConcernsTable extends Migration
             $table->id();
             $table->unsignedInteger('package_id')->nullable();
             $table->unsignedInteger('procuring_entity_id')->nullable();
+            $table->unsignedInteger('sub_project_id')->nullable();
             $table->enum('concern_type', ['environmental','social','healthy and safety', 'other'])->default('other');
             $table->string('issue');
             $table->string('description')->nullable();
@@ -32,6 +33,12 @@ class CreateSafeguardConcernsTable extends Migration
                 ->references('id')
                 ->on('procuring_entities')
                 ->onDelete('set null');
+
+            $table->foreign('sub_project_id')
+                ->references('id')
+                ->on('sub_projects')
+                ->onDelete('set null');
+
 
             $table->foreign('package_id')
                 ->references('id')

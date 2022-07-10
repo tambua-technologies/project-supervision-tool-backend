@@ -1,6 +1,7 @@
 <?php namespace Tests\APIs;
 
 
+use App\Models\SafeguardConcern;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -24,6 +25,13 @@ class SafeguardConcernsTest extends TestCase
                 'file' => new UploadedFile(base_path('tests/fixtures/packages_and_contracts_testing_data.xlsx'), 'packages_and_contracts_testing_data.xlsx', null, null, true),
             ]
         );
+        $this->json(
+            'POST',
+            '/api/v1/sub_projects/import',
+            [
+                'file' => new UploadedFile(base_path('tests/fixtures/sub_projects_test_data.xlsx'), 'sub_projects_test_data.xlsx', null, null, true),
+            ]
+        );
 
         $this->response = $this->json(
             'POST',
@@ -31,10 +39,8 @@ class SafeguardConcernsTest extends TestCase
                 'file' => new UploadedFile(base_path('tests/fixtures/safeguard_concerns_test_data.xlsx'), 'safeguard_concerns_test_data.xlsx', null, null, true),
             ]
         );
-        //var_dump($this->response);
+        dd(SafeguardConcern::first());
 
         $this->response->assertOk();
     }
-
-
 }
