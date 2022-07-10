@@ -13,34 +13,17 @@ class SafeguardConcernsTest extends TestCase
 
 
     /**
-     * Get uploadable file.
-     *
-     * @return UploadedFile
-     */
-    protected function getUploadableFile($file): UploadedFile
-    {
-        $dummy = file_get_contents($file);
-
-        file_put_contents(base_path("tests/" . basename($file)), $dummy);
-
-        $path = base_path("tests/" . basename($file));
-        $original_name = 'subscribers.csv';
-        $mime_type = 'text/csv';
-        $size = 111;
-        $error = null;
-        $test = true;
-
-        $file = new UploadedFile($path, $original_name, $mime_type, $size, $error, $test);
-
-        return $file;
-    }
-
-
-    /**
      * @test
      */
     public function test_upload_safeguardConcerns()
     {
+        $this->json(
+            'POST',
+            '/api/v1/procuring_entity_packages/import',
+            [
+                'file' => new UploadedFile(base_path('tests/fixtures/packages_and_contracts_testing_data.xlsx'), 'packages_and_contracts_testing_data.xlsx', null, null, true),
+            ]
+        );
 
         $this->response = $this->json(
             'POST',
@@ -48,7 +31,7 @@ class SafeguardConcernsTest extends TestCase
                 'file' => new UploadedFile(base_path('tests/fixtures/safeguard_concerns_test_data.xlsx'), 'safeguard_concerns_test_data.xlsx', null, null, true),
             ]
         );
-        var_dump($this->response);
+        //var_dump($this->response);
 
         $this->response->assertOk();
     }
