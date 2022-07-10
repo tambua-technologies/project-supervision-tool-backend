@@ -39,7 +39,6 @@ class SafeguardConcernsTest extends TestCase
                 'file' => new UploadedFile(base_path('tests/fixtures/safeguard_concerns_test_data.xlsx'), 'safeguard_concerns_test_data.xlsx', null, null, true),
             ]
         );
-        dd(SafeguardConcern::first());
 
         $this->response->assertOk();
     }
