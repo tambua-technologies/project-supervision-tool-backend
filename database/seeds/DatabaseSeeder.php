@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,10 +43,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ProcuredProjectComponentsTableSeeder::class);
         $this->call(ProcuredProjectSubComponentsTableSeeder::class);
 
-
-        $this->call(ProcuringEntityPackagesTableSeeder::class);
-        $this->call(SubProjectsTableSeeder::class);
-        $this->call(SafeguardConcernsTableSeeder::class);
+        if (App::environment('testing')) {
+            $this->call(ProcuringEntityPackagesTableSeeder::class);
+            $this->call(SubProjectsTableSeeder::class);
+            $this->call(SafeguardConcernsTableSeeder::class);
+        }
 
     }
 }
