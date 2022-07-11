@@ -48,6 +48,13 @@ class SafeguardConcernsAPIController extends AppBaseController
      *          required=false,
      *          in="query"
      *      ),
+     *     @SWG\Parameter(
+     *          name="filter[sub_project_id]",
+     *          description="filter by sub-projects",
+     *          type="integer",
+     *          required=false,
+     *          in="query"
+     *      ),
      *      @SWG\Parameter(
      *          name="filter[concern_type]",
      *          description="filter by concern type",
@@ -84,9 +91,11 @@ class SafeguardConcernsAPIController extends AppBaseController
             ->allowedFilters([
                 AllowedFilter::exact('procuring_entity_id'),
                 AllowedFilter::exact('package_id'),
+                AllowedFilter::exact('sub_project_id'),
                 AllowedFilter::exact('concern_type'),
             ])
             ->with(['package'])
+            ->with(['subProject'])
             ->paginate($request->get('per_page', 15));
 
         return $this->sendResponse($safeguardConcerns->toArray(), 'Safeguard concerns retrieved successfully');

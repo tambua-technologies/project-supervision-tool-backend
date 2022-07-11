@@ -9,20 +9,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @SWG\Definition(
  *      definition="SafeguardConcern",
  *      @SWG\Property(
- *          property="package_id",
- *          description="package id",
- *          type="integer",
- *          format="int32"
+ *          property="package",
+ *          description="package",
+ *          type="object"
  *      ),
  *     @SWG\Property(
- *          property="sub_project_id",
- *          description="sub-project id",
- *          type="integer",
- *          format="int32"
+ *          property="sub_project",
+ *          description="sub-project",
+ *          type="object"
  *      ),
  *      @SWG\Property(
  *          property="concern_type",
- *          description="concern  type",
+ *          description="concern type",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -113,6 +111,11 @@ class SafeguardConcern extends Model
     public function package()
     {
         return $this->belongsTo(ProcuringEntityPackage::class);
+    }
+
+    public function subProject()
+    {
+        return $this->belongsTo(SubProject::class);
     }
 
 

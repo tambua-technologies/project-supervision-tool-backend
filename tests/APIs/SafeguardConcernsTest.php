@@ -13,26 +13,14 @@ class SafeguardConcernsTest extends TestCase
     use ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
 
 
+
+
+
     /**
      * @test
      */
     public function test_upload_safeguardConcerns()
     {
-        $this->json(
-            'POST',
-            '/api/v1/procuring_entity_packages/import',
-            [
-                'file' => new UploadedFile(base_path('tests/fixtures/packages_and_contracts_testing_data.xlsx'), 'packages_and_contracts_testing_data.xlsx', null, null, true),
-            ]
-        );
-        $this->json(
-            'POST',
-            '/api/v1/sub_projects/import',
-            [
-                'file' => new UploadedFile(base_path('tests/fixtures/sub_projects_test_data.xlsx'), 'sub_projects_test_data.xlsx', null, null, true),
-            ]
-        );
-
         $this->response = $this->json(
             'POST',
             '/api/v1/safeguard_concerns/import', [
@@ -41,5 +29,35 @@ class SafeguardConcernsTest extends TestCase
         );
 
         $this->response->assertOk();
+    }
+
+    public function test_get_safeguard_concerns() {
+        $this->response = $this->json('GET', '/api/v1/safeguard_concerns');
+        $response = json_decode($this->response->getContent(), true);
+        $safeguardConcerns = $response['data']['data'];
+
+        $expectedKeys = [
+            'id',
+            'procuring_entity_id',
+            'sub_project',
+            'concern_type',
+            'issue',
+            'description',
+            'commitment',
+            'steps_taken',
+            'challenges',
+            'mitigation_measures',
+            'way_forward',
+            'created_at',
+            'updated_at',
+            'package',
+
+        ];
+        foreach ($expectedKeys as $key) {
+            $this->assertArrayHasKey($key, $safeguardConcerns[0]);
+        }
+
+        $this->assertEquals(3, $response['data']['total']);
+
     }
 }
