@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             $this->call(SubProjectsTableSeeder::class);
             $this->call(SafeguardConcernsTableSeeder::class);
             $this->call(ChallengesTableSeeder::class);
+        $this->call(ProcuringEntityContractTableSeeder::class);
     }
 
     }
