@@ -1,0 +1,88 @@
+{
+    "_id": 31,
+    "_tags": [],
+    "_uuid": "33489c99-9f71-4264-aabc-2d723522ecbc",
+    "_notes": [],
+    "photos": [
+        {
+            "photos/photo": "image-028-14_15_31.jpg",
+            "photos/location": "-6.895988 39.268014 0 0",
+            "photos/description": "Nzasa Kilungule retaining wall",
+            "photos/photo_package": "package_1"
+        },
+        {
+            "photos/photo": "image-029-14_17_25.jpg",
+            "photos/location": "-6.903419 39.269172 0 0",
+            "photos/description": "Subgrade fill material at dumping area",
+            "photos/photo_package": "package_2"
+        }
+    ],
+    "_status": "submitted_via_web",
+    "deviceid": "deviceid not found",
+    "progress": [
+        {
+            "progress/package": "package_1",
+            "progress/financial_progress": "80",
+            "progress/actual_physical_progress": "99",
+            "progress/planned_physical_progress": "100"
+        },
+        {
+            "progress/package": "package_2",
+            "progress/financial_progress": "50",
+            "progress/actual_physical_progress": "60",
+            "progress/planned_physical_progress": "80"
+        }
+    ],
+    "challenges": [
+        {
+            "challenges/Challenge": "Dead end road due to presence of obstruction",
+            "challenges/Way_Forward": "CSC and client team has a joint visit to the site for discuss of the way forward.",
+            "challenges/challenge_package": "package_1"
+        },
+        {
+            "challenges/Challenge": "Construction of Parking Lots at Detention Pond which is claimed be hazardous area and is under POLICE authority",
+            "challenges/Way_Forward": "Agreement was done to base with the original designs without additional features such as recreational area, toilets, askari hut etc. Harmonization meeting to be done with Police Officers to discuss how to operate Parking since they discourage it for public use.",
+            "challenges/challenge_package": "package_2"
+        }
+    ],
+    "__version__": "vEiNVBucQoVAGc7kJwSdBq",
+    "_attachments": [
+        {
+            "id": 18,
+            "xform": 4,
+            "filename": "super_admin/attachments/f49e379d1e494a6f931ce2e958aae1c9/33489c99-9f71-4264-aabc-2d723522ecbc/image-029-14_17_25.jpg",
+            "instance": 31,
+            "mimetype": "image/jpeg",
+            "download_url": "https://kc.projectsupervisiontool.ga/media/original?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-029-14_17_25.jpg",
+            "download_large_url": "https://kc.projectsupervisiontool.ga/media/large?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-029-14_17_25.jpg",
+            "download_small_url": "https://kc.projectsupervisiontool.ga/media/small?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-029-14_17_25.jpg",
+            "download_medium_url": "https://kc.projectsupervisiontool.ga/media/medium?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-029-14_17_25.jpg"
+        },
+        {
+            "id": 17,
+            "xform": 4,
+            "filename": "super_admin/attachments/f49e379d1e494a6f931ce2e958aae1c9/33489c99-9f71-4264-aabc-2d723522ecbc/image-028-14_15_31.jpg",
+            "instance": 31,
+            "mimetype": "image/jpeg",
+            "download_url": "https://kc.projectsupervisiontool.ga/media/original?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-028-14_15_31.jpg",
+            "download_large_url": "https://kc.projectsupervisiontool.ga/media/large?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-028-14_15_31.jpg",
+            "download_small_url": "https://kc.projectsupervisiontool.ga/media/small?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-028-14_15_31.jpg",
+            "download_medium_url": "https://kc.projectsupervisiontool.ga/media/medium?media_file=super_admin%2Fattachments%2Ff49e379d1e494a6f931ce2e958aae1c9%2F33489c99-9f71-4264-aabc-2d723522ecbc%2Fimage-028-14_15_31.jpg"
+        }
+    ],
+    "_geolocation": [
+        null,
+        null
+    ],
+    "formhub/uuid": "f49e379d1e494a6f931ce2e958aae1c9",
+    "_submitted_by": null,
+    "meta/instanceID": "uuid:33489c99-9f71-4264-aabc-2d723522ecbc",
+    "_submission_time": "2022-07-11T11:18:07",
+    "_xform_id_string": "aHYZx6iJmNtt355Fh5uVri",
+    "_validation_status": [],
+    "executive_summary_section/end_date": "2021-05-31",
+    "executive_summary_section/start_date": "2021-05-01",
+    "executive_summary_section/report_title": "MONTHLY PROGRESS REPORT NO. 60",
+    "executive_summary_section/report_number": "60",
+    "executive_summary_section/executive_summary": "This is the Supervision Consultant’s Progress Report No.59 which provides an update on the Contractor's and the Consultant's activities undertaken during the reporting period; 1st May,2021to 31st May, 2021."
+}
