@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateProcuringEntityAPIRequest;
 use App\Http\Requests\API\UpdateProcuringEntityAPIRequest;
 use App\Http\Resources\ProcuringEntityResource;
+use App\Models\Challenge;
 use App\Models\Contractor;
 use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
@@ -510,6 +511,8 @@ join procuring_entity_package_contracts pepc on pepc.id = package_contract_progr
 join procuring_entity_packages pep on pep.id = pepc.procuring_entity_package_id
 where pep.procuring_entity_id = $procuringEntity->id
 ");
+
+        $challenges = $procuringEntity->getPackageChallengesCount();
         $inProgress = 0;
         $completed = 0;
 
@@ -523,12 +526,13 @@ where pep.procuring_entity_id = $procuringEntity->id
             }
         }
 
+
         $latestReport = $procuringEntity->reports()->orderBy('created_at', 'DESC')->first();
 
         return $this->sendResponse([
         'in_progress' => $inProgress,
         'completed' => $completed,
-        'challenges' => 17,
+        'challenges' => $challenges,
         'latestReport' => $latestReport
     ],
         'ProcuringEntity package statistics fetched successfully');

@@ -14,4 +14,10 @@ migrate:
 tinker:
 	@docker-compose -f docker-compose.testing.yml run php php artisan tinker --env=testing
 
+dump-autoload:
+	@docker-compose -f docker-compose.testing.yml run php composer dump-autoload
+
+
+
+
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -109,6 +110,19 @@ class ProcuringEntity extends Model
         'agency_id',
         'project_id',
     ];
+
+
+    public function getPackageChallengesCount()
+    {
+        return DB::select("select count(*)
+                         from challenges
+                         join (select *
+                         from procuring_entity_packages
+                         where procuring_entity_id = 1
+                         ) as packages on packages.id = entity_id
+                       where entity_type = 'App\Models\ProcuringEntityPackage'")[0]->count;
+
+    }
 
     public static function getByName($name)
     {

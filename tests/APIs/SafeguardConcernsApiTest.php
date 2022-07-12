@@ -8,7 +8,7 @@ use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Illuminate\Http\UploadedFile;
 
-class SafeguardConcernsTest extends TestCase
+class SafeguardConcernsApiTest extends TestCase
 {
     use ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
 
