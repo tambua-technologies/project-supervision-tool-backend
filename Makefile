@@ -5,11 +5,10 @@ dev:
 
 test:
 	@docker-compose -f docker-compose.testing.yml  down -v \
-    	&& docker-compose -f docker-compose.testing.yml up
+    	  && docker-compose -f docker-compose.testing.yml run php php artisan migrate:refresh --seed --env=testing \
+             && docker-compose -f docker-compose.testing.yml run php php artisan passport:install --env=testing \
+             && docker-compose -f docker-compose.testing.yml up
 
-migrate:
-	@docker-compose -f docker-compose.testing.yml run php php artisan migrate:refresh --seed --env=testing \
-     && docker-compose -f docker-compose.testing.yml run php php artisan passport:install --env=testing
 
 tinker:
 	@docker-compose -f docker-compose.testing.yml run php php artisan tinker --env=testing
