@@ -35,6 +35,8 @@ class UserApiTest extends TestCase
         $response = json_decode($this->response->getContent(), true);
         $responseData = $response['data'];
 
+
+
         $procuringEntity = $responseData['procuringEntity'];
 
         $this->assertNotEmpty($responseData['id']);
@@ -72,6 +74,33 @@ class UserApiTest extends TestCase
         );
 
         $this->assertApiResponse($user);
+    }
+
+    public function test_login_user()
+    {
+        $loginPayload = ['email' => 'testing@project-supervision-tool.com', 'password' => 'Pass@Tool'];
+        $expectedUser = [];
+
+        $this->response = $this->json(
+            'POST',
+            '/api/v1/focal_people/login', $loginPayload
+        );
+
+
+        $this->assertApiSuccess();
+
+        $response = json_decode($this->response->getContent(), true);
+        $responseData = $response['data']['user'];
+
+
+
+        $procuringEntity = $responseData['procuringEntity'];
+
+        $this->assertNotEmpty($responseData['id']);
+        $this->assertNotEmpty($responseData['roles']);
+        $this->assertNotEmpty($procuringEntity['agency']);
+        $this->assertNotEmpty($procuringEntity['project']);
+
     }
 
 
