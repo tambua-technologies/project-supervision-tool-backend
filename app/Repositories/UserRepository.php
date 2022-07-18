@@ -40,9 +40,9 @@ class UserRepository extends BaseRepository
     public function create($input)
     {
         $user = parent::create($input);
-        $user->agencies()->attach([$input['agency_id']]);
+        $user->procuringEntities()->attach([$input['procuring_entity_id']]);
         $user->assignRole('admin',);
-        return $user->fresh(['agencies']);
+        return $user->fresh(['procuringEntities']);
 
     }
 

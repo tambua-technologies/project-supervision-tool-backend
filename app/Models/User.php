@@ -173,8 +173,8 @@ class User extends Authenticatable
         return $this->belongsTo(Location::class, 'location_id');
     }
 
-    public function agencies(): BelongsToMany
+    public function procuringEntities(): BelongsToMany
     {
-        return $this->belongsToMany(Agency::class);
+        return $this->belongsToMany(ProcuringEntity::class)->with(['agency','project']);
     }
 }

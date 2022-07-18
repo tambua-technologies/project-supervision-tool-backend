@@ -20,7 +20,7 @@ class UserApiTest extends TestCase
                 'updated_at',
                 'email_verified_at',
                 'password',
-                'agency_id'
+                'procuring_entity_id'
             ])) {
                 continue;
             }
@@ -35,10 +35,15 @@ class UserApiTest extends TestCase
         $response = json_decode($this->response->getContent(), true);
         $responseData = $response['data'];
 
+        $procuringEntity = $responseData['procuringEntity'];
+
         $this->assertNotEmpty($responseData['id']);
-        $this->assertNotEmpty($responseData['agency']);
         $this->assertNotEmpty($responseData['roles']);
+        $this->assertNotEmpty($procuringEntity['agency']);
+        $this->assertNotEmpty($procuringEntity['project']);
         $this->assertModelData($actualData, $responseData);
+
+
     }
 
     /**
@@ -56,7 +61,7 @@ class UserApiTest extends TestCase
          'first_name' => $faker->firstName,
          'last_name' => $faker->lastName,
          'middle_name' => $faker->firstName,
-         'agency_id' => 3,
+         'procuring_entity_id' => 3,
          'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
      ];
 

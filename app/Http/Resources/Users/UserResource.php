@@ -29,7 +29,7 @@ class UserResource extends JsonResource
             'updated_at' => $this->updated_at,
             'location' => $this->location,
             'roles' => RoleResource::collection($this->roles),
-            'agency' => $this->agencies()->first()
+            'procuringEntity' => $this->procuringEntities()->first()
         ];
     }
 }
