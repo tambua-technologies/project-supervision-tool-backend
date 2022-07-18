@@ -526,7 +526,6 @@ where pep.procuring_entity_id = $procuringEntity->id
             }
         }
 
-
         $latestReport = $procuringEntity->reports()->orderBy('created_at', 'DESC')->first();
 
         return $this->sendResponse([

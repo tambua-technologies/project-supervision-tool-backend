@@ -1,12 +1,10 @@
 <?php namespace Tests\APIs;
 
 
-use App\Models\SafeguardConcern;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
-use Illuminate\Http\UploadedFile;
 
 class ProcuringEntitiesApiTest extends TestCase
 {
