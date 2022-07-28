@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Exports\ExportReport;
 use App\Http\Resources\ProcuringEntityReportsResource;
 use App\Models\Media;
+use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityReport;
 
 use Illuminate\Http\JsonResponse;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Log;
 use Response;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class ProgressController
@@ -61,7 +64,12 @@ class ProcuringEntityReportsAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $reports = ProcuringEntityReport::orderBy('created_at', 'DESC')->get();
+
+        $reports = QueryBuilder::for(ProcuringEntityReport::class)
+            ->allowedFilters([
+                AllowedFilter::exact('procuring_entity_id')
+            ])
+            ->orderBy('created_at', 'DESC')->get();
         return $this->sendResponse(ProcuringEntityReportsResource::collection($reports), 'Procuring Entity Reports retrieved successfully');
     }
 
