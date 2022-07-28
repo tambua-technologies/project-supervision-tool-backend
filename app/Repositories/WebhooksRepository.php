@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Exports\ExportReport;
+use App\Models\Agency;
 use App\Models\PackageContractProgress;
+use App\Models\ProcuringEntity;
 use App\Models\ProcuringEntityPackage;
 use App\Models\ProcuringEntityPackageContract;
 use App\Models\ProcuringEntityReport;
@@ -14,6 +16,8 @@ use Illuminate\Support\Str;
 use PhpOffice\PhpWord\Exception\CopyFileException;
 use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
 
+
+
 /**
  * Class WebhooksRepository
  * @package App\Repositories
@@ -22,6 +26,10 @@ use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
 
 class WebhooksRepository extends BaseRepository
 {
+    public ProcuringEntity $procuringEntity;
+    public string $agencyName;
+
+
     /**
      * @var array
      */
@@ -44,7 +52,9 @@ class WebhooksRepository extends BaseRepository
 
     private function getPackageHelper($packageName){
         $cleanedPackageName = Str::of($packageName)->replace('_', ' ')->__toString();
-        return ProcuringEntityPackage::where('name','ilike' , "%{$cleanedPackageName}%")->first();
+        return ProcuringEntityPackage::where('name','ilike' , "%{$cleanedPackageName}%")
+            ->where('procuring_entity_id', $this->procuringEntity->id)
+            ->first();
 
     }
 
@@ -53,8 +63,7 @@ class WebhooksRepository extends BaseRepository
         // create package progress
         $progressArr = $payload['progress'];
         foreach ($progressArr as $progress) {
-            $package = $this->getPackageHelper($progress['progress/package']);
-
+            $package = $this->getPackageHelper($progress["progress/{$this->agencyName}_progress_package"]);
             if ($package) {
                 $contract = $package->contract()->first();
                 PackageContractProgress::create([
@@ -75,7 +84,7 @@ class WebhooksRepository extends BaseRepository
         foreach ($challenges as $challenge) {
 
             /* @var ProcuringEntityPackage */
-            $package =  $this->getPackageHelper($challenge['challenges/challenge_package']);
+            $package =  $this->getPackageHelper($challenge["challenges/{$this->agencyName}_challenge_package"]);
             if ($package) {
                 $package->challenges()->create([
                     'name' => $challenge['challenges/Challenge'],
@@ -94,14 +103,16 @@ class WebhooksRepository extends BaseRepository
     public function create($input): Model
     {
         $webhook = parent::create($input); // save the webhook to the database
-        $procuringEntityId = 1;
         $payload = json_decode(json_encode($webhook->payload), true); // convert json object to php object
+        $this->procuringEntity = ProcuringEntity::getByName($payload['procuring_entity'])->first();
+        $this->agencyName = Str::lower($this->procuringEntity->agency()->first()->name);
+        $procuringEntityId = $this->procuringEntity->id;
 
         $report = $this->createReport($procuringEntityId, $payload);
         $this->recordProgress($payload);
         $this->recordChallenges($payload);
 
-        ExportReport::create(1, $report->id);
+        ExportReport::create($procuringEntityId, $report->id);
         return $webhook;
     }
 

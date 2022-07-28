@@ -39,8 +39,6 @@ class ExportReport
         // get report & procuring entity
         $report = ProcuringEntityReport::find($reportId);
 
-        Log::info('report', [$report]);
-
         $procuringEntity = ProcuringEntity::find($procuringEntityId);
         $contract = $procuringEntity->contract()->first();
         $project = $procuringEntity->project()->first();

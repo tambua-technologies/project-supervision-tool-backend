@@ -84,7 +84,7 @@ class SubProjectAPIController extends AppBaseController
      *          in="query"
      *      ),
      *      @SWG\Parameter(
-     *          name="filter[procuringEntityPackage.procuring_entity_id]",
+     *          name="filter[procuring_entity_id]",
      *          description="sub project procuring entity filter",
      *          type="integer",
      *          required=false,
