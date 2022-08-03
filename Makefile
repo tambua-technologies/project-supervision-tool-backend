@@ -17,6 +17,12 @@ dump-autoload:
 	@docker-compose -f docker-compose.testing.yml run php composer dump-autoload
 
 
+certbot-renew:
+	@docker-compose  down \
+    && docker-compose run certbot renew
+	&& docker-compose up -d
+
+
 
 
 
