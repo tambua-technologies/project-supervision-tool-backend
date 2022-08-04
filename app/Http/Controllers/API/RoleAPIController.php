@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateRoleAPIRequest;
 use App\Http\Requests\API\UpdateRoleAPIRequest;
+use App\Http\Resources\Users\RoleResource;
+use App\Http\Resources\Users\RolesCollection;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -60,13 +62,9 @@ class RoleAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $roles = $this->roleRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $roles = $this->roleRepository->paginate(15);
 
-        return $this->sendResponse($roles->toArray(), 'Roles retrieved successfully');
+        return $this->sendResponse(new RolesCollection($roles), 'Roles retrieved successfully');
     }
 
     /**
