@@ -265,6 +265,7 @@ class SubProjectAPIController extends AppBaseController
                 AllowedFilter::exact('procuring_entity_package_id'),
                 AllowedFilter::exact('procuring_entity_id'),
             ])
+            ->where('procuring_entity_id', 100)
             ->get();
 
         return $this->sendResponse($subProjects, 'Sub Projects retrieved successfully');
