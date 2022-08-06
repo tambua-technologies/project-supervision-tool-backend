@@ -21,29 +21,56 @@ class RolesTableSeeder extends Seeder
             array (
                 'name' => 'admin',
                 'guard_name' => 'api',
-                'created_at' => '2021-04-26 07:19:22',
-                'updated_at' => '2021-04-26 07:19:22',
             ),
             1 =>
             array (
-                'name' => 'csc',
+                'name' => 'construction supervision consultant',
                 'guard_name' => 'api',
-                'created_at' => '2022-05-04 19:16:20',
-                'updated_at' => '2022-05-04 19:16:20',
             ),
             2 =>
             array (
-                'name' => 'dmdp-project-coordinator',
+                'name' => 'sub-projects coordinator',
                 'guard_name' => 'api',
-                'created_at' => '2022-05-04 19:17:33',
-                'updated_at' => '2022-05-04 19:17:33',
             ),
             3 =>
                 array (
-                    'name' => 'staff',
+                    'name' => 'procurement officer',
                     'guard_name' => 'api',
-                    'created_at' => '2021-04-26 07:19:22',
-                    'updated_at' => '2021-04-26 07:19:22',
+                ),
+            4 =>
+                array (
+                    'name' => 'safeguards personnel',
+                    'guard_name' => 'api',
+                ),
+            5 =>
+                array (
+                    'name' => 'project coordinator',
+                    'guard_name' => 'api',
+                ),
+            6 =>
+                array (
+                    'name' => 'world-bank ttl',
+                    'guard_name' => 'api',
+                ),
+            7 =>
+                array (
+                    'name' => 'lga executive director',
+                    'guard_name' => 'api',
+                ),
+            8 =>
+                array (
+                    'name' => 'district administrative secretary',
+                    'guard_name' => 'api',
+                ),
+            9 =>
+                array (
+                    'name' => 'regional administrative secretary',
+                    'guard_name' => 'api',
+                ),
+            10 =>
+                array (
+                    'name' => 'PO-RALG director of infrastructure',
+                    'guard_name' => 'api',
                 ),
         ));
 
