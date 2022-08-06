@@ -20,194 +20,192 @@ class PermissionsTableSeeder extends Seeder
 
             0 =>
             array (
-                'name' => 'can create sub-projects',
+                'name' => 'can create sub-project',
                 'guard_name' => 'api',
             ),
             1 =>
             array (
-                'name' => 'can create packages',
+                'name' => 'can create package',
                 'guard_name' => 'api',
             ),
             2 =>
             array (
-                'name' => 'can create procuring-entities',
+                'name' => 'can create procuring-entity',
                 'guard_name' => 'api',
             ),
 
             3 =>
                 array (
-                    'name' => 'can create reports',
+                    'name' => 'can create report',
                     'guard_name' => 'api',
                 ),
             4 =>
                 array (
-                    'name' => 'can create ohs and safeguards',
+                    'name' => 'can create ohs and safeguard',
                     'guard_name' => 'api',
                 ),
             5 =>
                 array (
-                    'name' => 'can create field notes',
+                    'name' => 'can create field note',
                     'guard_name' => 'api',
                 ),
             6 =>
                 array (
-                    'name' => 'can create users',
+                    'name' => 'can create user',
                     'guard_name' => 'api',
                 ),
 
             7 =>
                 array (
-                    'name' => 'can create permissions',
+                    'name' => 'can create permission',
                     'guard_name' => 'api',
                 ),
             8 =>
                 array (
-                    'name' => 'can create projects',
+                    'name' => 'can create project',
                     'guard_name' => 'api',
                 ),
             9 =>
                 array (
-                    'name' => 'can read sub-projects',
+                    'name' => 'can read sub-project',
                     'guard_name' => 'api',
                 ),
             10 =>
                 array (
-                    'name' => 'can read packages',
+                    'name' => 'can read package',
                     'guard_name' => 'api',
                 ),
             11 =>
                 array (
-                    'name' => 'can read procuring-entities',
+                    'name' => 'can read procuring-entity',
                     'guard_name' => 'api',
                 ),
 
             12 =>
                 array (
-                    'name' => 'can read reports',
+                    'name' => 'can read report',
                     'guard_name' => 'api',
                 ),
             13 =>
                 array (
-                    'name' => 'can read ohs and safeguards',
+                    'name' => 'can read ohs and safeguard',
                     'guard_name' => 'api',
                 ),
             14 =>
                 array (
-                    'name' => 'can read field notes',
+                    'name' => 'can read field note',
                     'guard_name' => 'api',
                 ),
             15 =>
                 array (
-                    'name' => 'can read users',
+                    'name' => 'can read user',
                     'guard_name' => 'api',
                 ),
 
             16 =>
                 array (
-                    'name' => 'can read permissions',
+                    'name' => 'can read permission',
                     'guard_name' => 'api',
                 ),
             17 =>
                 array (
-                    'name' => 'can read projects',
+                    'name' => 'can read project',
                     'guard_name' => 'api',
                 ),
             18 =>
                 array (
-                    'name' => 'can update sub-projects',
+                    'name' => 'can update sub-project',
                     'guard_name' => 'api',
                 ),
             19 =>
                 array (
-                    'name' => 'can update packages',
+                    'name' => 'can update package',
                     'guard_name' => 'api',
                 ),
             20 =>
                 array (
-                    'name' => 'can update procuring-entities',
+                    'name' => 'can update procuring-entity',
                     'guard_name' => 'api',
                 ),
 
             21 =>
                 array (
-                    'name' => 'can update reports',
+                    'name' => 'can update report',
                     'guard_name' => 'api',
                 ),
             22 =>
                 array (
-                    'name' => 'can update ohs and safeguards',
+                    'name' => 'can update ohs and safeguard',
                     'guard_name' => 'api',
                 ),
             23 =>
                 array (
-                    'name' => 'can update field notes',
+                    'name' => 'can update field note',
                     'guard_name' => 'api',
                 ),
             24 =>
                 array (
-                    'name' => 'can update users',
+                    'name' => 'can update user',
                     'guard_name' => 'api',
                 ),
 
             25 =>
                 array (
-                    'name' => 'can update permissions',
+                    'name' => 'can update permission',
                     'guard_name' => 'api',
                 ),
             26 =>
                 array (
-                    'name' => 'can update projects',
+                    'name' => 'can update project',
                     'guard_name' => 'api',
                 ),
             27 =>
                 array (
-                    'name' => 'can delete sub-projects',
+                    'name' => 'can delete sub-project',
                     'guard_name' => 'api',
                 ),
             28 =>
                 array (
-                    'name' => 'can delete packages',
+                    'name' => 'can delete package',
                     'guard_name' => 'api',
                 ),
             29 =>
                 array (
-                    'name' => 'can delete procuring-entities',
+                    'name' => 'can delete procuring-entity',
                     'guard_name' => 'api',
                 ),
 
             30 =>
                 array (
-                    'name' => 'can delete reports',
+                    'name' => 'can delete report',
                     'guard_name' => 'api',
                 ),
             31 =>
                 array (
-                    'name' => 'can delete ohs and safeguards',
+                    'name' => 'can delete ohs and safeguard',
                     'guard_name' => 'api',
                 ),
             32 =>
                 array (
-                    'name' => 'can delete field notes',
+                    'name' => 'can delete field note',
                     'guard_name' => 'api',
                 ),
             33 =>
                 array (
-                    'name' => 'can delete users',
+                    'name' => 'can delete user',
                     'guard_name' => 'api',
                 ),
 
             34 =>
                 array (
-                    'name' => 'can delete permissions',
+                    'name' => 'can delete permission',
                     'guard_name' => 'api',
                 ),
             35 =>
                 array (
-                    'name' => 'can delete projects',
+                    'name' => 'can delete project',
                     'guard_name' => 'api',
                 ),
         ));
-
-
     }
 }
