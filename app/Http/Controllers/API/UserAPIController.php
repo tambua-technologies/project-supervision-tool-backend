@@ -337,6 +337,7 @@ class UserAPIController extends AppBaseController
         }
 
         $user = $this->userRepository->update($input, $id);
+        $user->syncRoles($request->roles);
 
         return $this->sendResponse($user->toArray(), 'User updated successfully');
     }
