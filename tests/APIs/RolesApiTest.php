@@ -1,12 +1,12 @@
 <?php namespace Tests\APIs;
 
 
-use App\Models\SafeguardConcern;
+use App\Models\User;
+
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
-use Illuminate\Http\UploadedFile;
 
 class RolesApiTest extends TestCase
 {
@@ -18,7 +18,6 @@ class RolesApiTest extends TestCase
         $this->response = $this->json('GET', '/api/v1/roles');
         $response = json_decode($this->response->getContent(), true);
         $roles = $response['data']['data'];
-//        dd($roles);
 
         $expectedKeys = [
             'id',
@@ -32,4 +31,24 @@ class RolesApiTest extends TestCase
         $this->assertEquals(4, $response['data']['meta']['total']);
 
     }
+
+    public function test_delete_role()
+    {
+        $user = User::create([
+            'first_name' => 'example',
+            'last_name' => 'user',
+            'phone' => '0654549880',
+            'email' => 'user@example.com',
+            'title' => 'sub project coordinator',
+            'password' => bcrypt('password@1'),
+        ]);
+        $user->assignRole('admin');
+        $this->assertEquals(1, $user->roles()->count());
+        $this->response = $this->json('DELETE', '/api/v1/roles/1');
+        $user->refresh();
+        $this->assertEquals(0, $user->roles()->count());
+
+    }
+
+
 }
