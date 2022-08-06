@@ -4,7 +4,11 @@ dev:
 	&& docker-compose -f docker-compose.local.yml up --build
 
 
-seed:
+dev-seed:
+	@docker-compose -f docker-compose.local.yml run php php artisan migrate:refresh --seed \
+                  && docker-compose -f docker-compose.local.yml run php php artisan passport:install
+
+test-seed:
 	@docker-compose -f docker-compose.testing.yml run php php artisan migrate:refresh --seed --env=testing \
                   && docker-compose -f docker-compose.testing.yml run php php artisan passport:install --env=testing
 
