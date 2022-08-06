@@ -14,9 +14,9 @@ class PermissionsTableSeeder extends Seeder
     {
 
 
-        \DB::table('permissions')->delete();
+        \DB::table('roles')->delete();
 
-        \DB::table('permissions')->insert(array (
+        \DB::table('roles')->insert(array (
 
             0 =>
             array (
@@ -57,7 +57,7 @@ class PermissionsTableSeeder extends Seeder
 
             7 =>
                 array (
-                    'name' => 'can create permission',
+                    'name' => 'can create role',
                     'guard_name' => 'api',
                 ),
             8 =>
@@ -104,7 +104,7 @@ class PermissionsTableSeeder extends Seeder
 
             16 =>
                 array (
-                    'name' => 'can read permission',
+                    'name' => 'can read role',
                     'guard_name' => 'api',
                 ),
             17 =>
@@ -151,7 +151,7 @@ class PermissionsTableSeeder extends Seeder
 
             25 =>
                 array (
-                    'name' => 'can update permission',
+                    'name' => 'can update role',
                     'guard_name' => 'api',
                 ),
             26 =>
@@ -198,7 +198,7 @@ class PermissionsTableSeeder extends Seeder
 
             34 =>
                 array (
-                    'name' => 'can delete permission',
+                    'name' => 'can delete role',
                     'guard_name' => 'api',
                 ),
             35 =>
