@@ -14,9 +14,9 @@ class PermissionsTableSeeder extends Seeder
     {
 
 
-        \DB::table('roles')->delete();
+        \DB::table('permissions')->delete();
 
-        \DB::table('roles')->insert(array (
+        \DB::table('permissions')->insert(array (
 
             0 =>
             array (
