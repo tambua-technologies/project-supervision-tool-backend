@@ -16,13 +16,13 @@ $ cd project-supervision-tool-backend
 $ cp .env.example .env
 
 # 4. Build docker images
-$ docker-compose -f docker-compose.local.yml build
+$ docker compose -f docker-compose.local.yml build
 
 # 5. orchestrate docker containers/services
-$ docker-compose -f docker-compose.local.yml up -d
+$ docker compose -f docker-compose.local.yml up -d
 
 # 6. open php service/container
-$ docker-compose -f docker-compose.local.yml exec php bash
+$ docker compose -f docker-compose.local.yml exec php bash
 
 # 7. install project dependendencies
 $ composer install
