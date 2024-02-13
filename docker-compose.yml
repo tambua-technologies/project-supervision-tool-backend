@@ -6,7 +6,7 @@ services:
     container_name: project-supervision-tool_db
     restart: unless-stopped
     volumes:
-      - "project_supervision_tool_db_data:/var/lib/postgresql/data"
+      - project_supervision_tool_db_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -14,11 +14,10 @@ services:
     ports:
       - "5432:5432"
 
-
   php:
     build: .
     image: project-supervision-tool
-    container_name: project-superviosion-tool
+    container_name: project-supervision-tool
     restart: unless-stopped
     depends_on:
       - db
@@ -31,23 +30,10 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
-      - "443:443"
+      - "8000:80"
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d
-      - letsencrypt/:/letsencrypt
-      - certs:/etc/nginx/ssl/:ro
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - letsencrypt/:/var/www/certbot/:rw
-      - certs:/etc/letsencrypt/:rw
+      - ./nginx/local/:/etc/nginx/conf.d
 
 volumes:
   project_supervision_tool_db_data:
-  letsencrypt:
-  certs:
-
-
